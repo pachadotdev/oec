@@ -4,10 +4,9 @@
 \name{oec}
 \alias{oec}
 \alias{oec-package}
-\title{oec: Use the OEC's API in R}
+\title{oec: The Observatory of Economic Complexity}
 \description{
-This package is intended to allow you to work with OEC data using its API.
-This package downloads the raw data, exports it to a CSV file and it also creates treemaps and networks with the same data using D3Plus.
+Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 }
 \details{
 The functions provided within this package are:

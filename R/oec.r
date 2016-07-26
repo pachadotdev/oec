@@ -34,6 +34,6 @@
 #'
 #' \code{\link{sitc_colors}} This file contains the SITC (rev. 2) colors. This file is used to create spreadsheets and visualizations with trade data.
 #'
-#' @name oec
+#' @name oec-package
 #' @docType package
 NULL

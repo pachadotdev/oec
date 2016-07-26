@@ -12,12 +12,12 @@ Use The Observatory of Economic Complexity's API from R console to obtain intern
 
 ## How to install
 
-## Using CRAN
+### Using CRAN
 ```r
 install.packages("oec")
 ```
 
-## Using Github
+### Using Github
 ```r
 install.packages("devtools") #if needed
 library(devtools)

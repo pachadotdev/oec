@@ -1,11 +1,9 @@
 \name{hs92_8char}
 \alias{hs92_8char}
+\title{HS92 products (8 characters)}
 \docType{data}
-\title{
-HS92 products (8 characters)
-}
 \description{
-This file contains the HS92 products. This file is used to create spreadsheets with trade data.
+HS92 products (8 characters). This file is used to create the visualizations.
 }
 \usage{hs92_8char}
 \format{

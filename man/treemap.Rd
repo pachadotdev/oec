@@ -2,7 +2,7 @@
 % Please edit documentation in R/treemap.R
 \name{treemap}
 \alias{treemap}
-\title{Creates an animated treemap.}
+\title{Creates a treemap for a given year}
 \usage{
 treemap(ORIGIN, DESTINATION, VARIABLE, CLASSIFICATION, YEAR)
 }
@@ -18,10 +18,10 @@ treemap(ORIGIN, DESTINATION, VARIABLE, CLASSIFICATION, YEAR)
 \item{YEAR}{is the year and the OEC's API ranges from 1962 to 2014}
 }
 \value{
-Creates an \code{HTML} file in the working directory with a tree map visualization.
+Creates an \code{HTML} file with a treemap visualization for a given year.
 }
 \description{
-Creates an animated treemap.
+Creates a treemap for a given year
 }
 \examples{
 treemap("chl", "chn", "exports", 6, 2004)

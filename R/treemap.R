@@ -1,6 +1,6 @@
-#' Creates an animated treemap.
+#' Creates a treemap for a given year
 #' @export
-#' @return Creates an \code{HTML} file in the working directory with a tree map visualization.
+#' @return Creates an \code{HTML} file with a treemap visualization for a given year.
 #' @param ORIGIN is the country code of origin (e.g. "chl" for Chile)
 #' @param DESTINATION is the country code of origin (e.g. "chn" for China)
 #' @param VARIABLE is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)

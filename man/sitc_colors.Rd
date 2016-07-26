@@ -1,11 +1,9 @@
 \name{sitc_colors}
 \alias{sitc_colors}
+\title{SITC (rev. 2) colors}
 \docType{data}
-\title{
-SITC (rev. 2) colors
-}
 \description{
-This file contains the SITC (rev. 2) colors. This file is used to create spreadsheets and visualizations with trade data.
+SITC (rev. 2) colors. This file is used to create the visualizations.
 }
 \usage{hs_colors}
 \format{

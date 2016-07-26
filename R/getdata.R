@@ -1,6 +1,6 @@
-#' Download trade data from OEC's API.
+#' Downloads and processes the data from the API
 #' @export
-#' @return Creates the data files in \code{json} and \code{csv} formats that are needed to create the visualizations.
+#' @return Downloads the data from the OEC's API and creates the data files in \code{json} and \code{csv} formats that are needed to create the visualizations.
 #' @param ORIGIN is the country code of origin (e.g. "chl" for Chile)
 #' @param DESTINATION is the country code of origin (e.g. "chn" for China)
 #' @param CLASSIFICATION refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing

@@ -1,6 +1,6 @@
-#' Copies demo file with examples.
+#' Copies the demo file
 #' @export
-#' @return A file named \code{demo_examples.R} will be copied to the working directory.
+#' @return Copies a file named \code{demo_examples.R} to the working directory.
 #' @examples
 #' demos()
 #' @keywords functions

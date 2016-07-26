@@ -1,11 +1,9 @@
 \name{countries_list}
 \alias{countries_list}
+\title{A list of all the countries}
 \docType{data}
-\title{
-Countries list
-}
 \description{
-This file contains a list of all the countries in the world and its respective country code. You need the country codes (e.g. chl) to obtain data for a certain country (e.g Chile)
+A list of all the countries in the world and its country code. You need the country code (e.g. chl) to obtain data of a country (e.g Chile)
 }
 \usage{countries_list}
 \format{

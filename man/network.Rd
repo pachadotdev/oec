@@ -2,7 +2,7 @@
 % Please edit documentation in R/network.R
 \name{network}
 \alias{network}
-\title{Create an animated network with nodes and edges.}
+\title{Creates a network for a given year}
 \usage{
 network(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
 }
@@ -16,10 +16,10 @@ network(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
 \item{YEAR}{is the year and the OEC's API ranges from 1962 to 2014}
 }
 \value{
-Creates an \code{HTML} file in the working directory with a tree map visualization.
+Creates an \code{HTML} file with a network visualization for a given year.
 }
 \description{
-Create an animated network with nodes and edges.
+Creates a network for a given year
 }
 \examples{
 network("chl", "chn", 6, 2004)

@@ -1,11 +1,9 @@
 \name{hs_colors}
 \alias{hs_colors}
+\title{HS92 colors}
 \docType{data}
-\title{
-HS colors
-}
 \description{
-This file contains the HS92 colors. This file is used to create spreadsheets and visualizations with trade data.
+HS92 colors. This file is used to create the visualizations.
 }
 \usage{hs_colors}
 \format{

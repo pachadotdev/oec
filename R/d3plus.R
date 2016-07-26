@@ -1,4 +1,4 @@
-#' Install D3 and D3plus in your working directory.
+#' Installs D3Plus
 #' @export
 #' @return Copies a folder named \code{d3plus} to the working directory and it contains the \code{js} files and icons to make the visualizations
 #' @importFrom utils unzip

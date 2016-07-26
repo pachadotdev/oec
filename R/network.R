@@ -1,6 +1,6 @@
-#' Create an animated network with nodes and edges.
+#' Creates a network for a given year
 #' @export
-#' @return Creates an \code{HTML} file in the working directory with a tree map visualization.
+#' @return Creates an \code{HTML} file with a network visualization for a given year.
 #' @param ORIGIN is the country code of origin (e.g. "chl" for Chile)
 #' @param DESTINATION is the country code of origin (e.g. "chn" for China)
 #' @param CLASSIFICATION refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing

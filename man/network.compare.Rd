@@ -2,7 +2,7 @@
 % Please edit documentation in R/network.compare.R
 \name{network.compare}
 \alias{network.compare}
-\title{Creates a network that compares the exporting opportunities of a country in two different years.}
+\title{Creates a network to compare two years}
 \usage{
 network.compare(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2)
 }
@@ -18,10 +18,10 @@ network.compare(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2)
 \item{YEAR2}{is the final year and the OEC's API ranges from 1962 to 2014}
 }
 \value{
-Creates an \code{HTML} file in the working directory with a tree map visualization.
+Creates an \code{HTML} file with a network visualization that compares two given years.
 }
 \description{
-Creates a network that compares the exporting opportunities of a country in two different years.
+Creates a network to compare two years
 }
 \examples{
 network.compare("chl", "chn", 6, 2000, 2010)

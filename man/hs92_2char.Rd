@@ -1,11 +1,9 @@
 \name{hs92_2char}
 \alias{hs92_2char}
+\title{HS92 groups}
 \docType{data}
-\title{
-HS92 groups
-}
 \description{
-This file contains the HS92 groups. This file is used to create spreadsheets and visualizations with trade data.
+HS92 groups. This file is used to create the visualizations.
 }
 \usage{hs92_2char}
 \format{

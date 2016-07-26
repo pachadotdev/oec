@@ -2,15 +2,15 @@
 % Please edit documentation in R/demos.R
 \name{demos}
 \alias{demos}
-\title{Copies demo file with examples.}
+\title{Copies the demo file}
 \usage{
 demos()
 }
 \value{
-A file named \code{demo_examples.R} will be copied to the working directory.
+Copies a file named \code{demo_examples.R} to the working directory.
 }
 \description{
-Copies demo file with examples.
+Copies the demo file
 }
 \examples{
 demos()

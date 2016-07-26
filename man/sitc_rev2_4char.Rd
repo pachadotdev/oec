@@ -1,11 +1,9 @@
 \name{sitc_rev2_4char}
 \alias{sitc_rev2_4char}
+\title{SITC (rev. 2) products (4 characters)}
 \docType{data}
-\title{
-SITC (rev 2.) products (4 characters)
-}
 \description{
-This file contains the SITC (rev. 2) products. This file is used to create spreadsheets and visualizations with trade data.
+SITC (rev. 2) products (4 characters). This file is used to create the visualizations.
 }
 \usage{sitc_rev2_4char}
 \format{

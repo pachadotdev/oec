@@ -1,11 +1,9 @@
 \name{sitc_rev2_2char}
 \alias{sitc_rev2_2char}
+\title{SITC (rev. 2) groups}
 \docType{data}
-\title{
-HS92 groups
-}
 \description{
-This file contains the SITC (rev. 2) groups. This file is used to create spreadsheets and visualizations with trade data.
+SITC (rev. 2) groups. This file is used to create the visualizations.
 }
 \usage{hs92_2char}
 \format{

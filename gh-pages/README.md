@@ -2,7 +2,7 @@
 
 # The Observatory of Economic Complexity - R Package
 
-This package is intended to allow you to obtain data from OEC's API and create D3Plus treemaps and networks in R the easy way. This package is released under the MIT license (see below).
+Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations. This package is released under the MIT license (see below).
 
 ## Examples
 

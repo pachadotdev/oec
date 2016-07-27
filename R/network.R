@@ -27,8 +27,6 @@ network <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
     getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
 
     code_lenght = CLASSIFICATION
-    width = 1000
-    height = 600
     if(code_lenght == 4) {
       code_display = "SITC code"
       edges = "edges_sitc.json"

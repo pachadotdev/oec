@@ -40,10 +40,6 @@ treemap <- function(ORIGIN, DESTINATION, VARIABLE, CLASSIFICATION, YEAR) {
       }
     }
 
-    width = 1000
-    height = 600
-
-    #grouped_val <- ifelse(GROUPED == "yes", 0, ifelse(GROUPED == "no", 1, message("*** Input only allows \"yes\" and \"no\" ***")))
     grouped_val = 1
     variablecol <- ifelse(VARIABLE == "imports", "import_val",
                           ifelse(VARIABLE == "exports", "export_val",

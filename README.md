@@ -32,7 +32,7 @@ The documentation is available [here](http://pacha.hk/oec/oec.pdf). Read the doc
 
 [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) original work is an idea of Mr. [Alexander Simoes](https://github.com/alexandersimoes/oec). This R package is just an extension to his work.
 
-### The MIT License
+## The MIT License
 
 Copyright (c) 2016, Mauricio Vargas S.
 

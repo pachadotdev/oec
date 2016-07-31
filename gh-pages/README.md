@@ -21,7 +21,7 @@ install.packages("oec")
 ```r
 install.packages("devtools") #if needed
 library(devtools)
-install_github("pachamaltese/oec")
+install_github("pachamaltese/oec/cran")
 ```
 
 ## How to use 

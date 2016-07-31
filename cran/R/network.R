@@ -12,8 +12,8 @@
 network <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
   d3_folder <- paste0(getwd(),"/d3plus")
   if(!file.exists(d3_folder)){
-    print("d3plus not installed... installing using d3plus()...")
-    d3plus()
+    print("d3plus not installed... installing using install_d3plus()...")
+    install_d3plus()
   }
 
   #ORIGIN = deparse(substitute(ORIGIN))

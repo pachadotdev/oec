@@ -3,24 +3,24 @@
 \docType{package}
 \name{oec-package}
 \alias{oec-package}
-\title{oec: The Observatory of Economic Complexity}
+\title{OEC: The Observatory of Economic Complexity}
 \description{
 Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 }
 \details{
 The functions provided within this package are:
 
-\code{\link{install_d3plus}}	Installs D3 and D3plus in your working directory.
+\code{\link{install_d3plus}}	Installs D3 and D3plus.
 
-\code{\link{demos}}	Copies demo file with examples.
+\code{\link{demos}} Copies the demo file.
 
-\code{\link{getdata}}	Downloads trade data from OEC's API.
+\code{\link{getdata}} Downloads and processes the data from the API.
 
-\code{\link{network}}	Creates an animated network with nodes and edges.
+\code{\link{network}} Creates a network for a given year.
 
-\code{\link{network.compare}}	Creates a network that compares the exporting opportunities of a country in two different years.
+\code{\link{network.compare}} Creates a network to compare two years.
 
-\code{\link{treemap}}	Creates an animated treemap.
+\code{\link{treemap}} Creates a treemap for a given year.
 
 The datasets provided within this package are:
 

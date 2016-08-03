@@ -15,9 +15,6 @@ getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
 
 \item{YEAR}{is the year and the OEC's API ranges from 1962 to 2014}
 }
-\value{
-Downloads the data from the OEC's API and creates the data files in \code{json} and \code{csv} formats that are needed to create the visualizations.
-}
 \description{
 Downloads and processes the data from the API
 }

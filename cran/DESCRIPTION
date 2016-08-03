@@ -1,7 +1,7 @@
 Package: oec
 Type: Package
 Title: The Observatory of Economic Complexity
-Version: 1.0.4
+Version: 1.0.5
 Date: 2016-08-02
 Author: Mauricio Vargas S. <mauriciovargas@ug.uchile.cl>
 Maintainer: Mauricio Vargas S. <mauriciovargas@ug.uchile.cl>

@@ -6,17 +6,16 @@
           <script>
           var visualization = d3plus.viz()
           .container("#network")
-          .data("chl_all_1995_2014_6char.json")
+          .data("chl_chn_2014_6char.json")
           .edges("edges_hs.json")
           .nodes("nodes_hs.json")
+          .size("export_val")
           .type("network")
           .width(1000)
           .height(600)
           .resize(true)
-          .id(["group2","product"])
-          .size("export_val")
+          .id(["group","product"])
           .font({"family": "Lato"})
-          .labels({"align": "center", "valign": "center"})
           .depth(1)
           .format({
             "text": function(text, params) {
@@ -35,7 +34,6 @@
             },
             "number": function(number, params) {
               var formatted = d3plus.number.format(number, params);
-              
               if (params.key === "export_val") {
                 return formatted + " USD";
               }
@@ -50,7 +48,7 @@
               }
             }
           })
-          .color("color2")
+          .color("color")
           .title({
             "total": {
             "font": {"size": 16},

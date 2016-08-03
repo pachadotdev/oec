@@ -20,6 +20,9 @@ getdata("chl", "all", 6, 2014)
 # barchart.comparison() calls getdata() and it is not needed to run getdata() first
 barchart.comparison(chl, chn, exports, 6, 2012, 1)
 
+# download trade data from OEC's API (hs92 6 characters product lists)
+getdata("chl", "all", 6, 2014)
+
 # treemap
 # treemap() calls getdata() and it is not needed to run getdata() first
 treemap(chl, chn, exports, 6, 2014)

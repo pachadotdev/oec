@@ -2,20 +2,23 @@
   <meta charset="utf-8">
     <script src="d3plus/d3.min.js"></script>
     <script src="d3plus/d3plus.min.js"></script>
-          <div id="treemap"></div>
+          <div id="bar"></div>
           <script>
           var visualization = d3plus.viz()
-          .container("#treemap")
-          .data("chl_all_2014_6char.json")
-          .type("treemap")
+          .container("#bar")
+          .data("chl_chn_2012_comparison_6char.json")
+          .type("bar")
           .width(1000)
           .height(600)
           .resize(true)
           .id(["group","product"])
-          .size("export_val")
+          .x("year")
+          .y({"stacked":true, "value":"export_val"})
+          .time("year")
+          .zoom({"value":false})
           .font({"family": "Lato"})
           .labels({"align": "left", "valign": "top"})
-          .depth(1)
+          .depth(0)
           .format({
             "text": function(text, params) {
               if (text === "export_val") {
@@ -48,13 +51,6 @@
             }
           })
           .color("color")
-          .title({
-            "total": {
-            "font": {"size": 16},
-            "value": true
-            },
-            "sub": {"font": {"size": 16}}
-           })
           .legend({"order": {"sort": "desc", "value": "size"}})
           .tooltip(["product_id","export_val","rca"])
           .icon({"style": "knockout", "value": "image"})

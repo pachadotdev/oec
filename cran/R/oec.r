@@ -16,7 +16,7 @@
 #'
 #' \code{\link{network.comparison}} Creates a network to compare two years.
 #'
-#' \code{\link{stackedareaplot.comparison}} Creates an stacked area plot to compare up to five years.
+#' \code{\link{stackedareaplot.comparison}} Creates a stacked area plot to compare up to five years.
 #'
 #' \code{\link{treemap}} Creates a treemap for a given year.
 #'

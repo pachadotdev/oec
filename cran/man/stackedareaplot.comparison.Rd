@@ -18,7 +18,7 @@ stackedareaplot.comparison(ORIGIN, DESTINATION, VARIABLE, CLASSIFICATION, YEAR)
 \item{YEAR}{is the initial year and the OEC's API ranges from 1962 to 2014}
 }
 \value{
-Creates an \code{HTML} file with a bar chart visualization that compares two given years.
+Creates an \code{HTML} file with a stacked area plot visualization that compares two given years.
 }
 \description{
 Creates a stacked area plot to compare two years

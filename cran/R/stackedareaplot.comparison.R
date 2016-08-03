@@ -1,6 +1,6 @@
 #' Creates a stacked area plot to compare two years
 #' @export
-#' @return Creates an \code{HTML} file with a bar chart visualization that compares two given years.
+#' @return Creates an \code{HTML} file with a stacked area plot visualization that compares two given years.
 #' @param ORIGIN is the country code of origin (e.g. "chl" for Chile)
 #' @param DESTINATION is the country code of origin (e.g. "chn" for China)
 #' @param VARIABLE is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)

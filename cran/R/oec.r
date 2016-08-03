@@ -4,6 +4,8 @@
 #'
 #' The functions provided within this package are:
 #'
+#'\code{\link{barchart.comparison}} Creates a bar chart to compare up to five years.
+#'
 #' \code{\link{install_d3plus}}	Installs D3 and D3plus.
 #'
 #' \code{\link{demos}} Copies the demo file.
@@ -12,7 +14,9 @@
 #'
 #' \code{\link{network}} Creates a network for a given year.
 #'
-#' \code{\link{network.compare}} Creates a network to compare two years.
+#' \code{\link{network.comparison}} Creates a network to compare two years.
+#'
+#' \code{\link{stackedareaplot.comparison}} Creates an stacked area plot to compare up to five years.
 #'
 #' \code{\link{treemap}} Creates a treemap for a given year.
 #'

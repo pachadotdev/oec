@@ -1,16 +1,16 @@
-#' Creates a bar chart to compare two years
+#' Creates a network to compare two years
 #' @export
-#' @return Creates an \code{HTML} file with a bar chart visualization that compares two given years.
+#' @return Creates an \code{HTML} file with a network visualization that compares two given years.
 #' @param ORIGIN is the country code of origin (e.g. "chl" for Chile)
 #' @param DESTINATION is the country code of origin (e.g. "chn" for China)
 #' @param CLASSIFICATION refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
 #' @param YEAR1 is the initial year and the OEC's API ranges from 1962 to 2014
 #' @param YEAR2 is the final year and the OEC's API ranges from 1962 to 2014
 #' @examples
-#' barchart.compare(chl, chn, 6, 2010, 2014)
+#' network.comparison(chl, chn, 6, 2010, 2014)
 #' @keywords functions
 
-barchart.compare <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2) {
+network.comparison <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2) {
   d3_folder <- paste0(getwd(), "/d3plus")
   if(!file.exists(d3_folder)){
     print("d3plus not installed... installing using install_d3plus()...")
@@ -29,35 +29,29 @@ barchart.compare <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2) 
     print(paste0("Processing files for the year ", YEAR1, "..."))
     getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1)
 
-    YEARintermediate_file <- floor((YEAR2-YEAR1)/2 + YEAR1)
-    if(0 < YEARintermediate_file) {
-      print(paste0("Processing files for the year ", YEARintermediate_file, "..."))
-      getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEARintermediate_file)
-
-      YEARintermediate_file <- paste(ORIGIN, DESTINATION, YEARintermediate_file, CLASSIFICATION, sep="_")
-      YEARintermediate_file <- paste0(YEARintermediate_file, "char.json")
-
-      ORIGIN_YEARintermediate <- as.data.frame(fromJSON(YEARintermediate_file))
-    }
-
     print(paste0("Processing files for the year ", YEAR2, "..."))
     getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR2)
 
-    YEAR1_file <- paste(ORIGIN, DESTINATION, YEAR1, CLASSIFICATION, sep="_")
-    YEAR1_file <- paste0(YEAR1_file, "char.json")
-
-    YEAR2_file <- paste(ORIGIN, DESTINATION, YEAR2, CLASSIFICATION, sep="_")
-    YEAR2_file <- paste0(YEAR2_file, "char.json")
+    YEAR1_file = paste(ORIGIN, DESTINATION, YEAR1, CLASSIFICATION, sep="_")
+    YEAR2_file = paste(ORIGIN, DESTINATION, YEAR2, CLASSIFICATION, sep="_")
+    YEAR1_file = paste0(YEAR1_file, "char.json")
+    YEAR2_file = paste0(YEAR2_file, "char.json")
 
     ORIGIN_YEAR1 <- as.data.frame(fromJSON(YEAR1_file))
-
     ORIGIN_YEAR2 <- as.data.frame(fromJSON(YEAR2_file))
 
-    if(0 < YEARintermediate_file) {
-      ORIGIN_compare = rbind(ORIGIN_YEAR1, ORIGIN_YEARintermediate, ORIGIN_YEAR2)
-    } else {
-      ORIGIN_compare = rbind(ORIGIN_YEAR1, ORIGIN_YEAR2)
-    }
+    ORIGIN_YEAR1$rca = ifelse(is.na(ORIGIN_YEAR1$rca), 0, ORIGIN_YEAR1$rca)
+    ORIGIN_YEAR2$rca = ifelse(is.na(ORIGIN_YEAR2$rca), 0, ORIGIN_YEAR2$rca)
+
+    ORIGIN_YEAR1$export_val = ifelse(is.na(ORIGIN_YEAR1$export_val), 0, ORIGIN_YEAR1$export_val)
+    ORIGIN_YEAR1_non_null = ORIGIN_YEAR1[ORIGIN_YEAR1$export_val > 0, ]
+
+    ORIGIN_compare = ORIGIN_YEAR2
+    ORIGIN_compare$rca = ifelse(ORIGIN_YEAR2$rca > ORIGIN_YEAR1$rca, ORIGIN_YEAR2$rca, ORIGIN_YEAR1$rca)
+    ORIGIN_compare$group2 = ifelse(!(ORIGIN_YEAR2$product_id %in% ORIGIN_YEAR1_non_null$product_id), YEAR2, YEAR1)
+    ORIGIN_compare$group2 = ifelse(ORIGIN_YEAR2$rca > ORIGIN_YEAR1$rca, YEAR2, YEAR1)
+    ORIGIN_compare$color2 = ifelse(ORIGIN_compare$group2 == YEAR2, "#4169e1", "#e1b941")
+    ORIGIN_compare$rca = ifelse(ORIGIN_compare$rca == 0, NA, ORIGIN_compare$rca)
     ORIGIN_compare$export_val = ifelse(ORIGIN_compare$export_val == 0, NA, ORIGIN_compare$export_val)
 
     write(toJSON(ORIGIN_compare, pretty = TRUE), file=paste0(INPUT, ".json"))
@@ -111,16 +105,16 @@ barchart.compare <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2) 
       } else {
         ### html ###
         OUTPUT = INPUT
-        html_file <- paste0(OUTPUT, "_barchart_exports", ".html")
+        html_file <- paste0(OUTPUT, "_network_exports", ".html")
         if(!file.exists(html_file)){
-          print("creating bar chart")
-          barchart_compare_template <- paste(readLines(system.file("extdata", "barchart_compare_template.html", package = "oec"), warn = F), collapse = "\n")
-          barchart_compare_template = gsub("json_file", paste0(OUTPUT, ".json"), barchart_compare_template)
-          barchart_compare_template = gsub("code_display", code_display, barchart_compare_template)
-          barchart_compare_template = gsub("variablecol", variablecol, barchart_compare_template)
-          barchart_compare_template = gsub("variablename", variablename, barchart_compare_template)
+          print("creating network")
+          network_compare_template <- paste(readLines(system.file("extdata", "network_compare_template.html", package = "oec"), warn = F), collapse = "\n")
+          network_compare_template = gsub("json_file", paste0(OUTPUT, ".json"), network_compare_template)
+          network_compare_template = gsub("edges_file", edges, network_compare_template)
+          network_compare_template = gsub("nodes_file", nodes, network_compare_template)
+          network_compare_template = gsub("code_display", code_display, network_compare_template)
           print("writing html file...")
-          writeLines(barchart_compare_template, paste0(OUTPUT, "_barchart_exports", ".html"))
+          writeLines(network_compare_template, paste0(OUTPUT, "_network_exports", ".html"))
           print("opening html files in the browser.")
           httw(pattern = NULL, daemon = TRUE)
         } else {
@@ -131,6 +125,6 @@ barchart.compare <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2) 
       }
     }
   } else {
-    print('Barchart.compare only admits 4 characters codes (SITC) or 6 characters codes (HS92). This method only allows "exports".')
+    print('Network.compare only admits 4 characters codes (SITC) or 6 characters codes (HS92). This method only allows "exports".')
   }
 }

@@ -16,20 +16,20 @@ network <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
   install_d3plus()
   }
 
-  ORIGIN = deparse(substitute(ORIGIN))
-  DESTINATION = deparse(substitute(DESTINATION))
-  VARIABLE = "exports"
+  ORIGIN <- deparse(substitute(ORIGIN))
+  DESTINATION <- deparse(substitute(DESTINATION))
+  VARIABLE <- "exports"
 
-  INPUT = paste(ORIGIN, DESTINATION, YEAR, CLASSIFICATION, sep="_")
-  INPUT = paste0(INPUT, "char")
+  INPUT <- paste(ORIGIN, DESTINATION, YEAR, CLASSIFICATION, sep="_")
+  INPUT <- paste0(INPUT, "char")
 
   getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
 
-  code_lenght = CLASSIFICATION
+  code_lenght <- CLASSIFICATION
   if(code_lenght == 4) {
-    code_display = "SITC code"
-    edges = "edges_sitc.json"
-    nodes = "nodes_sitc.json"
+    code_display <- "SITC code"
+    edges <- "edges_sitc.json"
+    nodes <- "nodes_sitc.json"
 
     if(!file.exists(edges) & !file.exists(nodes)) {
     ### nodes ###
@@ -41,17 +41,17 @@ network <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
     }
   }
   if(code_lenght == 6) {
-    code_display = "HS92 code"
-    edges = "edges_hs.json"
-    nodes = "nodes_hs.json"
+    code_display <- "HS92 code"
+    edges <- "edges_hs.json"
+    nodes <- "nodes_hs.json"
 
     if(!file.exists(edges) & !file.exists(nodes)) {
     ### nodes ###
     print("creating HS92 nodes...")
-    file.copy(from=system.file("extdata", "nodes_hs.json", package = "oec"), to=getwd())
+    file.copy(from = system.file("extdata", "nodes_hs.json", package = "oec"), to = getwd())
     ### edges ###
     print("creating HS92 edges...")
-    file.copy(from=system.file("extdata", "edges_hs.json", package = "oec"), to=getwd())
+    file.copy(from = system.file("extdata", "edges_hs.json", package = "oec"), to = getwd())
     }
   }
   if(VARIABLE == "exports") {
@@ -68,15 +68,15 @@ network <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
       print("json file not found. run getdata() first")
     } else {
       ### html ###
-      OUTPUT = INPUT
+      OUTPUT <- INPUT
       html_file <- paste0(OUTPUT, "_network_exports", ".html")
       if(!file.exists(html_file)){
       print("creating network")
       network_template <- paste(readLines(system.file("extdata", "network_template.html", package = "oec"), warn = F), collapse = "\n")
-      network_template = gsub("json_file", paste0(OUTPUT, ".json"), network_template)
-      network_template = gsub("edges_file", edges, network_template)
-      network_template = gsub("nodes_file", nodes, network_template)
-      network_template = gsub("code_display", code_display, network_template)
+      network_template <- gsub("json_file", paste0(OUTPUT, ".json"), network_template)
+      network_template <- gsub("edges_file", edges, network_template)
+      network_template <- gsub("nodes_file", nodes, network_template)
+      network_template <- gsub("code_display", code_display, network_template)
       print("writing html file...")
       writeLines(network_template, paste0(OUTPUT, "_network_exports", ".html"))
       print("opening html files in the browser.")

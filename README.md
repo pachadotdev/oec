@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/d3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![version](https://img.shields.io/badge/version-1.0.6-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/d3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # The Observatory of Economic Complexity - R Package
 

@@ -10,8 +10,6 @@ Use The Observatory of Economic Complexity's API from R console to obtain intern
 \details{
 The functions provided within this package are:
 
-\code{\link{barchart.comparison}} Creates a bar chart to compare up to five years.
-
 \code{\link{install_d3plus}}	Installs D3 and D3plus.
 
 \code{\link{demos}} Copies the demo file.
@@ -21,8 +19,6 @@ The functions provided within this package are:
 \code{\link{network}} Creates a network for a given year.
 
 \code{\link{network.comparison}} Creates a network to compare two years.
-
-\code{\link{stackedareaplot.comparison}} Creates a stacked area plot to compare up to five years.
 
 \code{\link{treemap}} Creates a treemap for a given year.
 

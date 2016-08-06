@@ -8,8 +8,6 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
   * [Treemap of chilean exports to China in the year 2014](http://pacha.hk/oec/chl_chn_2014_6char_treemap_exports.html)
   * [Network of chilean exports to China in the year 2014](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
-<!--  * [Comparison barchart of chilean exports to China between the years 2010 and 2014](http://pacha.hk/oec/chl_chn_2012_comparison_6char_barchart_exports.html) -->
-<!--  * [Comparison stacked area plot of chilean exports to China between the years 2010 and 2014](http://pacha.hk/oec/chl_chn_2012_comparison_6char_stackedareaplot_exports.html) -->
   * [Comparison network of chilean exports to China between the years 2010 and 2014](http://pacha.hk/oec/chl_chn_2010_2014_6char_network_exports.html)
 
 ## How to install

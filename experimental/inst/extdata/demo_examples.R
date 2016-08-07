@@ -1,0 +1,37 @@
+### Examples ###
+
+# if needed #
+#install.packages("devtools")
+library(devtools)
+install_github("pachamaltese/oec/cran")
+
+setwd("/myfolder") # change this to your working directory
+library(oec)
+
+### Demo with files obtained from OEC's API ###
+
+# see the countries list if you are not sure about the country code
+countries_list
+
+# download trade data from OEC's API (hs92 6 characters product lists)
+getdata("chl", "all", 6, 2014)
+
+# barchart.comparison
+# barchart.comparison() calls getdata() and it is not needed to run getdata() first
+barchart.comparison(chl, chn, exports, 6, 2012, 1)
+
+# treemap
+# treemap() calls getdata() and it is not needed to run getdata() first
+treemap(chl, chn, exports, 6, 2014)
+
+# network
+# network() calls getdata() and it is not needed to run getdata() first
+network(chl, chn, 6, 2014)
+
+# network.comparison
+# network.comparison() calls getdata() and it is not needed to run getdata() first
+network.comparison(chl, chn, 6, 2010, 2014)
+
+# stackedareaplot.comparison
+# stackedareaplot.comparison() calls getdata() and it is not needed to run getdata() first
+stackedareaplot.comparison(chl, chn, exports, 6, 2012)

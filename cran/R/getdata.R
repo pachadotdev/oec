@@ -59,9 +59,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
               print("processing SITC rev.2 (4 characters) files...")
 
               ORIGIN_all_YEAR_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", YEAR, "/", ORIGIN, "/all/show/")))
-              drop <- names(ORIGIN_all_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id")
+              drop <- names(ORIGIN_all_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id", "data.year")
               ORIGIN_all_YEAR_4char <- ORIGIN_all_YEAR_4char[!drop]
-              setnames(ORIGIN_all_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val", "data.year"), c("export_val", "id", "import_val", "year"))
+              setnames(ORIGIN_all_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val"), c("export_val", "id", "import_val"))
               ORIGIN_all_YEAR_4char$group_id <- substr(ORIGIN_all_YEAR_4char$id, 1, 2)
 
               sitc_rev2_4char <- sitc_rev2_4char
@@ -76,9 +76,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
               ORIGIN_all_YEAR_4char <- merge(ORIGIN_all_YEAR_4char, sitc_colors)
 
               all_all_YEAR_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", YEAR, "/all/all/show/")))
-              drop <- names(all_all_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id")
+              drop <- names(all_all_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id", "data.year")
               all_all_YEAR_4char <- all_all_YEAR_4char[!drop]
-              setnames(all_all_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val", "data.year"), c("export_val", "id", "import_val", "year"))
+              setnames(all_all_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val"), c("export_val", "id", "import_val"))
               all_all_YEAR_4char$group_id <- substr(all_all_YEAR_4char$id, 1, 2)
 
               all_all_YEAR_4char <- join(sitc_rev2_4char, all_all_YEAR_4char, by = "id")
@@ -99,9 +99,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
               setnames(all_all_YEAR_4char_exp, "export_val", "export_val_all_all")
 
               ORIGIN_DESTINATION_YEAR_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", YEAR, "/", ORIGIN, "/", DESTINATION, "/show/")))
-              drop <- names(ORIGIN_DESTINATION_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id")
+              drop <- names(ORIGIN_DESTINATION_YEAR_4char) %in% c("data.dest_id", "data.sitc_id_len", "data.origin_id", "data.year")
               ORIGIN_DESTINATION_YEAR_4char <- ORIGIN_DESTINATION_YEAR_4char[!drop]
-              setnames(ORIGIN_DESTINATION_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val", "data.year"), c("export_val", "id", "import_val", "year"))
+              setnames(ORIGIN_DESTINATION_YEAR_4char, c("data.export_val", "data.sitc_id", "data.import_val"), c("export_val", "id", "import_val"))
               ORIGIN_DESTINATION_YEAR_4char$group_id <- substr(ORIGIN_DESTINATION_YEAR_4char$id, 1, 2)
 
               ORIGIN_DESTINATION_YEAR_4char <- join(sitc_rev2_4char, ORIGIN_DESTINATION_YEAR_4char, by = "id")
@@ -121,27 +121,6 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
               drop <- names(ORIGIN_DESTINATION_YEAR_4char) %in% c("export_val_origin_all")
               ORIGIN_DESTINATION_YEAR_4char <- ORIGIN_DESTINATION_YEAR_4char[!drop]
               ORIGIN_DESTINATION_YEAR_4char <- ORIGIN_DESTINATION_YEAR_4char[complete.cases(ORIGIN_DESTINATION_YEAR_4char$year), ]
-
-              movecolumns <- function(data, tomove, where = "last", ba = NULL) {
-                temp <- setdiff(names(data), tomove)
-                x <- switch(
-                  where,
-                  first = data[c(tomove, temp)],
-                  last = data[c(temp, tomove)],
-                  before <- {
-                    if (is.null(ba)) stop("must specify ba column")
-                    if (length(ba) > 1) stop("ba must be a single character string")
-                    data[append(temp, values = tomove, after = (match(ba, temp)-1))]
-                  },
-                  after = {
-                    if (is.null(ba)) stop("must specify ba column")
-                    if (length(ba) > 1) stop("ba must be a single character string")
-                    data[append(temp, values = tomove, after = (match(ba, temp)))]
-                  })
-                x
-              }
-
-              ORIGIN_DESTINATION_YEAR_4char <- movecolumns(ORIGIN_DESTINATION_YEAR_4char, "year", "first")
 
               envir <- as.environment(1)
               assign(paste0(ORIGIN, "_", DESTINATION, "_", YEAR, "_4char"), ORIGIN_DESTINATION_YEAR_4char, envir <- envir)
@@ -168,9 +147,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     print("processing HS92 (6 characters) files...")
 
                     ORIGIN_all_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/", ORIGIN, "/all/show/")))
-                    drop <- names(ORIGIN_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(ORIGIN_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     ORIGIN_all_YEAR <- ORIGIN_all_YEAR[!drop]
-                    setnames(ORIGIN_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(ORIGIN_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     ORIGIN_all_YEAR$group_id <- substr(ORIGIN_all_YEAR$product_id, 1, 2)
                     ORIGIN_all_YEAR$product_id_len <- nchar(ORIGIN_all_YEAR$product_id)
 
@@ -187,9 +166,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     ORIGIN_all_YEAR_6char <- merge(ORIGIN_all_YEAR_6char, hs_colors)
 
                     all_all_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/all/all/show/")))
-                    drop <- names(all_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(all_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     all_all_YEAR <- all_all_YEAR[!drop]
-                    setnames(all_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(all_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     all_all_YEAR$group_id <- substr(all_all_YEAR$product_id, 1, 2)
                     all_all_YEAR$product_id_len <- nchar(all_all_YEAR$product_id)
 
@@ -212,9 +191,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     setnames(all_all_YEAR_6char_exp, "export_val", "export_val_all_all")
 
                     ORIGIN_DESTINATION_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/", ORIGIN, "/", DESTINATION, "/show/")))
-                    drop <- names(ORIGIN_DESTINATION_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(ORIGIN_DESTINATION_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     ORIGIN_DESTINATION_YEAR <- ORIGIN_DESTINATION_YEAR[!drop]
-                    setnames(ORIGIN_DESTINATION_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(ORIGIN_DESTINATION_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     ORIGIN_DESTINATION_YEAR$group_id <- substr(ORIGIN_DESTINATION_YEAR$product_id, 1, 2)
                     ORIGIN_DESTINATION_YEAR$product_id_len <- nchar(ORIGIN_DESTINATION_YEAR$product_id)
 
@@ -237,27 +216,6 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     ORIGIN_DESTINATION_YEAR_6char <- ORIGIN_DESTINATION_YEAR_6char[!drop]
                     ORIGIN_DESTINATION_YEAR_6char <- ORIGIN_DESTINATION_YEAR_6char[complete.cases(ORIGIN_DESTINATION_YEAR_6char$year), ]
 
-                    movecolumns <- function(data, tomove, where = "last", ba = NULL) {
-                      temp <- setdiff(names(data), tomove)
-                      x <- switch(
-                        where,
-                        first = data[c(tomove, temp)],
-                        last = data[c(temp, tomove)],
-                        before <- {
-                          if (is.null(ba)) stop("must specify ba column")
-                          if (length(ba) > 1) stop("ba must be a single character string")
-                          data[append(temp, values = tomove, after = (match(ba, temp)-1))]
-                        },
-                        after = {
-                          if (is.null(ba)) stop("must specify ba column")
-                          if (length(ba) > 1) stop("ba must be a single character string")
-                          data[append(temp, values = tomove, after = (match(ba, temp)))]
-                        })
-                      x
-                    }
-
-                    ORIGIN_DESTINATION_YEAR_6char <- movecolumns(ORIGIN_DESTINATION_YEAR_6char, "year", "first")
-
                     envir <- as.environment(1)
                     assign(paste0(ORIGIN, "_", DESTINATION, "_", YEAR, "_6char"), ORIGIN_DESTINATION_YEAR_6char, envir <- envir)
 
@@ -277,9 +235,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     print("processing HS92 (8 characters) files...")
 
                     ORIGIN_all_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/", ORIGIN, "/all/show/")))
-                    drop <- names(ORIGIN_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(ORIGIN_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     ORIGIN_all_YEAR <- ORIGIN_all_YEAR[!drop]
-                    setnames(ORIGIN_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(ORIGIN_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     ORIGIN_all_YEAR$group_id <- substr(ORIGIN_all_YEAR$product_id, 1, 2)
                     ORIGIN_all_YEAR$product_id_len <- nchar(ORIGIN_all_YEAR$product_id)
 
@@ -295,9 +253,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     ORIGIN_all_YEAR_8char <- merge(ORIGIN_all_YEAR_8char, hs_colors)
 
                     all_all_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/all/all/show/")))
-                    drop <- names(all_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(all_all_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     all_all_YEAR <- all_all_YEAR[!drop]
-                    setnames(all_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(all_all_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     all_all_YEAR$group_id <- substr(all_all_YEAR$product_id, 1, 2)
                     all_all_YEAR$product_id_len <- nchar(all_all_YEAR$product_id)
 
@@ -320,9 +278,9 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     setnames(all_all_YEAR_8char_exp, "export_val", "export_val_all_all")
 
                     ORIGIN_DESTINATION_YEAR <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", YEAR, "/", ORIGIN, "/", DESTINATION, "/show/")))
-                    drop <- names(ORIGIN_DESTINATION_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5")
+                    drop <- names(ORIGIN_DESTINATION_YEAR) %in% c("data.dest_id", "data.hs92_id_len", "data.origin_id ", "data.export_val_growth_pct", "data.export_val_growth_pct_5", "data.export_val_growth_val", "data.export_val_growth_val_5", "data.import_val_growth_pct", "data.import_val_growth_pct_5", "data.import_val_growth_val", "data.import_val_growth_val_5", "data.year")
                     ORIGIN_DESTINATION_YEAR <- ORIGIN_DESTINATION_YEAR[!drop]
-                    setnames(ORIGIN_DESTINATION_YEAR, c("data.export_val", "data.hs92_id", "data.import_val", "data.year"), c("export_val", "product_id", "import_val", "year"))
+                    setnames(ORIGIN_DESTINATION_YEAR, c("data.export_val", "data.hs92_id", "data.import_val"), c("export_val", "product_id", "import_val"))
                     ORIGIN_DESTINATION_YEAR$group_id <- substr(ORIGIN_DESTINATION_YEAR$product_id, 1, 2)
                     ORIGIN_DESTINATION_YEAR$product_id_len <- nchar(ORIGIN_DESTINATION_YEAR$product_id)
 
@@ -344,27 +302,6 @@ getdata <- function(ORIGIN, DESTINATION, CLASSIFICATION, YEAR) {
                     drop <- names(ORIGIN_DESTINATION_YEAR_8char) %in% c("export_val_origin_all")
                     ORIGIN_DESTINATION_YEAR_8char <- ORIGIN_DESTINATION_YEAR_8char[!drop]
                     ORIGIN_DESTINATION_YEAR_8char <- ORIGIN_DESTINATION_YEAR_8char[complete.cases(ORIGIN_DESTINATION_YEAR_8char$year), ]
-
-                    movecolumns <- function(data, tomove, where = "last", ba = NULL) {
-                      temp <- setdiff(names(data), tomove)
-                      x <- switch(
-                        where,
-                        first = data[c(tomove, temp)],
-                        last = data[c(temp, tomove)],
-                        before = {
-                          if (is.null(ba)) stop("must specify ba column")
-                          if (length(ba) > 1) stop("ba must be a single character string")
-                          data[append(temp, values = tomove, after = (match(ba, temp)-1))]
-                        },
-                        after = {
-                          if (is.null(ba)) stop("must specify ba column")
-                          if (length(ba) > 1) stop("ba must be a single character string")
-                          data[append(temp, values = tomove, after = (match(ba, temp)))]
-                        })
-                      x
-                    }
-
-                    ORIGIN_DESTINATION_YEAR_8char <- movecolumns(ORIGIN_DESTINATION_YEAR_8char, "year", "first")
 
                     envir <- as.environment(1)
                     assign(paste0(ORIGIN, "_", DESTINATION, "_", YEAR, "_8char"), ORIGIN_DESTINATION_YEAR_8char, envir <- envir)

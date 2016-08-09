@@ -11,8 +11,8 @@
           .edges("edges_file")
           .nodes("nodes_file")
           .size("export_val")
-          .depth(1)
           .id(["group2","product"])
+          .depth(1)
           .width(1000)
           .height(600)
           .resize(true)
@@ -25,7 +25,8 @@
             },
             "sub": {"font": {"size": 16}}
            })
-          .legend({"size": 50, "order": {"sort": "desc", "value": "size"}})
+          .legend({"order": {"sort": "desc", "value": "size"}})
+          .legend({"size": 48})
           .tooltip(["product_id","export_val","rca"])
           .icon({"style": "knockout", "value": "image"})
           .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})

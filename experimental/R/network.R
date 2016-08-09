@@ -80,7 +80,7 @@ network <- function(origin, destination, classification, year) {
       print("opening html files in the browser.")
       httw(pattern = NULL, daemon = TRUE)
       } else {
-      print("html treemap file already exists. skipping.")
+      print("html network file already exists. skipping.")
       print("opening html files in the browser.")
       httw(pattern = NULL, daemon = TRUE)
       }

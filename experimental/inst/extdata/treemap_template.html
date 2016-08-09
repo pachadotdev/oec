@@ -6,16 +6,27 @@
           <script>
           var visualization = d3plus.viz()
           .container("#tree_map")
-          .data("json_file")
           .type("tree_map")
+          .data("json_file")
+          .size("variablecol")
+          .depth(depth_val)
+          .id(["group","product"])
           .width(1000)
           .height(600)
           .resize(true)
-          .id(["group","product"])
-          .size("variablecol")
           .font({"family": "Lato"})
           .labels({"align": "left", "valign": "top"})
-          .depth(1)
+          .color("color")
+          .title({
+            "total": {
+            "font": {"size": 16},
+            "value": true
+            },
+            "sub": {"font": {"size": 16}}
+           })
+          .legend({"order": {"sort": "desc", "value": "size"}})
+          .tooltip(["product_id","variablecol","rca"])
+          .icon({"style": "knockout", "value": "image"})
           .format({
             "text": function(text, params) {
               if (text === "variablecol") {
@@ -47,17 +58,6 @@
               }
             }
           })
-          .color("color")
-          .title({
-            "total": {
-            "font": {"size": 16},
-            "value": true
-            },
-            "sub": {"font": {"size": 16}}
-           })
-          .legend({"order": {"sort": "desc", "value": "size"}})
-          .tooltip(["product_id","variablecol","rca"])
-          .icon({"style": "knockout", "value": "image"})
           .draw()
           </script>
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">

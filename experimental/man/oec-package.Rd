@@ -3,7 +3,7 @@
 \docType{package}
 \name{oec-package}
 \alias{oec-package}
-\title{OEC: The Observatory of Economic Complexity}
+\title{oec: The Observatory of Economic Complexity}
 \description{
 Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 }

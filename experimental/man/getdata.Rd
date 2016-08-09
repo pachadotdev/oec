@@ -4,16 +4,16 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(ORIGIN, DESTINATION, CLASSIFICATION, YEAR)
+getdata(origin, destination, classification, year)
 }
 \arguments{
-\item{ORIGIN}{is the country code of origin (e.g. "chl" for Chile)}
+\item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
-\item{DESTINATION}{is the country code of origin (e.g. "chn" for China)}
+\item{destination}{is the country code of origin (e.g. "chn" for China)}
 
-\item{CLASSIFICATION}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
+\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 
-\item{YEAR}{is the year and the OEC's API ranges from 1962 to 2014}
+\item{year}{is the year and the OEC's API ranges from 1962 to 2014}
 }
 \description{
 Downloads and processes the data from the API

@@ -6,17 +6,29 @@
           <script>
           var visualization = d3plus.viz()
           .container("#network")
+          .type("network")
           .data("json_file")
           .edges("edges_file")
           .nodes("nodes_file")
           .size("export_val")
-          .type("network")
+          .depth(1)
+          .id(["group2","product"])
           .width(1000)
           .height(600)
           .resize(true)
-          .id(["group2","product"])
           .font({"family": "Lato"})
-          .depth(1)
+          .color("color2")
+          .title({
+            "total": {
+            "font": {"size": 16},
+            "value": true
+            },
+            "sub": {"font": {"size": 16}}
+           })
+          .legend({"size": 50, "order": {"sort": "desc", "value": "size"}})
+          .tooltip(["product_id","export_val","rca"])
+          .icon({"style": "knockout", "value": "image"})
+          .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})
           .format({
             "text": function(text, params) {
               if (text === "export_val") {
@@ -48,18 +60,6 @@
               }
             }
           })
-          .color("color2")
-          .title({
-            "total": {
-            "font": {"size": 16},
-            "value": true
-            },
-            "sub": {"font": {"size": 16}}
-           })
-          .legend({"order": {"sort": "desc", "value": "size"}})
-          .tooltip(["product_id","export_val","rca"])
-          .icon({"style": "knockout", "value": "image"})
-          .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})
           .draw()
           </script>
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">

@@ -4,18 +4,18 @@
 \alias{network.comparison}
 \title{Creates a network to compare two years}
 \usage{
-network.comparison(ORIGIN, DESTINATION, CLASSIFICATION, YEAR1, YEAR2)
+network.comparison(origin, destination, classification, year1, year2)
 }
 \arguments{
-\item{ORIGIN}{is the country code of origin (e.g. "chl" for Chile)}
+\item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
-\item{DESTINATION}{is the country code of origin (e.g. "chn" for China)}
+\item{destination}{is the country code of origin (e.g. "chn" for China)}
 
-\item{CLASSIFICATION}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
+\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 
-\item{YEAR1}{is the initial year and the OEC's API ranges from 1962 to 2014}
+\item{year1}{is the initial year and the OEC's API ranges from 1962 to 2014}
 
-\item{YEAR2}{is the final year and the OEC's API ranges from 1962 to 2014}
+\item{year2}{is the final year and the OEC's API ranges from 1962 to 2014}
 }
 \value{
 Creates an \code{HTML} file with a network visualization that compares two given years.
@@ -24,7 +24,7 @@ Creates an \code{HTML} file with a network visualization that compares two given
 Creates a network to compare two years
 }
 \examples{
-network.comparison(chl, chn, 6, 2010, 2014)
+network.comparison("chl", "chn", 6, 2010, 2014)
 }
 \keyword{functions}
 

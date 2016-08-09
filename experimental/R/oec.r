@@ -1,4 +1,4 @@
-#' OEC: The Observatory of Economic Complexity
+#' oec: The Observatory of Economic Complexity
 #'
 #' Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 #'

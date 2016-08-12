@@ -3,7 +3,7 @@
 
 # The Observatory of Economic Complexity (R Package)
 
-Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations. This package is released under the MIT license (see below).
+Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s API from R console to obtain international trade data to create spreadsheets (csv format) and D3plus visualizations. This package is released under the MIT license (see below).
 
 ## Examples
 
@@ -14,11 +14,15 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 ## How to install
 
 ### Using CRAN
+
+To install v1.0.6
 ```r
 install.packages("oec")
 ```
 
 ### Using Github
+
+To install v2.0
 ```r
 install.packages("devtools") #if needed
 library(devtools)

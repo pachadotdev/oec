@@ -1,5 +1,5 @@
 [![Github-version](https://img.shields.io/badge/Github version-2.0-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![CRAN-version](https://img.shields.io/badge/CRAN version-1.0.6-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/d3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![CRAN-version](https://img.shields.io/badge/CRAN version-1.0.6-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # The Observatory of Economic Complexity (R Package)
 

@@ -7,10 +7,10 @@
 #' @param year1 is the initial year and the OEC's API ranges from 1962 to 2014
 #' @param year2 is the final year and the OEC's API ranges from 1962 to 2014
 #' @examples
-#' network.comparison("chl", "chn", 6, 2010, 2014)
+#' network_comparison("chl", "chn", 6, 2010, 2014)
 #' @keywords functions
 
-network.comparison <- function(origin, destination, classification, year1, year2) {
+network_comparison <- function(origin, destination, classification, year1, year2) {
   d3_folder <- paste0(getwd(), "/d3plus")
   if(!file.exists(d3_folder)){
     print("D3plus not installed... installing using install_d3plus()...")

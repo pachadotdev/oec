@@ -3,7 +3,7 @@
 \docType{package}
 \name{oec-package}
 \alias{oec-package}
-\title{oec: The Observatory of Economic Complexity}
+\title{The Observatory of Economic Complexity}
 \description{
 Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 }
@@ -18,7 +18,7 @@ The functions provided within this package are:
 
 \code{\link{network}} Creates a network for a given year.
 
-\code{\link{network.comparison}} Creates a network to compare two years.
+\code{\link{network_comparison}} Creates a network to compare two years.
 
 \code{\link{treemap}} Creates a treemap for a given year.
 

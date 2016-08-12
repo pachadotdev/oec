@@ -1,4 +1,4 @@
-#' oec: The Observatory of Economic Complexity
+#' The Observatory of Economic Complexity
 #'
 #' Use The Observatory of Economic Complexity's API from R console to obtain international trade data to create spreadsheets (csv format) and D3Plus visualizations.
 #'
@@ -12,7 +12,7 @@
 #'
 #' \code{\link{network}} Creates a network for a given year.
 #'
-#' \code{\link{network.comparison}} Creates a network to compare two years.
+#' \code{\link{network_comparison}} Creates a network to compare two years.
 #'
 #' \code{\link{treemap}} Creates a treemap for a given year.
 #'

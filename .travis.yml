@@ -1,2 +1,10 @@
 language: r
 cache: packages
+r:
+  - oldrel
+  - release
+  - devel
+before_install:
+  - cd experimental
+repos:
+  CRAN: https://cloud.r-project.org  

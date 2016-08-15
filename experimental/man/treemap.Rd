@@ -17,7 +17,7 @@ treemap(origin, destination, variable, classification, year, depth)
 
 \item{year}{is the year and the OEC's API ranges from 1962 to 2014}
 
-\item{depth}{can be 0 or 1 (explain this better!) and its optional}
+\item{depth}{is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)}
 }
 \value{
 Creates an \code{HTML} file with a treemap visualization for a given year.

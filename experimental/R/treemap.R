@@ -6,7 +6,7 @@
 #' @param variable is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
-#' @param depth can be 0 or 1 (explain this better!) and its optional
+#' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)
 #' @examples
 #' treemap("chl", "chn", "exports", 6, 2014)
 #' @keywords functions

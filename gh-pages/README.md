@@ -1,5 +1,6 @@
 [![Github-version](https://img.shields.io/badge/Github version-2.0-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![CRAN-version](https://img.shields.io/badge/CRAN version-1.0.6-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![CRAN-version](https://img.shields.io/badge/CRAN version-2.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 
 # The Observatory of Economic Complexity (R Package)
 
@@ -15,7 +16,7 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
 ### Using CRAN
 
-To install v1.0.6
+To install v2.0
 ```r
 install.packages("oec")
 ```

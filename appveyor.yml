@@ -8,8 +8,7 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  ps: cd experimental
-  ps: Bootstrap
+  ps: cd experimental; Bootstrap
 
 # Adapt as necessary starting from here
 

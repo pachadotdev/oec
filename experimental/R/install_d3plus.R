@@ -7,7 +7,7 @@
 #' @keywords functions
 
 install_d3plus <- function() {
-  file.copy(from=system.file("extdata", "d3plus-2.0.zip", package = "oec"), to=getwd())
+  file.copy(from=system.file("extdata", "d3plus-2.0.zip", package = "OEC"), to=getwd())
   unzip("d3plus-2.0.zip")
   file.remove("d3plus-2.0.zip")
 }

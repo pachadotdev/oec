@@ -68,10 +68,10 @@ network_comparison <- function(origin, destination, classification, year1, year2
     if(!file.exists(edges) & !file.exists(nodes)) {
       ### nodes ###
       print("creating SITC rev. 2 nodes...")
-      file.copy(from=system.file("extdata", "nodes_sitc.json", package = "oec"), to=getwd())
+      file.copy(from=system.file("extdata", "nodes_sitc.json", package = "OEC"), to=getwd())
       ### edges ###
       print("creating SITC rev. 2 edges...")
-      file.copy(from=system.file("extdata", "edges_sitc.json", package = "oec"), to=getwd())
+      file.copy(from=system.file("extdata", "edges_sitc.json", package = "OEC"), to=getwd())
     }
   }
   if(code_lenght == 6) {
@@ -82,10 +82,10 @@ network_comparison <- function(origin, destination, classification, year1, year2
     if(!file.exists(edges) & !file.exists(nodes)) {
       ### nodes ###
       print("creating HS92 nodes...")
-      file.copy(from=system.file("extdata", "nodes_hs.json", package = "oec"), to=getwd())
+      file.copy(from=system.file("extdata", "nodes_hs.json", package = "OEC"), to=getwd())
       ### edges ###
       print("creating HS92 edges...")
-      file.copy(from=system.file("extdata", "edges_hs.json", package = "oec"), to=getwd())
+      file.copy(from=system.file("extdata", "edges_hs.json", package = "OEC"), to=getwd())
     }
   }
   if(variable == "exports") {
@@ -106,7 +106,7 @@ network_comparison <- function(origin, destination, classification, year1, year2
         html_file <- paste0(output, "_network_exports", ".html")
         if(!file.exists(html_file)){
           print("creating network")
-          network_compare_template <- paste(readLines(system.file("extdata", "network_compare_template.html", package = "oec"), warn = F), collapse = "\n")
+          network_compare_template <- paste(readLines(system.file("extdata", "network_compare_template.html", package = "OEC"), warn = F), collapse = "\n")
           network_compare_template = gsub("json_file", paste0(output, ".json"), network_compare_template)
           network_compare_template = gsub("edges_file", edges, network_compare_template)
           network_compare_template = gsub("nodes_file", nodes, network_compare_template)

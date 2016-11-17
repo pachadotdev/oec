@@ -6,7 +6,7 @@ library(devtools)
 install_github("pachamaltese/oec/cran")
 
 setwd("/myfolder") # change this to your working directory
-library(oec)
+library(OEC)
 
 ### Demo with files obtained from OEC's API ###
 

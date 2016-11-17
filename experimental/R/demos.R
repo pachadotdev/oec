@@ -6,5 +6,5 @@
 #' @keywords functions
 
 demos <- function() {
-  file.copy(from=system.file("extdata", "demo_examples.R", package = "oec"), to=getwd())
+  file.copy(from=system.file("extdata", "demo_examples.R", package = "OEC"), to=getwd())
 }

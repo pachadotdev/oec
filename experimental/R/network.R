@@ -32,10 +32,10 @@ network <- function(origin, destination, classification, year) {
     if(!file.exists(edges) & !file.exists(nodes)) {
     ### nodes ###
     print("creating SITC rev. 2 nodes...")
-    file.copy(from=system.file("extdata", "nodes_sitc.json", package = "oec"), to=getwd())
+    file.copy(from=system.file("extdata", "nodes_sitc.json", package = "OEC"), to=getwd())
     ### edges ###
     print("creating SITC rev. 2 edges...")
-    file.copy(from=system.file("extdata", "edges_sitc.json", package = "oec"), to=getwd())
+    file.copy(from=system.file("extdata", "edges_sitc.json", package = "OEC"), to=getwd())
     }
   }
   if(code_lenght == 6) {
@@ -46,10 +46,10 @@ network <- function(origin, destination, classification, year) {
     if(!file.exists(edges) & !file.exists(nodes)) {
     ### nodes ###
     print("creating HS92 nodes...")
-    file.copy(from = system.file("extdata", "nodes_hs.json", package = "oec"), to = getwd())
+    file.copy(from = system.file("extdata", "nodes_hs.json", package = "OEC"), to = getwd())
     ### edges ###
     print("creating HS92 edges...")
-    file.copy(from = system.file("extdata", "edges_hs.json", package = "oec"), to = getwd())
+    file.copy(from = system.file("extdata", "edges_hs.json", package = "OEC"), to = getwd())
     }
   }
   if(variable == "exports") {
@@ -70,7 +70,7 @@ network <- function(origin, destination, classification, year) {
       html_file <- paste0(output, "_network_exports", ".html")
       if(!file.exists(html_file)){
       print("creating network")
-      network_template <- paste(readLines(system.file("extdata", "network_template.html", package = "oec"), warn = F), collapse = "\n")
+      network_template <- paste(readLines(system.file("extdata", "network_template.html", package = "OEC"), warn = F), collapse = "\n")
       network_template <- gsub("json_file", paste0(output, ".json"), network_template)
       network_template <- gsub("edges_file", edges, network_template)
       network_template <- gsub("nodes_file", nodes, network_template)

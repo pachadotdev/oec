@@ -96,7 +96,7 @@ getdata <- function(origin, destination, classification, year) {
               origin_all_year_4char$import_val <- as.numeric(origin_all_year_4char$import_val)
               origin_all_year_4char$trade_exchange_val <- as.numeric(rowSums(origin_all_year_4char[, c("export_val", "import_val")], na.rm=T))
               origin_all_year_4char$product_id = as.character(origin_all_year_4char$product_id)
-              origin_all_year_4char$image = paste0("d3plus/icons/sitc/sitc_", origin_all_year_4char$group_id, ".png")
+              origin_all_year_4char$image = paste0("d3plus-2.0/icons/sitc/sitc_", origin_all_year_4char$group_id, ".png")
               sitc_colors = sitc_colors
               origin_all_year_4char <- merge(origin_all_year_4char,sitc_colors)
 
@@ -112,7 +112,7 @@ getdata <- function(origin, destination, classification, year) {
               all_all_year_4char$import_val <- as.numeric(all_all_year_4char$import_val)
               all_all_year_4char$trade_exchange_val <- as.numeric(rowSums(all_all_year_4char[, c("export_val", "import_val")], na.rm=T))
               all_all_year_4char$product_id = as.character(all_all_year_4char$product_id)
-              all_all_year_4char$image = paste0("d3plus/icons/sitc/sitc_", all_all_year_4char$group_id, ".png")
+              all_all_year_4char$image = paste0("d3plus-2.0/icons/sitc/sitc_", all_all_year_4char$group_id, ".png")
               all_all_year_4char <- merge(all_all_year_4char,sitc_colors)
 
               keep <- names(origin_all_year_4char) %in% c("product_id","export_val")
@@ -141,7 +141,7 @@ getdata <- function(origin, destination, classification, year) {
               origin_destination_year_4char$rca = round(origin_destination_year_4char$rca, digits = 2)
               origin_destination_year_4char <- merge(origin_destination_year_4char,sitc_colors)
               origin_destination_year_4char$rca = as.character(origin_destination_year_4char$rca)
-              origin_destination_year_4char$image = paste0("d3plus/icons/sitc/sitc_", origin_destination_year_4char$group_id, ".png")
+              origin_destination_year_4char$image = paste0("d3plus-2.0/icons/sitc/sitc_", origin_destination_year_4char$group_id, ".png")
               setnames(origin_destination_year_4char, c("export_val_all_all"), c("world_trade_val"))
               drop <- names(origin_destination_year_4char) %in% c("export_val_origin_all")
               origin_destination_year_4char <- origin_destination_year_4char[!drop]
@@ -185,7 +185,7 @@ getdata <- function(origin, destination, classification, year) {
                 origin_all_year_6char$import_val <- as.numeric(origin_all_year_6char$import_val)
                 origin_all_year_6char$trade_exchange_val <- as.numeric(rowSums(origin_all_year_6char[, c("export_val", "import_val")], na.rm=T))
                 origin_all_year_6char$product_id = as.character(origin_all_year_6char$product_id)
-                origin_all_year_6char$image = paste0("d3plus/icons/hs/hs_", origin_all_year_6char$group_id, ".png")
+                origin_all_year_6char$image = paste0("d3plus-2.0/icons/hs/hs_", origin_all_year_6char$group_id, ".png")
                 hs_colors = hs_colors
                 origin_all_year_6char <- merge(origin_all_year_6char,hs_colors)
 
@@ -203,7 +203,7 @@ getdata <- function(origin, destination, classification, year) {
                 all_all_year_6char$import_val <- as.numeric(all_all_year_6char$import_val)
                 all_all_year_6char$trade_exchange_val <- as.numeric(rowSums(all_all_year_6char[, c("export_val", "import_val")], na.rm=T))
                 all_all_year_6char$product_id = as.character(all_all_year_6char$product_id)
-                all_all_year_6char$image = paste0("d3plus/icons/hs/hs_", all_all_year_6char$group_id, ".png")
+                all_all_year_6char$image = paste0("d3plus-2.0/icons/hs/hs_", all_all_year_6char$group_id, ".png")
                 all_all_year_6char <- merge(all_all_year_6char,hs_colors)
 
                 keep <- names(origin_all_year_6char) %in% c("product_id","export_val")
@@ -234,7 +234,7 @@ getdata <- function(origin, destination, classification, year) {
                 origin_destination_year_6char$rca = round(origin_destination_year_6char$rca, digits = 2)
                 origin_destination_year_6char <- merge(origin_destination_year_6char,hs_colors)
                 origin_destination_year_6char$rca = as.character(origin_destination_year_6char$rca)
-                origin_destination_year_6char$image = paste0("d3plus/icons/hs/hs_", origin_destination_year_6char$group_id, ".png")
+                origin_destination_year_6char$image = paste0("d3plus-2.0/icons/hs/hs_", origin_destination_year_6char$group_id, ".png")
                 setnames(origin_destination_year_6char, c("export_val_all_all"), c("world_trade_val"))
                 drop <- names(origin_destination_year_6char) %in% c("export_val_origin_all")
                 origin_destination_year_6char <- origin_destination_year_6char[!drop]
@@ -272,7 +272,7 @@ getdata <- function(origin, destination, classification, year) {
                 origin_all_year_8char$import_val <- as.numeric(origin_all_year_8char$import_val)
                 origin_all_year_8char$trade_exchange_val <- as.numeric(rowSums(origin_all_year_8char[, c("export_val", "import_val")], na.rm=T))
                 origin_all_year_8char$product_id = as.character(origin_all_year_8char$product_id)
-                origin_all_year_8char$image = paste0("d3plus/icons/hs/hs_", origin_all_year_8char$group_id, ".png")
+                origin_all_year_8char$image = paste0("d3plus-2.0/icons/hs/hs_", origin_all_year_8char$group_id, ".png")
                 origin_all_year_8char <- merge(origin_all_year_8char,hs_colors)
 
                 all_all_year <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", year, "/all/all/show/")))
@@ -289,7 +289,7 @@ getdata <- function(origin, destination, classification, year) {
                 all_all_year_8char$import_val <- as.numeric(all_all_year_8char$import_val)
                 all_all_year_8char$trade_exchange_val <- as.numeric(rowSums(all_all_year_8char[, c("export_val", "import_val")], na.rm=T))
                 all_all_year_8char$product_id = as.character(all_all_year_8char$product_id)
-                all_all_year_8char$image = paste0("d3plus/icons/hs/hs_", all_all_year_8char$group_id, ".png")
+                all_all_year_8char$image = paste0("d3plus-2.0/icons/hs/hs_", all_all_year_8char$group_id, ".png")
                 all_all_year_8char <- merge(all_all_year_8char,hs_colors)
 
                 keep <- names(origin_all_year_8char) %in% c("product_id","export_val")
@@ -320,7 +320,7 @@ getdata <- function(origin, destination, classification, year) {
                 origin_destination_year_8char$rca = round(origin_destination_year_8char$rca, digits = 2)
                 origin_destination_year_8char <- merge(origin_destination_year_8char,hs_colors)
                 origin_destination_year_8char$rca = as.character(origin_destination_year_8char$rca)
-                origin_destination_year_8char$image = paste0("d3plus/icons/hs/hs_", origin_destination_year_8char$group_id, ".png")
+                origin_destination_year_8char$image = paste0("d3plus-2.0/icons/hs/hs_", origin_destination_year_8char$group_id, ".png")
                 setnames(origin_destination_year_8char, c("export_val_all_all"), c("world_trade_val"))
                 drop <- names(origin_destination_year_8char) %in% c("export_val_origin_all")
                 origin_destination_year_8char <- origin_destination_year_8char[!drop]

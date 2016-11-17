@@ -2,7 +2,7 @@
 % Please edit documentation in R/install_d3plus.R
 \name{install_d3plus}
 \alias{install_d3plus}
-\title{Installs D3 and D3plus}
+\title{Installs D3 and D3Plus}
 \usage{
 install_d3plus()
 }
@@ -10,7 +10,7 @@ install_d3plus()
 Copies a folder named \code{d3plus} to the working directory and it contains the \code{js} files and icons to make the visualizations
 }
 \description{
-Installs D3 and D3plus
+Installs D3 and D3Plus
 }
 \examples{
 install_d3plus()

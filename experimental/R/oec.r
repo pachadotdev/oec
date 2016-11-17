@@ -4,7 +4,7 @@
 #'
 #' The functions provided within this package are:
 #'
-#' \code{\link{install_d3plus}}	Installs D3 and D3plus.
+#' \code{\link{install_d3plus}}	Installs D3 and D3Plus.
 #'
 #' \code{\link{demos}} Copies the demo file.
 #'

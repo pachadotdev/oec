@@ -1,5 +1,5 @@
 [![CRAN-version](https://img.shields.io/badge/CRAN version-2.0-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![Github-version](https://img.shields.io/badge/Github version-1.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-2.0-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Github-version](https://img.shields.io/badge/Github version-2.2-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-2.0-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
@@ -22,7 +22,7 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 install.packages("oec")
 ```
 
-### Using Github (version 2.2.)
+### Using Github (version 2.2)
 
 ```r
 install.packages("devtools") #if needed
@@ -32,7 +32,7 @@ install_github("pachamaltese/oec/experimental")
 
 ## How to use 
 
-The documentation is available [here](http://pacha.hk/oec/oec.pdf). Read the documentation and then run `demos()` after the package is installed and a demo script (`demo_examples.R`) will be copied to your working directory.
+The documentation is available [here](http://pacha.hk/oec/oec.pdf). Read the documentation and then run `demos()` after the package is installed and a demo script (`demo_examples.R`) will be copied to your working directory. Please check the demo script to see how `oec` works.
 
 ## Notice
 

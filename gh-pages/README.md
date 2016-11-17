@@ -1,8 +1,8 @@
-[//]: # [![Old CRAN-version](https://img.shields.io/badge/CRAN version-2.0-blue.svg)](https://cran.r-project.org/web/packages/oec/)*/
-[![Github-version](https://img.shields.io/badge/Github version-1.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.7-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![CRAN-version](https://img.shields.io/badge/CRAN version-2.0-blue.svg)](https://cran.r-project.org/web/packages/oec/)
+[![Github-version](https://img.shields.io/badge/Github version-1.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-2.0-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
-[//]: # [![Old CRAN-version downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)*/
+[![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 
 # The Observatory of Economic Complexity (R Package)
 
@@ -16,15 +16,13 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
 ## How to install
 
-[//]: # ### Using CRAN (old version)
+### Using CRAN (version 2.0)
 
-[//]: # To install v2.0
-[//]: # ```r
-[//]: # install.packages("oec")
-[//]: # ```
-[//]: # */
+```r
+install.packages("oec")
+```
 
-### Using Github (new version)
+### Using Github (version 2.2.)
 
 ```r
 install.packages("devtools") #if needed

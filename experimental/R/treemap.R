@@ -13,7 +13,7 @@
 
 treemap <- function(origin, destination, variable, classification, year, depth) {
 
-  d3_folder <- paste0(getwd(), "/d3plus")
+  d3_folder <- paste0(getwd(), "/d3plus-2.0")
   if(!file.exists(d3_folder)){
     print("D3plus not installed... installing using install_d3plus()...")
     install_d3plus()
@@ -57,7 +57,7 @@ treemap <- function(origin, destination, variable, classification, year, depth) 
   html_file <- paste0(output, "_treemap_", variable, ".html")
   if(!file.exists(html_file)){
       print("creating treemap...")
-      treemap_template <- paste(readLines(system.file("extdata", "treemap_template.html", package = "OEC"), warn = F), collapse = "\n")
+      treemap_template <- paste(readLines(system.file("extdata", "treemap_template.html", package = "oec"), warn = F), collapse = "\n")
       treemap_template <- gsub("json_file", paste0(output, ".json"), treemap_template)
       treemap_template <- gsub("variablecol", variablecol, treemap_template)
       treemap_template <- gsub("variablename", variablename, treemap_template)

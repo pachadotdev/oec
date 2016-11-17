@@ -2,7 +2,7 @@
 % Please edit documentation in R/oec.r
 \docType{package}
 \name{oec-package}
-\alias{OEC}
+\alias{oec}
 \alias{oec-package}
 \title{The Observatory of Economic Complexity}
 \description{

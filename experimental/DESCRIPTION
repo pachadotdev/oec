@@ -1,7 +1,7 @@
-Package: OEC
+Package: oec
 Type: Package
 Title: Use the Observatory of Economic Complexity's API in R
-Version: 1.0
+Version: 2.2
 Date: 2016-11-17
 Author: Mauricio Vargas S. <mvargas@dcc.uchile.cl> [aut, cre], Cesar A. Hidalgo <hidalgo@media.mit.edu> [aut]
 Maintainer: Mauricio Vargas S. <mvargas@dcc.uchile.cl>

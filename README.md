@@ -1,5 +1,5 @@
 [![CRAN-version](https://img.shields.io/badge/CRAN version-2.2-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![Github-version](https://img.shields.io/badge/Github version-2.2-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-2.0-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Github-version](https://img.shields.io/badge/Github version-2.4-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
@@ -12,7 +12,8 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
   * [Treemap of chilean exports to China in the year 2014](http://pacha.hk/oec/chl_chn_2014_6char_treemap_exports.html)
   * [Network of chilean exports to China in the year 2014](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
-  * [Comparison network of chilean exports to China between the years 2010 and 2014](http://pacha.hk/oec/chl_chn_2010_2014_6char_network_exports.html)
+
+Read the documentation for more interesting uses and examples.
 
 ## How to install
 
@@ -22,7 +23,7 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 install.packages("oec")
 ```
 
-### Using Github (version 2.2)
+### Using Github (version 2.4)
 
 ```r
 install.packages("devtools") #if needed
@@ -30,13 +31,19 @@ library(devtools)
 install_github("pachamaltese/oec/experimental")
 ```
 
-## How to use 
+## How to use
 
 The documentation is available [here](http://pacha.hk/oec/oec.pdf). If you run `demos()` after `library(oec)` a demo script (`demo_examples.R`) will be copied to your working directory. Please check the demo script to see how `oec` works.
 
 ## Notice
 
 [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) original work is an idea of Mr. [Alexander Simoes](https://github.com/alexandersimoes/oec). This R package is just an extension to his work.
+
+## Authors
+
+* Cesar A. Hidalgo `<hidalgo@media.mit.edu>` [aut],
+* Alexander Simoes `<alex@datawheel.us>` [aut, cph],
+* Mauricio Vargas S. `<mvargas@dcc.uchile.cl>` [aut, cre]
 
 ## The MIT License
 

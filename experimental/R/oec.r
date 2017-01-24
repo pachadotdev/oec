@@ -12,8 +12,6 @@
 #'
 #' \code{\link{network}} Creates a network for a given year.
 #'
-#' \code{\link{network_comparison}} Creates a network to compare two years.
-#'
 #' \code{\link{treemap}} Creates a treemap for a given year.
 #'
 #' The datasets provided within this package are:

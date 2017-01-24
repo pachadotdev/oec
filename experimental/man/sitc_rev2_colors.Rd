@@ -14,6 +14,6 @@ SITC (rev. 2) colors. This file is used to create the visualizations.
   }
 }
 \examples{
-sitc_colors
+sitc_rev2_colors
 }
 \keyword{datasets}

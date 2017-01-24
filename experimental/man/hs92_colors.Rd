@@ -1,5 +1,5 @@
-\name{hs_colors}
-\alias{hs_colors}
+\name{hs92_colors}
+\alias{hs92_colors}
 \title{HS92 colors}
 \docType{data}
 \description{

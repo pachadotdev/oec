@@ -1,5 +1,5 @@
-\name{sitc_colors}
-\alias{sitc_colors}
+\name{sitc_rev2_colors}
+\alias{sitc_rev2_colors}
 \title{SITC (rev. 2) colors}
 \docType{data}
 \description{

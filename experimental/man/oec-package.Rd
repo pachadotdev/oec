@@ -39,6 +39,6 @@ The datasets provided within this package are:
 
 \code{\link{sitc_rev2_4char}} SITC (rev. 2) products (4 characters codes). This file is used to create spreadsheets and visualizations with trade data.
 
-\code{\link{sitc_colors}} SITC (rev. 2) colors. This file is used to create spreadsheets and visualizations with trade data.
+\code{\link{sitc_rev2_colors}} SITC (rev. 2) colors. This file is used to create spreadsheets and visualizations with trade data.
 }
 

@@ -14,6 +14,7 @@ HS92 groups. This file is used to create the visualizations.
   }
 }
 \examples{
-hs92_2char
+# see the group codes for HS92 (6 and 8 characters)
+# hs92_8char
 }
 \keyword{datasets}

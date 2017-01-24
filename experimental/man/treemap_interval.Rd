@@ -31,7 +31,7 @@ Creates an \code{HTML} file with a treemap visualization for a given period of y
 Creates a treemap for a given given period of years
 }
 \examples{
-# treemap_interval("chl", "chn", "exports", 6, 2010, 2014, 2)
+# treemap_interval("chl", "chn", "exports", 6, 2011, 2014, 2)
 }
 \keyword{functions}
 

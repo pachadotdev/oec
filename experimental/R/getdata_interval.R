@@ -14,15 +14,15 @@
 #'
 #' # Download trade data from OEC's API (HS92 6 characters product lists)
 #' # for the years 2010, 2012 and 2014
-#' # getdata_interval("chl", "chn", 6, 2010, 2014, 2)
+#' # getdata_interval("chl", "chn", 6, 2011, 2014, 2)
 #'
 #' # Download trade data from OEC's API (HS92 8 characters product lists)
 #' # for the years 2010, 2012 and 2014
-#' # getdata_interval("chl", "chn", 8, 2010, 2014, 2)
+#' # getdata_interval("chl", "chn", 8, 2011, 2014, 2)
 #'
 #' # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
 #' # for the years 2010, 2012 and 2014
-#' # getdata_interval("chl", "chn", 4, 2010, 2014, 2)
+#' # getdata_interval("chl", "chn", 4, 2011, 2014, 2)
 #' @keywords functions
 
 getdata_interval <- function(origin, destination, classification, first_year, last_year, interval) {
@@ -61,7 +61,7 @@ getdata_interval <- function(origin, destination, classification, first_year, la
   if(first_year > last_year) {
     print("the first year needs to be lower than the last year.")
   } else {
-      if(first_year < 1961 | first_year > 2015 | last_year < 1961 | last_year > 2015) {
+      if(first_year < 1961 | first_year > 2014 | last_year < 1961 | last_year > 2014) {
         print("data is only available from 1962 to 2014.")
       } else {
         if(classification > 4 & first_year < 1995) {
@@ -95,7 +95,7 @@ getdata_interval <- function(origin, destination, classification, first_year, la
                   or_de_fy_ly_in_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", first_year, ".", last_year, ".", interval, "/", origin, "/", destination, "/show/")))
                   keep <- names(or_de_fy_ly_in_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.sitc_id", "data.export_val", "data.import_val")
                   or_de_fy_ly_in_4char <- or_de_fy_ly_in_4char[keep]
-                  or_de_fy_ly_in_4char <- arrange.vars(or_de_fy_ly_in_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.sitc_id" = 4, "data.export_val" = 5))
+                  or_de_fy_ly_in_4char <- arrange.vars(or_de_fy_ly_in_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.sitc_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
                   setnames(or_de_fy_ly_in_4char, names(or_de_fy_ly_in_4char), c("year", "origin_id", "destination_id", "sitc_rev2_id", "export_val", "import_val"))
                   or_de_fy_ly_in_4char$trade_exchange_val <- rowSums(or_de_fy_ly_in_4char[, c("export_val", "import_val")], na.rm=T)
 
@@ -154,7 +154,7 @@ getdata_interval <- function(origin, destination, classification, first_year, la
                     or_de_fy_ly_in_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", first_year, ".", last_year, ".", interval, "/", origin, "/", destination, "/show/")))
                     keep <- names(or_de_fy_ly_in_6char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                     or_de_fy_ly_in_6char <- or_de_fy_ly_in_6char[keep]
-                    or_de_fy_ly_in_6char <- arrange.vars(or_de_fy_ly_in_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5))
+                    or_de_fy_ly_in_6char <- arrange.vars(or_de_fy_ly_in_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
                     setnames(or_de_fy_ly_in_6char, names(or_de_fy_ly_in_6char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
                     or_de_fy_ly_in_6char$trade_exchange_val <- rowSums(or_de_fy_ly_in_6char[, c("export_val", "import_val")], na.rm=T)
                     or_de_fy_ly_in_6char$hs92_len <- nchar(or_de_fy_ly_in_6char$hs92_id)
@@ -211,7 +211,7 @@ getdata_interval <- function(origin, destination, classification, first_year, la
                     or_de_fy_ly_in_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", first_year, ".", last_year, ".", interval, "/", origin, "/", destination, "/show/")))
                     keep <- names(or_de_fy_ly_in_8char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                     or_de_fy_ly_in_8char <- or_de_fy_ly_in_8char[keep]
-                    or_de_fy_ly_in_8char <- arrange.vars(or_de_fy_ly_in_8char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5))
+                    or_de_fy_ly_in_8char <- arrange.vars(or_de_fy_ly_in_8char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
                     setnames(or_de_fy_ly_in_8char, names(or_de_fy_ly_in_8char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
                     or_de_fy_ly_in_8char$trade_exchange_val <- rowSums(or_de_fy_ly_in_8char[, c("export_val", "import_val")], na.rm=T)
                     or_de_fy_ly_in_8char$hs92_len <- nchar(or_de_fy_ly_in_8char$hs92_id)

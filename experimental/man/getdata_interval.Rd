@@ -29,15 +29,15 @@ Downloads and processes the data from the API
 
 # Download trade data from OEC's API (HS92 6 characters product lists)
 # for the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 6, 2010, 2014, 2)
+# getdata_interval("chl", "chn", 6, 2011, 2014, 2)
 
 # Download trade data from OEC's API (HS92 8 characters product lists)
 # for the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 8, 2010, 2014, 2)
+# getdata_interval("chl", "chn", 8, 2011, 2014, 2)
 
 # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
 # for the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 4, 2010, 2014, 2)
+# getdata_interval("chl", "chn", 4, 2011, 2014, 2)
 }
 \keyword{functions}
 

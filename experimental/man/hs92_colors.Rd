@@ -14,6 +14,7 @@ HS92 colors. This file is used to create the visualizations.
   }
 }
 \examples{
-hs92_colors
+# see the group codes and group colors for HS92
+# hs92_colors
 }
 \keyword{datasets}

@@ -10,7 +10,7 @@
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1
 #' @examples
-#' # treemap_interval("chl", "chn", "exports", 6, 2010, 2014, 2)
+#' # treemap_interval("chl", "chn", "exports", 6, 2011, 2014, 2)
 #' @keywords functions
 
 treemap_interval <- function(origin, destination, variable, classification, first_year, last_year, interval, depth) {

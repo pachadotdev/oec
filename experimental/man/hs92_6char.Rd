@@ -16,6 +16,7 @@ HS92 products (6 characters). This file is used to create the visualizations.
   }
 }
 \examples{
-hs92_6char
+# see the group codes and product codes for HS92 (6 characters)
+# hs92_8char
 }
 \keyword{datasets}

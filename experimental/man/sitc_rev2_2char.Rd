@@ -9,11 +9,12 @@ SITC (rev. 2) groups. This file is used to create the visualizations.
 \format{
   A data frame with 36 observations on the following 2 variables.
   \describe{
-    \item{\code{group}}{Contains the SITC (rev. 2) groups (e.g. machinery, electronics, etc)}
+    \item{\code{group}}{Contains the SITC (rev.2) groups (e.g. machinery, electronics, etc)}
     \item{\code{sitc_rev2_group}}{Contains the associated codes of every group (e.g. machinery is 10)}
   }
 }
 \examples{
-sitc_rev2_2char
+# see the group codes for SITC rev.2
+# sitc_rev2_2char
 }
 \keyword{datasets}

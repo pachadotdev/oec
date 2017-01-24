@@ -74,7 +74,18 @@ network <- function(origin, destination, classification, year) {
       network_template <- gsub("json_file", paste0(output, ".json"), network_template)
       network_template <- gsub("edges_file", edges, network_template)
       network_template <- gsub("nodes_file", nodes, network_template)
+      network_template <- gsub("variablecol", variablecol, network_template)
+      network_template <- gsub("variablename", variablename, network_template)
+      network_template <- ifelse(classification == 6 | classification == 8, gsub("product_id", "hs92_id", network_template), gsub("product_id", "sitc_rev2_id", network_template))
       network_template <- gsub("code_display", code_display, network_template)
+      network_template <- ifelse(origin == "all", gsub("origin_id_replace", "the rest of the World", network_template),
+                                 gsub("origin_id_replace", countries_list[countries_list$country_code == origin, 1], network_template))
+      network_template <- ifelse(origin == "all", gsub("destination_id_replace", "the rest of World", network_template),
+                                 gsub("destination_id_replace", countries_list[countries_list$country_code == destination, 1], network_template))
+      network_template <- ifelse(variable == "exports", gsub("variable_replace", "export to", network_template),
+                                 ifelse(variable == "imports", gsub("variable_replace", "import from", network_template),
+                                        "exchange with"))
+      network_template <- gsub("year_replace", year, network_template)
       print("writing html file...")
       writeLines(network_template, paste0(output, "_network_exports", ".html"))
       print("opening html files in the browser.")

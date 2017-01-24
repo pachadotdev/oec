@@ -23,13 +23,13 @@ Downloads and processes the data from the API
 # Chile is "chl" and China is "chn"
 
 # Download trade data from OEC's API (HS92 6 characters product lists)
-# getdata("chl", "chn", 6, 2010)
+# getdata("chl", "chn", 6, 2014)
 
 # Download trade data from OEC's API (HS92 8 characters product lists)
-# getdata("chl", "chn", 8, 2010)
+# getdata("chl", "chn", 8, 2014)
 
 # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
-# getdata("chl", "chn", 4, 2010)
+# getdata("chl", "chn", 4, 2014)
 }
 \keyword{functions}
 

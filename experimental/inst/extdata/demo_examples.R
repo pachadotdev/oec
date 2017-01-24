@@ -32,12 +32,8 @@ treemap("chl", "chn", "exports", 6, 2014)
 
 # treemap_interval
 # treemap_interval() calls getdata_interval() and its not needed to run getdata_interval() first
-treemap_interval("chl","per","exports",6,2010,2014,2,1)
+treemap_interval("chl", "chn", "exports", 6, 2010, 2014, 2, 1)
 
 # network
 # network() calls getdata() and its not needed to run getdata() first
 network("chl", "chn", 6, 2014)
-
-# network.comparison
-# network_comparison() calls getdata() and its not needed to run getdata() first
-network_comparison("chl", "chn", 6, 2010, 2014)

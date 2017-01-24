@@ -13,7 +13,7 @@ Copies a folder named \code{d3plus} to the working directory and it contains the
 Installs D3 and D3Plus
 }
 \examples{
-install_d3plus()
+# install_d3plus()
 }
 \keyword{functions}
 

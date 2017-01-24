@@ -33,7 +33,7 @@ The datasets provided within this package are:
 
 \code{\link{hs92_8char}}	HS92 products (8 characters codes). This file is used to create spreadsheets and visualizations with trade data.
 
-\code{\link{hs_colors}} HS92 colors. This file is used to create spreadsheets and visualizations based on trade data.
+\code{\link{hs92_colors}} HS92 colors. This file is used to create spreadsheets and visualizations based on trade data.
 
 \code{\link{sitc_rev2_2char}} SITC (rev. 2) groups. This file is used to create spreadsheets and visualizations with trade data.
 

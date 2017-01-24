@@ -8,12 +8,12 @@
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)
 #' @examples
-#' treemap("chl", "chn", "exports", 6, 2014)
+#' # treemap("chl", "chn", "exports", 6, 2014)
 #' @keywords functions
 
 treemap <- function(origin, destination, variable, classification, year, depth) {
 
-  d3_folder <- paste0(getwd(), "/d3plus-2.0")
+  d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
     print("D3plus not installed... installing using install_d3plus()...")
     install_d3plus()
@@ -61,8 +61,17 @@ treemap <- function(origin, destination, variable, classification, year, depth) 
       treemap_template <- gsub("json_file", paste0(output, ".json"), treemap_template)
       treemap_template <- gsub("variablecol", variablecol, treemap_template)
       treemap_template <- gsub("variablename", variablename, treemap_template)
+      treemap_template <- ifelse(classification == 6 | classification == 8, gsub("product_id", "hs92_id", treemap_template), gsub("product_id", "sitc_rev2_id", treemap_template))
       treemap_template <- gsub("code_display", code_display, treemap_template)
       treemap_template <- gsub("depth_val", depth, treemap_template)
+      treemap_template <- ifelse(origin == "all", gsub("origin_id_replace", "the rest of the World", treemap_template),
+                                 gsub("origin_id_replace", countries_list[countries_list$country_code == origin, 1], treemap_template))
+      treemap_template <- ifelse(origin == "all", gsub("destination_id_replace", "the rest of World", treemap_template),
+                                 gsub("destination_id_replace", countries_list[countries_list$country_code == destination, 1], treemap_template))
+      treemap_template <- ifelse(variable == "exports", gsub("variable_replace", "export to", treemap_template),
+                                 ifelse(variable == "imports", gsub("variable_replace", "import from", treemap_template),
+                                        "exchange with"))
+      treemap_template <- gsub("year_replace", year, treemap_template)
       print("writing html file...")
       writeLines(treemap_template, paste0(output, "_treemap_", variable, ".html"))
       print("opening html files in the browser.")

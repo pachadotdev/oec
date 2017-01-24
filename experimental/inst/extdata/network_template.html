@@ -1,7 +1,7 @@
 <!doctype html>
   <meta charset="utf-8">
-    <script src="d3plus-2.0/d3.min.js"></script>
-    <script src="d3plus-2.0/d3plus.min.js"></script>
+    <script src="d3plus-1.9.8/d3.min.js"></script>
+    <script src="d3plus-1.9.8/d3plus.min.js"></script>
           <div id="network"></div>
           <script>
           var visualization = d3plus.viz()
@@ -25,9 +25,9 @@
             },
             "sub": {"font": {"size": 16}}
            })
-          .legend({"order": {"sort": "desc", "value": "size"}})
-          .tooltip(["product_id","export_val","rca"])
-          .icon({"style": "knockout", "value": "image"})
+          .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
+          .tooltip(["product_id","variablecol","rca"])
+          .icon({"style": "knockout", "value": "icon"})
           .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})
           .format({
             "text": function(text, params) {

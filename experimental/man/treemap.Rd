@@ -26,7 +26,7 @@ Creates an \code{HTML} file with a treemap visualization for a given year.
 Creates a treemap for a given year
 }
 \examples{
-treemap("chl", "chn", "exports", 6, 2014)
+# treemap("chl", "chn", "exports", 6, 2014)
 }
 \keyword{functions}
 

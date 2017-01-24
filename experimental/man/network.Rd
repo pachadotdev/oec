@@ -22,7 +22,7 @@ Creates an \code{HTML} file with a network visualization for a given year.
 Creates a network for a given year
 }
 \examples{
-network("chl", "chn", 6, 2014)
+# network("chl", "chn", 6, 2014)
 }
 \keyword{functions}
 

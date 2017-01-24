@@ -24,7 +24,7 @@ Creates an \code{HTML} file with a network visualization that compares two given
 Creates a network to compare two years
 }
 \examples{
-network_comparison("chl", "chn", 6, 2010, 2014)
+# network_comparison("chl", "chn", 6, 2010, 2014)
 }
 \keyword{functions}
 

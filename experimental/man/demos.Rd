@@ -13,7 +13,7 @@ Copies a file named \code{demo_examples.R} to the working directory.
 Copies the demo file
 }
 \examples{
-demos()
+# demos()
 }
 \keyword{functions}
 

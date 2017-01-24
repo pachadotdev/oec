@@ -1,9 +1,11 @@
 Package: oec
 Type: Package
 Title: Use the Observatory of Economic Complexity's API in R
-Version: 2.2
+Version: 2.4
 Date: 2016-11-17
-Author: Mauricio Vargas S. <mvargas@dcc.uchile.cl> [aut, cre], Cesar A. Hidalgo <hidalgo@media.mit.edu> [aut]
+Author: Cesar A. Hidalgo <hidalgo@media.mit.edu> [aut], 
+  Alexander Simoes <alex@datawheel.us> [aut, cph], 
+  Mauricio Vargas S. <mvargas@dcc.uchile.cl> [aut, cre]
 Maintainer: Mauricio Vargas S. <mvargas@dcc.uchile.cl>
 URL: http://atlas.media.mit.edu/en/, https://github.com/pachamaltese/oec/
 Description:  Use The Observatory of Economic Complexity's API in R to download international trade data in csv and create and D3Plus visualizations.

@@ -6,11 +6,11 @@
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @examples
-#' network("chl", "chn", 6, 2014)
+#' # network("chl", "chn", 6, 2014)
 #' @keywords functions
 
 network <- function(origin, destination, classification, year) {
-  d3_folder <- paste0(getwd(), "/d3plus-2.0")
+  d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
   print("D3plus not installed... installing using install_d3plus()...")
   install_d3plus()

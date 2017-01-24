@@ -2,7 +2,7 @@
 #' @export
 #' @return Copies a file named \code{demo_examples.R} to the working directory.
 #' @examples
-#' demos()
+#' # demos()
 #' @keywords functions
 
 demos <- function() {

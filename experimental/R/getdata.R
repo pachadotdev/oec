@@ -57,25 +57,28 @@ getdata <- function(origin, destination, year, classification) {
 
   if(year < 1961 | year > 2014) {
     print("data is only available from 1962 to 2014.")
+    stop()
   } else {
     if(classification > 4 & year < 1995) {
       print("HS92 classification is only available from year 1995 and ongoing.")
+      stop()
     } else {
       if(classification == 4 | classification == 6 | classification == 8){
         if(classification == 4){
           classification <- "sitc"
           characters <- 4
+          print("using SITC rev.2 classification (4 characters)")
         }
         if(classification == 6){
           classification <- "hs"
           characters <- 6
+          print("using HS92 classification (6 characters)")
         }
         if(classification == 8){
           classification <- "hs"
           characters <- 8
+          print("using HS92 classification (8 characters)")
         }
-      } else {
-        print("getdata() error: allowed classifications are hs6, hs8 and sitc.")
       }
 
       if(classification == "sitc" | classification == "hs") {
@@ -135,6 +138,7 @@ getdata <- function(origin, destination, year, classification) {
             }
           } else {
             print("SITC rev.2 list only allows 4 characters.")
+            stop()
           }
         }
 
@@ -258,10 +262,12 @@ getdata <- function(origin, destination, year, classification) {
             }
           } else {
             print("HS92 list only allows 6 or 8 characters.")
+            stop()
           }
         }
       } else {
-        print('getdata() error: classification only admits sitc for SITC rev.2 and hs6/hs8 for H292.')
+        print("getdata() error: allowed classifications are HS92 (6 and 8 characters) and SITC rev.2 (4 characters)")
+        stop()
       }
     }
   }

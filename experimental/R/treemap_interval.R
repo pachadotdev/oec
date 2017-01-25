@@ -5,15 +5,15 @@
 #' @param destination is the country code of origin (e.g. "chn" for China)
 #' @param variable is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
-#' @param first_year is the first year and the OEC's API ranges from 1962 to 2014
-#' @param last_year is the last year and the OEC's API ranges from 1962 to 2014
+#' @param initial_year is the initial year and the OEC's API ranges from 1962 to 2014
+#' @param final_year is the final year and the OEC's API ranges from 1962 to 2014
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1
 #' @examples
 #' # treemap_interval("chl", "chn", "exports", 6, 2011, 2014, 2)
 #' @keywords functions
 
-treemap_interval <- function(origin, destination, variable, classification, first_year, last_year, interval, depth) {
+treemap_interval <- function(origin, destination, variable, classification, initial_year, final_year, interval, depth) {
 
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
@@ -29,10 +29,10 @@ treemap_interval <- function(origin, destination, variable, classification, firs
     depth = 1
   }
 
-  input <- paste(origin, destination, first_year, last_year, interval, classification, sep = "_")
+  input <- paste(origin, destination, initial_year, final_year, interval, classification, sep = "_")
   input <- paste0(input, "char")
 
-  getdata_interval(origin, destination, classification, first_year, last_year, interval)
+  getdata_interval(origin, destination, classification, initial_year, final_year, interval)
 
   if(classification == 4) {
     code_display <- "SITC code"
@@ -77,8 +77,8 @@ treemap_interval <- function(origin, destination, variable, classification, firs
     treemap_interval_template <- ifelse(variable == "exports", gsub("variable_replace", "export to", treemap_interval_template),
                                ifelse(variable == "imports", gsub("variable_replace", "import from", treemap_interval_template),
                                       "exchange with"))
-    treemap_interval_template <- gsub("first_year_replace", first_year, treemap_interval_template)
-    treemap_interval_template <- gsub("last_year_replace", last_year, treemap_interval_template)
+    treemap_interval_template <- gsub("initial_year_replace", initial_year, treemap_interval_template)
+    treemap_interval_template <- gsub("final_year_replace", final_year, treemap_interval_template)
     print("writing html file...")
     writeLines(treemap_interval_template, paste0(output, "_treemap_", variable, ".html"))
     print("opening html files in the browser.")

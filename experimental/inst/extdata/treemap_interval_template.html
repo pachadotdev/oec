@@ -17,7 +17,7 @@
           .font({"family": "Roboto"})
           .labels({"align": "left", "valign": "top"})
           .color("color")
-          .title("What does origin_id_replace variable_replace destination_id_replace? (first_year_replace -- last_year_replace)")
+          .title("What does origin_id_replace variable_replace destination_id_replace? (initial_year_replace -- final_year_replace)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 18}}
@@ -25,7 +25,7 @@
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
           .tooltip(["product_id","variablecol","rca"])
           .icon({"style": "knockout", "value": "icon"})
-          .time({"value": "year", "solo": first_year_replace})
+          .time({"value": "year", "solo": initial_year_replace})
           .format({
             "text": function(text, params) {
               if (text === "variablecol") {

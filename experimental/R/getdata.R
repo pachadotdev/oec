@@ -1,9 +1,9 @@
 #' Downloads and processes the data from the API
 #' @export
-#' @param origin is the country code of origin (e.g. "chl" for Chile)
-#' @param destination is the country code of origin (e.g. "chn" for China)
-#' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
-#' @param year is the year and the OEC's API ranges from 1962 to 2014
+#' @param origin Country code of origin (e.g. "chl" for Chile)
+#' @param destination Country code of destination (e.g. "chn" for China)
+#' @param classification Trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing. The default is set to "6".
+#' @param year The OEC's API ranges from 1962 to 2014
 #' @import curl data.table jsonlite plyr servr
 #' @importFrom utils write.csv
 #' @examples
@@ -11,16 +11,22 @@
 #' # Chile is "chl" and China is "chn"
 #'
 #' # Download trade data from OEC's API (HS92 6 characters product lists)
-#' # getdata("chl", "chn", 6, 2014)
+#' # getdata("chl", "chn", 2014)
+#' # is the same as
+#' # getdata("chl", "chn", 2014, 6)
 #'
 #' # Download trade data from OEC's API (HS92 8 characters product lists)
-#' # getdata("chl", "chn", 8, 2014)
+#' # getdata("chl", "chn", 2014, 8)
 #'
 #' # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
-#' # getdata("chl", "chn", 4, 2014)
+#' # getdata("chl", "chn", 2014, 4)
 #' @keywords functions
 
-getdata <- function(origin, destination, classification, year) {
+getdata <- function(origin, destination, year, classification) {
+
+  if(missing(classification)) {
+    classification = 6
+  }
 
   output <- paste(origin, destination, year, sep = "_")
 
@@ -81,6 +87,8 @@ getdata <- function(origin, destination, classification, year) {
               print("processing SITC rev.2 (4 characters) files...")
 
               origin_destination_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", year, "/", origin, "/", destination, "/show/")))
+              if(destination == "all"){origin_destination_year_4char$data.dest_id <- "rest_of_the_world"}
+              if(origin == "all"){origin_destination_year_4char$data.origin_id <- "rest_of_the_world"}
               keep <- names(origin_destination_year_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.sitc_id", "data.export_val", "data.import_val")
               origin_destination_year_4char <- origin_destination_year_4char[keep]
               origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.sitc_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
@@ -106,14 +114,14 @@ getdata <- function(origin, destination, classification, year) {
               origin_destination_year_4char$rca <- round(origin_destination_year_4char$rca, digits = 2)
 
               sitc_rev2_4char <- sitc_rev2_4char
+              sitc_rev2_colors <- sitc_rev2_colors
+              sitc_rev2_4char <- join(sitc_rev2_4char,sitc_rev2_colors, by="group")
               origin_destination_year_4char <- join(sitc_rev2_4char, origin_destination_year_4char, by = "sitc_rev2_id")
-              origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
+              rm(sitc_rev2_4char,sitc_rev2_colors)
 
               origin_destination_year_4char$icon <- paste0("d3plus-1.9.8/icons/sitc_rev2/sitc_rev2_", origin_destination_year_4char$sitc_rev2_group, ".png")
-              sitc_rev2_colors <- sitc_rev2_colors
-              origin_destination_year_4char <- merge(origin_destination_year_4char,sitc_rev2_colors)
-              origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
               origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+              origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
 
               envir = as.environment(1)
               assign(paste0(origin, "_", destination, "_", year, "_4char"), origin_destination_year_4char, envir = envir)
@@ -139,6 +147,8 @@ getdata <- function(origin, destination, classification, year) {
                 print("processing HS92 (6 characters) files...")
 
                 origin_destination_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", year, "/", origin, "/", destination, "/show/")))
+                if(destination == "all"){origin_destination_year_6char$data.dest_id <- "rest_of_the_world"}
+                if(origin == "all"){origin_destination_year_6char$data.origin_id <- "rest_of_the_world"}
                 keep <- names(origin_destination_year_6char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                 origin_destination_year_6char <- origin_destination_year_6char[keep]
                 origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
@@ -168,14 +178,14 @@ getdata <- function(origin, destination, classification, year) {
                 origin_destination_year_6char$rca <- round(origin_destination_year_6char$rca, digits = 2)
 
                 hs92_6char <- hs92_6char
+                hs92_colors <- hs92_colors
+                hs92_6char <- join(hs92_6char,hs92_colors, by="group")
                 origin_destination_year_6char <- join(hs92_6char, origin_destination_year_6char, by = "hs92_id")
-                origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
+                rm(hs92_6char,hs92_colors)
 
                 origin_destination_year_6char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_6char$hs92_group, ".png")
-                hs92_colors <- hs92_colors
-                origin_destination_year_6char <- merge(origin_destination_year_6char,hs92_colors)
-                origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
                 origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+                origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_6char"), origin_destination_year_6char, envir = envir)
@@ -195,6 +205,8 @@ getdata <- function(origin, destination, classification, year) {
                 print("processing HS92 (8 characters) files...")
 
                 origin_destination_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", year, "/", origin, "/", destination, "/show/")))
+                if(destination == "all"){origin_destination_year_8char$data.dest_id <- "rest_of_the_world"}
+                if(origin == "all"){origin_destination_year_8char$data.origin_id <- "rest_of_the_world"}
                 keep <- names(origin_destination_year_8char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                 origin_destination_year_8char <- origin_destination_year_8char[keep]
                 origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
@@ -224,14 +236,14 @@ getdata <- function(origin, destination, classification, year) {
                 origin_destination_year_8char$rca <- round(origin_destination_year_8char$rca, digits = 2)
 
                 hs92_8char <- hs92_8char
+                hs92_colors <- hs92_colors
+                hs92_8char <- join(hs92_8char,hs92_colors, by="group")
                 origin_destination_year_8char <- join(hs92_8char, origin_destination_year_8char, by = "hs92_id")
-                origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
+                rm(hs92_8char,hs92_colors)
 
                 origin_destination_year_8char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_8char$hs92_group, ".png")
-                hs92_colors <- hs92_colors
-                origin_destination_year_8char <- merge(origin_destination_year_8char,hs92_colors)
-                origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
                 origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+                origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_8char"), origin_destination_year_8char, envir = envir)

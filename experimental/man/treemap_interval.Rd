@@ -4,8 +4,8 @@
 \alias{treemap_interval}
 \title{Creates a treemap for a given given period of years}
 \usage{
-treemap_interval(origin, destination, variable, classification, first_year,
-  last_year, interval, depth)
+treemap_interval(origin, destination, variable, classification, initial_year,
+  final_year, interval, depth)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
@@ -16,9 +16,9 @@ treemap_interval(origin, destination, variable, classification, first_year,
 
 \item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 
-\item{first_year}{is the first year and the OEC's API ranges from 1962 to 2014}
+\item{initial_year}{is the initial year and the OEC's API ranges from 1962 to 2014}
 
-\item{last_year}{is the last year and the OEC's API ranges from 1962 to 2014}
+\item{final_year}{is the final year and the OEC's API ranges from 1962 to 2014}
 
 \item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
 

@@ -13,13 +13,16 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 ### Treemap
 
   * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_treemap_exports.html)
-  * [What does Chile export to China? (2010 -- 2014)](http://pacha.hk/oec/chl_chn_2010_2014_2_6char_treemap_exports.html)
 
 ### Network
 
   * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
 
 Read the documentation for more interesting uses and examples.
+
+## Notice
+
+The functions `getdata_interval()`, `treemap_interval()` and `network_comparison()` have been rewritten recently. As those functions are new, avoid them as they are experimental and will be changing a lot until we find a suitable specification that we can submit to CRAN.
 
 ## How to install
 

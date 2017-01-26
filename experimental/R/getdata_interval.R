@@ -46,6 +46,9 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
   } else {
     years <- seq(initial_year, final_year, interval)
 
+    envir = as.environment(1)
+    assign("getdata_interval_list", replicate(length(years), 0, FALSE), envir = envir)
+
     arrange.vars <- function(data, vars){
       stopifnot(is.data.frame(data))
 
@@ -140,7 +143,7 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
                 origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
 
                 envir = as.environment(1)
-                assign(paste0("year_", years[[t]]), origin_destination_year_4char, envir = envir)
+                assign(paste(origin, destination, years[[t]], "4char", sep = "_"), origin_destination_year_4char, envir = envir)
 
               } else {
                 print("SITC rev.2 list only allows 4 characters.")
@@ -195,7 +198,7 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
                   origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
 
                   envir = as.environment(1)
-                  assign(paste0("year_", years[[t]]), origin_destination_year_6char, envir = envir)
+                  assign(paste(origin, destination, years[[t]], "6char", sep = "_"), origin_destination_year_6char, envir = envir)
 
                 }
                 if(characters == 8) {
@@ -243,7 +246,7 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
                   origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
 
                   envir = as.environment(1)
-                  assign(paste0("year_", years[[t]]), origin_destination_year_8char, envir = envir)
+                  assign(paste(origin, destination, years[[t]], "8char", sep = "_"), origin_destination_year_8char, envir = envir)
 
                 }
               } else {

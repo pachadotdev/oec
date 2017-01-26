@@ -21,10 +21,6 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
 Read the documentation for more interesting uses and examples.
 
-## Notice
-
-The function `network_comparison()` is quite experimental since we rewrote it. If you need to use it, please stick to the CRAN version.
-
 ## How to install
 
 ### Using CRAN (version 2.2)

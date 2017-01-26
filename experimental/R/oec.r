@@ -14,8 +14,6 @@
 #'
 #' \code{\link{network}} Creates a network for a given year.
 #'
-#' \code{\link{network_comparison}} Experimental function.
-#'
 #' \code{\link{treemap}} Creates a treemap for a given year.
 #'
 #' \code{\link{treemap_interval}} Experimental function.

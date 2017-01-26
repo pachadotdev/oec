@@ -2,27 +2,31 @@
 % Please edit documentation in R/network.R
 \name{network}
 \alias{network}
-\title{Creates a network for a given year}
+\title{Creates a network of exports for a given year}
 \usage{
-network(origin, destination, classification, year)
+network(origin, destination, year, classification)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
 \item{destination}{is the country code of origin (e.g. "chn" for China)}
 
-\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
-
 \item{year}{is the year and the OEC's API ranges from 1962 to 2014}
+
+\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 }
 \value{
 Creates an \code{HTML} file with a network visualization for a given year.
 }
 \description{
-Creates a network for a given year
+Creates a network of exports for a given year
 }
 \examples{
-# network("chl", "chn", 6, 2014)
+# Visualize trade data from OEC's API (HS92 6 characters product list)
+# for exports from Chile to China in the year 2014
+# network("chl", "chn", 2014, 6)
+# is the same as
+# network("chl", "chn", 2014)
 }
 \keyword{functions}
 

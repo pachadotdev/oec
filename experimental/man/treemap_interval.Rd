@@ -4,8 +4,8 @@
 \alias{treemap_interval}
 \title{Creates a treemap for a given given period of years}
 \usage{
-treemap_interval(origin, destination, variable, classification, initial_year,
-  final_year, interval, depth)
+treemap_interval(origin, destination, variable, initial_year, final_year,
+  interval, classification, depth)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
@@ -14,13 +14,13 @@ treemap_interval(origin, destination, variable, classification, initial_year,
 
 \item{variable}{is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)}
 
-\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
-
 \item{initial_year}{is the initial year and the OEC's API ranges from 1962 to 2014}
 
 \item{final_year}{is the final year and the OEC's API ranges from 1962 to 2014}
 
 \item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
+
+\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 
 \item{depth}{is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1}
 }
@@ -31,7 +31,11 @@ Creates an \code{HTML} file with a treemap visualization for a given period of y
 Creates a treemap for a given given period of years
 }
 \examples{
-# treemap_interval("chl", "chn", "exports", 6, 2011, 2014, 2)
+# Visualize trade data from OEC's API (HS92 6 characters product list)
+# for Chile and China in the years 2011 to 2014
+# treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 6 ,1)
+# is the same as
+# treemap_interval("chl", "chn", "exports", 2011, 2014)
 }
 \keyword{functions}
 

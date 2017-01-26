@@ -1,4 +1,4 @@
-#' Creates a network for a given year
+#' Creates a network of exports for a given year
 #' @export
 #' @return Creates an \code{HTML} file with a network visualization for a given year.
 #' @param origin is the country code of origin (e.g. "chl" for Chile)
@@ -6,14 +6,22 @@
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @examples
-#' # network("chl", "chn", 6, 2014)
+#' # Visualize trade data from OEC's API (HS92 6 characters product list)
+#' # for exports from Chile to China in the year 2014
+#' # network("chl", "chn", 2014, 6)
+#' # is the same as
+#' # network("chl", "chn", 2014)
 #' @keywords functions
 
-network <- function(origin, destination, classification, year) {
+network <- function(origin, destination, year, classification) {
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
   print("D3plus not installed... installing using install_d3plus()...")
   install_d3plus()
+  }
+
+  if(missing(classification)) {
+    classification = 6
   }
 
   variable <- "exports"
@@ -21,7 +29,7 @@ network <- function(origin, destination, classification, year) {
   input <- paste(origin, destination, year, classification, sep="_")
   input <- paste0(input, "char")
 
-  getdata(origin, destination, classification, year)
+  getdata(origin, destination, year, classification)
 
   code_lenght <- classification
   if(code_lenght == 4) {

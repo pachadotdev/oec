@@ -12,22 +12,22 @@
 #' # Run countries_list() to display the full list of countries
 #' # Chile is "chl" and China is "chn"
 #'
-#' # Download trade data from OEC's API (HS92 6 characters product lists)
-#' # for the years 2010 to 2014
+#' # Download trade data from OEC's API (HS92 6 characters product list)
+#' # for Chile and China in the years 2010 to 2014
 #' # getdata_interval("chl", "chn", 2011, 2014)
 #' # is the same as
 #' # getdata_interval("chl", "chn", 2011, 2014, 6, 1)
 #'
-#' # Download trade data from OEC's API (HS92 6 characters product lists)
-#' # for the years 2010, 2012 and 2014
+#' # Download trade data from OEC's API (HS92 6 characters product list)
+#' # for Chile and China in the years 2010, 2012 and 2014
 #' # getdata_interval("chl", "chn", 2011, 2014, 6, 2)
 #'
-#' # Download trade data from OEC's API (HS92 8 characters product lists)
-#' # for the years 2010, 2012 and 2014
+#' # Download trade data from OEC's API (HS92 8 characters product list)
+#' # for Chile and China in the years 2010, 2012 and 2014
 #' # getdata_interval("chl", "chn", 2011, 2014, 8, 2)
 #'
-#' # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
-#' # for the years 2010, 2012 and 2014
+#' # Download trade data from OEC's API (SITC rev.2 4 characters product list)
+#' # for Chile and China in the years 2010, 2012 and 2014
 #' # getdata_interval("chl", "chn", 2011, 2014, 4, 2)
 #' @keywords functions
 
@@ -45,9 +45,6 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
     print("the initial year needs to be a lower value than the last year.")
   } else {
     years <- seq(initial_year, final_year, interval)
-
-    envir = as.environment(1)
-    assign("getdata_interval_list", replicate(length(years), 0, FALSE), envir = envir)
 
     arrange.vars <- function(data, vars){
       stopifnot(is.data.frame(data))
@@ -74,192 +71,223 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
       return(data)
     }
 
-    for(t in 1:length(years)) {
-      if(years[[t]] < 1961 | years[[t]] > 2014) {
-        print("data is only available from 1962 to 2014.")
-      } else {
-        if(classification > 6 & years[[t]] < 1995) {
-          print("HS92 classification is only available from year 1995 and ongoing.")
-          stop()
+    output <- paste(origin, destination, initial_year, final_year, interval, paste0(classification,"char"), sep = "_")
+    output_csv <- paste0(output,".csv")
+    output_json <- paste0(output,".json")
+
+    if(!file.exists(output_csv) | !file.exists(output_json)) {
+      for(t in 1:length(years)) {
+        if(years[[t]] < 1961 | years[[t]] > 2014) {
+          print("data is only available from 1962 to 2014.")
         } else {
-          if(classification == 4 | classification == 6 | classification == 8){
-            if(classification == 4){
-              classification <- "sitc"
-              characters <- 4
-              print("using SITC rev.2 classification (4 characters)")
-            }
-            if(classification == 6){
-              classification <- "hs"
-              characters <- 6
-              print("using HS92 classification (6 characters)")
-            }
-            if(classification == 8){
-              classification <- "hs"
-              characters <- 8
-              print("using HS92 classification (8 characters)")
-            }
-          }
-
-          if(classification == "sitc" | classification == "hs") {
-            if(classification == "sitc") {
-              if(characters == 4) {
-                print(paste("processing SITC rev.2 (4 characters) files for the year",years[[t]],"..."))
-
-                origin_destination_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/", origin, "/", destination, "/show/")))
-                if(destination == "all"){origin_destination_year_4char$data.dest_id <- "rest_of_the_world"}
-                if(origin == "all"){origin_destination_year_4char$data.origin_id <- "rest_of_the_world"}
-                keep <- names(origin_destination_year_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.sitc_id", "data.export_val", "data.import_val")
-                origin_destination_year_4char <- origin_destination_year_4char[keep]
-                origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.sitc_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-                setnames(origin_destination_year_4char, names(origin_destination_year_4char), c("year", "origin_id", "destination_id", "sitc_rev2_id", "export_val", "import_val"))
-                origin_destination_year_4char$trade_exchange_val <- rowSums(origin_destination_year_4char[, c("export_val", "import_val")], na.rm=T)
-
-                all_all_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/all/all/show/")))
-                keep <- names(all_all_year_4char) %in% c("data.export_val","data.sitc_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
-                all_all_year_4char <- all_all_year_4char[keep]
-                all_all_year_4char <- arrange.vars(all_all_year_4char, c("data.sitc_id" = 1))
-                setnames(all_all_year_4char, names(all_all_year_4char), c("sitc_rev2_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
-
-                origin_all_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/", origin, "/all/show/")))
-                keep <- names(origin_all_year_4char) %in% c("data.export_val","data.sitc_id")
-                origin_all_year_4char <- origin_all_year_4char[keep]
-                origin_all_year_4char <- arrange.vars(origin_all_year_4char, c("data.sitc_id" = 1))
-                setnames(origin_all_year_4char, names(origin_all_year_4char), c("sitc_rev2_id","origin_total_export_val"))
-
-                origin_destination_year_4char <- join(origin_destination_year_4char, all_all_year_4char, by = "sitc_rev2_id")
-                origin_destination_year_4char <- join(origin_destination_year_4char, origin_all_year_4char, by = "sitc_rev2_id")
-                rm(all_all_year_4char,origin_all_year_4char)
-                origin_destination_year_4char$rca <- (origin_destination_year_4char$export_val/origin_destination_year_4char$world_total_export_val)/(sum(origin_destination_year_4char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_4char$world_total_export_val, na.rm=TRUE))
-                origin_destination_year_4char$rca <- round(origin_destination_year_4char$rca, digits = 2)
-
-                sitc_rev2_4char <- sitc_rev2_4char
-                sitc_rev2_colors <- sitc_rev2_colors
-                sitc_rev2_4char <- join(sitc_rev2_4char,sitc_rev2_colors, by="group")
-                origin_destination_year_4char <- join(sitc_rev2_4char, origin_destination_year_4char, by = "sitc_rev2_id")
-                rm(sitc_rev2_4char,sitc_rev2_colors)
-
-                origin_destination_year_4char$icon <- paste0("d3plus-1.9.8/icons/sitc_rev2/sitc_rev2_", origin_destination_year_4char$sitc_rev2_group, ".png")
-                origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-                origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
-
-                envir = as.environment(1)
-                assign(paste(origin, destination, years[[t]], "4char", sep = "_"), origin_destination_year_4char, envir = envir)
-
-              } else {
-                print("SITC rev.2 list only allows 4 characters.")
-                stop()
-              }
-            }
-
-            if(classification == "hs") {
-              if(characters == 6 | characters == 8) {
-                if(characters == 6) {
-                  print(paste("processing HS92 (6 characters) files for the year",years[[t]],"..."))
-
-                  origin_destination_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/", destination, "/show/")))
-                  if(destination == "all"){origin_destination_year_6char$data.dest_id <- "rest_of_the_world"}
-                  if(origin == "all"){origin_destination_year_6char$data.origin_id <- "rest_of_the_world"}
-                  keep <- names(origin_destination_year_6char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
-                  origin_destination_year_6char <- origin_destination_year_6char[keep]
-                  origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-                  setnames(origin_destination_year_6char, names(origin_destination_year_6char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
-                  origin_destination_year_6char$trade_exchange_val <- rowSums(origin_destination_year_6char[, c("export_val", "import_val")], na.rm=T)
-                  origin_destination_year_6char$hs92_len <- nchar(origin_destination_year_6char$hs92_id)
-                  origin_destination_year_6char <- subset(origin_destination_year_6char, origin_destination_year_6char$hs92_len == "6")
-                  drop <- names(origin_destination_year_6char) %in% c("hs92_len")
-                  origin_destination_year_6char <- origin_destination_year_6char[!drop]
-
-                  all_all_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/all/all/show/")))
-                  keep <- names(all_all_year_6char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
-                  all_all_year_6char <- all_all_year_6char[keep]
-                  all_all_year_6char <- arrange.vars(all_all_year_6char, c("data.hs92_id" = 1))
-                  setnames(all_all_year_6char, names(all_all_year_6char), c("hs92_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
-
-                  origin_all_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/all/show/")))
-                  keep <- names(origin_all_year_6char) %in% c("data.export_val","data.hs92_id")
-                  origin_all_year_6char <- origin_all_year_6char[keep]
-                  origin_all_year_6char <- arrange.vars(origin_all_year_6char, c("data.hs92_id" = 1))
-                  setnames(origin_all_year_6char, names(origin_all_year_6char), c("hs92_id","origin_total_export_val"))
-
-                  origin_destination_year_6char <- join(origin_destination_year_6char, all_all_year_6char, by = "hs92_id")
-                  origin_destination_year_6char <- join(origin_destination_year_6char, origin_all_year_6char, by = "hs92_id")
-                  rm(all_all_year_6char,origin_all_year_6char)
-                  origin_destination_year_6char$rca <- (origin_destination_year_6char$export_val/origin_destination_year_6char$world_total_export_val)/(sum(origin_destination_year_6char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_6char$world_total_export_val, na.rm=TRUE))
-                  origin_destination_year_6char$rca <- round(origin_destination_year_6char$rca, digits = 2)
-
-                  hs92_6char <- hs92_6char
-                  hs92_colors <- hs92_colors
-                  hs92_6char <- join(hs92_6char,hs92_colors, by="group")
-                  origin_destination_year_6char <- join(hs92_6char, origin_destination_year_6char, by = "hs92_id")
-                  rm(hs92_6char,hs92_colors)
-
-                  origin_destination_year_6char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_6char$hs92_group, ".png")
-                  origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-                  origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
-
-                  envir = as.environment(1)
-                  assign(paste(origin, destination, years[[t]], "6char", sep = "_"), origin_destination_year_6char, envir = envir)
-
-                }
-                if(characters == 8) {
-                  print(paste("processing HS92 (8 characters) files for the year",years[[t]],"..."))
-
-                  origin_destination_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/", destination, "/show/")))
-                  if(destination == "all"){origin_destination_year_8char$data.dest_id <- "rest_of_the_world"}
-                  if(origin == "all"){origin_destination_year_8char$data.origin_id <- "rest_of_the_world"}
-                  keep <- names(origin_destination_year_8char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
-                  origin_destination_year_8char <- origin_destination_year_8char[keep]
-                  origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-                  setnames(origin_destination_year_8char, names(origin_destination_year_8char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
-                  origin_destination_year_8char$trade_exchange_val <- rowSums(origin_destination_year_8char[, c("export_val", "import_val")], na.rm=T)
-                  origin_destination_year_8char$hs92_len <- nchar(origin_destination_year_8char$hs92_id)
-                  origin_destination_year_8char <- subset(origin_destination_year_8char, origin_destination_year_8char$hs92_len == "8")
-                  drop <- names(origin_destination_year_8char) %in% c("hs92_len")
-                  origin_destination_year_8char <- origin_destination_year_8char[!drop]
-
-                  all_all_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/all/all/show/")))
-                  keep <- names(all_all_year_8char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
-                  all_all_year_8char <- all_all_year_8char[keep]
-                  all_all_year_8char <- arrange.vars(all_all_year_8char, c("data.hs92_id" = 1))
-                  setnames(all_all_year_8char, names(all_all_year_8char), c("hs92_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
-
-                  origin_all_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/all/show/")))
-                  keep <- names(origin_all_year_8char) %in% c("data.export_val","data.hs92_id")
-                  origin_all_year_8char <- origin_all_year_8char[keep]
-                  origin_all_year_8char <- arrange.vars(origin_all_year_8char, c("data.hs92_id" = 1))
-                  setnames(origin_all_year_8char, names(origin_all_year_8char), c("hs92_id","origin_total_export_val"))
-
-                  origin_destination_year_8char <- join(origin_destination_year_8char, all_all_year_8char, by = "hs92_id")
-                  origin_destination_year_8char <- join(origin_destination_year_8char, origin_all_year_8char, by = "hs92_id")
-                  rm(all_all_year_8char,origin_all_year_8char)
-                  origin_destination_year_8char$rca <- (origin_destination_year_8char$export_val/origin_destination_year_8char$world_total_export_val)/(sum(origin_destination_year_8char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_8char$world_total_export_val, na.rm=TRUE))
-                  origin_destination_year_8char$rca <- round(origin_destination_year_8char$rca, digits = 2)
-
-                  hs92_8char <- hs92_8char
-                  hs92_colors <- hs92_colors
-                  hs92_8char <- join(hs92_8char,hs92_colors, by="group")
-                  origin_destination_year_8char <- join(hs92_8char, origin_destination_year_8char, by = "hs92_id")
-                  rm(hs92_8char,hs92_colors)
-
-                  origin_destination_year_8char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_8char$hs92_group, ".png")
-                  origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-                  origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
-
-                  envir = as.environment(1)
-                  assign(paste(origin, destination, years[[t]], "8char", sep = "_"), origin_destination_year_8char, envir = envir)
-
-                }
-              } else {
-                print("HS92 list only allows 6 or 8 characters.")
-                stop()
-              }
-            }
-          } else {
-            print("getdata() error: allowed classifications are HS92 (6 and 8 characters) and SITC rev.2 (4 characters)")
+          if(classification > 6 & years[[t]] < 1995) {
+            print("HS92 classification is only available from year 1995 and ongoing.")
             stop()
+          } else {
+            if(classification == 4 | classification == 6 | classification == 8){
+              if(classification == 4){
+                classification <- "sitc"
+                characters <- 4
+                print("using SITC rev.2 classification (4 characters)")
+              }
+              if(classification == 6){
+                classification <- "hs"
+                characters <- 6
+                print("using HS92 classification (6 characters)")
+              }
+              if(classification == 8){
+                classification <- "hs"
+                characters <- 8
+                print("using HS92 classification (8 characters)")
+              }
+            }
+
+            if(classification == "sitc" | classification == "hs") {
+              if(classification == "sitc") {
+                if(characters == 4) {
+                  print(paste("processing SITC rev.2 (4 characters) files for the year",years[[t]],"..."))
+
+                  origin_destination_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/", origin, "/", destination, "/show/")))
+                  if(destination == "all"){origin_destination_year_4char$data.dest_id <- "rest_of_the_world"}
+                  if(origin == "all"){origin_destination_year_4char$data.origin_id <- "rest_of_the_world"}
+                  keep <- names(origin_destination_year_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.sitc_id", "data.export_val", "data.import_val")
+                  origin_destination_year_4char <- origin_destination_year_4char[keep]
+                  origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.sitc_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
+                  setnames(origin_destination_year_4char, names(origin_destination_year_4char), c("year", "origin_id", "destination_id", "sitc_rev2_id", "export_val", "import_val"))
+                  origin_destination_year_4char$trade_exchange_val <- rowSums(origin_destination_year_4char[, c("export_val", "import_val")], na.rm=T)
+
+                  all_all_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/all/all/show/")))
+                  keep <- names(all_all_year_4char) %in% c("data.export_val","data.sitc_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
+                  all_all_year_4char <- all_all_year_4char[keep]
+                  all_all_year_4char <- arrange.vars(all_all_year_4char, c("data.sitc_id" = 1))
+                  setnames(all_all_year_4char, names(all_all_year_4char), c("sitc_rev2_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
+
+                  origin_all_year_4char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/sitc/export/", years[[t]], "/", origin, "/all/show/")))
+                  keep <- names(origin_all_year_4char) %in% c("data.export_val","data.sitc_id")
+                  origin_all_year_4char <- origin_all_year_4char[keep]
+                  origin_all_year_4char <- arrange.vars(origin_all_year_4char, c("data.sitc_id" = 1))
+                  setnames(origin_all_year_4char, names(origin_all_year_4char), c("sitc_rev2_id","origin_total_export_val"))
+
+                  origin_destination_year_4char <- join(origin_destination_year_4char, all_all_year_4char, by = "sitc_rev2_id")
+                  origin_destination_year_4char <- join(origin_destination_year_4char, origin_all_year_4char, by = "sitc_rev2_id")
+                  rm(all_all_year_4char,origin_all_year_4char)
+                  origin_destination_year_4char$rca <- (origin_destination_year_4char$export_val/origin_destination_year_4char$world_total_export_val)/(sum(origin_destination_year_4char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_4char$world_total_export_val, na.rm=TRUE))
+                  origin_destination_year_4char$rca <- round(origin_destination_year_4char$rca, digits = 2)
+
+                  sitc_rev2_4char <- sitc_rev2_4char
+                  sitc_rev2_colors <- sitc_rev2_colors
+                  sitc_rev2_4char <- join(sitc_rev2_4char,sitc_rev2_colors, by="group")
+                  origin_destination_year_4char <- join(sitc_rev2_4char, origin_destination_year_4char, by = "sitc_rev2_id")
+                  rm(sitc_rev2_4char,sitc_rev2_colors)
+
+                  origin_destination_year_4char$icon <- paste0("d3plus-1.9.8/icons/sitc_rev2/sitc_rev2_", origin_destination_year_4char$sitc_rev2_group, ".png")
+                  origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+                  origin_destination_year_4char$year <- ifelse(is.na(origin_destination_year_4char$year), years[[t]], origin_destination_year_4char$year)
+
+                  envir = as.environment(1)
+                  assign(paste("getdata_interval_year", years[[t]], sep = "_"), origin_destination_year_4char)
+                  assign(paste(origin, destination, years[[t]], "4char", sep = "_"), origin_destination_year_4char, envir = envir)
+                  write.csv(origin_destination_year_4char, paste(origin, destination, years[[t]], "4char.csv", sep = "_"))
+                  jsonOut_4char <- toJSON(origin_destination_year_4char, pretty = TRUE)
+                  write(jsonOut_4char, file=paste(origin, destination, years[[t]], "4char.json", sep = "_"))
+
+                } else {
+                  print("SITC rev.2 list only allows 4 characters.")
+                  stop()
+                }
+              }
+
+              if(classification == "hs") {
+                if(characters == 6 | characters == 8) {
+                  if(characters == 6) {
+                    print(paste("processing HS92 (6 characters) files for the year",years[[t]],"..."))
+
+                    origin_destination_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/", destination, "/show/")))
+                    if(destination == "all"){origin_destination_year_6char$data.dest_id <- "rest_of_the_world"}
+                    if(origin == "all"){origin_destination_year_6char$data.origin_id <- "rest_of_the_world"}
+                    keep <- names(origin_destination_year_6char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
+                    origin_destination_year_6char <- origin_destination_year_6char[keep]
+                    origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
+                    setnames(origin_destination_year_6char, names(origin_destination_year_6char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
+                    origin_destination_year_6char$trade_exchange_val <- rowSums(origin_destination_year_6char[, c("export_val", "import_val")], na.rm=T)
+                    origin_destination_year_6char$hs92_len <- nchar(origin_destination_year_6char$hs92_id)
+                    origin_destination_year_6char <- subset(origin_destination_year_6char, origin_destination_year_6char$hs92_len == "6")
+                    drop <- names(origin_destination_year_6char) %in% c("hs92_len")
+                    origin_destination_year_6char <- origin_destination_year_6char[!drop]
+
+                    all_all_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/all/all/show/")))
+                    keep <- names(all_all_year_6char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
+                    all_all_year_6char <- all_all_year_6char[keep]
+                    all_all_year_6char <- arrange.vars(all_all_year_6char, c("data.hs92_id" = 1))
+                    setnames(all_all_year_6char, names(all_all_year_6char), c("hs92_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
+
+                    origin_all_year_6char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/all/show/")))
+                    keep <- names(origin_all_year_6char) %in% c("data.export_val","data.hs92_id")
+                    origin_all_year_6char <- origin_all_year_6char[keep]
+                    origin_all_year_6char <- arrange.vars(origin_all_year_6char, c("data.hs92_id" = 1))
+                    setnames(origin_all_year_6char, names(origin_all_year_6char), c("hs92_id","origin_total_export_val"))
+
+                    origin_destination_year_6char <- join(origin_destination_year_6char, all_all_year_6char, by = "hs92_id")
+                    origin_destination_year_6char <- join(origin_destination_year_6char, origin_all_year_6char, by = "hs92_id")
+                    rm(all_all_year_6char,origin_all_year_6char)
+                    origin_destination_year_6char$rca <- (origin_destination_year_6char$export_val/origin_destination_year_6char$world_total_export_val)/(sum(origin_destination_year_6char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_6char$world_total_export_val, na.rm=TRUE))
+                    origin_destination_year_6char$rca <- round(origin_destination_year_6char$rca, digits = 2)
+
+                    hs92_6char <- hs92_6char
+                    hs92_colors <- hs92_colors
+                    hs92_6char <- join(hs92_6char,hs92_colors, by="group")
+                    origin_destination_year_6char <- join(hs92_6char, origin_destination_year_6char, by = "hs92_id")
+                    rm(hs92_6char,hs92_colors)
+
+                    origin_destination_year_6char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_6char$hs92_group, ".png")
+                    origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+                    origin_destination_year_6char$year <- ifelse(is.na(origin_destination_year_6char$year), years[[t]], origin_destination_year_6char$year)
+
+                    envir = as.environment(1)
+                    assign(paste("getdata_interval_year", years[[t]], sep = "_"), origin_destination_year_6char)
+                    assign(paste(origin, destination, years[[t]], "6char", sep = "_"), origin_destination_year_6char, envir = envir)
+                    write.csv(origin_destination_year_6char, paste(origin, destination, years[[t]], "6char.csv", sep = "_"))
+                    jsonOut_6char <- toJSON(origin_destination_year_6char, pretty = TRUE)
+                    write(jsonOut_6char, file=paste(origin, destination, years[[t]], "6char.json", sep = "_"))
+
+                  }
+                  if(characters == 8) {
+                    print(paste("processing HS92 (8 characters) files for the year",years[[t]],"..."))
+
+                    origin_destination_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/", destination, "/show/")))
+                    if(destination == "all"){origin_destination_year_8char$data.dest_id <- "rest_of_the_world"}
+                    if(origin == "all"){origin_destination_year_8char$data.origin_id <- "rest_of_the_world"}
+                    keep <- names(origin_destination_year_8char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
+                    origin_destination_year_8char <- origin_destination_year_8char[keep]
+                    origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
+                    setnames(origin_destination_year_8char, names(origin_destination_year_8char), c("year", "origin_id", "destination_id", "hs92_id", "export_val", "import_val"))
+                    origin_destination_year_8char$trade_exchange_val <- rowSums(origin_destination_year_8char[, c("export_val", "import_val")], na.rm=T)
+                    origin_destination_year_8char$hs92_len <- nchar(origin_destination_year_8char$hs92_id)
+                    origin_destination_year_8char <- subset(origin_destination_year_8char, origin_destination_year_8char$hs92_len == "8")
+                    drop <- names(origin_destination_year_8char) %in% c("hs92_len")
+                    origin_destination_year_8char <- origin_destination_year_8char[!drop]
+
+                    all_all_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/all/all/show/")))
+                    keep <- names(all_all_year_8char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
+                    all_all_year_8char <- all_all_year_8char[keep]
+                    all_all_year_8char <- arrange.vars(all_all_year_8char, c("data.hs92_id" = 1))
+                    setnames(all_all_year_8char, names(all_all_year_8char), c("hs92_id","world_total_export_val","pci","pci_rank","top_exporter","top_importer"))
+
+                    origin_all_year_8char <- as.data.frame(fromJSON(paste0("http://atlas.media.mit.edu/hs92/export/", years[[t]], "/", origin, "/all/show/")))
+                    keep <- names(origin_all_year_8char) %in% c("data.export_val","data.hs92_id")
+                    origin_all_year_8char <- origin_all_year_8char[keep]
+                    origin_all_year_8char <- arrange.vars(origin_all_year_8char, c("data.hs92_id" = 1))
+                    setnames(origin_all_year_8char, names(origin_all_year_8char), c("hs92_id","origin_total_export_val"))
+
+                    origin_destination_year_8char <- join(origin_destination_year_8char, all_all_year_8char, by = "hs92_id")
+                    origin_destination_year_8char <- join(origin_destination_year_8char, origin_all_year_8char, by = "hs92_id")
+                    rm(all_all_year_8char,origin_all_year_8char)
+                    origin_destination_year_8char$rca <- (origin_destination_year_8char$export_val/origin_destination_year_8char$world_total_export_val)/(sum(origin_destination_year_8char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_8char$world_total_export_val, na.rm=TRUE))
+                    origin_destination_year_8char$rca <- round(origin_destination_year_8char$rca, digits = 2)
+
+                    hs92_8char <- hs92_8char
+                    hs92_colors <- hs92_colors
+                    hs92_8char <- join(hs92_8char,hs92_colors, by="group")
+                    origin_destination_year_8char <- join(hs92_8char, origin_destination_year_8char, by = "hs92_id")
+                    rm(hs92_8char,hs92_colors)
+
+                    origin_destination_year_8char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_8char$hs92_group, ".png")
+                    origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
+                    origin_destination_year_8char$year <- ifelse(is.na(origin_destination_year_8char$year), years[[t]], origin_destination_year_8char$year)
+
+                    envir = as.environment(1)
+                    assign(paste("getdata_interval_year", years[[t]], sep = "_"), origin_destination_year_8char)
+                    assign(paste(origin, destination, years[[t]], "8char", sep = "_"), origin_destination_year_8char, envir = envir)
+                    write.csv(origin_destination_year_8char, paste(origin, destination, years[[t]], "8char.csv", sep = "_"))
+                    jsonOut_8char <- toJSON(origin_destination_year_8char, pretty = TRUE)
+                    write(jsonOut_8char, file=paste(origin, destination, years[[t]], "8char.json", sep = "_"))
+
+                  }
+                } else {
+                  print("HS92 list only allows 6 or 8 characters.")
+                  stop()
+                }
+              }
+
+              envir = as.environment(1)
+              getdata_interval_all_years <- mget(ls(pattern="^getdata_interval_year"))
+              getdata_interval_all_years_df <- do.call("rbind",getdata_interval_all_years)
+              assign(paste(origin, destination, initial_year, final_year, paste0(classification,"char"), sep = "_"), getdata_interval_all_years_df, envir = envir)
+              write.csv(getdata_interval_all_years_df, paste(origin, destination, initial_year, final_year, interval, paste0(characters,"char.csv"), sep = "_"))
+              getdata_interval_all_years_json <- toJSON(getdata_interval_all_years_df, pretty = TRUE)
+              write(getdata_interval_all_years_json, file=paste(origin, destination, initial_year, final_year, interval, paste0(characters,"char.json"), sep = "_"))
+
+            } else {
+              print("getdata() error: allowed classifications are HS92 (6 and 8 characters) and SITC rev.2 (4 characters)")
+              stop()
+            }
           }
         }
       }
+    } else {
+      envir = as.environment(1)
+      print("the file you want to download is in the working folder. reading JSON...")
+      assign(paste(origin, destination, initial_year, final_year, paste0(classification,"char"), sep = "_"), fromJSON(output_json), envir = envir)
     }
 
   }

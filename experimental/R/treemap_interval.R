@@ -10,10 +10,14 @@
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1
 #' @examples
-#' # treemap_interval("chl", "chn", "exports", 6, 2011, 2014, 2)
+#' # Visualize trade data from OEC's API (HS92 6 characters product list)
+#' # for Chile and China in the years 2011 to 2014
+#' # treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 6 ,1)
+#' # is the same as
+#' # treemap_interval("chl", "chn", "exports", 2011, 2014)
 #' @keywords functions
 
-treemap_interval <- function(origin, destination, variable, classification, initial_year, final_year, interval, depth) {
+treemap_interval <- function(origin, destination, variable, initial_year, final_year, interval, classification, depth) {
 
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
@@ -25,6 +29,10 @@ treemap_interval <- function(origin, destination, variable, classification, init
     interval = 1
   }
 
+  if(missing(classification)) {
+    classification = 6
+  }
+
   if(missing(depth)) {
     depth = 1
   }
@@ -32,7 +40,7 @@ treemap_interval <- function(origin, destination, variable, classification, init
   input <- paste(origin, destination, initial_year, final_year, interval, classification, sep = "_")
   input <- paste0(input, "char")
 
-  getdata_interval(origin, destination, classification, initial_year, final_year, interval)
+  getdata_interval(origin, destination, initial_year, final_year, classification, interval)
 
   if(classification == 4) {
     code_display <- "SITC code"

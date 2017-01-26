@@ -10,15 +10,18 @@
 #' # Run countries_list() to display the full list of countries
 #' # Chile is "chl" and China is "chn"
 #'
-#' # Download trade data from OEC's API (HS92 6 characters product lists)
+#' # Download trade data from OEC's API (HS92 6 characters product list)
+#' # for Chile and China in the year 2014
 #' # getdata("chl", "chn", 2014)
 #' # is the same as
 #' # getdata("chl", "chn", 2014, 6)
 #'
-#' # Download trade data from OEC's API (HS92 8 characters product lists)
+#' # Download trade data from OEC's API (HS92 8 characters product list)
+#' # for Chile and China in the year 2014
 #' # getdata("chl", "chn", 2014, 8)
 #'
-#' # Download trade data from OEC's API (SITC rev.2 4 characters product lists)
+#' # Download trade data from OEC's API (SITC rev.2 4 characters product list)
+#' # for Chile and China in the year 2014
 #' # getdata("chl", "chn", 2014, 4)
 #' @keywords functions
 
@@ -124,7 +127,7 @@ getdata <- function(origin, destination, year, classification) {
 
               origin_destination_year_4char$icon <- paste0("d3plus-1.9.8/icons/sitc_rev2/sitc_rev2_", origin_destination_year_4char$sitc_rev2_group, ".png")
               origin_destination_year_4char <- arrange.vars(origin_destination_year_4char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-              origin_destination_year_4char <- subset(origin_destination_year_4char, !is.na(origin_destination_year_4char$year))
+              origin_destination_year_4char$year <- ifelse(is.na(origin_destination_year_4char$year), year, origin_destination_year_4char$year)
 
               envir = as.environment(1)
               assign(paste0(origin, "_", destination, "_", year, "_4char"), origin_destination_year_4char, envir = envir)
@@ -134,7 +137,9 @@ getdata <- function(origin, destination, year, classification) {
               jsonOut_4char <- toJSON(origin_destination_year_4char, pretty = TRUE)
               write(jsonOut_4char, file=paste0(output,"_4char.json"))
             } else {
-              print("SITC rev.2 (4 characters) files already exists. skipping.")
+              envir = as.environment(1)
+              print("the file you want to download is in the working folder. reading JSON...")
+              assign(paste(origin, destination, year, paste0(classification,"char"), sep = "_"), fromJSON(json_file_4char), envir = envir)
             }
           } else {
             print("SITC rev.2 list only allows 4 characters.")
@@ -189,7 +194,7 @@ getdata <- function(origin, destination, year, classification) {
 
                 origin_destination_year_6char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_6char$hs92_group, ".png")
                 origin_destination_year_6char <- arrange.vars(origin_destination_year_6char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-                origin_destination_year_6char <- subset(origin_destination_year_6char, !is.na(origin_destination_year_6char$year))
+                origin_destination_year_6char$year <- ifelse(is.na(origin_destination_year_6char$year), year, origin_destination_year_6char$year)
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_6char"), origin_destination_year_6char, envir = envir)
@@ -199,7 +204,9 @@ getdata <- function(origin, destination, year, classification) {
                 jsonOut_6char <- toJSON(origin_destination_year_6char, pretty = TRUE)
                 write(jsonOut_6char, file=paste0(output,"_6char.json"))
               } else {
-                print("HS92 (6 characters) files already exists. skipping.")
+                envir = as.environment(1)
+                print("the file you want to download is in the working folder. reading JSON...")
+                assign(paste(origin, destination, year, paste0(classification,"char"), sep = "_"), fromJSON(json_file_6char), envir = envir)
               }
             }
             if(characters == 8) {
@@ -247,7 +254,7 @@ getdata <- function(origin, destination, year, classification) {
 
                 origin_destination_year_8char$icon <- paste0("d3plus-1.9.8/icons/hs92/hs92_", origin_destination_year_8char$hs92_group, ".png")
                 origin_destination_year_8char <- arrange.vars(origin_destination_year_8char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
-                origin_destination_year_8char <- subset(origin_destination_year_8char, !is.na(origin_destination_year_8char$year))
+                origin_destination_year_8char$year <- ifelse(is.na(origin_destination_year_8char$year), year, origin_destination_year_8char$year)
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_8char"), origin_destination_year_8char, envir = envir)
@@ -257,7 +264,9 @@ getdata <- function(origin, destination, year, classification) {
                 jsonOut_8char <- toJSON(origin_destination_year_8char, pretty = TRUE)
                 write(jsonOut_8char, file=paste0(output,"_8char.json"))
               } else {
-                print("HS92 (8 characters) files already exists. skipping.")
+                envir = as.environment(1)
+                print("the file you want to download is in the working folder. reading JSON...")
+                assign(paste(origin, destination, year, paste0(classification,"char"), sep = "_"), fromJSON(json_file_8char), envir = envir)
               }
             }
           } else {

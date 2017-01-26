@@ -22,15 +22,18 @@ Downloads and processes the data from the API
 # Run countries_list() to display the full list of countries
 # Chile is "chl" and China is "chn"
 
-# Download trade data from OEC's API (HS92 6 characters product lists)
+# Download trade data from OEC's API (HS92 6 characters product list)
+# for Chile and China in the year 2014
 # getdata("chl", "chn", 2014)
 # is the same as
 # getdata("chl", "chn", 2014, 6)
 
-# Download trade data from OEC's API (HS92 8 characters product lists)
+# Download trade data from OEC's API (HS92 8 characters product list)
+# for Chile and China in the year 2014
 # getdata("chl", "chn", 2014, 8)
 
-# Download trade data from OEC's API (SITC rev.2 4 characters product lists)
+# Download trade data from OEC's API (SITC rev.2 4 characters product list)
+# for Chile and China in the year 2014
 # getdata("chl", "chn", 2014, 4)
 }
 \keyword{functions}

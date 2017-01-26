@@ -8,15 +8,23 @@
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)
 #' @examples
-#' # treemap("chl", "chn", "exports", 6, 2014)
+#' # Visualize trade data from OEC's API (HS92 6 characters product list)
+#' # for Chile and China in the year 2014
+#' # treemap("chl", "chn", "exports", 2014, 6)
+#' # is the same as
+#' # treemap("chl", "chn", "exports", 2014)
 #' @keywords functions
 
-treemap <- function(origin, destination, variable, classification, year, depth) {
+treemap <- function(origin, destination, variable, year, classification, depth) {
 
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
     print("D3plus not installed... installing using install_d3plus()...")
     install_d3plus()
+  }
+
+  if(missing(classification)) {
+    classification = 6
   }
 
   if(missing(depth)) {
@@ -26,7 +34,7 @@ treemap <- function(origin, destination, variable, classification, year, depth) 
   input <- paste(origin, destination, year, classification, sep = "_")
   input <- paste0(input, "char")
 
-  getdata(origin, destination, classification, year)
+  getdata(origin, destination, year, classification)
 
   if(classification == 4) {
     code_display <- "SITC code"

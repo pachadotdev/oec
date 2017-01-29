@@ -52,8 +52,9 @@ The documentation is available [here](http://pacha.hk/oec/oec.pdf). If you run `
 
 ## Authors
 
-* Cesar A. Hidalgo `<hidalgo@media.mit.edu>` [aut],
-* Alexander Simoes `<alex@datawheel.us>` [aut, cph],
+* Cesar A. Hidalgo `<hidalgo@media.mit.edu>` [aut]
+* Dave Landry `<dave@datawheel.us>` [aut]
+* Alexander Simoes `<alex@datawheel.us>` [aut, cph]
 * Mauricio Vargas S. `<mvargas@dcc.uchile.cl>` [aut, cre]
 
 ## The MIT License

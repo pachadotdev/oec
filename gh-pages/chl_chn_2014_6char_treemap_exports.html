@@ -9,28 +9,29 @@
           .type("tree_map")
           .data("chl_chn_2014_6char.json")
           .size("export_val")
-          .id(["group","product"])
+          .id(["hs92_group_id","hs92_product_id"])
+          .text(["hs92_group_name","hs92_product_name"])
           .depth(1)
           .width(false)
           .height(false)
           .resize(true)
           .font({"family": "Roboto"})
           .labels({"align": "left", "valign": "top"})
-          .color("color")
+          .color("hs92_color")
           .title("What does Chile export to China? (2014)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 18}}
            })
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
-          .tooltip(["hs92_id","export_val","rca"])
-          .icon({"style": "knockout", "value": "icon"})
+          .tooltip(["hs92_product_id","export_val","rca"])
+          .icon({"style": "knockout", "value": "hs92_icon"})
           .format({
             "text": function(text, params) {
               if (text === "export_val") {
                 return "Export";
               }
-              if (text === "hs92_id") {
+              if (text === "hs92_product_id") {
                 return "HS92 code";
               }
               if (text === "rca") {
@@ -45,7 +46,7 @@
               if (params.key === "export_val") {
                 return formatted + " USD";
               }
-              if (params.key === "hs92_id") {
+              if (params.key === "hs92_product_id") {
                 return d3.round(number,0);
               }
               if (params.key === "rca") {

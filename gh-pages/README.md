@@ -1,5 +1,5 @@
 [![CRAN-version](https://img.shields.io/badge/CRAN version-2.2-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![Github-version](https://img.shields.io/badge/Github version-2.3-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Github-version](https://img.shields.io/badge/Github version-3.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
@@ -13,11 +13,12 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 ### Treemap
 
   * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_treemap_exports.html)
-  * [What does Chile export to China? (2011--2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_treemap_exports.html)
+  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_treemap_exports.html)
 
 ### Network
 
   * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
+  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_network_exports.html)
 
 Read the documentation for more interesting uses and examples.
 
@@ -31,10 +32,12 @@ install.packages("oec")
 
 ### Using Github (version 2.3)
 
+This a version subject to changes and improvements. The commit we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
+
 ```r
 install.packages("devtools") #if needed
 library(devtools)
-install_github("pachamaltese/oec/experimental")
+install_github("pachamaltese/oec/r_package")
 ```
 
 ## How to use

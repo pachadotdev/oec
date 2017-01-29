@@ -2,21 +2,21 @@
   <meta charset="utf-8">
     <script src="d3plus-1.9.8/d3.min.js"></script>
     <script src="d3plus-1.9.8/d3plus.min.js"></script>
-          <div id="tree_map"></div>
+          <div id="network"></div>
           <script>
           var visualization = d3plus.viz()
-          .container("#tree_map")
-          .type("tree_map")
+          .container("#network")
+          .type("network")
           .data("chl_chn_2011_2014_1_6char.json")
+          .edges("edges_hs.json")
+          .nodes("nodes_hs.json")
           .size("export_val")
-          .id(["hs92_group_id","hs92_product_id"])
-          .text(["hs92_group_name","hs92_product_name"])
-          .depth(1)
+          .id("hs92_product_id")
+          .text("hs92_product_name")
           .width(false)
           .height(false)
           .resize(true)
           .font({"family": "Roboto"})
-          .labels({"align": "left", "valign": "top"})
           .color("hs92_color")
           .title("What does Chile export to China? (2011 -- 2014)")
           .title({
@@ -26,6 +26,7 @@
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
           .tooltip(["hs92_product_id","export_val","rca"])
           .icon({"style": "knockout", "value": "hs92_icon"})
+          .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})
           .time({"value": "year", "solo": 2011})
           .format({
             "text": function(text, params) {

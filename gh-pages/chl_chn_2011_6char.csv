@@ -1,4 +1,4 @@
-"","year","origin_id","destination_id","product","group","hs92_id","hs92_group","color","export_val","import_val","trade_exchange_val","origin_total_export_val","world_total_export_val","pci","rca","pci_rank","top_exporter","top_importer","icon"
+"","year","origin_id","destination_id","hs92_product_name","hs92_group_name","hs92_product_id","hs92_group_id","hs92_color","export_val","import_val","trade_exchange_val","origin_total_export_val","world_total_export_val","pci","rca","pci_rank","top_exporter","top_importer","hs92_icon"
 "1",2011,NA,NA,"Horses","Animal Products","010101","01","#e8d58e",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"d3plus-1.9.8/icons/hs92/hs92_01.png"
 "2",2011,NA,NA,"Bovine","Animal Products","010102","01","#e8d58e",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"d3plus-1.9.8/icons/hs92/hs92_01.png"
 "3",2011,NA,NA,"Pigs","Animal Products","010103","01","#e8d58e",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"d3plus-1.9.8/icons/hs92/hs92_01.png"

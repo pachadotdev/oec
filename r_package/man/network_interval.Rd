@@ -16,6 +16,8 @@ network_interval(origin, destination, initial_year, final_year, interval,
 
 \item{final_year}{The OEC's API ranges from 1962 to 2014. This needs to be greater than `initial_year`}
 
+\item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
+
 \item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 }
 \value{

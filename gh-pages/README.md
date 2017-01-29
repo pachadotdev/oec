@@ -30,7 +30,9 @@ Read the documentation for more interesting uses and examples.
 install.packages("oec")
 ```
 
-### Using Github (version 2.3)
+### Using Github (version 2.3 - this is a experimental version)
+
+This a version in under constant improvement. It is recommended to use CRAN version instead.
 
 This a version subject to changes and improvements. The commit we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
 

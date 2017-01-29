@@ -14,6 +14,7 @@ A list of all the countries in the world and its country code. You need the coun
   }
 }
 \examples{
-countries_list
+# see the list of countries
+# countries_list
 }
 \keyword{datasets}

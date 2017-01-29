@@ -9,7 +9,7 @@ SITC (rev. 2) colors. This file is used to create the visualizations.
 \format{
   A data frame with 36 observations on the following 2 variables.
   \describe{
-    \item{\code{sitc_rev2_group}}{Contains the SITC (rev.2) groups (e.g. machinery, electronics, etc)}
+    \item{\code{sitc_rev2_group_name}}{Contains the SITC (rev.2) groups (e.g. machinery, electronics, etc)}
     \item{\code{sitc_rev2_color}}{Contains the associated colors of every group (e.g. machinery is #17bcef)}
   }
 }

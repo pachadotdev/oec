@@ -4,7 +4,8 @@
 #' @param origin is the country code of origin (e.g. "chl" for Chile)
 #' @param destination is the country code of origin (e.g. "chn" for China)
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
-#' @param year is the year and the OEC's API ranges from 1962 to 2014
+#' @param initial_year The OEC's API ranges from 1962 to 2014. This needs to be lower than `final_year`
+#' @param final_year The OEC's API ranges from 1962 to 2014. This needs to be greater than `initial_year`
 #' @examples
 #' # Visualize trade data from OEC's API (HS92 6 characters product list)
 #' # for exports from Chile to China in the year 2014

@@ -12,9 +12,11 @@ network_interval(origin, destination, initial_year, final_year, interval,
 
 \item{destination}{is the country code of origin (e.g. "chn" for China)}
 
-\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
+\item{initial_year}{The OEC's API ranges from 1962 to 2014. This needs to be lower than `final_year`}
 
-\item{year}{is the year and the OEC's API ranges from 1962 to 2014}
+\item{final_year}{The OEC's API ranges from 1962 to 2014. This needs to be greater than `initial_year`}
+
+\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
 }
 \value{
 Creates an \code{HTML} file with a network visualization for a given year.

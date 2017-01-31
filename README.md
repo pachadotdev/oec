@@ -26,15 +26,15 @@ Read the documentation for more interesting uses and examples.
 
 ### Using CRAN (version 2.2)
 
+CRAN version is tested under different platforms.
+
 ```r
 install.packages("oec")
 ```
 
 ### Using Github (version 2.3 - this is a experimental version)
 
-This a version in under constant improvement. It is recommended to use CRAN version instead.
-
-This a version subject to changes and improvements. The commit we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
+The commits we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
 
 ```r
 install.packages("devtools") #if needed
@@ -53,7 +53,6 @@ The documentation is available [here](http://pacha.hk/oec/oec.pdf). If you run `
 ## Authors
 
 * Cesar A. Hidalgo `<hidalgo@media.mit.edu>` [aut]
-* Dave Landry `<dave@datawheel.us>` [aut]
 * Alexander Simoes `<alex@datawheel.us>` [aut, cph]
 * Mauricio Vargas S. `<mvargas@dcc.uchile.cl>` [aut, cre]
 

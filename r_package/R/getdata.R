@@ -27,6 +27,8 @@
 
 getdata <- function(origin, destination, year, classification) {
 
+  countries_list <-  oec::countries_list
+
   if(missing(classification)) {
     classification = 6
   }
@@ -58,6 +60,13 @@ getdata <- function(origin, destination, year, classification) {
     return(data)
   }
 
+  if(origin %in% countries_list$country_code & destination %in% countries_list$country_code){
+    print("valid country codes...")
+  } else {
+    print("error. invalid country codes.")
+    stop()
+  }
+
   if(year < 1961 | year > 2014) {
     print("data is only available from 1962 to 2014.")
     stop()
@@ -70,12 +79,12 @@ getdata <- function(origin, destination, year, classification) {
         if(classification == 4){
           classification <- "sitc"
           characters <- 4
-          print("using SITC rev.2 classification (4 characters)")
+          print("using SITC rev.2 classification (4 characters)...")
         }
         if(classification == 6){
           classification <- "hs"
           characters <- 6
-          print("using HS92 classification (6 characters)")
+          print("using HS92 classification (6 characters)...")
         }
         if(classification == 8){
           classification <- "hs"

@@ -31,6 +31,8 @@ Creates an \code{HTML} file with a treemap visualization for a given period of y
 Creates a treemap for a given given period of years
 }
 \examples{
+# Run countries_list() to display the full list of countries
+# Chile is "chl" and China is "chn"
 # Visualize trade data from OEC's API (HS92 6 characters product list)
 # for Chile and China in the years 2011 to 2014
 # treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 6 ,1)

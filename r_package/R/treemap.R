@@ -8,6 +8,8 @@
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)
 #' @examples
+#' # Run countries_list() to display the full list of countries
+#' # Chile is "chl" and China is "chn"
 #' # Visualize trade data from OEC's API (HS92 6 characters product list)
 #' # for Chile and China in the year 2014
 #' # treemap("chl", "chn", "exports", 2014, 6)
@@ -16,6 +18,8 @@
 #' @keywords functions
 
 treemap <- function(origin, destination, variable, year, classification, depth) {
+
+  countries_list <-  oec::countries_list
 
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){

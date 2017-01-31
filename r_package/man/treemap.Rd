@@ -26,6 +26,8 @@ Creates an \code{HTML} file with a treemap visualization for a given year.
 Creates a treemap for a given year
 }
 \examples{
+# Run countries_list() to display the full list of countries
+# Chile is "chl" and China is "chn"
 # Visualize trade data from OEC's API (HS92 6 characters product list)
 # for Chile and China in the year 2014
 # treemap("chl", "chn", "exports", 2014, 6)

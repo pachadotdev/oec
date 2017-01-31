@@ -22,6 +22,8 @@ Creates an \code{HTML} file with a network visualization for a given year.
 Creates a network of exports for a given year
 }
 \examples{
+# Run countries_list() to display the full list of countries
+# Chile is "chl" and China is "chn"
 # Visualize trade data from OEC's API (HS92 6 characters product list)
 # for exports from Chile to China in the year 2014
 # network("chl", "chn", 2014, 6)

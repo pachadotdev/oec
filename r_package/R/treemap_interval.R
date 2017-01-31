@@ -10,6 +10,8 @@
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param depth is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1
 #' @examples
+#' # Run countries_list() to display the full list of countries
+#' # Chile is "chl" and China is "chn"
 #' # Visualize trade data from OEC's API (HS92 6 characters product list)
 #' # for Chile and China in the years 2011 to 2014
 #' # treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 6 ,1)
@@ -18,6 +20,8 @@
 #' @keywords functions
 
 treemap_interval <- function(origin, destination, variable, initial_year, final_year, interval, classification, depth) {
+
+  countries_list <-  oec::countries_list
 
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){

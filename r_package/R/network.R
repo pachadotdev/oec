@@ -6,6 +6,8 @@
 #' @param classification refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
 #' @examples
+#' # Run countries_list() to display the full list of countries
+#' # Chile is "chl" and China is "chn"
 #' # Visualize trade data from OEC's API (HS92 6 characters product list)
 #' # for exports from Chile to China in the year 2014
 #' # network("chl", "chn", 2014, 6)
@@ -14,6 +16,9 @@
 #' @keywords functions
 
 network <- function(origin, destination, year, classification) {
+
+  countries_list <-  oec::countries_list
+
   d3_folder <- paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
   print("D3plus not installed... installing using install_d3plus()...")

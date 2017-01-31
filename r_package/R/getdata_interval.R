@@ -33,6 +33,8 @@
 
 getdata_interval <- function(origin, destination, initial_year, final_year, classification, interval) {
 
+  countries_list <- oec::countries_list
+
   if(missing(classification)) {
     classification = 6
   }
@@ -41,8 +43,16 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
     interval = 1
   }
 
+  if(origin %in% countries_list$country_code & destination %in% countries_list$country_code){
+    print("valid country codes...")
+  } else {
+    print("error. invalid country codes.")
+    stop()
+  }
+
   if(initial_year > final_year) {
     print("the initial year needs to be a lower value than the last year.")
+    stop()
   } else {
     years <- seq(initial_year, final_year, interval)
 
@@ -88,12 +98,12 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
               if(classification == 4){
                 classification <- "sitc"
                 characters <- 4
-                print("using SITC rev.2 classification (4 characters)")
+                print("using SITC rev.2 classification (4 characters)...")
               }
               if(classification == 6){
                 classification <- "hs"
                 characters <- 6
-                print("using HS92 classification (6 characters)")
+                print("using HS92 classification (6 characters)...")
               }
               if(classification == 8){
                 classification <- "hs"

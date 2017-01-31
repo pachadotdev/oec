@@ -20,7 +20,7 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
   * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
   * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_network_exports.html)
 
-Read the documentation for more interesting uses and examples.
+Read the [documentation](http://pacha.hk/oec/oec.pdf) for more interesting uses and examples.
 
 ## How to install
 

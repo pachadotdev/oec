@@ -11,10 +11,10 @@
 #' # Run countries_list() to display the full list of countries
 #' # Chile is "chl" and China is "chn"
 #' # Visualize trade data from OEC's API (HS92 4 characters product list)
-#' # for exports from Chile to China in the year 2014
-#' # network("chl", "chn", 2014, 1)
+#' # for exports from Chile to China in the years 2011-2014
+#' # network_interval("chl", "chn", 2011, 2014, 1, 1)
 #' # is the same as
-#' # network("chl", "chn", 2014)
+#' # network_interval("chl", "chn", 2011, 2014)
 #' @keywords functions
 
 network_interval <- function(origin, destination, initial_year, final_year, interval, classification) {

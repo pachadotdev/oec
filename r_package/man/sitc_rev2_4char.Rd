@@ -13,7 +13,6 @@ SITC (rev. 2) products (4 characters). This file is used to create the visualiza
     \item{\code{sitc_rev2_group_name}}{Contains the SITC rev.2 groups (e.g. machinery, electronics products, etc)}
     \item{\code{sitc_rev2_product_id}}{Contains the associated codes of every product (e.g. initiating devices is 5722)}
     \item{\code{sitc_rev2_group_id}}{Contains the associated codes of every group (e.g. machinery is 10)}
-    \item{\code{sitc_rev2_product_code}}{Contains the associated extended codes of every group (e.g. machinery is 105722 that is sitc group + sitc id)}
   }
 }
 \examples{

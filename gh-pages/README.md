@@ -61,7 +61,7 @@ The documentation is available [here](http://pacha.hk/oec/oec.pdf). If you run `
 
 ## The MIT License
 
-Copyright (c) 2016, Mauricio Vargas S.
+Copyright (c) 2016, Alexander Simoes, Mauricio Vargas S.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -85,10 +85,8 @@ treemap_interval <- function(origin, destination, variable, initial_year, final_
     treemap_interval_template <- gsub("code_display", code_display, treemap_interval_template)
     treemap_interval_template <- gsub("product_display", product_display, treemap_interval_template)
     treemap_interval_template <- gsub("depth_val", depth, treemap_interval_template)
-    treemap_interval_template <- ifelse(origin == "all", gsub("origin_id_replace", "the rest of the World", treemap_interval_template),
-                               gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], treemap_interval_template))
-    treemap_interval_template <- ifelse(origin == "all", gsub("destination_id_replace", "the rest of World", treemap_interval_template),
-                               gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], treemap_interval_template))
+    treemap_interval_template <- gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], treemap_interval_template)
+    treemap_interval_template <- gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], treemap_interval_template)
     treemap_interval_template <- ifelse(variable == "exports", gsub("replace_action", "export to", treemap_interval_template),
                                ifelse(variable == "imports", gsub("replace_action", "import from", treemap_interval_template),
                                       "exchange with"))

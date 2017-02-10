@@ -104,10 +104,8 @@ network_interval <- function(origin, destination, initial_year, final_year, inte
       network_interval_template <- ifelse(classification == 1 | classification == 3, gsub("replace_icon", "hs92_icon", network_interval_template), gsub("replace_icon", "sitc_rev2_icon", network_interval_template))
       network_interval_template <- gsub("code_display", code_display, network_interval_template)
       network_interval_template <- gsub("product_display", product_display, network_interval_template)
-      network_interval_template <- ifelse(origin == "all", gsub("replace_origin", "the rest of the World", network_interval_template),
-                                          gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], network_interval_template))
-      network_interval_template <- ifelse(origin == "all", gsub("replace_destination", "the rest of World", network_interval_template),
-                                          gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], network_interval_template))
+      network_interval_template <- gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], network_interval_template)
+      network_interval_template <- gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], network_interval_template)
       network_interval_template <- ifelse(variable == "exports", gsub("replace_action", "export to", network_interval_template),
                                           ifelse(variable == "imports", gsub("replace_action", "import from", network_interval_template),
                                                  "exchange with"))

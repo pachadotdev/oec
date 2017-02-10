@@ -81,10 +81,8 @@ treemap <- function(origin, destination, variable, year, classification, depth) 
       treemap_template <- gsub("code_display", code_display, treemap_template)
       treemap_template <- gsub("product_display", product_display, treemap_template)
       treemap_template <- gsub("depth_val", depth, treemap_template)
-      treemap_template <- ifelse(origin == "all", gsub("replace_origin", "the rest of the World", treemap_template),
-                                 gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], treemap_template))
-      treemap_template <- ifelse(origin == "all", gsub("replace_destination", "the rest of World", treemap_template),
-                                 gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], treemap_template))
+      treemap_template <- gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], treemap_template)
+      treemap_template <- gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], treemap_template)
       treemap_template <- ifelse(variable == "exports", gsub("replace_action", "export to", treemap_template),
                                  ifelse(variable == "imports", gsub("replace_action", "import from", treemap_template),
                                         "exchange with"))

@@ -100,10 +100,8 @@ network <- function(origin, destination, year, classification) {
       network_template <- ifelse(classification == 1, gsub("replace_icon", "hs92_icon", network_template), gsub("replace_icon", "sitc_rev2_icon", network_template))
       network_template <- gsub("code_display", code_display, network_template)
       network_template <- gsub("product_display", product_display, network_template)
-      network_template <- ifelse(origin == "all", gsub("replace_origin", "the rest of the World", network_template),
-                                 gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], network_template))
-      network_template <- ifelse(origin == "all", gsub("replace_destination", "the rest of World", network_template),
-                                 gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], network_template))
+      network_template <- gsub("replace_origin", countries_list[countries_list$country_code == origin, 1], network_template)
+      network_template <- gsub("replace_destination", countries_list[countries_list$country_code == destination, 1], network_template)
       network_template <- ifelse(variable == "exports", gsub("replace_action", "export to", network_template),
                                  ifelse(variable == "imports", gsub("replace_action", "import from", network_template),
                                         "exchange with"))

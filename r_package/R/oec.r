@@ -48,11 +48,7 @@
 #'
 #' \code{\link{treemap_template.html}} A template to display a treemap of the imports, exports or trade balance of a country for a certain year using HS92 or SITC (rev.2) product classification.
 #'
-#' \code{\link{treemap_interval_template.html}} A template to display a treemap of imports, exports or trade balance of a country for an interval of years using HS92 or SITC (rev.2) product classification.
-#'
 #' \code{\link{network_template.html}} A template to display a network of exports of a country for a certain year using HS92 or SITC (rev.2) product classification.
-#'
-#' \code{\link{network_interval_template.html}} A template to display a network of exports of a country for an interval of years using HS92 or SITC (rev.2) product classification.
 #'
 #' \code{\link{nodes_hs92_4char.json}} A part of a pre-drawn network to create network visualizations using HS92 product classification.
 #'

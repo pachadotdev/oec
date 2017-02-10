@@ -12,13 +12,13 @@ Use [The Observatory of Economic Complexity](http://atlas.media.mit.edu/en/)'s A
 
 ### Treemap
 
-  * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_treemap_exports.html)
-  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_treemap_exports.html)
+  * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_4char_hs92_treemap_exports.html)
+  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_4char_hs92_treemap_exports.html)
 
 ### Network
 
-  * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_6char_network_exports.html)
-  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_6char_network_exports.html)
+  * [What does Chile export to China? (2014)](http://pacha.hk/oec/chl_chn_2014_4char_hs92_network_exports.html)
+  * [What does Chile export to China? (2011-2014)](http://pacha.hk/oec/chl_chn_2011_2014_1_4char_hs92_network_exports.html)
 
 Read the [documentation](http://pacha.hk/oec/oec.pdf) for more interesting uses and examples.
 
@@ -32,7 +32,7 @@ CRAN version is tested under different platforms.
 install.packages("oec")
 ```
 
-### Using Github (version 2.3 - this is a experimental version)
+### Using Github (version 3.0 - this is an experimental version until CRAN says its stable)
 
 The commits we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
 
@@ -54,7 +54,10 @@ The documentation is available [here](http://pacha.hk/oec/oec.pdf). If you run `
 
 * Cesar A. Hidalgo `<hidalgo@media.mit.edu>` [aut]
 * Alexander Simoes `<alex@datawheel.us>` [aut, cph]
-* Mauricio Vargas S. `<mvargas@dcc.uchile.cl>` [aut, cre]
+* Mauricio Vargas S. `<mvargas@dcc.uchile.cl>` [aut, cre, cph]
+* Manuel Aristaran [ctb],
+* Mike Bostock [ctb] (D3),
+* Dave Landy [ctb] (D3Plus)
 
 ## The MIT License
 

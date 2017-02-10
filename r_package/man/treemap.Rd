@@ -15,7 +15,7 @@ treemap(origin, destination, variable, year, classification, depth)
 
 \item{year}{is the year and the OEC's API ranges from 1962 to 2014}
 
-\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
+\item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.3 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
 
 \item{depth}{is an optional parameter that can take values "0" (group's detail) or "1" (product's detail)}
 }
@@ -28,9 +28,9 @@ Creates a treemap for a given year
 \examples{
 # Run countries_list() to display the full list of countries
 # Chile is "chl" and China is "chn"
-# Visualize trade data from OEC's API (HS92 6 characters product list)
+# Visualize trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the year 2014
-# treemap("chl", "chn", "exports", 2014, 6)
+# treemap("chl", "chn", "exports", 2014, 1)
 # is the same as
 # treemap("chl", "chn", "exports", 2014)
 }

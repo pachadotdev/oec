@@ -7,7 +7,7 @@ HS92 products (6 characters). This file is used to create the visualizations.
 }
 \usage{hs92_6char}
 \format{
-  A data frame with 1242 observations on the following 4 variables.
+  A data frame with 5040 observations on the following 4 variables.
   \describe{
     \item{\code{hs92_product_name}}{Contains the H292 products' names (e.g. horses, bovine, pigs, etc)}
     \item{\code{hs92_group_name}}{Contains the H292 groups (e.g. animal products, vegetable products, etc)}

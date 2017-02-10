@@ -13,7 +13,7 @@ getdata(origin, destination, year, classification)
 
 \item{year}{The OEC's API ranges from 1962 to 2014}
 
-\item{classification}{Trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing. The default is set to "6".}
+\item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
 }
 \description{
 Downloads and processes the data from the API
@@ -22,19 +22,19 @@ Downloads and processes the data from the API
 # Run countries_list() to display the full list of countries
 # Chile is "chl" and China is "chn"
 
-# Download trade data from OEC's API (HS92 6 characters product list)
+# Download trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the year 2014
 # getdata("chl", "chn", 2014)
 # is the same as
-# getdata("chl", "chn", 2014, 6)
-
-# Download trade data from OEC's API (HS92 8 characters product list)
-# for Chile and China in the year 2014
-# getdata("chl", "chn", 2014, 8)
+# getdata("chl", "chn", 2014, 1)
 
 # Download trade data from OEC's API (SITC rev.2 4 characters product list)
 # for Chile and China in the year 2014
-# getdata("chl", "chn", 2014, 4)
+# getdata("chl", "chn", 2014, 2)
+
+# Download trade data from OEC's API (HS92 6 characters product list)
+# for Chile and China in the year 2014
+# getdata("chl", "chn", 2014, 3)
 }
 \keyword{functions}
 

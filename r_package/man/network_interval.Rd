@@ -18,7 +18,7 @@ network_interval(origin, destination, initial_year, final_year, interval,
 
 \item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
 
-\item{classification}{refers to the trade classification that can be "6" (HS92 6 characters) or "8" (HS92 8 characters) for the year 1995 and going or "4" (SITC rev.2 4 characters) for the year 1962 and ongoing}
+\item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)}
 }
 \value{
 Creates an \code{HTML} file with a network visualization for a given year.
@@ -29,9 +29,9 @@ Creates a network of exports for a given year
 \examples{
 # Run countries_list() to display the full list of countries
 # Chile is "chl" and China is "chn"
-# Visualize trade data from OEC's API (HS92 6 characters product list)
+# Visualize trade data from OEC's API (HS92 4 characters product list)
 # for exports from Chile to China in the year 2014
-# network("chl", "chn", 2014, 6)
+# network("chl", "chn", 2014, 1)
 # is the same as
 # network("chl", "chn", 2014)
 }

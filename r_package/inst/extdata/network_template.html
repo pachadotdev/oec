@@ -18,14 +18,15 @@
           .resize(true)
           .font({"family": "Roboto"})
           .color("replace_color")
-          .title("What does origin_id_replace variable_replace destination_id_replace? (year_replace)")
+          .title("What does replace_origin replace_action replace_destination? (replace_years)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 16}}
            })
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
-          .tooltip(["replace_product_id","replace_variable","rca"])
+          .tooltip(["replace_product_id","replace_product_name","replace_variable","rca","pci","pci_rank","top_exporter","top_importer"])
           .icon({"style": "knockout", "value": "replace_icon"})
+          replace_timeline
           .active({"value": function(d){ return d["rca"] >= 1; }, "spotlight":true})
           .format({
             "text": function(text, params) {
@@ -35,8 +36,23 @@
               if (text === "replace_product_id") {
                 return "code_display";
               }
+              if (text === "replace_product_name") {
+                return "product_display";
+              }
               if (text === "rca") {
                 return "RCA";
+              }
+              if (text === "pci") {
+                return "PCI";
+              }
+              if (text === "pci_rank") {
+                return "PCI rank";
+              }
+              if (text === "top_importer") {
+                return "Top importer";
+              }
+              if (text === "top_exporter") {
+                return "Top exporter";
               }
               else {
                 return d3plus.string.title(text, params);

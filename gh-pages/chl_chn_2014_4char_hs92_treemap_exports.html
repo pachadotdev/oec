@@ -7,7 +7,7 @@
           var visualization = d3plus.viz()
           .container("#tree_map")
           .type("tree_map")
-          .data("chl_chn_2011_2014_1_6char.json")
+          .data("chl_chn_2014_4char_hs92.json")
           .size("export_val")
           .id(["hs92_group_id","hs92_product_id"])
           .text(["hs92_group_name","hs92_product_name"])
@@ -16,17 +16,17 @@
           .height(false)
           .resize(true)
           .font({"family": "Roboto"})
-          .labels({"align": "left", "valign": "top"})
+          .labels({"text": "hs92_product_name", "align": "left", "valign": "top"})
           .color("hs92_color")
-          .title("What does Chile export to China? (2011 -- 2014)")
+          .title("What does Chile export to China? (2014)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 18}}
            })
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
-          .tooltip(["hs92_product_id","export_val","rca"])
+          .tooltip(["hs92_product_id","hs92_product_name","export_val","rca","pci","pci_rank","top_exporter","top_importer"])
           .icon({"style": "knockout", "value": "hs92_icon"})
-          .time({"value": "year", "solo": 2011})
+           
           .format({
             "text": function(text, params) {
               if (text === "export_val") {
@@ -35,8 +35,23 @@
               if (text === "hs92_product_id") {
                 return "HS92 code";
               }
+              if (text === "hs92_product_name") {
+                return "HS92 product";
+              }
               if (text === "rca") {
                 return "RCA";
+              }
+              if (text === "pci") {
+                return "PCI";
+              }
+              if (text === "pci_rank") {
+                return "PCI rank";
+              }
+              if (text === "top_importer") {
+                return "Top importer";
+              }
+              if (text === "top_exporter") {
+                return "Top exporter";
               }
               else {
                 return d3plus.string.title(text, params);

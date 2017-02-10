@@ -11,60 +11,68 @@ library(oec)
 # see the countries list if you are not sure about the country code
 countries_list
 
-# download trade data from OEC's API (HS92 6 characters product list)
+# download trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the year 2014
 getdata("chl", "chn", 2014)
 # is the same as
-getdata("chl", "chn", 2014, 6)
-
-# download trade data from OEC's API (HS92 8 characters product list)
-# for Chile and China in the year 2014
-getdata("chl", "chn", 2014, 8)
+getdata("chl", "chn", 2014, 1)
 
 # download trade data from OEC's API (SITC rev.2 4 characters product list)
 # for Chile and China in the year 2014
-getdata("chl", "chn", 2014, 4)
+getdata("chl", "chn", 2014, 2)
+
+# download trade data from OEC's API (HS92 6 characters product list)
+# for Chile and China in the year 2014
+getdata("chl", "chn", 2014, 3)
 
 ##############################
 
-# download trade data from OEC's API (HS92 6 characters product list)
+# download trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the years 2010 to 2014
 getdata_interval("chl", "chn", 2011, 2014)
 # is the same as
-getdata_interval("chl", "chn", 2011, 2014, 6, 1)
+getdata_interval("chl", "chn", 2011, 2014, 1, 1)
 
-# download trade data from OEC's API (HS92 6 characters product list)
+# download trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the years 2010, 2012 and 2014
-getdata_interval("chl", "chn", 2011, 2014, 6, 2)
-
-# download trade data from OEC's API (HS92 8 characters product list)
-# for Chile and China in the years 2010, 2012 and 2014
-getdata_interval("chl", "chn", 2011, 2014, 8, 2)
+getdata_interval("chl", "chn", 2011, 2014, 1, 2)
 
 # download trade data from OEC's API (SITC rev.2 4 characters product list)
 # for Chile and China in the years 2010, 2012 and 2014
-getdata_interval("chl", "chn", 2011, 2014, 4, 2)
+getdata_interval("chl", "chn", 2011, 2014, 2, 2)
+
+# download trade data from OEC's API (HS92 6 characters product list)
+# for Chile and China in the years 2010, 2012 and 2014
+getdata_interval("chl", "chn", 2011, 2014, 3, 2)
 
 ##############################
 
-# visualize trade data from OEC's API (HS92 6 characters product list)
+# visualize trade data from OEC's API (HS92 4 characters product list)
 # for Chile and China in the year 2014
-treemap("chl", "chn", "exports", 2014, 6)
+treemap("chl", "chn", "exports", 2014, 1)
 # is the same as
 treemap("chl", "chn", "exports", 2014)
 
 ##############################
 
-# visualize trade data from OEC's API (HS92 6 characters product list)
+# visualize trade data from OEC's API (HS92 4 characters product list)
 # for exports from Chile to China in the year 2014
-treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 6 ,1)
+treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 1, 1)
 # is the same as
 treemap_interval("chl", "chn", "exports", 2011, 2014)
 
 ##############################
 
-# visualize trade data from OEC's API (HS92 6 characters product list)
+# visualize trade data from OEC's API (HS92 4 characters product list)
 # for exports from Chile to China in the year 2014
-network("chl", "chn", 2014, 6)
+network("chl", "chn", 2014, 1)
 # is the same as
 network("chl", "chn", 2014)
+
+##############################
+
+# visualize trade data from OEC's API (HS92 4 characters product list)
+# for exports from Chile to China in the year 2014
+network_interval("chl", "chn", 2011, 2014, 1, 1)
+# is the same as
+network_interval("chl", "chn", 2011, 2014)

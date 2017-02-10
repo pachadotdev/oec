@@ -7,36 +7,51 @@
           var visualization = d3plus.viz()
           .container("#tree_map")
           .type("tree_map")
-          .data("json_file")
-          .size("replace_variable")
-          .id(["replace_group_id","replace_product_id"])
-          .text(["replace_group_name","replace_product_name"])
-          .depth(depth_val)
+          .data("chl_chn_2011_2014_1_4char_hs92.json")
+          .size("export_val")
+          .id(["hs92_group_id","hs92_product_id"])
+          .text(["hs92_group_name","hs92_product_name"])
+          .depth(1)
           .width(false)
           .height(false)
           .resize(true)
           .font({"family": "Roboto"})
-          .labels({"align": "left", "valign": "top"})
-          .color("replace_color")
-          .title("What does origin_id_replace variable_replace destination_id_replace? (initial_year_replace -- final_year_replace)")
+          .labels({"text": "hs92_product_name", "align": "left", "valign": "top"})
+          .color("hs92_color")
+          .title("What does Chile export to China? (2011 - 2014)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 18}}
            })
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
-          .tooltip(["replace_product_id","replace_variable","rca"])
-          .icon({"style": "knockout", "value": "replace_icon"})
-          .time({"value": "year", "solo": initial_year_replace})
+          .tooltip(["hs92_product_id","hs92_product_name","export_val","rca","pci","pci_rank","top_exporter","top_importer"])
+          .icon({"style": "knockout", "value": "hs92_icon"})
+          .time({"value": "year", "solo":2011})
           .format({
             "text": function(text, params) {
-              if (text === "replace_variable") {
-                return "replace_name";
+              if (text === "export_val") {
+                return "Export";
               }
-              if (text === "replace_product_id") {
-                return "code_display";
+              if (text === "hs92_product_id") {
+                return "HS92 code";
+              }
+              if (text === "hs92_product_name") {
+                return "HS92 product";
               }
               if (text === "rca") {
                 return "RCA";
+              }
+              if (text === "pci") {
+                return "PCI";
+              }
+              if (text === "pci_rank") {
+                return "PCI rank";
+              }
+              if (text === "top_importer") {
+                return "Top importer";
+              }
+              if (text === "top_exporter") {
+                return "Top exporter";
               }
               else {
                 return d3plus.string.title(text, params);
@@ -44,10 +59,10 @@
             },
             "number": function(number, params) {
               var formatted = d3plus.number.format(number, params);
-              if (params.key === "replace_variable") {
+              if (params.key === "export_val") {
                 return formatted + " USD";
               }
-              if (params.key === "replace_product_id") {
+              if (params.key === "hs92_product_id") {
                 return d3.round(number,0);
               }
               if (params.key === "rca") {

@@ -138,7 +138,7 @@ getdata <- function(origin, destination, year, classification) {
               origin_destination_year_4char <- join(origin_destination_year_4char, all_all_year_4char, by = "sitc_rev2_product_id")
               origin_destination_year_4char <- join(origin_destination_year_4char, origin_all_year_4char, by = "sitc_rev2_product_id")
               rm(all_all_year_4char,origin_all_year_4char)
-              origin_destination_year_4char$rca <- (origin_destination_year_4char$export_val/origin_destination_year_4char$world_total_export_val)/(sum(origin_destination_year_4char$origin_total_export_val, na.rm=TRUE)/sum(origin_destination_year_4char$world_total_export_val, na.rm=TRUE))
+              origin_destination_year_4char$rca <- (origin_destination_year_4char$origin_total_export_val/sum(origin_destination_year_4char$origin_total_export_val, na.rm=TRUE))/(origin_destination_year_4char$world_total_export_val/sum(origin_destination_year_4char$world_total_export_val, na.rm=TRUE))
               origin_destination_year_4char$rca <- round(origin_destination_year_4char$rca, digits = 3)
 
               sitc_rev2_4char <- sitc_rev2_4char

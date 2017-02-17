@@ -4,7 +4,7 @@
 #' @param destination Country code of destination (e.g. "chn" for China)
 #' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)
 #' @param year The OEC's API ranges from 1962 to 2014
-#' @import curl data.table jsonlite plyr servr
+#' @import curl jsonlite plyr servr
 #' @importFrom utils write.csv
 #' @examples
 #' # Run countries_list() to display the full list of countries
@@ -105,7 +105,7 @@ getdata <- function(origin, destination, year, classification) {
               keep <- names(origin_destination_year_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.sitc_id", "data.export_val", "data.import_val")
               origin_destination_year_4char <- origin_destination_year_4char[keep]
               origin_destination_year_4char <- arrange_cols(origin_destination_year_4char, c("data.year" = 1, "data.origin_id" = 3, "data.dest_id" = 2, "data.sitc_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-              setnames(origin_destination_year_4char, names(origin_destination_year_4char), c("year", "origin_id", "destination_id", "sitc_rev2_product_id", "export_val", "import_val"))
+              names(origin_destination_year_4char)[names(origin_destination_year_4char)] <- c("year", "origin_id", "destination_id", "sitc_rev2_product_id", "export_val", "import_val")
               origin_destination_year_4char$trade_exchange_val <- rowSums(origin_destination_year_4char[, c("export_val", "import_val")], na.rm=T)
               origin_destination_year_4char$sitc_rev2_len <- nchar(origin_destination_year_4char$sitc_rev2_product_id)
               origin_destination_year_4char <- subset(origin_destination_year_4char, origin_destination_year_4char$sitc_rev2_len == "6")
@@ -117,7 +117,7 @@ getdata <- function(origin, destination, year, classification) {
               keep <- names(all_all_year_4char) %in% c("data.export_val","data.sitc_id","data.top_importer","data.top_exporter")
               all_all_year_4char <- all_all_year_4char[keep]
               all_all_year_4char <- arrange_cols(all_all_year_4char, c("data.sitc_id" = 1))
-              setnames(all_all_year_4char, names(all_all_year_4char), c("sitc_rev2_product_id","world_total_export_val","top_exporter_code","top_importer_code"))
+              names(all_all_year_4char)[names(all_all_year_4char)] <- c("sitc_rev2_product_id","world_total_export_val","top_exporter_code","top_importer_code")
               all_all_year_4char$sitc_rev2_len <- nchar(all_all_year_4char$sitc_rev2_product_id)
               all_all_year_4char <- subset(all_all_year_4char, all_all_year_4char$sitc_rev2_len == "6")
               all_all_year_4char$sitc_rev2_product_id <- substr(all_all_year_4char$sitc_rev2_product_id, 3,6)
@@ -128,7 +128,7 @@ getdata <- function(origin, destination, year, classification) {
               keep <- names(origin_all_year_4char) %in% c("data.export_val","data.sitc_id")
               origin_all_year_4char <- origin_all_year_4char[keep]
               origin_all_year_4char <- arrange_cols(origin_all_year_4char, c("data.sitc_id" = 1))
-              setnames(origin_all_year_4char, names(origin_all_year_4char), c("sitc_rev2_product_id","origin_total_export_val"))
+              names(origin_all_year_4char)[names(origin_all_year_4char)] <- c("sitc_rev2_product_id","origin_total_export_val")
               origin_all_year_4char$sitc_rev2_len <- nchar(origin_all_year_4char$sitc_rev2_product_id)
               origin_all_year_4char <- subset(origin_all_year_4char, origin_all_year_4char$sitc_rev2_len == "6")
               origin_all_year_4char$sitc_rev2_product_id <- substr(origin_all_year_4char$sitc_rev2_product_id, 3,6)
@@ -154,18 +154,18 @@ getdata <- function(origin, destination, year, classification) {
               drop <- names(origin_destination_year_4char) %in% c("sitc_rev2_product_code")
               origin_destination_year_4char <- origin_destination_year_4char[!drop]
 
-              setnames(countries_list, names(countries_list), c("top_importer","top_importer_code"))
+              names(countries_list)[names(countries_list)] <- c("top_importer","top_importer_code")
               origin_destination_year_4char$top_importer_code <- substr(origin_destination_year_4char$top_importer_code, 3, 5)
               origin_destination_year_4char <- join(origin_destination_year_4char, countries_list, by="top_importer_code")
 
-              setnames(countries_list, names(countries_list), c("top_exporter","top_exporter_code"))
+              names(countries_list)[names(countries_list)] <- c("top_exporter","top_exporter_code")
               origin_destination_year_4char$top_exporter_code <- substr(origin_destination_year_4char$top_exporter_code, 3, 5)
               origin_destination_year_4char <- join(origin_destination_year_4char, countries_list, by="top_exporter_code")
 
               drop <- names(origin_destination_year_4char) %in% c("top_exporter_code","top_importer_code")
               origin_destination_year_4char <- origin_destination_year_4char[!drop]
 
-              setnames(countries_list, names(countries_list), c("country","country_code"))
+              names(countries_list)[names(countries_list)] <- c("country","country_code")
 
               envir = as.environment(1)
               assign(paste0(origin, "_", destination, "_", year, "_4char_sitc_rev2"), origin_destination_year_4char, envir = envir)
@@ -196,7 +196,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(origin_destination_year_4char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                 origin_destination_year_4char <- origin_destination_year_4char[keep]
                 origin_destination_year_4char <- arrange_cols(origin_destination_year_4char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-                setnames(origin_destination_year_4char, names(origin_destination_year_4char), c("year", "origin_id", "destination_id", "hs92_product_id", "export_val", "import_val"))
+                names(origin_destination_year_4char)[names(origin_destination_year_4char)] <- c("year", "origin_id", "destination_id", "hs92_product_id", "export_val", "import_val")
                 origin_destination_year_4char$trade_exchange_val <- rowSums(origin_destination_year_4char[, c("export_val", "import_val")], na.rm=T)
                 origin_destination_year_4char$hs92_len <- nchar(origin_destination_year_4char$hs92_product_id)
                 origin_destination_year_4char <- subset(origin_destination_year_4char, origin_destination_year_4char$hs92_len == "6")
@@ -208,7 +208,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(all_all_year_4char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
                 all_all_year_4char <- all_all_year_4char[keep]
                 all_all_year_4char <- arrange_cols(all_all_year_4char, c("data.hs92_id" = 1))
-                setnames(all_all_year_4char, names(all_all_year_4char), c("hs92_product_id","world_total_export_val","pci","pci_rank","top_exporter_code","top_importer_code"))
+                names(all_all_year_4char)[names(all_all_year_4char)] <- c("hs92_product_id","world_total_export_val","pci","pci_rank","top_exporter_code","top_importer_code")
                 all_all_year_4char$hs92_len <- nchar(all_all_year_4char$hs92_product_id)
                 all_all_year_4char <- subset(all_all_year_4char, all_all_year_4char$hs92_len == "6")
                 all_all_year_4char$hs92_product_id <- substr(all_all_year_4char$hs92_product_id, 3,6)
@@ -219,7 +219,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(origin_all_year_4char) %in% c("data.export_val","data.hs92_id")
                 origin_all_year_4char <- origin_all_year_4char[keep]
                 origin_all_year_4char <- arrange_cols(origin_all_year_4char, c("data.hs92_id" = 1))
-                setnames(origin_all_year_4char, names(origin_all_year_4char), c("hs92_product_id","origin_total_export_val"))
+                names(origin_all_year_4char)[names(origin_all_year_4char)] <- c("hs92_product_id","origin_total_export_val")
                 origin_all_year_4char$hs92_len <- nchar(origin_all_year_4char$hs92_product_id)
                 origin_all_year_4char <- subset(origin_all_year_4char, origin_all_year_4char$hs92_len == "6")
                 origin_all_year_4char$hs92_product_id <- substr(origin_all_year_4char$hs92_product_id, 3,6)
@@ -242,18 +242,18 @@ getdata <- function(origin, destination, year, classification) {
                 origin_destination_year_4char <- arrange_cols(origin_destination_year_4char, c("year" = 1, "origin_id" = 2, "destination_id" = 3, "origin_total_export_val" = 12, "rca" = 15))
                 origin_destination_year_4char$year <- ifelse(is.na(origin_destination_year_4char$year),year,origin_destination_year_4char$year)
 
-                setnames(countries_list, names(countries_list), c("top_importer","top_importer_code"))
+                names(countries_list)[names(countries_list)] <- c("top_importer","top_importer_code")
                 origin_destination_year_4char$top_importer_code <- substr(origin_destination_year_4char$top_importer_code, 3, 5)
                 origin_destination_year_4char <- join(origin_destination_year_4char, countries_list, by="top_importer_code")
 
-                setnames(countries_list, names(countries_list), c("top_exporter","top_exporter_code"))
+                names(countries_list)[names(countries_list)] <- c("top_exporter","top_exporter_code")
                 origin_destination_year_4char$top_exporter_code <- substr(origin_destination_year_4char$top_exporter_code, 3, 5)
                 origin_destination_year_4char <- join(origin_destination_year_4char, countries_list, by="top_exporter_code")
 
                 drop <- names(origin_destination_year_4char) %in% c("top_exporter_code","top_importer_code")
                 origin_destination_year_4char <- origin_destination_year_4char[!drop]
 
-                setnames(countries_list, names(countries_list), c("country","country_code"))
+                names(countries_list)[names(countries_list)] <- c("country","country_code")
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_4char_hs92"), origin_destination_year_4char, envir = envir)
@@ -280,7 +280,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(origin_destination_year_6char) %in% c("data.year", "data.origin_id","data.dest_id","data.hs92_id", "data.export_val", "data.import_val")
                 origin_destination_year_6char <- origin_destination_year_6char[keep]
                 origin_destination_year_6char <- arrange_cols(origin_destination_year_6char, c("data.year" = 1, "data.origin_id" = 2, "data.dest_id" = 3, "data.hs92_id" = 4, "data.export_val" = 5, "data.import_val" = 6))
-                setnames(origin_destination_year_6char, names(origin_destination_year_6char), c("year", "origin_id", "destination_id", "hs92_product_id", "export_val", "import_val"))
+                names(origin_destination_year_6char)[names(origin_destination_year_6char)] <- c("year", "origin_id", "destination_id", "hs92_product_id", "export_val", "import_val")
                 origin_destination_year_6char$trade_exchange_val <- rowSums(origin_destination_year_6char[, c("export_val", "import_val")], na.rm=T)
                 origin_destination_year_6char$hs92_len <- nchar(origin_destination_year_6char$hs92_product_id)
                 origin_destination_year_6char <- subset(origin_destination_year_6char, origin_destination_year_6char$hs92_len == "8")
@@ -292,7 +292,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(all_all_year_6char) %in% c("data.export_val","data.hs92_id","data.pci","data.pci_rank","data.top_importer","data.top_exporter")
                 all_all_year_6char <- all_all_year_6char[keep]
                 all_all_year_6char <- arrange_cols(all_all_year_6char, c("data.hs92_id" = 1))
-                setnames(all_all_year_6char, names(all_all_year_6char), c("hs92_product_id","world_total_export_val","pci","pci_rank","top_exporter_code","top_importer_code"))
+                names(all_all_year_6char)[names(all_all_year_6char)] <- c("hs92_product_id","world_total_export_val","pci","pci_rank","top_exporter_code","top_importer_code")
                 all_all_year_6char$hs92_len <- nchar(all_all_year_6char$hs92_product_id)
                 all_all_year_6char <- subset(all_all_year_6char, all_all_year_6char$hs92_len == "8")
                 all_all_year_6char$hs92_product_id <- substr(all_all_year_6char$hs92_product_id, 3,8)
@@ -303,7 +303,7 @@ getdata <- function(origin, destination, year, classification) {
                 keep <- names(origin_all_year_6char) %in% c("data.export_val","data.hs92_id")
                 origin_all_year_6char <- origin_all_year_6char[keep]
                 origin_all_year_6char <- arrange_cols(origin_all_year_6char, c("data.hs92_id" = 1))
-                setnames(origin_all_year_6char, names(origin_all_year_6char), c("hs92_product_id","origin_total_export_val"))
+                names(origin_all_year_6char)[names(origin_all_year_6char)] <- c("hs92_product_id","origin_total_export_val")
                 origin_all_year_6char$hs92_len <- nchar(origin_all_year_6char$hs92_product_id)
                 origin_all_year_6char <- subset(origin_all_year_6char, origin_all_year_6char$hs92_len == "8")
                 origin_all_year_6char$hs92_product_id <- substr(origin_all_year_6char$hs92_product_id, 3,8)
@@ -326,18 +326,18 @@ getdata <- function(origin, destination, year, classification) {
                 origin_destination_year_6char <- arrange_cols(origin_destination_year_6char, c("year" = 1, "origin_id" = 3, "destination_id" = 2, "origin_total_export_val" = 12, "rca" = 15))
                 origin_destination_year_6char$year <- ifelse(is.na(origin_destination_year_6char$year),year,origin_destination_year_6char$year)
 
-                setnames(countries_list, names(countries_list), c("top_importer","top_importer_code"))
+                names(countries_list)[names(countries_list)] <- c("top_importer","top_importer_code")
                 origin_destination_year_6char$top_importer_code <- substr(origin_destination_year_6char$top_importer_code, 3, 5)
                 origin_destination_year_6char <- join(origin_destination_year_6char, countries_list, by="top_importer_code")
 
-                setnames(countries_list, names(countries_list), c("top_exporter","top_exporter_code"))
+                names(countries_list)[names(countries_list)] <- c("top_exporter","top_exporter_code")
                 origin_destination_year_6char$top_exporter_code <- substr(origin_destination_year_6char$top_exporter_code, 3, 5)
                 origin_destination_year_6char <- join(origin_destination_year_6char, countries_list, by="top_exporter_code")
 
                 drop <- names(origin_destination_year_6char) %in% c("top_exporter_code","top_importer_code")
                 origin_destination_year_6char <- origin_destination_year_6char[!drop]
 
-                setnames(countries_list, names(countries_list), c("country","country_code"))
+                names(countries_list)[names(countries_list)] <- c("country","country_code")
 
                 envir = as.environment(1)
                 assign(paste0(origin, "_", destination, "_", year, "_6char_hs92"), origin_destination_year_6char, envir = envir)

@@ -16,7 +16,6 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
     curl,
-    data.table,
     jsonlite,
     plyr,
     servr

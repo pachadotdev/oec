@@ -1,5 +1,7 @@
 [![CRAN-version](https://img.shields.io/badge/CRAN version-2.2-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![Github-version](https://img.shields.io/badge/Github version-3.0-blue.svg)](https://github.com/pachamaltese/oec) [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Github-version](https://img.shields.io/badge/Github version-v2.3-blue.svg)](https://github.com/pachamaltese/oec/)
+[![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) 
+[![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
@@ -32,7 +34,7 @@ CRAN version is tested under different platforms.
 install.packages("oec")
 ```
 
-### Using Github (version 3.0 - this is an experimental version until CRAN says its stable)
+### Using Github (version 2.3 - this is an experimental version until CRAN says its stable)
 
 The commits we upload here are working and stable, but please notice that the CRAN version is tested under different platforms.
 

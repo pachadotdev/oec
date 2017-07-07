@@ -1,5 +1,5 @@
-[![CRAN-version](https://img.shields.io/badge/CRAN version-2.2-blue.svg)](https://cran.r-project.org/web/packages/oec/)
-[![Github-version](https://img.shields.io/badge/Github version-v2.3-blue.svg)](https://github.com/pachamaltese/oec/)
+[![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.2-blue.svg)](https://cran.r-project.org/web/packages/oec/)
+[![Github-version](https://img.shields.io/badge/Github%20version-v2.3-blue.svg)](https://github.com/pachamaltese/oec/)
 [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus) 
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec.svg?branch=master)](https://travis-ci.org/pachamaltese/oec)

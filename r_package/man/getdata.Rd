@@ -22,14 +22,17 @@ Downloads and processes the data from the API
 # Run countries_list() to display the full list of countries
 # For the example Chile is "chl" and China is "chn"
 
-# Download trade between Chile and China in the year 2015 from OEC's API (HS92 4 characters)
-getdata("chl", "chn", 2014)
-getdata("chl", "chn", 2014, 1) # equivalent to last command
+# Download trade between Chile and China
+# Year 2015 (HS92 4 characters)
+# getdata("chl", "chn", 2014)
+# getdata("chl", "chn", 2014, 1) # equivalent to last command
 
-# Download trade between Chile and China in the year 2015 from OEC's API (SITC rev2 4 characters)
-getdata("chl", "chn", 2015, 2)
+# Download trade between Chile and China
+# Year 2015 (SITC rev2 4 characters)
+# getdata("chl", "chn", 2015, 2)
 
-# Download trade between Chile and China in the year 2015 from from OEC's API (HS92 6 characters)
-getdata("chl", "chn", 2015, 3)
+# Download trade between Chile and China
+# Year 2015 (HS92 6 characters)
+# getdata("chl", "chn", 2015, 3)
 }
 \keyword{functions}

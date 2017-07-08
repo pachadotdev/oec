@@ -29,8 +29,9 @@ Creates a treemap for a given year
 # Run countries_list() to display the full list of countries
 # For the example Chile is "chl" and China is "chn"
 
-# What does Chile export to China? (2015) (HS92 4 characters)
-treemap("chl", "chn", "exports", 2015)
-treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
+# What does Chile export to China?
+# Year 2015 (HS92 4 characters)
+# treemap("chl", "chn", "exports", 2015)
+# treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
 }
 \keyword{functions}

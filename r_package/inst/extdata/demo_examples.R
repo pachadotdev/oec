@@ -19,7 +19,7 @@ install_github("pachamaltese/oec/r_package")
 # 2.1: Load the package
 library(oec)
 
-# 2.2: Explore the countries list if you are not sure
+# 2.2: Explore the countries list if you are not sure about the countries codes
 countries_list
 
 # treemap() examples
@@ -38,13 +38,13 @@ treemap_interval("chl", "chn", "exports", 2010, 2014, 1, 1, 1) # equivalent to l
 
 # 5.1: What are the export opportunities of Chile? (2014, trade with China) (HS92 4 characters)
 network("chl", "chn", 2015)
-network("chl", "chn", 2014, 1)
+network("chl", "chn", 2015, 1) # equivalent to last command
 
 # network_interval() examples
 
 # 6.1: What are the export opportunities of Chile? (2011-2014, trade with China) (HS92 4 characters)
 network_interval("chl", "chn", 2010, 2015)
-network_interval("chl", "chn", 2010, 2015, 1, 1)
+network_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
 
 # getdata() examples
 

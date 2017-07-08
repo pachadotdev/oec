@@ -25,8 +25,9 @@ Creates a network of exports for a given year
 # Run countries_list() to display the full list of countries
 # For the example Chile is "chl" and China is "chn"
 
-# What are the export opportunities of Chile? (2015, trade with China) (HS92 4 characters)
-network("chl", "chn", 2015)
-network("chl", "chn", 2015, 1)
+# What are the export opportunities of Chile?
+# Year 2015, trade with China (HS92 4 characters)
+# network("chl", "chn", 2015)
+# network("chl", "chn", 2015, 1) # equivalent to last command
 }
 \keyword{functions}

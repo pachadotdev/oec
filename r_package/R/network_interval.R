@@ -3,16 +3,18 @@
 #' @return Creates an \code{HTML} file with a network visualization for a given given period of years.
 #' @param origin is the country code of origin (e.g. "chl" for Chile)
 #' @param dest is the country code of destination (e.g. "chn" for China)
-#' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)
 #' @param initial_year is the initial year and the OEC's API ranges from 1942 to 2014
 #' @param final_year is the final year and the OEC's API ranges from 1942 to 2014
+#' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)
+#' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' #' @examples
 #' # Run countries_list() to display the full list of countries
 #' # For the example Chile is "chl" and China is "chn"
 #'
-#' # What are the export opportunities of Chile? (2010-2015, trade with China) (HS92 4 characters)
-#' network_interval("chl", "chn", 2010, 2015)
-#' network_interval("chl", "chn", 2010, 2015, 1, 1)
+#' # What are the export opportunities of Chile?
+#' # Years 2010-2015, trade with China (HS92 4 characters)
+#' # network_interval("chl", "chn", 2010, 2015)
+#' # network_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
 #' @keywords functions
 
 network_interval = function(origin, dest, initial_year, final_year, classification, interval) {

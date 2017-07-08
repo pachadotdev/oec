@@ -4,7 +4,7 @@ Title: Use the Observatory of Economic Complexity's API in R
 Version: 2.5
 Date: 2017-06-28
 Author: Cesar A. Hidalgo [aut],
-  Alexander Simoes [aut],
+  Alexander Simoes [aut], 
   Mauricio Vargas S. [aut, cre],
   Manuel Aristaran [ctb],
   Mike Bostock [ctb] (D3),
@@ -14,9 +14,11 @@ Author: Cesar A. Hidalgo [aut],
   Datawheel [fnd,cph]
 Maintainer: Mauricio Vargas S. <mvargas@dcc.uchile.cl>
 URL: http://atlas.media.mit.edu/en/, http://pacha.datawheel.us/oec/, https://github.com/pachamaltese/oec/
+Description: Access The Observatory of Economic Complexity's API from R to download international trade data and create and D3Plus visualizations.
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
+    curl,
     dplyr,
     jsonlite,
     readr,

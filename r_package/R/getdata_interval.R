@@ -9,18 +9,22 @@
 #' @examples
 #' # Run countries_list() to display the full list of countries
 #' # For the example Chile is "chl" and China is "chn"
-#' # Download trade between Chile and China in the years 2010-2015 from OEC's API (HS92 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2015)
-#' getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+#' # Download trade between Chile and China
+#' # Years 2010-2015 (HS92 4 characters)
+#' # getdata_interval("chl", "chn", 2010, 2015)
+#' # getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
 #'
-#' # Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2015, 1, 2)
+#' # Download trade between Chile and China
+#' # Years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
+#' # getdata_interval("chl", "chn", 2010, 2015, 1, 2)
 #'
-#' # Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2014, 2, 2)
+#' # Download trade between Chile and China
+#' # Years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
+#' # getdata_interval("chl", "chn", 2010, 2014, 2, 2)
 #'
-#' # Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
-#' getdata_interval("chl", "chn", 2010, 2014, 3, 2)
+#' # Download trade between Chile and China
+#' # Years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
+#' # getdata_interval("chl", "chn", 2010, 2014, 3, 2)
 #' @keywords functions
 
 getdata_interval = function(origin, dest, initial_year, final_year, classification, interval) {

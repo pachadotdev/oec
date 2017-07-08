@@ -3,15 +3,16 @@
 #' @return Creates an \code{HTML} file with a network visualization for a given year.
 #' @param origin is the country code of origin (e.g. "chl" for Chile)
 #' @param dest is the country code of destination (e.g. "chn" for China)
-#' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)
 #' @param year is the year and the OEC's API ranges from 1962 to 2014
+#' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)
 #' @examples
 #' # Run countries_list() to display the full list of countries
 #' # For the example Chile is "chl" and China is "chn"
 #'
-#' # What are the export opportunities of Chile? (2015, trade with China) (HS92 4 characters)
-#' network("chl", "chn", 2015)
-#' network("chl", "chn", 2015, 1)
+#' # What are the export opportunities of Chile?
+#' # Year 2015, trade with China (HS92 4 characters)
+#' # network("chl", "chn", 2015)
+#' # network("chl", "chn", 2015, 1) # equivalent to last command
 #' @keywords functions
 
 network = function(origin, dest, year, classification) {

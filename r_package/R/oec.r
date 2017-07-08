@@ -10,45 +10,45 @@
 #'
 #' The functions provided within this package are:
 #'
-#' \code{\link{install_d3plus}}	Installs D3 and D3Plus.
+#' \link{install_d3plus}	Installs D3 and D3Plus.
 #'
-#' \code{\link{demos}} Copies the demo file.
+#' \link{demos} Copies the demo file.
 #'
-#' \code{\link{getdata}} Downloads and processes the data from the API for a certain year.
+#' \link{getdata} Downloads and processes the data from the API for a certain year.
 #'
-#' \code{\link{getdata_interval}} Downloads and processes the data from the API for an interval of years.
+#' \link{getdata_interval} Downloads and processes the data from the API for an interval of years.
 #'
-#' \code{\link{network}} Creates a network for a given year.
+#' \link{network} Creates a network for a given year.
 #'
-#' \code{\link{network_interval}} Creates a network for an interval of years.
+#' \link{network_interval} Creates a network for an interval of years.
 #'
-#' \code{\link{treemap}} Creates a treemap for a given year.
+#' \link{treemap} Creates a treemap for a given year.
 #'
-#' \code{\link{treemap_interval}} Creates a treemap for an interval of years.
+#' \link{treemap_interval} Creates a treemap for an interval of years.
 #'
 #' The datasets provided within this package are:
 #'
-#' \code{\link{countries_list}}	A list of all the countries in the world and its respective country code.
+#' \link{countries_list}	A list of all the countries in the world and its respective country code.
 #'
-#' \code{\link{hs92}}	HS92 products and groups (4 and 6 characters codes).
+#' \link{hs92}	HS92 products and groups (4 and 6 characters codes).
 #'
-#' \code{\link{sitc}} SITC rev.2 products and groups (4 characters codes).
+#' \link{sitc} SITC rev.2 products and groups (4 characters codes).
 #'
 #' The additional files provided within this package are:
 #'
-#' \code{\link{treemap_template.html}} Template to display a treemap of the imports, exports or trade balance of a country for a certain year using HS92 or SITC (rev.2) product classification.
+#' \link{treemap_template.html} Template to display a treemap of the imports, exports or trade balance of a country for a certain year using HS92 or SITC (rev.2) product classification.
 #'
-#' \code{\link{network_template.html}} Template to display a network of exports of a country for a certain year using HS92 or SITC (rev.2) product classification.
+#' \link{network_template.html} Template to display a network of exports of a country for a certain year using HS92 or SITC (rev.2) product classification.
 #'
-#' \code{\link{nodes_hs92_4.json}} Part of a pre-drawn network to create network visualizations using HS92 product classification.
+#' \link{nodes_hs92_4.json} Part of a pre-drawn network to create network visualizations using HS92 product classification.
 #'
-#' \code{\link{edges_hs92_4.json}} Part of a pre-drawn network to create network visualizations using HS92 product classification.
+#' \link{edges_hs92_4.json} Part of a pre-drawn network to create network visualizations using HS92 product classification.
 #'
-#' \code{\link{nodes_sitc_4.json}} Part of a pre-drawn network to create network visualizations using SITC (rev.2) product classification.
+#' \link{nodes_sitc_4.json} Part of a pre-drawn network to create network visualizations using SITC (rev.2) product classification.
 #'
-#' \code{\link{edges_sitc_4.json}} Part of a pre-drawn network to create network visualizations using SITC (rev.2) product classification.
+#' \link{edges_sitc_4.json} Part of a pre-drawn network to create network visualizations using SITC (rev.2) product classification.
 #'
-#' \code{\link{d3plus-1.9.8.zip}} Contains D3Plus and D3 to display the visualization.
+#' \link{d3plus-1.9.8.zip} Contains D3Plus and D3 to display the visualization.
 #'
 #' @name oec-package
 #' @aliases oec

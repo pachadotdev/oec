@@ -13,9 +13,10 @@
 #' # Run countries_list() to display the full list of countries
 #' # For the example Chile is "chl" and China is "chn"
 #'
-#' # What does Chile export to China? (2010-2015) (HS92 4 characters)
-#' treemap_interval("chl", "chn", "exports", 2010, 2015)
-#' treemap_interval("chl", "chn", "exports", 2010, 2015, 1, 1, 1) # equivalent to last command
+#' # What does Chile export to China?
+#' # Years 2010-2015 (HS92 4 characters)
+#' # treemap_interval("chl", "chn", "exports", 2010, 2015)
+#' # treemap_interval("chl", "chn", "exports", 2010, 2015, 1, 1, 1) # equivalent to last command
 #' @keywords functions
 
 treemap_interval = function(origin, dest, variable, initial_year, final_year, classification, interval, depth) {

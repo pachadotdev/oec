@@ -9,34 +9,37 @@
           .type("tree_map")
           .data("json_file")
           .size("replace_variable")
-          .id(["replace_group_id","replace_product_id"])
-          .text(["replace_group_name","replace_product_name"])
+          .id(["group_id","replace_classification"])
+          .text(["group_name","product_name"])
           .depth(depth_val)
           .width(false)
           .height(false)
           .resize(true)
           .font({"family": "Roboto"})
-          .labels({"text": "replace_product_name", "align": "left", "valign": "top"})
-          .color("replace_color")
-          .title("What does replace_origin replace_action replace_destination? (replace_years)")
+          .labels({"text": "product_name", "align": "left", "valign": "top"})
+          .color("color")
+          .title("What does replace_origin replace_action replace_dest? (replace_years)")
           .title({
             "total": {"value": true},
             "sub": {"font": {"size": 18}}
            })
           .legend({"order": {"sort": "desc", "value": "size"}, "size":32})
-          .tooltip(["replace_product_id","replace_product_name","replace_variable","rca","pci","pci_rank","top_exporter","top_importer"])
-          .icon({"style": "knockout", "value": "replace_icon"})
+          .tooltip(["product_name","replace_classification","replace_variable","rca","pci","pci_rank","top_exporter","top_importer"])
+          .icon({"style": "knockout", "value": "icon"})
           replace_timeline
           .format({
             "text": function(text, params) {
               if (text === "replace_variable") {
                 return "replace_name";
               }
-              if (text === "replace_product_id") {
-                return "code_display";
+              if (text === "product_name") {
+                return "Product Name";
               }
-              if (text === "replace_product_name") {
-                return "product_display";
+              if (text === "hs92") {
+                return "HS92 Code";
+              }
+              if (text === "sitc") {
+                return "SITC Code";
               }
               if (text === "rca") {
                 return "RCA";
@@ -61,9 +64,6 @@
               var formatted = d3plus.number.format(number, params);
               if (params.key === "replace_variable") {
                 return formatted + " USD";
-              }
-              if (params.key === "replace_product_id") {
-                return d3.round(number,0);
               }
               if (params.key === "rca") {
                 return d3.round(number,2);

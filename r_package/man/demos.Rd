@@ -16,4 +16,3 @@ Copies the demo file
 # demos()
 }
 \keyword{functions}
-

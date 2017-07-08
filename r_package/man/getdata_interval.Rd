@@ -4,17 +4,17 @@
 \alias{getdata_interval}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata_interval(origin, destination, initial_year, final_year, classification,
+getdata_interval(origin, dest, initial_year, final_year, classification,
   interval)
 }
 \arguments{
 \item{origin}{Country code of origin (e.g. "chl" for Chile)}
 
-\item{destination}{Country code of destination (e.g. "chn" for China)}
+\item{dest}{Country code of destination (e.g. "chn" for China)}
 
-\item{initial_year}{The OEC's API ranges from 1942 to 2014. This needs to be lower than `final_year`}
+\item{initial_year}{The OEC's API ranges from 1942 to 2015. This needs to be lower than `final_year`}
 
-\item{final_year}{The OEC's API ranges from 1942 to 2014. This needs to be greater than `initial_year`}
+\item{final_year}{The OEC's API ranges from 1942 to 2015. This needs to be greater than `initial_year`}
 
 \item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
 
@@ -25,25 +25,18 @@ Downloads and processes the data from the API
 }
 \examples{
 # Run countries_list() to display the full list of countries
-# Chile is "chl" and China is "chn"
+# For the example Chile is "chl" and China is "chn"
+# Download trade between Chile and China in the years 2010-2015 from OEC's API (HS92 4 characters)
+getdata_interval("chl", "chn", 2010, 2015)
+getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
 
-# Download trade data from OEC's API (HS92 4 characters product list)
-# for Chile and China in the years 2010 to 2014
-# getdata_interval("chl", "chn", 2011, 2014)
-# is the same as
-# getdata_interval("chl", "chn", 2011, 2014, 1, 1)
+# Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
+getdata_interval("chl", "chn", 2010, 2015, 1, 2)
 
-# Download trade data from OEC's API (HS92 4 characters product list)
-# for Chile and China in the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 2011, 2014, 1, 2)
+# Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
+getdata_interval("chl", "chn", 2010, 2014, 2, 2)
 
-# Download trade data from OEC's API (SITC rev.2 4 characters product list)
-# for Chile and China in the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 2011, 2014, 2, 2)
-
-# Download trade data from OEC's API (HS92 6 characters product list)
-# for Chile and China in the years 2010, 2012 and 2014
-# getdata_interval("chl", "chn", 2011, 2014, 3, 2)
+# Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
+getdata_interval("chl", "chn", 2010, 2014, 3, 2)
 }
 \keyword{functions}
-

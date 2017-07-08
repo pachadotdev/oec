@@ -4,12 +4,12 @@
 \alias{network}
 \title{Creates a network of exports for a given year}
 \usage{
-network(origin, destination, year, classification)
+network(origin, dest, year, classification)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
-\item{destination}{is the country code of origin (e.g. "chn" for China)}
+\item{dest}{is the country code of destination (e.g. "chn" for China)}
 
 \item{year}{is the year and the OEC's API ranges from 1962 to 2014}
 
@@ -23,12 +23,10 @@ Creates a network of exports for a given year
 }
 \examples{
 # Run countries_list() to display the full list of countries
-# Chile is "chl" and China is "chn"
-# Visualize trade data from OEC's API (HS92 4 characters product list)
-# for exports from Chile to China in the year 2014
-# network("chl", "chn", 2014, 1)
-# is the same as
-# network("chl", "chn", 2014)
+# For the example Chile is "chl" and China is "chn"
+
+# What are the export opportunities of Chile? (2015, trade with China) (HS92 4 characters)
+network("chl", "chn", 2015)
+network("chl", "chn", 2015, 1)
 }
 \keyword{functions}
-

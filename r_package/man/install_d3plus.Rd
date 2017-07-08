@@ -16,4 +16,3 @@ Installs D3 and D3Plus
 # install_d3plus()
 }
 \keyword{functions}
-

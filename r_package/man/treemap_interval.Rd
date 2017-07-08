@@ -2,15 +2,15 @@
 % Please edit documentation in R/treemap_interval.R
 \name{treemap_interval}
 \alias{treemap_interval}
-\title{Creates a treemap for a given given period of years}
+\title{Creates a treemap for a given period of years}
 \usage{
-treemap_interval(origin, destination, variable, initial_year, final_year,
-  interval, classification, depth)
+treemap_interval(origin, dest, variable, initial_year, final_year,
+  classification, interval, depth)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
-\item{destination}{is the country code of origin (e.g. "chn" for China)}
+\item{dest}{is the country code of destination (e.g. "chn" for China)}
 
 \item{variable}{is the variable to visualize and it can be "imports", "exports" or "exchange" (trade exchange)}
 
@@ -18,9 +18,9 @@ treemap_interval(origin, destination, variable, initial_year, final_year,
 
 \item{final_year}{is the final year and the OEC's API ranges from 1942 to 2014}
 
-\item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
-
 \item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.3 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
+
+\item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
 
 \item{depth}{is an optional parameter that can take values "0" (group's detail) or "1" (product's detail), by defaults its set to 1}
 }
@@ -28,16 +28,14 @@ treemap_interval(origin, destination, variable, initial_year, final_year,
 Creates an \code{HTML} file with a treemap visualization for a given period of years.
 }
 \description{
-Creates a treemap for a given given period of years
+Creates a treemap for a given period of years
 }
 \examples{
 # Run countries_list() to display the full list of countries
-# Chile is "chl" and China is "chn"
-# Visualize trade data from OEC's API (HS92 4 characters product list)
-# for Chile and China in the years 2011 to 2014
-# treemap_interval("chl", "chn", "exports", 2011, 2014, 1, 1 ,1)
-# is the same as
-# treemap_interval("chl", "chn", "exports", 2011, 2014)
+# For the example Chile is "chl" and China is "chn"
+
+# What does Chile export to China? (2010-2015) (HS92 4 characters)
+treemap_interval("chl", "chn", "exports", 2010, 2015)
+treemap_interval("chl", "chn", "exports", 2010, 2015, 1, 1, 1) # equivalent to last command
 }
 \keyword{functions}
-

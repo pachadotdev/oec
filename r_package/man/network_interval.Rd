@@ -2,38 +2,33 @@
 % Please edit documentation in R/network_interval.R
 \name{network_interval}
 \alias{network_interval}
-\title{Creates a network of exports for a given year}
+\title{Creates a network of exports for a given period of years}
 \usage{
-network_interval(origin, destination, initial_year, final_year, interval,
-  classification)
+network_interval(origin, dest, initial_year, final_year, classification,
+  interval)
 }
 \arguments{
 \item{origin}{is the country code of origin (e.g. "chl" for Chile)}
 
-\item{destination}{is the country code of origin (e.g. "chn" for China)}
+\item{dest}{is the country code of destination (e.g. "chn" for China)}
 
-\item{initial_year}{The OEC's API ranges from 1962 to 2014. This needs to be lower than `final_year`}
+\item{initial_year}{is the initial year and the OEC's API ranges from 1942 to 2014}
 
-\item{final_year}{The OEC's API ranges from 1962 to 2014. This needs to be greater than `initial_year`}
+\item{final_year}{is the final year and the OEC's API ranges from 1942 to 2014
+#' @examples
+# Run countries_list() to display the full list of countries
+# For the example Chile is "chl" and China is "chn"
 
-\item{interval}{is an optional parameter to define the distance between years (by default set to 1)}
+# What are the export opportunities of Chile? (2010-2015, trade with China) (HS92 4 characters)
+network_interval("chl", "chn", 2010, 2015)
+network_interval("chl", "chn", 2010, 2015, 1, 1)}
 
 \item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995) or "2" (SITC rev.2 4 characters since year 1962)}
 }
 \value{
-Creates an \code{HTML} file with a network visualization for a given year.
+Creates an \code{HTML} file with a network visualization for a given given period of years.
 }
 \description{
-Creates a network of exports for a given year
-}
-\examples{
-# Run countries_list() to display the full list of countries
-# Chile is "chl" and China is "chn"
-# Visualize trade data from OEC's API (HS92 4 characters product list)
-# for exports from Chile to China in the years 2011-2014
-# network_interval("chl", "chn", 2011, 2014, 1, 1)
-# is the same as
-# network_interval("chl", "chn", 2011, 2014)
+Creates a network of exports for a given period of years
 }
 \keyword{functions}
-

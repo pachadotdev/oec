@@ -4,14 +4,14 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(origin, destination, year, classification)
+getdata(origin, dest, year, classification)
 }
 \arguments{
 \item{origin}{Country code of origin (e.g. "chl" for Chile)}
 
-\item{destination}{Country code of destination (e.g. "chn" for China)}
+\item{dest}{Country code of destination (e.g. "chn" for China)}
 
-\item{year}{The OEC's API ranges from 1962 to 2014}
+\item{year}{The OEC's API ranges from 1962 to 2015}
 
 \item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
 }
@@ -20,21 +20,16 @@ Downloads and processes the data from the API
 }
 \examples{
 # Run countries_list() to display the full list of countries
-# Chile is "chl" and China is "chn"
+# For the example Chile is "chl" and China is "chn"
 
-# Download trade data from OEC's API (HS92 4 characters product list)
-# for Chile and China in the year 2014
-# getdata("chl", "chn", 2014)
-# is the same as
-# getdata("chl", "chn", 2014, 1)
+# Download trade between Chile and China in the year 2015 from OEC's API (HS92 4 characters)
+getdata("chl", "chn", 2014)
+getdata("chl", "chn", 2014, 1) # equivalent to last command
 
-# Download trade data from OEC's API (SITC rev.2 4 characters product list)
-# for Chile and China in the year 2014
-# getdata("chl", "chn", 2014, 2)
+# Download trade between Chile and China in the year 2015 from OEC's API (SITC rev2 4 characters)
+getdata("chl", "chn", 2015, 2)
 
-# Download trade data from OEC's API (HS92 6 characters product list)
-# for Chile and China in the year 2014
-# getdata("chl", "chn", 2014, 3)
+# Download trade between Chile and China in the year 2015 from from OEC's API (HS92 6 characters)
+getdata("chl", "chn", 2015, 3)
 }
 \keyword{functions}
-

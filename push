@@ -1,2 +1,0 @@
-git add gh-pages && git commit -m "Initial gh-pages subtree commit"
-git subtree push --prefix gh-pages origin gh-pages

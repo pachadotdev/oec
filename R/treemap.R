@@ -17,6 +17,8 @@
 #' # treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
 #' @keywords functions
 
+globalVariables(c("countries_list","."))
+
 treemap = function(origin, dest, variable, year, classification, depth) {
 
   d3_folder = paste0(getwd(), "/d3plus-1.9.8")

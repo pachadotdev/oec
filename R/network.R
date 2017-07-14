@@ -15,6 +15,8 @@
 #' # network("chl", "chn", 2015, 1) # equivalent to last command
 #' @keywords functions
 
+globalVariables(".")
+
 network = function(origin, dest, year, classification) {
 
   d3_folder = paste0(getwd(), "/d3plus-1.9.8")

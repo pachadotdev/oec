@@ -1,6 +1,6 @@
 Package: oec
 Type: Package
-Title: Use the Observatory of Economic Complexity's API in R
+Title: An R package to ease getting data from the Observatory of Economic Complexity throught its API
 Version: 2.4
 Date: 2017-06-28
 Author: Cesar A. Hidalgo [aut],
@@ -9,11 +9,12 @@ Author: Cesar A. Hidalgo [aut],
   Manuel Aristaran [ctb],
   Mike Bostock [ctb] (D3),
   Dave Landy [ctb] (D3Plus),
+  Gabriela Perez P. [ctb] (Vignettes),
   UN Comtrade [dtc],
   MIT Media Lab [dtc],
   Datawheel [fnd, cph]
 Maintainer: Mauricio Vargas S. <mvargas@dcc.uchile.cl>
-URL: http://atlas.media.mit.edu/en/, http://pacha.datawheel.us/oec/, https://github.com/pachamaltese/oec/
+URL: http://atlas.media.mit.edu/en/, http://pacha.datawheel.us/oec/
 Description: Access The Observatory of Economic Complexity's API from R to download international trade data and create and D3Plus visualizations.
 License: MIT + file LICENSE
 LazyData: TRUE

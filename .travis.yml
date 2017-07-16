@@ -5,5 +5,7 @@ r:
   - oldrel
   - release
   - devel
+before_install:
+  - cd r_package
 repos:
   CRAN: https://cloud.r-project.org

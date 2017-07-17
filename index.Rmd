@@ -1,5 +1,5 @@
 ---
-title: "OEC R Package"
+title: "R Package"
 author: "Pachá 帕夏 "
 date: "Updated `r Sys.Date()`"
 output:
@@ -13,7 +13,7 @@ output:
 
 # Introduction
 
-`oec` is an R package to ease getting data from the [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) throught its API. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
+`oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
 
 # Data sources
 

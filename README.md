@@ -8,7 +8,7 @@
 
 # OEC R Package
 
-`oec` is a R package to ease getting data from the Observatory of Economic Complexity throught its API. Since v1.0 its available on CRAN.
+`oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
 
 See http://pacha.datawheel.us/oec/ for detailed examples and please read the documentation.
 

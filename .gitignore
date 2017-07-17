@@ -4,12 +4,3 @@
 .Ruserdata
 .DS_Store
 __MACOSX
-datsets/*
-datasets/**/*.zip
-datasets/**/*.csv
-datasets/**/*.tsv
-datasets/**/*.tsv.bz2
-datasets/**/*.json
-datasets/**/*.xls
-datasets/**/*.xlsx
-datasets/**/*.RData

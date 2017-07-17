@@ -1,0 +1,129 @@
+---
+title: "OEC R Package"
+author: "Pachá 帕夏 "
+date: "Updated `r Sys.Date()`"
+output:
+ prettydoc::html_pretty:
+  theme: oec
+  highlight: github
+  self_contained: no
+  includes:
+   after_body: footer.html
+---
+
+# Introduction
+
+`oec` is an R package to ease getting data from the [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) throught its API. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
+
+# Data sources
+
+All of the product data shown on the site is classified using either SITC (Standard International Trade Classification) or HS (Harmonized System).
+
+For historical SITC classification data (1962 - 2000), we use data from [The Center for International Data from Robert Feenstra](http://cid.econ.ucdavis.edu/). For more recent data (2001 - 2015), we use data provided by [UN Comtrade](http://comtrade.un.org/).
+
+# How to use the package?
+
+The easiest way to use this package, and R in general, is to use [RStudio IDE](https://www.rstudio.com/) that allows users to create projects that do not depend on absolute paths.
+
+The package is fully documented [here](examples/oec.pdf). In this vignette we provide some examples that do not replace the documentation.
+
+## Installation
+
+```{r install, eval = FALSE}
+# 1: Install the package
+
+# 1.1: Install from CRAN (recommended)
+install.packages("oec")
+
+# 1.2 Install from Github
+#install.packages("devtools") # if needed
+library(devtools)
+install_github("pachamaltese/oec/r_package")
+```
+
+## Examples
+
+These are just examples. The functions are explained in detail in the next section.
+
+`treemap("chl", "chn", "exports", 2015)` downloads datasets from the OEC and arranges everything in your working directory to show this treemap:
+
+<iframe src="http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4_treemap_exports.html" width="800" height="600" frameborder="0"></iframe>
+
+`treemap()` calls `getdata()` that stores data in JSON for web visualization and in CSV for users who need to aggregate or filter the data in software such as Google Sheets or Microsoft® Excel. [Here](http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4.csv) is the processed data that is automatically ordered when you call getdata.
+
+## Functions
+
+The package's function can be divided between functions to import data and functions to visualize data. Visualization functions depend on data importing functions.
+
+You can call `treemap()` or `network()` without calling data importing functions first. The package will automatically download or read the data needed to visualize.
+
+Here is a general description of the functions:
+
+<img src="examples/functions.svg" alt="functions.svg" style="width:100%">
+
+### Basic use
+
+```{r functions1, eval = FALSE}
+# 2.1: Load the package
+library(oec)
+
+# 2.2: Copy the demo script to your project's folder.
+demos()
+
+# 2.3: Explore the countries list if you are not sure about the countries codes
+countries_list
+```
+
+### Treemap functions
+
+```{r functions2, eval = FALSE}
+# 3.1: What does Chile export to China? (2015) (HS92 4 characters)
+treemap("chl", "chn", "exports", 2015)
+treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
+
+
+# 4.1: What does Chile export to China? (2010-2015) (HS92 4 characters)
+treemap_interval("chl", "chn", "exports", 2010, 2015)
+treemap_interval("chl", "chn", "exports", 2010, 2014, 1, 1, 1) # equivalent to last command
+```
+
+### Network functions
+
+```{r functions3, eval = FALSE}
+# 5.1: What are the export opportunities of Chile? (2014, trade with China) (HS92 4 characters)
+network("chl", "chn", 2015)
+network("chl", "chn", 2015, 1) # equivalent to last command
+
+
+# 6.1: What are the export opportunities of Chile? (2011-2014, trade with China) (HS92 4 characters)
+network_interval("chl", "chn", 2010, 2015)
+network_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+```
+
+### Getdata functions
+
+```{r functions4, eval = FALSE}
+# 7.1: Download trade between Chile and China in the year 2014 from OEC's API (HS92 4 characters)
+getdata("chl", "chn", 2015)
+getdata("chl", "chn", 2015, 1) # equivalent to last command
+
+# 7.2: Download trade between Chile and China in the year 2014 from OEC's API (SITC rev2 4 characters)
+getdata("chl", "chn", 2015, 2)
+
+# 7.3: Download trade between Chile and China in the year 2014 from from OEC's API (HS92 6 characters)
+getdata("chl", "chn", 2015, 3)
+
+
+# 8.1: Download trade between Chile and China in the years 2010-2015 from OEC's API (HS92 4 characters)
+getdata_interval("chl", "chn", 2010, 2015)
+getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+
+# 8.1: Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
+getdata_interval("chl", "chn", 2010, 2014, 1, 2)
+
+# 8.2: Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
+getdata_interval("chl", "chn", 2010, 2014, 2, 2)
+
+# 8.3: Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
+getdata_interval("chl", "chn", 2010, 2014, 3, 2)
+```

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" sodipodi:docname="getdata_functions.svg" inkscape:version="0.91 r13725" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:cc="http://creativecommons.org/ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="325.499px" height="200px"
+	 viewBox="0 0 325.499 200" enable-background="new 0 0 325.499 200" xml:space="preserve">
+<sodipodi:namedview  inkscape:window-width="1276" inkscape:window-maximized="1" inkscape:window-height="755" inkscape:pageshadow="2" inkscape:window-y="1" inkscape:window-x="0" inkscape:pageopacity="0.0" inkscape:document-units="px" fit-margin-bottom="0" inkscape:current-layer="layer1" fit-margin-right="0" inkscape:guide-bbox="true" fit-margin-left="0" bordercolor="#666666" pagecolor="#ffffff" showguides="true" showgrid="false" inkscape:cy="-107.73118" inkscape:cx="110.33559" inkscape:zoom="0.49497475" id="base" borderopacity="1.0" fit-margin-top="0">
+	<sodipodi:guide  orientation="1,0" position="919.81482,117.82126" id="guide3382"></sodipodi:guide>
+	<sodipodi:guide  orientation="0,1" position="1577.8069,143.35714" id="guide4664"></sodipodi:guide>
+	<sodipodi:guide  orientation="1,0" position="1267.8069,40.500003" id="guide4881"></sodipodi:guide>
+	<sodipodi:guide  orientation="0,1" position="1534.2857,40.500003" id="guide4883"></sodipodi:guide>
+	<sodipodi:guide  orientation="1,0" position="1822.0926,40.500003" id="guide4885"></sodipodi:guide>
+	<sodipodi:guide  orientation="1,0" position="1544.9498,-57.357144" id="guide6315"></sodipodi:guide>
+</sodipodi:namedview>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 12.7051)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">getdata(</tspan><tspan x="27.896" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, year, classification</tspan><tspan x="146.454" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 102.8711 29.8223)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameter</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="102.871,17.016 102.871,23.19 151.855,23.19 
+		151.855,17.016 	"/>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 44.9805)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">getdata_interval(</tspan><tspan x="59.279" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, initial_year, final_year, classification, interval</tspan><tspan x="282.448" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 220.9121 61.8701)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameters</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="204,49.063 204,55.238 287.77,55.238 287.77,49.063 	"/>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 77.2554)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">treemap(</tspan><tspan x="27.896" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, variable, year, classification, depth</tspan><tspan x="205.733" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 149.2246 93.6851)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameters</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="137.393,80.879 137.393,87.053 211.355,87.053 
+		211.355,80.879 	"/>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 174.082)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">network_interval(</tspan><tspan x="59.279" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, initial_year, final_year, classification, interval</tspan><tspan x="282.448" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 221.2012 190.9727)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameters</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="203.961,178.164 203.961,184.339 288.494,184.339 
+		288.494,178.164 	"/>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 141.8057)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">network(</tspan><tspan x="27.896" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, year, classification</tspan><tspan x="146.454" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 103.4829 158.4688)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameter</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="102.685,145.66 102.685,151.836 151.885,151.836 
+		151.885,145.66 	"/>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 5.2803 109.5303)" enable-background="new    "><tspan x="0" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">treemap_interval(</tspan><tspan x="59.279" y="0" fill="#3139AE" font-family="'PTMono-Regular'" font-size="5.8118">origin, dest, initial_year, final_year, classification, interval, depth</tspan><tspan x="306.857" y="0" fill="#666666" font-family="'PTMono-Bold'" font-size="5.8118">)</tspan></text>
+	<g>
+		<text transform="matrix(1 0 0 1 233.1934 126.4209)" fill="#B7B6B6" font-family="'PTSans-Regular'" font-size="5.8118">optional parameters</text>
+	</g>
+	<polyline fill="none" stroke="#DACF2F" stroke-miterlimit="10" points="203.969,113.613 203.969,119.789 312.469,119.789 
+		312.469,113.613 	"/>
+</g>
+</svg>

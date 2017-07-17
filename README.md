@@ -10,9 +10,9 @@
 
 `oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
 
-See http://pacha.datawheel.us/oec/ for detailed examples and please read the documentation.
+Visit http://atlas.media.mit.edu/en/ for detailed examples and please read the documentation on CRAN.
 
-This package is released under MIT License as CRAN demands.
+This package is released under MIT License.
 
 ## The MIT License
 

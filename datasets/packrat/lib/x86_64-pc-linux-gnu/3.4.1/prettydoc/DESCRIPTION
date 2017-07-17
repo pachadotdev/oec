@@ -1,0 +1,47 @@
+Package: prettydoc
+Type: Package
+Title: Creating Pretty Documents from R Markdown
+Version: 0.2.0
+Date: 2016-08-31
+Authors@R: c( person("Yixuan", "Qiu", , "yixuan.qiu@cos.name", c("aut",
+    "cre")), person("Jason", "Long", , "jlong@github.com", "ctb",
+    comment = "the Cayman, Tactile and Architect themes"),
+    person("Renyuan", "Zou", , "zourenyuan@gmail.com", "ctb", comment =
+    "the Leonids theme"), person("Michael", "Rose", role = "ctb",
+    comment = "the HPSTR theme"), person("JJ", "Allaire", ,
+    "jj.allaire@gmail.com", "ctb", comment = "pandoc template for
+    rmarkdown"), person("Hadley", "Wickham", , "h.wickham@gmail.com",
+    "ctb", comment = "the html_vignette() function"), person("Yihui",
+    "Xie", , "xie@yihui.name", "ctb", comment = "the html_vignette()
+    function"), person("Steve", "Matteson", role = "ctb", comment =
+    "the Open Sans fonts") )
+Description: Creating tiny yet beautiful documents and vignettes from R
+    Markdown. The package provides the 'html_pretty' output format as
+    an alternative to the 'html_document' and 'html_vignette' engines
+    that convert R Markdown into HTML pages. Various themes and syntax
+    highlight styles are supported.
+Imports: rmarkdown (>= 1.0)
+Suggests: knitr
+SystemRequirements: pandoc (>= 1.12.3)
+VignetteBuilder: knitr
+URL: https://github.com/yixuan/prettydoc
+BugReports: https://github.com/yixuan/prettydoc/issues
+License: Apache License (>= 2.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
+GithubRepo: prettydoc_experiments
+GithubUsername: pachamaltese
+GithubRef: master
+GithubSHA1: b5cdd188e5c903087775a0e7a2c4af9117bb9ad6
+Author: Yixuan Qiu [aut, cre], Jason Long [ctb] (the Cayman, Tactile
+    and Architect themes), Renyuan Zou [ctb] (the Leonids theme),
+    Michael Rose [ctb] (the HPSTR theme), JJ Allaire [ctb] (pandoc
+    template for rmarkdown), Hadley Wickham [ctb] (the html_vignette()
+    function), Yihui Xie [ctb] (the html_vignette() function), Steve
+    Matteson [ctb] (the Open Sans fonts)
+Maintainer: Yixuan Qiu <yixuan.qiu@cos.name>
+Built: R 3.4.1; ; 2017-07-17 16:38:21 UTC; unix
+InstallAgent: packrat 0.4.8.1
+InstallSource: github
+Hash: 3ea3e4cbd7ae18f206f2824a464a6cdc

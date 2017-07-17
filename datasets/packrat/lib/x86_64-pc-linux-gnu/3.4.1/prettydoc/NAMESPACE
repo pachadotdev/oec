@@ -1,0 +1,2 @@
+importFrom(rmarkdown, render, output_format, html_document)
+export(html_pretty)

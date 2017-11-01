@@ -3,7 +3,7 @@
 #' @param origin Country code of origin (e.g. "chl" for Chile)
 #' @param dest Country code of destination (e.g. "chn" for China)
 #' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)
-#' @param year The OEC's API ranges from 1962 to 2015
+#' @param year The OEC's API ranges from 1962 to 2016
 #' @import dplyr curl
 #' @importFrom readr write_csv
 #' @importFrom jsonlite fromJSON write_json
@@ -13,17 +13,17 @@
 #' # For the example Chile is "chl" and China is "chn"
 #'
 #' # Download trade between Chile and China
-#' # Year 2015 (HS92 4 characters)
-#' # getdata("chl", "chn", 2014)
-#' # getdata("chl", "chn", 2014, 1) # equivalent to last command
+#' # Year 2016 (HS92 4 characters)
+#' # getdata("chl", "chn", 2016)
+#' # getdata("chl", "chn", 2016, 1) # equivalent to last command
 #'
 #' # Download trade between Chile and China
-#' # Year 2015 (SITC rev2 4 characters)
-#' # getdata("chl", "chn", 2015, 2)
+#' # Year 2016 (SITC rev2 4 characters)
+#' # getdata("chl", "chn", 2016, 2)
 #'
 #' # Download trade between Chile and China
-#' # Year 2015 (HS92 6 characters)
-#' # getdata("chl", "chn", 2015, 3)
+#' # Year 2016 (HS92 6 characters)
+#' # getdata("chl", "chn", 2016, 3)
 #' @keywords functions
 
 globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","country","sitc",
@@ -41,8 +41,8 @@ getdata = function(origin, dest, year, classification) {
     stop()
   }
   
-  if(year < 1961 | year > 2015) {
-    print("The data is only available from 1962 to 2015.")
+  if(year < 1961 | year > 2016) {
+    print("The data is only available from 1962 to 2016.")
     stop()
   } else {
     if((classification == 1 | classification == 3) & year < 1995) {

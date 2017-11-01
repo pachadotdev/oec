@@ -23,7 +23,7 @@ treemap = function(origin, dest, variable, year, classification, depth) {
 
   d3_folder = paste0(getwd(), "/d3plus-1.9.8")
   if(!file.exists(d3_folder)){
-    print("D3Plus is not installed. Installing...")
+    print("D3plus was not found in your working directory. Copying files...")
     install_d3plus()
   }
 

@@ -250,7 +250,7 @@ getdata = function(origin, dest, year, classification) {
           }
         }
       } else {
-        print('Error. The worldowed classifications can be "1" (HS92 4 characters) or "3" (HS92 6 characters) for the year 1995 and going or "2" (SITC rev.2 4 characters) for the year 1962 and ongoing.')
+        print('Error. The trade classifications can be "1" (HS92 4 characters) or "3" (HS92 6 characters) for the year 1995 and going or "2" (SITC rev.2 4 characters) for the year 1962 and ongoing.')
         stop()
       }
     }

@@ -2,9 +2,7 @@ language: r
 cache: packages
 sudo: required
 r:
-  - oldrel
   - release
-  - devel
 before_install:
   - cd r_package
 repos:

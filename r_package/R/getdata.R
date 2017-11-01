@@ -74,7 +74,7 @@ getdata = function(origin, dest, year, classification) {
           if(!file.exists(paste0(output,".csv")) | !file.exists(paste0(output,".json"))) {
             print(paste0("Processing SITC rev.2 (",characters," characters) files..."))
             
-            origin_dest_year = fromJSON(paste("http://atlas.media.mit.edu/sitc/export", year, origin, dest, "show/", sep = "/"))
+            origin_dest_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, origin, dest, "show/", sep = "/"))
             origin_dest_year = as_tibble(origin_dest_year[[1]])
             
             origin_dest_year = origin_dest_year %>%
@@ -88,7 +88,7 @@ getdata = function(origin, dest, year, classification) {
               left_join(countries_list, by = c("dest_id" = "country_code")) %>%
               rename(dest_name = country)
             
-            world_world_year = fromJSON(paste("http://atlas.media.mit.edu/sitc/export", year, "all/all/show/", sep = "/"))
+            world_world_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, "all/all/show/", sep = "/"))
             world_world_year = as_tibble(world_world_year[[1]])
             
             world_world_year = world_world_year %>%
@@ -98,7 +98,7 @@ getdata = function(origin, dest, year, classification) {
               mutate(sitc = substr(id,3,6)) %>%
               select(sitc,contains("world_total_"),contains("pci"),contains("top_"))
             
-            origin_world_year = fromJSON(paste("http://atlas.media.mit.edu/sitc/export", year, origin, "all/show/", sep = "/"))
+            origin_world_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, origin, "all/show/", sep = "/"))
             origin_world_year = as_tibble(origin_world_year[[1]])
             
             origin_world_year = origin_world_year %>%
@@ -160,7 +160,7 @@ getdata = function(origin, dest, year, classification) {
             if(!file.exists(paste0(output,".csv")) | !file.exists(paste0(output,".json"))) {
               print(paste0("Processing HS92 (",characters," characters) files..."))
               
-              origin_dest_year = fromJSON(paste("http://atlas.media.mit.edu/hs92/export", year, origin, dest, "show/", sep = "/"))
+              origin_dest_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, origin, dest, "show/", sep = "/"))
               origin_dest_year = as_tibble(origin_dest_year[[1]])
               
               origin_dest_year = origin_dest_year %>%
@@ -175,7 +175,7 @@ getdata = function(origin, dest, year, classification) {
                 left_join(countries_list, by = c("dest_id" = "country_code")) %>%
                 rename(dest_name = country)
               
-              world_world_year = fromJSON(paste("http://atlas.media.mit.edu/hs92/export", year, "all/all/show/", sep = "/"))
+              world_world_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, "all/all/show/", sep = "/"))
               world_world_year = as_tibble(world_world_year[[1]])
               
               world_world_year = world_world_year %>%
@@ -186,7 +186,7 @@ getdata = function(origin, dest, year, classification) {
                 mutate(hs92 = substr(id,3,characters + 2)) %>%
                 select(hs92,contains("world_total_"),contains("pci"),contains("top_"))
               
-              origin_world_year = fromJSON(paste("http://atlas.media.mit.edu/hs92/export", year, origin, "all/show/", sep = "/"))
+              origin_world_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, origin, "all/show/", sep = "/"))
               origin_world_year = as_tibble(origin_world_year[[1]])
               
               origin_world_year = origin_world_year %>%

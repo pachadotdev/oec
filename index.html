@@ -74,10 +74,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="cover-card table-cell table-middle">
 
 <center>
-<img src="http://pacha.datawheel.us/oec_logo.png" alt="oec_logo"><br>
+<img src="http://pacha.datawheel.us/img/oec_logo.png" alt="oec_logo"><br>
 <span class="author_name">R Package</span>
 <span class="author_bio mbm">Pachá 帕夏</span>
-<span class="author_bio mbm">Updated 2017-07-17</span>
+<span class="author_bio mbm">Updated 2017-11-01</span>
 </center>
 </div>
 </div>
@@ -96,7 +96,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data-sources" class="section level1">
 <h1>Data sources</h1>
 <p>All of the product data shown on the site is classified using either SITC (Standard International Trade Classification) or HS (Harmonized System).</p>
-<p>For historical SITC classification data (1962 - 2000), we use data from <a href="http://cid.econ.ucdavis.edu/">The Center for International Data from Robert Feenstra</a>. For more recent data (2001 - 2015), we use data provided by <a href="http://comtrade.un.org/">UN Comtrade</a>.</p>
+<p>For historical SITC classification data (1962 - 2000), we use data from <a href="http://cid.econ.ucdavis.edu/">The Center for International Data from Robert Feenstra</a>. For more recent data (2001 - 2016), we use data provided by <a href="http://comtrade.un.org/">UN Comtrade</a>.</p>
 </div>
 <div id="how-to-use-the-package" class="section level1">
 <h1>How to use the package?</h1>
@@ -118,7 +118,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Examples</h2>
 <p>These are just examples. The functions are explained in detail in the next section.</p>
 <p><code>treemap(&quot;chl&quot;, &quot;chn&quot;, &quot;exports&quot;, 2015)</code> downloads datasets from the OEC and arranges everything in your working directory to show this treemap:</p>
-<iframe src="http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4_treemap_exports.html" width="800" height="600" frameborder="0">
+<iframe src="http://pacha.datawheel.us/oec/oec-r/examples/chl_chn_2015_hs92_4_treemap_exports.html" width="800" height="600" frameborder="0">
 </iframe>
 <p><code>treemap()</code> calls <code>getdata()</code> that stores data in JSON for web visualization and in CSV for users who need to aggregate or filter the data in software such as Google Sheets or Microsoft® Excel. <a href="http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4.csv">Here</a> is the processed data that is automatically ordered when you call getdata.</p>
 </div>
@@ -141,42 +141,42 @@ countries_list</code></pre></div>
 </div>
 <div id="treemap-functions" class="section level3">
 <h3>Treemap functions</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3.1: What does Chile export to China? (2015) (HS92 4 characters)</span>
-<span class="kw">treemap</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2015</span>)
-<span class="kw">treemap</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2015</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3.1: What does Chile export to China? (2016) (HS92 4 characters)</span>
+<span class="kw">treemap</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2016</span>)
+<span class="kw">treemap</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2016</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
 
 
-<span class="co"># 4.1: What does Chile export to China? (2010-2015) (HS92 4 characters)</span>
-<span class="kw">treemap_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)
-<span class="kw">treemap_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span></code></pre></div>
+<span class="co"># 4.1: What does Chile export to China? (2010-2016) (HS92 4 characters)</span>
+<span class="kw">treemap_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>)
+<span class="kw">treemap_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="st">&quot;exports&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span></code></pre></div>
 </div>
 <div id="network-functions" class="section level3">
 <h3>Network functions</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 5.1: What are the export opportunities of Chile? (2014, trade with China) (HS92 4 characters)</span>
-<span class="kw">network</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>)
-<span class="kw">network</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 5.1: What are the export opportunities of Chile? (2016, trade with China) (HS92 4 characters)</span>
+<span class="kw">network</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>)
+<span class="kw">network</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
 
 
-<span class="co"># 6.1: What are the export opportunities of Chile? (2011-2014, trade with China) (HS92 4 characters)</span>
-<span class="kw">network_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)
-<span class="kw">network_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span></code></pre></div>
+<span class="co"># 6.1: What are the export opportunities of Chile? (2010-2016, trade with China) (HS92 4 characters)</span>
+<span class="kw">network_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>)
+<span class="kw">network_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span></code></pre></div>
 </div>
 <div id="getdata-functions" class="section level3">
 <h3>Getdata functions</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 7.1: Download trade between Chile and China in the year 2014 from OEC&#39;s API (HS92 4 characters)</span>
-<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>)
-<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 7.1: Download trade between Chile and China in the year 2016 from OEC&#39;s API (HS92 4 characters)</span>
+<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>)
+<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
 
-<span class="co"># 7.2: Download trade between Chile and China in the year 2014 from OEC&#39;s API (SITC rev2 4 characters)</span>
-<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="dv">2</span>)
+<span class="co"># 7.2: Download trade between Chile and China in the year 2016 from OEC&#39;s API (SITC rev2 4 characters)</span>
+<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>, <span class="dv">2</span>)
 
-<span class="co"># 7.3: Download trade between Chile and China in the year 2014 from from OEC&#39;s API (HS92 6 characters)</span>
-<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="dv">3</span>)
+<span class="co"># 7.3: Download trade between Chile and China in the year 2016 from from OEC&#39;s API (HS92 6 characters)</span>
+<span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2016</span>, <span class="dv">3</span>)
 
 
-<span class="co"># 8.1: Download trade between Chile and China in the years 2010-2015 from OEC&#39;s API (HS92 4 characters)</span>
-<span class="kw">getdata_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)
-<span class="kw">getdata_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
+<span class="co"># 8.1: Download trade between Chile and China in the years 2010-2016 from OEC&#39;s API (HS92 4 characters)</span>
+<span class="kw">getdata_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>)
+<span class="kw">getdata_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2016</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># equivalent to last command</span>
 
 <span class="co"># 8.1: Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC&#39;s API (HS92 4 characters)</span>
 <span class="kw">getdata_interval</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">1</span>, <span class="dv">2</span>)

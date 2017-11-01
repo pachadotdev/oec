@@ -19,7 +19,7 @@ output:
 
 All of the product data shown on the site is classified using either SITC (Standard International Trade Classification) or HS (Harmonized System).
 
-For historical SITC classification data (1962 - 2000), we use data from [The Center for International Data from Robert Feenstra](http://cid.econ.ucdavis.edu/). For more recent data (2001 - 2015), we use data provided by [UN Comtrade](http://comtrade.un.org/).
+For historical SITC classification data (1962 - 2000), we use data from [The Center for International Data from Robert Feenstra](http://cid.econ.ucdavis.edu/). For more recent data (2001 - 2016), we use data provided by [UN Comtrade](http://comtrade.un.org/).
 
 # How to use the package?
 
@@ -47,7 +47,7 @@ These are just examples. The functions are explained in detail in the next secti
 
 `treemap("chl", "chn", "exports", 2015)` downloads datasets from the OEC and arranges everything in your working directory to show this treemap:
 
-<iframe src="http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4_treemap_exports.html" width="800" height="600" frameborder="0"></iframe>
+<iframe src="http://pacha.datawheel.us/oec/oec-r/examples/chl_chn_2015_hs92_4_treemap_exports.html" width="800" height="600" frameborder="0"></iframe>
 
 `treemap()` calls `getdata()` that stores data in JSON for web visualization and in CSV for users who need to aggregate or filter the data in software such as Google Sheets or Microsoft® Excel. [Here](http://pacha.datawheel.us/oec/examples/chl_chn_2015_hs92_4.csv) is the processed data that is automatically ordered when you call getdata.
 
@@ -77,46 +77,46 @@ countries_list
 ### Treemap functions
 
 ```{r functions2, eval = FALSE}
-# 3.1: What does Chile export to China? (2015) (HS92 4 characters)
-treemap("chl", "chn", "exports", 2015)
-treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
+# 3.1: What does Chile export to China? (2016) (HS92 4 characters)
+treemap("chl", "chn", "exports", 2016)
+treemap("chl", "chn", "exports", 2016, 1) # equivalent to last command
 
 
-# 4.1: What does Chile export to China? (2010-2015) (HS92 4 characters)
-treemap_interval("chl", "chn", "exports", 2010, 2015)
-treemap_interval("chl", "chn", "exports", 2010, 2014, 1, 1, 1) # equivalent to last command
+# 4.1: What does Chile export to China? (2010-2016) (HS92 4 characters)
+treemap_interval("chl", "chn", "exports", 2010, 2016)
+treemap_interval("chl", "chn", "exports", 2010, 2016, 1, 1, 1) # equivalent to last command
 ```
 
 ### Network functions
 
 ```{r functions3, eval = FALSE}
-# 5.1: What are the export opportunities of Chile? (2014, trade with China) (HS92 4 characters)
-network("chl", "chn", 2015)
-network("chl", "chn", 2015, 1) # equivalent to last command
+# 5.1: What are the export opportunities of Chile? (2016, trade with China) (HS92 4 characters)
+network("chl", "chn", 2016)
+network("chl", "chn", 2016, 1) # equivalent to last command
 
 
-# 6.1: What are the export opportunities of Chile? (2011-2014, trade with China) (HS92 4 characters)
-network_interval("chl", "chn", 2010, 2015)
-network_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+# 6.1: What are the export opportunities of Chile? (2010-2016, trade with China) (HS92 4 characters)
+network_interval("chl", "chn", 2010, 2016)
+network_interval("chl", "chn", 2010, 2016, 1, 1) # equivalent to last command
 ```
 
 ### Getdata functions
 
 ```{r functions4, eval = FALSE}
-# 7.1: Download trade between Chile and China in the year 2014 from OEC's API (HS92 4 characters)
-getdata("chl", "chn", 2015)
-getdata("chl", "chn", 2015, 1) # equivalent to last command
+# 7.1: Download trade between Chile and China in the year 2016 from OEC's API (HS92 4 characters)
+getdata("chl", "chn", 2016)
+getdata("chl", "chn", 2016, 1) # equivalent to last command
 
-# 7.2: Download trade between Chile and China in the year 2014 from OEC's API (SITC rev2 4 characters)
-getdata("chl", "chn", 2015, 2)
+# 7.2: Download trade between Chile and China in the year 2016 from OEC's API (SITC rev2 4 characters)
+getdata("chl", "chn", 2016, 2)
 
-# 7.3: Download trade between Chile and China in the year 2014 from from OEC's API (HS92 6 characters)
-getdata("chl", "chn", 2015, 3)
+# 7.3: Download trade between Chile and China in the year 2016 from from OEC's API (HS92 6 characters)
+getdata("chl", "chn", 2016, 3)
 
 
-# 8.1: Download trade between Chile and China in the years 2010-2015 from OEC's API (HS92 4 characters)
-getdata_interval("chl", "chn", 2010, 2015)
-getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+# 8.1: Download trade between Chile and China in the years 2010-2016 from OEC's API (HS92 4 characters)
+getdata_interval("chl", "chn", 2010, 2016)
+getdata_interval("chl", "chn", 2010, 2016, 1, 1) # equivalent to last command
 
 # 8.1: Download trade between Chile and China in the years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
 getdata_interval("chl", "chn", 2010, 2014, 1, 2)

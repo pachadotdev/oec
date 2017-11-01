@@ -1,5 +1,5 @@
 [![Github-version](https://img.shields.io/badge/Github%20version-2.5-green.svg)](https://github.com/observatory-economic-complexity/oec-r)
-[![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.4-green.svg)](https://cran.r-project.org/web/packages/oec/)
+[![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.5-green.svg)](https://cran.r-project.org/web/packages/oec/)
 [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus)
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/observatory-economic-complexity/oec-r.svg?branch=master)](https://travis-ci.org/observatory-economic-complexity/oec-r)

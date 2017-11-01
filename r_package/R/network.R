@@ -1,3 +1,5 @@
+globalVariables(".")
+
 #' Creates a network of exports for a given year
 #' @export
 #' @return Creates an \code{HTML} file with a network visualization for a given year.
@@ -14,8 +16,6 @@
 #' # network("chl", "chn", 2015)
 #' # network("chl", "chn", 2015, 1) # equivalent to last command
 #' @keywords functions
-
-globalVariables(".")
 
 network = function(origin, dest, year, classification) {
 

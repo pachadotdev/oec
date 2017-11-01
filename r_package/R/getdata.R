@@ -1,3 +1,7 @@
+globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","country","sitc",
+                  "group_id","product_name","hs92_id_len","hs92_id","origin_name","dest_name",
+                  "origin_total_export_val","world_total_export_val","rca","sitc_id_len","top_importer","top_exporter"))
+
 #' Downloads and processes the data from the API
 #' @export
 #' @param origin Country code of origin (e.g. "chl" for Chile)
@@ -25,10 +29,6 @@
 #' # Year 2016 (HS92 6 characters)
 #' # getdata("chl", "chn", 2016, 3)
 #' @keywords functions
-
-globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","country","sitc",
-                  "group_id","product_name","hs92_id_len","hs92_id","origin_name","dest_name",
-                  "origin_total_export_val","world_total_export_val","rca","sitc_id_len","top_importer","top_exporter"))
 
 getdata = function(origin, dest, year, classification) {
   

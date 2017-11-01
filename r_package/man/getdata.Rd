@@ -11,7 +11,7 @@ getdata(origin, dest, year, classification)
 
 \item{dest}{Country code of destination (e.g. "chn" for China)}
 
-\item{year}{The OEC's API ranges from 1962 to 2015}
+\item{year}{The OEC's API ranges from 1962 to 2016}
 
 \item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
 }
@@ -23,16 +23,16 @@ Downloads and processes the data from the API
 # For the example Chile is "chl" and China is "chn"
 
 # Download trade between Chile and China
-# Year 2015 (HS92 4 characters)
-# getdata("chl", "chn", 2014)
-# getdata("chl", "chn", 2014, 1) # equivalent to last command
+# Year 2016 (HS92 4 characters)
+# getdata("chl", "chn", 2016)
+# getdata("chl", "chn", 2016, 1) # equivalent to last command
 
 # Download trade between Chile and China
-# Year 2015 (SITC rev2 4 characters)
-# getdata("chl", "chn", 2015, 2)
+# Year 2016 (SITC rev2 4 characters)
+# getdata("chl", "chn", 2016, 2)
 
 # Download trade between Chile and China
-# Year 2015 (HS92 6 characters)
-# getdata("chl", "chn", 2015, 3)
+# Year 2016 (HS92 6 characters)
+# getdata("chl", "chn", 2016, 3)
 }
 \keyword{functions}

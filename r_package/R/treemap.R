@@ -1,3 +1,5 @@
+globalVariables(c("countries_list","."))
+
 #' Creates a treemap for a given year
 #' @export
 #' @return Creates an \code{HTML} file with a treemap visualization for a given year.
@@ -16,8 +18,6 @@
 #' # treemap("chl", "chn", "exports", 2015)
 #' # treemap("chl", "chn", "exports", 2015, 1) # equivalent to last command
 #' @keywords functions
-
-globalVariables(c("countries_list","."))
 
 treemap = function(origin, dest, variable, year, classification, depth) {
 

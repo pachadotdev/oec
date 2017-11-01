@@ -14,5 +14,8 @@ LaTeX: pdfLaTeX
 
 BuildType: Package
 PackageUseDevtools: Yes
-PackageInstallArgs: --no-multiarch --with-keep.source
+PackageInstallArgs: --no-multiarch --with-keep.source --resave-data=best
+PackageBuildArgs: --resave-data=best
+PackageBuildBinaryArgs: --resave-data=best
+PackageCheckArgs: --resave-data=best
 PackageRoxygenize: rd,collate,namespace,vignette

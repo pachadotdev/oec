@@ -24,5 +24,6 @@ Depends:
     dplyr,
     jsonlite,
     readr,
-    servr
+    servr,
+    R (>= 2.10)
 RoxygenNote: 6.0.1

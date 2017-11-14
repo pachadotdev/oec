@@ -77,16 +77,54 @@ getdata = function(origin, dest, year, classification) {
             origin_dest_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, origin, dest, "show/", sep = "/"))
             origin_dest_year = as_tibble(origin_dest_year[[1]])
             
-            origin_dest_year = origin_dest_year %>%
-              mutate(trade_exchange_val = export_val + import_val) %>%
-              rename(id = sitc_id) %>%
-              mutate(sitc = substr(id,3,6)) %>%
-              mutate(origin_id = substr(origin_id,3,5),
-                     dest_id = substr(dest_id,3,5)) %>%
-              left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-              rename(origin_name = country) %>%
-              left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-              rename(dest_name = country)
+            if(origin != "all" & dest != "all") {
+              origin_dest_year = origin_dest_year %>%
+                mutate(trade_exchange_val = export_val + import_val) %>%
+                rename(id = sitc_id) %>%
+                mutate(sitc = substr(id,3,6)) %>%
+                mutate(origin_id = substr(origin_id,3,5),
+                       dest_id = substr(dest_id,3,5)) %>%
+                left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                rename(origin_name = country) %>%
+                left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                rename(dest_name = country)
+            }
+            if(origin != "all" & dest == "all") {
+              origin_dest_year = origin_dest_year %>%
+                mutate(trade_exchange_val = export_val + import_val) %>%
+                rename(id = sitc_id) %>%
+                mutate(sitc = substr(id,3,6)) %>%
+                mutate(origin_id = substr(origin_id,3,5),
+                       dest_id = "all") %>%
+                left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                rename(origin_name = country) %>%
+                left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                rename(dest_name = country)
+            }
+            if(origin == "all" & dest != "all") {
+              origin_dest_year = origin_dest_year %>%
+                mutate(trade_exchange_val = export_val + import_val) %>%
+                rename(id = sitc_id) %>%
+                mutate(sitc = substr(id,3,6)) %>%
+                mutate(origin_id = "all",
+                       dest_id = substr(dest_id,3,5)) %>%
+                left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                rename(origin_name = country) %>%
+                left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                rename(dest_name = country)
+            }
+            if(origin == "all" & dest == "all") {
+              origin_dest_year = origin_dest_year %>%
+                mutate(trade_exchange_val = export_val + import_val) %>%
+                rename(id = sitc_id) %>%
+                mutate(sitc = "all") %>%
+                mutate(origin_id = "all",
+                       dest_id = substr(dest_id,3,5)) %>%
+                left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                rename(origin_name = country) %>%
+                left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                rename(dest_name = country)
+            }
             
             world_world_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, "all/all/show/", sep = "/"))
             world_world_year = as_tibble(world_world_year[[1]])
@@ -163,17 +201,58 @@ getdata = function(origin, dest, year, classification) {
               origin_dest_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, origin, dest, "show/", sep = "/"))
               origin_dest_year = as_tibble(origin_dest_year[[1]])
               
-              origin_dest_year = origin_dest_year %>%
-                filter(hs92_id_len == characters + 2) %>%
-                mutate(trade_exchange_val = export_val + import_val) %>%
-                rename(id = hs92_id) %>%
-                mutate(hs92 = substr(id,3,characters + 2)) %>%
-                mutate(origin_id = substr(origin_id,3,5),
-                       dest_id = substr(dest_id,3,5)) %>%
-                left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                rename(origin_name = country) %>%
-                left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                rename(dest_name = country)
+              if(origin != "all" & dest != "all") {
+                origin_dest_year = origin_dest_year %>%
+                  filter(hs92_id_len == characters + 2) %>%
+                  mutate(trade_exchange_val = export_val + import_val) %>%
+                  rename(id = hs92_id) %>%
+                  mutate(hs92 = substr(id,3,characters + 2)) %>%
+                  mutate(origin_id = substr(origin_id,3,5),
+                         dest_id = substr(dest_id,3,5)) %>%
+                  left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                  rename(origin_name = country) %>%
+                  left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                  rename(dest_name = country)
+              }
+              if(origin == "all" & dest != "all") {
+                origin_dest_year = origin_dest_year %>%
+                  filter(hs92_id_len == characters + 2) %>%
+                  mutate(trade_exchange_val = export_val + import_val) %>%
+                  rename(id = hs92_id) %>%
+                  mutate(hs92 = substr(id,3,characters + 2)) %>%
+                  mutate(origin_id = "all",
+                         dest_id = substr(dest_id,3,5)) %>%
+                  left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                  rename(origin_name = country) %>%
+                  left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                  rename(dest_name = country)
+              }
+              if(origin != "all" & dest == "all") {
+                origin_dest_year = origin_dest_year %>%
+                  filter(hs92_id_len == characters + 2) %>%
+                  mutate(trade_exchange_val = export_val + import_val) %>%
+                  rename(id = hs92_id) %>%
+                  mutate(hs92 = substr(id,3,characters + 2)) %>%
+                  mutate(origin_id = substr(origin_id,3,5),
+                         dest_id = "all") %>%
+                  left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                  rename(origin_name = country) %>%
+                  left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                  rename(dest_name = country)
+              }
+              if(origin == "all" & dest == "all") {
+                origin_dest_year = origin_dest_year %>%
+                  filter(hs92_id_len == characters + 2) %>%
+                  mutate(trade_exchange_val = export_val + import_val) %>%
+                  rename(id = hs92_id) %>%
+                  mutate(hs92 = substr(id,3,characters + 2)) %>%
+                  mutate(origin_id = "all",
+                         dest_id = "all") %>%
+                  left_join(countries_list, by = c("origin_id" = "country_code")) %>%
+                  rename(origin_name = country) %>%
+                  left_join(countries_list, by = c("dest_id" = "country_code")) %>%
+                  rename(dest_name = country)
+              }
               
               world_world_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, "all/all/show/", sep = "/"))
               world_world_year = as_tibble(world_world_year[[1]])
@@ -233,7 +312,7 @@ getdata = function(origin, dest, year, classification) {
               
               rm(hs92)
               
-              print("Writing SITC rev.2 (4 characters) CSV and JSON files...")
+              print("Writing HS rev.92 (4 characters) CSV and JSON files...")
               
               origin_dest_year %>%
                 write_csv(paste0(output,".csv")) %>%

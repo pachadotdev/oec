@@ -1,4 +1,5 @@
-[![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.4-blue.svg)](https://cran.r-project.org/web/packages/oec/)
+[![Github-version](https://img.shields.io/badge/Github%20version-2.5-green.svg)](https://github.com/observatory-economic-complexity/oec-r)
+[![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.5-green.svg)](https://cran.r-project.org/web/packages/oec/)
 [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus)
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/observatory-economic-complexity/oec-r.svg?branch=master)](https://travis-ci.org/observatory-economic-complexity/oec-r)
@@ -9,7 +10,7 @@
 
 `oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
 
-Visit http://atlas.media.mit.edu/en/ for detailed examples and please read the documentation on CRAN.
+Visit http://atlas.media.mit.edu/en/ for the details. Please read the documentation on CRAN. We also prepared a short vignette that explains how to install this package and we also provide some examples: http://pacha.datawheel.us/oec/oec-r/.
 
 This package is released under MIT License.
 

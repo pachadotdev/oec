@@ -1,4 +1,4 @@
-globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","country","sitc",
+globalVariables(c("id","export_val","import_val","sitc_id","origin_id","dest_id","country","sitc",
                   "group_id","product_name","hs92_id_len","hs92_id","origin_name","dest_name",
                   "origin_total_export_val","world_total_export_val","rca","sitc_id_len","top_importer","top_exporter"))
 
@@ -9,7 +9,7 @@ globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","cou
 #' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)
 #' @param year The OEC's API ranges from 1962 to 2016
 #' @importFrom magrittr %>%
-#' @importFrom dplyr as_tibble select filter mutate rename contains everything left_join
+#' @importFrom dplyr as_tibble select filter mutate rename contains everything left_join bind_rows
 #' @importFrom readr write_csv
 #' @importFrom jsonlite fromJSON write_json
 #' @importFrom servr httw

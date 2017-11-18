@@ -2,6 +2,8 @@
 # Use package's functions #
 ##############################
 
+# 1: Initialize the package
+
 # 1.1: Load the package
 library(oec)
 
@@ -28,7 +30,7 @@ network("chl", "chn", 2015, 1) # equivalent to last command
 
 # network_interval() examples
 
-# 5.1: What are the export opportunities of Chile? (2011-2014, trade with China) (HS92 4 characters)
+# 5.1: What are the export opportunities of Chile? (2010-2015, trade with China) (HS92 4 characters)
 network_interval("chl", "chn", 2010, 2015)
 network_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
 

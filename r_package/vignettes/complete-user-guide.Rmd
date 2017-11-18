@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 
-`oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
+`oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/package=oec).
 
 ## Data sources
 

@@ -4,7 +4,7 @@ Title: Observatory of Economic Complexity API Wrapper and Utility Program
 Version: 2.5.2
 Date: 2017-11-01
 Authors@R: c(
-  person("Mauricio", "Vargas", role = c("aut", "cre"), email = "oec@media.mit.edu"),
+  person("Mauricio", "Vargas S.", role = c("aut", "cre"), email = "oec@media.mit.edu"),
   person("Cesar", "Hidalgo", role = c("aut"), comment  = "original OEC idea"),
   person("Alexander", "Simoes", role = c("aut"), comment  = "original OEC idea"),
   person("Manuel", "Aristaran", role = c("ctb")),

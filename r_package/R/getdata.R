@@ -8,7 +8,8 @@ globalVariables(c("export_val","import_val","sitc_id","origin_id","dest_id","cou
 #' @param dest Country code of destination (e.g. "chn" for China)
 #' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)
 #' @param year The OEC's API ranges from 1962 to 2016
-#' @import dplyr curl
+#' @importFrom magrittr %>%
+#' @importFrom dplyr as_tibble select filter mutate rename contains everything left_join
 #' @importFrom readr write_csv
 #' @importFrom jsonlite fromJSON write_json
 #' @importFrom servr httw

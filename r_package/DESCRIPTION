@@ -1,29 +1,33 @@
 Package: oec
 Type: Package
 Title: Observatory of Economic Complexity API Wrapper and Utility Program
-Version: 2.5
+Version: 2.5.2
 Date: 2017-11-01
-Author: Cesar A. Hidalgo [aut],
-  Alexander Simoes [aut],
-  Mauricio Vargas S. [aut, cre],
-  Manuel Aristaran [ctb],
-  Mike Bostock [ctb] (D3),
-  Dave Landy [ctb] (D3Plus),
-  Pablo H. Paladino [ctb] (Version control),
-  Gabriela Perez P. [ctb] (Documentation),
-  UN Comtrade [dtc],
-  MIT Media Lab [dtc],
-  Datawheel [fnd, cph]
+Authors@R: c(
+  person("Mauricio", "Vargas", role = c("aut", "cre"), email = "oec@media.mit.edu"),
+  person("Cesar", "Hidalgo", role = c("aut"), comment  = "original OEC idea"),
+  person("Alexander", "Simoes", role = c("aut"), comment  = "original OEC idea"),
+  person("Manuel", "Aristaran", role = c("ctb")),
+  person("Pablo", "Paladino", role = c("ctb")),
+  person("Gabriela", "Perez", role = c("ctb")),
+  person("Dave", "Landry", role = c("ctb"), comment = "D3plus author"),
+  person("Mike", "Bostock", role = c("ctb"), comment = "D3 author"),
+  person("UN Comtrade", role = c("dtc")),
+  person("MIT Media Lab", role = c("dtc")),
+  person("Datawheel", role = c("fnd","cph"))
+  )
 Maintainer: Mauricio Vargas S. <oec@media.mit.edu>
 URL: http://atlas.media.mit.edu/en/
+BugReports: https://github.com/observatory-economic-complexity/oec-r/issues
 Description: Access The Observatory of Economic Complexity API from R to download international trade data and create and D3Plus visualizations.
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
-    curl,
+    R (>= 2.10)
+Imports:
+    magrittr,
     dplyr,
     jsonlite,
     readr,
-    servr,
-    R (>= 2.10)
+    servr
 RoxygenNote: 6.0.1

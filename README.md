@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/observatory-economic-complexity/oec-r.svg?branch=master)](https://travis-ci.org/observatory-economic-complexity/oec-r)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
+[![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 
 # OEC R Package
 

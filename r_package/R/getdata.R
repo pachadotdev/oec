@@ -9,7 +9,7 @@ globalVariables(c("id","export_val","import_val","sitc_id","origin_id","dest_id"
 #' @param classification Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)
 #' @param year The OEC's API ranges from 1962 to 2016
 #' @importFrom magrittr %>%
-#' @importFrom dplyr as_tibble select filter mutate rename contains everything left_join bind_rows
+#' @importFrom dplyr as_tibble select filter mutate contains everything left_join bind_rows
 #' @importFrom readr write_csv
 #' @importFrom jsonlite fromJSON write_json
 #' @importFrom servr httw
@@ -81,59 +81,73 @@ getdata = function(origin, dest, year, classification) {
             if(origin != "all" & dest != "all") {
               origin_dest_year = origin_dest_year %>%
                 mutate(trade_exchange_val = export_val + import_val) %>%
-                rename(id = sitc_id) %>%
+                mutate(id = sitc_id) %>%
+                select(-sitc_id) %>% 
                 mutate(sitc = substr(id,3,6)) %>%
                 mutate(origin_id = substr(origin_id,3,5),
                        dest_id = substr(dest_id,3,5)) %>%
                 left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                rename(origin_name = country) %>%
+                mutate(origin_name = country) %>%
+                select(-country) %>% 
                 left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                rename(dest_name = country)
+                mutate(dest_name = country) %>% 
+                select(-country)
             }
             if(origin != "all" & dest == "all") {
               origin_dest_year = origin_dest_year %>%
                 mutate(trade_exchange_val = export_val + import_val) %>%
-                rename(id = sitc_id) %>%
+                mutate(id = sitc_id) %>%
+                select(-sitc_id) %>% 
                 mutate(sitc = substr(id,3,6)) %>%
                 mutate(origin_id = substr(origin_id,3,5),
                        dest_id = "all") %>%
                 left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                rename(origin_name = country) %>%
+                mutate(origin_name = country) %>%
+                select(-country) %>% 
                 left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                rename(dest_name = country)
+                mutate(dest_name = country) %>% 
+                select(-country)
             }
             if(origin == "all" & dest != "all") {
               origin_dest_year = origin_dest_year %>%
                 mutate(trade_exchange_val = export_val + import_val) %>%
-                rename(id = sitc_id) %>%
+                mutate(id = sitc_id) %>%
+                select(-sitc_id) %>% 
                 mutate(sitc = substr(id,3,6)) %>%
                 mutate(origin_id = "all",
                        dest_id = substr(dest_id,3,5)) %>%
                 left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                rename(origin_name = country) %>%
+                mutate(origin_name = country) %>%
+                select(-country) %>% 
                 left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                rename(dest_name = country)
+                mutate(dest_name = country) %>% 
+                select(-country)
             }
             if(origin == "all" & dest == "all") {
               origin_dest_year = origin_dest_year %>%
                 mutate(trade_exchange_val = export_val + import_val) %>%
-                rename(id = sitc_id) %>%
+                mutate(id = sitc_id) %>%
+                select(-sitc_id) %>% 
                 mutate(sitc = "all") %>%
                 mutate(origin_id = "all",
                        dest_id = substr(dest_id,3,5)) %>%
                 left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                rename(origin_name = country) %>%
+                mutate(origin_name = country) %>%
+                select(-country) %>% 
                 left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                rename(dest_name = country)
+                mutate(dest_name = country) %>% 
+                select(-country)
             }
             
             world_world_year = fromJSON(paste("https://atlas.media.mit.edu/sitc/export", year, "all/all/show/", sep = "/"))
             world_world_year = as_tibble(world_world_year[[1]])
             
             world_world_year = world_world_year %>%
-              rename(id = sitc_id) %>%
-              rename(world_total_export_val = export_val,
+              mutate(id = sitc_id) %>%
+              select(-sitc_id) %>% 
+              mutate(world_total_export_val = export_val,
                      world_total_import_val = import_val) %>%
+              select(-c(export_val, import_val)) %>% 
               mutate(sitc = substr(id,3,6)) %>%
               select(sitc,contains("world_total_"),contains("pci"),contains("top_"))
             
@@ -142,8 +156,10 @@ getdata = function(origin, dest, year, classification) {
             
             origin_world_year = origin_world_year %>%
               select(export_val,sitc_id) %>%
-              rename(origin_total_export_val = export_val) %>%
-              rename(id = sitc_id) %>%
+              mutate(origin_total_export_val = export_val) %>%
+              select(-export_val) %>% 
+              mutate(id = sitc_id) %>%
+              select(-sitc_id) %>% 
               mutate(sitc = substr(id,3,6)) %>%
               select(-id)
             
@@ -206,53 +222,65 @@ getdata = function(origin, dest, year, classification) {
                 origin_dest_year = origin_dest_year %>%
                   filter(hs92_id_len == characters + 2) %>%
                   mutate(trade_exchange_val = export_val + import_val) %>%
-                  rename(id = hs92_id) %>%
+                  mutate(id = hs92_id) %>%
+                  select(-hs92_id) %>%
                   mutate(hs92 = substr(id,3,characters + 2)) %>%
                   mutate(origin_id = substr(origin_id,3,5),
                          dest_id = substr(dest_id,3,5)) %>%
                   left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                  rename(origin_name = country) %>%
+                  mutate(origin_name = country) %>%
+                  select(-country) %>% 
                   left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                  rename(dest_name = country)
+                  mutate(dest_name = country) %>% 
+                  select(-country)
               }
               if(origin == "all" & dest != "all") {
                 origin_dest_year = origin_dest_year %>%
                   filter(hs92_id_len == characters + 2) %>%
                   mutate(trade_exchange_val = export_val + import_val) %>%
-                  rename(id = hs92_id) %>%
+                  mutate(id = hs92_id) %>%
+                  select(-hs92_id) %>%
                   mutate(hs92 = substr(id,3,characters + 2)) %>%
                   mutate(origin_id = "all",
                          dest_id = substr(dest_id,3,5)) %>%
                   left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                  rename(origin_name = country) %>%
+                  mutate(origin_name = country) %>%
+                  select(-country) %>% 
                   left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                  rename(dest_name = country)
+                  mutate(dest_name = country) %>% 
+                  select(-country)
               }
               if(origin != "all" & dest == "all") {
                 origin_dest_year = origin_dest_year %>%
                   filter(hs92_id_len == characters + 2) %>%
                   mutate(trade_exchange_val = export_val + import_val) %>%
-                  rename(id = hs92_id) %>%
+                  mutate(id = hs92_id) %>%
+                  select(-hs92_id) %>% 
                   mutate(hs92 = substr(id,3,characters + 2)) %>%
                   mutate(origin_id = substr(origin_id,3,5),
                          dest_id = "all") %>%
                   left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                  rename(origin_name = country) %>%
+                  mutate(origin_name = country) %>%
+                  select(-country) %>% 
                   left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                  rename(dest_name = country)
+                  mutate(dest_name = country) %>% 
+                  select(-country)
               }
               if(origin == "all" & dest == "all") {
                 origin_dest_year = origin_dest_year %>%
                   filter(hs92_id_len == characters + 2) %>%
                   mutate(trade_exchange_val = export_val + import_val) %>%
-                  rename(id = hs92_id) %>%
+                  mutate(id = hs92_id) %>%
+                  select(-hs92_id) %>% 
                   mutate(hs92 = substr(id,3,characters + 2)) %>%
                   mutate(origin_id = "all",
                          dest_id = "all") %>%
                   left_join(countries_list, by = c("origin_id" = "country_code")) %>%
-                  rename(origin_name = country) %>%
+                  mutate(origin_name = country) %>%
+                  select(-country) %>% 
                   left_join(countries_list, by = c("dest_id" = "country_code")) %>%
-                  rename(dest_name = country)
+                  mutate(dest_name = country) %>% 
+                  select(-country)
               }
               
               world_world_year = fromJSON(paste("https://atlas.media.mit.edu/hs92/export", year, "all/all/show/", sep = "/"))
@@ -260,9 +288,11 @@ getdata = function(origin, dest, year, classification) {
               
               world_world_year = world_world_year %>%
                 filter(hs92_id_len == characters + 2) %>%
-                rename(id = hs92_id) %>%
-                rename(world_total_export_val = export_val,
+                mutate(id = hs92_id) %>%
+                select(-hs92_id) %>% 
+                mutate(world_total_export_val = export_val,
                        world_total_import_val = import_val) %>%
+                select(-c(export_val, import_val)) %>% 
                 mutate(hs92 = substr(id,3,characters + 2)) %>%
                 select(hs92,contains("world_total_"),contains("pci"),contains("top_"))
               
@@ -272,8 +302,10 @@ getdata = function(origin, dest, year, classification) {
               origin_world_year = origin_world_year %>%
                 filter(hs92_id_len == characters + 2) %>%
                 select(export_val,hs92_id) %>%
-                rename(origin_total_export_val = export_val) %>%
-                rename(id = hs92_id) %>%
+                mutate(origin_total_export_val = export_val) %>%
+                select(-export_val) %>% 
+                mutate(id = hs92_id) %>%
+                select(-hs92_id) %>% 
                 mutate(hs92 = substr(id,3,characters + 2)) %>%
                 select(-id)
               

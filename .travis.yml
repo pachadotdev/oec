@@ -3,7 +3,5 @@ cache: packages
 sudo: required
 r:
   - release
-before_install:
-  - cd r_package
 repos:
   CRAN: https://cloud.r-project.org

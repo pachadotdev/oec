@@ -26,23 +26,13 @@ getdata_interval(origin, dest, initial_year, final_year, classification,
 Downloads and processes the data from the API
 }
 \examples{
-# Run countries_list() to display the full list of countries
-# For the example Chile is "chl" and China is "chn"
-# Download trade between Chile and China
-# Years 2010-2015 (HS92 4 characters)
-getdata_interval("chl", "chn", 2010, 2015)
-getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+# Run countries_list to display the full list of countries
 
-# Download trade between Chile and China
-# Years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
-getdata_interval("chl", "chn", 2010, 2014, 1, 2)
+# What does Andorra export? (2014 and 2015, HS92 4 characters)
+getdata_interval("and", "all", 2014, 2015)
 
-# Download trade between Chile and China
-# Years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
-getdata_interval("chl", "chn", 2010, 2014, 2, 2)
+# What does Andorra export? (2014 and 2015, SITC rev2 4 characters)
+getdata_interval("and", "all", 2013, 2015, 2)
 
-# Download trade between Chile and China
-# Years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
-getdata_interval("chl", "chn", 2010, 2014, 3, 2)
 }
 \keyword{functions}

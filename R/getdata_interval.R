@@ -1,3 +1,5 @@
+globalVariables(c("countries_list"))
+
 #' Downloads and processes the data from the API
 #' @export
 #' @param origin Country code of origin (e.g. "chl" for Chile)
@@ -8,24 +10,14 @@
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param write Write to user's filespace (by default set to "F")
 #' @examples
-#' # Run countries_list() to display the full list of countries
-#' # For the example Chile is "chl" and China is "chn"
-#' # Download trade between Chile and China
-#' # Years 2010-2015 (HS92 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2015)
-#' getdata_interval("chl", "chn", 2010, 2015, 1, 1) # equivalent to last command
+#' # Run countries_list to display the full list of countries
+#' 
+#' # What does Andorra export? (2014 and 2015, HS92 4 characters)
+#' getdata_interval("and", "all", 2014, 2015)
 #'
-#' # Download trade between Chile and China
-#' # Years 2010, 2012 and 2014 from OEC's API (HS92 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2014, 1, 2)
+#' # What does Andorra export? (2014 and 2015, SITC rev2 4 characters)
+#' getdata_interval("and", "all", 2013, 2015, 2)
 #'
-#' # Download trade between Chile and China
-#' # Years 2010, 2012 and 2014 from OEC's API (SITC rev2 4 characters)
-#' getdata_interval("chl", "chn", 2010, 2014, 2, 2)
-#'
-#' # Download trade between Chile and China
-#' # Years 2010, 2012 and 2014 from OEC's API (HS92 6 characters)
-#' getdata_interval("chl", "chn", 2010, 2014, 3, 2)
 #' @keywords functions
 
 getdata_interval <- function(origin,

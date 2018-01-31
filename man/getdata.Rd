@@ -21,20 +21,13 @@ getdata(origin, dest, year, classification, write)
 Downloads and processes the data from the API
 }
 \examples{
-# Run countries_list() to display the full list of countries
-# For the example Chile is "chl" and China is "chn"
+# Run countries_list to display the full list of countries
 
-# Download trade between Chile and China
-# Year 2015 (HS92 4 characters)
-getdata("chl", "chn", 2015)
-getdata("chl", "chn", 2015, 1) # equivalent to last command
+# What does Andorra export? (2015, HS92 4 characters)
+getdata("and", "all", 2015)
 
-# Download trade between Chile and China
-# Year 2015 (SITC rev2 4 characters)
-getdata("chl", "chn", 2015, 2)
+# What does Andorra export? (2015, SITC rev2 4 characters)
+getdata("and", "all", 2015, 2)
 
-# Download trade between Chile and China
-# Year 2015 (HS92 6 characters)
-getdata("chl", "chn", 2015, 3)
 }
 \keyword{functions}

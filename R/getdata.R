@@ -1,23 +1,23 @@
 globalVariables(
-  c(
-    "id",
+  c("id",
+    "group_id",
+    "hs92_id",
+    "hs92_id_len",
+    "sitc",
+    "sitc_id",
+    "sitc_id_len",
     "export_val",
     "import_val",
-    "sitc_id",
     "origin_id",
     "dest_id",
     "country",
-    "sitc",
-    "group_id",
+    "countries_list",
     "product_name",
-    "hs92_id_len",
-    "hs92_id",
     "origin_name",
     "dest_name",
     "origin_total_export_val",
     "world_total_export_val",
     "rca",
-    "sitc_id_len",
     "top_importer",
     "top_exporter"
   )
@@ -34,23 +34,15 @@ globalVariables(
 #' @importFrom dplyr as_tibble select filter mutate contains everything left_join bind_rows
 #' @importFrom readr write_csv
 #' @importFrom jsonlite fromJSON write_json
-#' @importFrom servr httw
 #' @examples
-#' # Run countries_list() to display the full list of countries
-#' # For the example Chile is "chl" and China is "chn"
+#' # Run countries_list to display the full list of countries
 #'
-#' # Download trade between Chile and China
-#' # Year 2015 (HS92 4 characters)
-#' getdata("chl", "chn", 2015)
-#' getdata("chl", "chn", 2015, 1) # equivalent to last command
+#' # What does Andorra export? (2015, HS92 4 characters)
+#' getdata("and", "all", 2015)
 #'
-#' # Download trade between Chile and China
-#' # Year 2015 (SITC rev2 4 characters)
-#' getdata("chl", "chn", 2015, 2)
-#'
-#' # Download trade between Chile and China
-#' # Year 2015 (HS92 6 characters)
-#' getdata("chl", "chn", 2015, 3)
+#' # What does Andorra export? (2015, SITC rev2 4 characters)
+#' getdata("and", "all", 2015, 2)
+#' 
 #' @keywords functions
 
 getdata <- function(origin, dest, year, classification, write) {
@@ -120,6 +112,11 @@ getdata <- function(origin, dest, year, classification, write) {
               )
             )
             origin_dest_year <- as_tibble(origin_dest_year[[1]])
+            
+            if (nrow(origin_dest_year) == 0) { 
+              message("No data available. Try changing year or trade classification.")
+              stop() 
+            }
             
             if (origin != "all" & dest != "all") {
               origin_dest_year <- origin_dest_year %>%
@@ -277,11 +274,6 @@ getdata <- function(origin, dest, year, classification, write) {
             
             origin_dest_year <- origin_dest_year %>%
               left_join(sitc, by = "sitc") %>%
-              mutate(icon = paste0(
-                "d3plus-1.9.8/icons/sitc/sitc_",
-                group_id,
-                ".png"
-              )) %>%
               select(
                 year,
                 origin_id,
@@ -355,6 +347,11 @@ getdata <- function(origin, dest, year, classification, write) {
                 )
               )
               origin_dest_year <- as_tibble(origin_dest_year[[1]])
+              
+              if (nrow(origin_dest_year) == 0) { 
+                message("No data available. Try changing year or trade classification.")
+                stop()
+              }
               
               if (origin != "all" & dest != "all") {
                 origin_dest_year <- origin_dest_year %>%
@@ -527,7 +524,6 @@ getdata <- function(origin, dest, year, classification, write) {
               
               origin_dest_year <- origin_dest_year %>%
                 left_join(hs92, by = "hs92") %>%
-                mutate(icon = paste0("d3plus-1.9.8/icons/hs/hs_", group_id, ".png")) %>%
                 select(
                   year,
                   origin_id,

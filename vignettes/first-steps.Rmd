@@ -1,0 +1,62 @@
+---
+title: "OEC R Package - First Steps"
+author: "Mauricio Vargas S."
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{OEC R Package - Complete User Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+`oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/package=oec).
+
+## Data sources
+
+All of the product data shown on the site is classified using either SITC (Standard International Trade Classification) or HS (Harmonized System).
+
+For historical SITC classification data (1962 - 2000), we use data from [The Center for International Data from Robert Feenstra](http://cid.econ.ucdavis.edu/). For more recent data (2001 - 2016), we use data provided by [UN Comtrade](http://comtrade.un.org/).
+
+## How to use the package?
+
+The easiest way to use this package, and R in general, is to use [RStudio IDE](https://www.rstudio.com/) that allows users to create projects that do not depend on absolute paths.
+
+The package is fully documented [here](examples/oec.pdf). In this vignette we provide some examples that do not replace the documentation.
+
+### Basic use
+
+The first step is to install the package and explore the country codes to start downloading data.
+
+```{r functions1, eval = FALSE}
+# Install the package from CRAN (recommended)
+install.packages("oec")
+
+# Or install the package from Github (this option or CRAN option, not both)
+#install.packages("devtools") ## if needed
+library(devtools)
+install_github("observatory-economic-complexity/oec-r")
+
+# Load the package
+library(oec)
+
+# Explore the countries list
+countries_list
+```
+
+Now we are ready to download data and provide an answer to questions like *What does Andorra export?*
+
+```{r functions2, eval = FALSE}
+# What does Andorra export? (2015, HS92 4 characters)
+getdata("and", "all", 2015)
+
+# What does Andorra export? (2015, SITC rev2 4 characters)
+getdata("and", "all", 2015, 2)
+
+# What does Andorra export? (2014 and 2015, HS92 4 characters)
+getdata_interval("and", "all", 2014, 2015)
+
+# What does Andorra export? (2014 and 2015, SITC rev2 4 characters)
+getdata_interval("and", "all", 2013, 2015, 2)
+```

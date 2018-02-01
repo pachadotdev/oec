@@ -15,9 +15,6 @@ globalVariables(c("countries_list"))
 #' # What does Andorra export? (2014 and 2015, HS92 4 characters)
 #' getdata_interval("and", "all", 2014, 2015)
 #'
-#' # What does Andorra export? (2014 and 2015, SITC rev2 4 characters)
-#' getdata_interval("and", "all", 2013, 2015, 2)
-#'
 #' @keywords functions
 
 getdata_interval <- function(origin,

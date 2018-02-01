@@ -39,9 +39,6 @@ globalVariables(
 #'
 #' # What does Andorra export? (2015, HS92 4 characters)
 #' getdata("and", "all", 2015)
-#'
-#' # What does Andorra export? (2015, SITC rev2 4 characters)
-#' getdata("and", "all", 2015, 2)
 #' 
 #' @keywords functions
 
@@ -58,17 +55,14 @@ getdata <- function(origin, dest, year, classification, write) {
       dest %in% countries_list$country_code) {
     message("Valid country codes. Proceeding...")
   } else {
-    message("Error. Invalid country codes, see 'countries_list'.")
-    stop()
+    stop("Invalid country codes, see 'countries_list'.")
   }
   
   if (year < 1961 | year > 2016) {
-    message("The data is only available from 1962 to 2016.")
-    stop()
+    stop("The data is only available from 1962 to 2016.")
   } else {
     if ((classification == 1 | classification == 3) & year < 1995) {
-      message("HS92 classification is only available from the year 1995 and ongoing.")
-      stop()
+      stop("HS92 classification is only available from the year 1995 and ongoing.")
     } else {
       if (classification == 1 |
           classification == 2 | classification == 3) {
@@ -114,8 +108,7 @@ getdata <- function(origin, dest, year, classification, write) {
             origin_dest_year <- as_tibble(origin_dest_year[[1]])
             
             if (nrow(origin_dest_year) == 0) { 
-              message("No data available. Try changing year or trade classification.")
-              stop() 
+              stop("No data available. Try changing year or trade classification.") 
             }
             
             if (origin != "all" & dest != "all") {
@@ -349,8 +342,7 @@ getdata <- function(origin, dest, year, classification, write) {
               origin_dest_year <- as_tibble(origin_dest_year[[1]])
               
               if (nrow(origin_dest_year) == 0) { 
-                message("No data available. Try changing year or trade classification.")
-                stop()
+                stop("No data available. Try changing year or trade classification.")
               }
               
               if (origin != "all" & dest != "all") {
@@ -584,10 +576,7 @@ getdata <- function(origin, dest, year, classification, write) {
           }
         }
       } else {
-        message(
-          'Error. The trade classifications can be "1" (HS92 4 characters) or "3" (HS92 6 characters) for the year 1995 and going or "2" (SITC rev.2 4 characters) for the year 1962 and ongoing.'
-        )
-        stop()
+        stop('Error. The trade classifications can be "1" (HS92 4 characters) or "3" (HS92 6 characters) for the year 1995 and going or "2" (SITC rev.2 4 characters) for the year 1962 and ongoing.')
       }
     }
   }

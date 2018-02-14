@@ -11,29 +11,18 @@ globalVariables(c("countries_list"))
 #' @param write Write to user's filespace (by default set to "F")
 #' @examples
 #' # Run countries_list to display the full list of countries
-#' 
+#'
 #' # What does Andorra export? (2014 and 2015, HS92 4 characters)
 #' getdata_interval("and", "all", 2014, 2015)
 #'
 #' @keywords functions
 
-getdata_interval <- function(origin,
-                             dest,
-                             initial_year,
-                             final_year,
-                             classification,
-                             interval,
-                             write) {
-  if (missing(classification)) {
-    classification <- 1
-  }
+getdata_interval <- function(origin, dest, initial_year, final_year, classification, interval, write) {
+  if (missing(classification)) { classification <- 1 }
+  if (missing(interval)) { interval <- 1 }
+  if (missing(write)) { write <- F }
   
-  if (missing(interval)) {
-    interval <- 1
-  }
-  
-  if (origin %in% countries_list$country_code &
-      dest %in% countries_list$country_code) {
+  if (origin %in% countries_list$country_code & dest %in% countries_list$country_code) {
     message("Valid country codes...")
   } else {
     message("Error. Invalid country codes, see 'countries_list'.")

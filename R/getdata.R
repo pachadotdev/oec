@@ -43,16 +43,10 @@ globalVariables(
 #' @keywords functions
 
 getdata <- function(origin, dest, year, classification, write) {
-  if (missing(classification)) {
-    classification <- 1
-  }
+  if (missing(classification)) { classification <- 1 }
+  if (missing(write)) { write <- F }
   
-  if (missing(write)) {
-    write <- F
-  }
-  
-  if (origin %in% countries_list$country_code &
-      dest %in% countries_list$country_code) {
+  if (origin %in% countries_list$country_code & dest %in% countries_list$country_code) {
     message("Valid country codes. Proceeding...")
   } else {
     stop("Invalid country codes, see 'countries_list'.")
@@ -83,16 +77,13 @@ getdata <- function(origin, dest, year, classification, write) {
         }
       }
       
-      output <-
-        paste(origin, dest, year, classification, characters, sep = "_")
+      output <- paste(origin, dest, year, classification, characters, sep = "_")
       
       if (classification == "sitc" | classification == "hs92") {
         if (classification == "sitc") {
           if (!exists(output)) {
             message(paste0(
-              "Processing SITC rev.2 (",
-              characters,
-              " characters) files..."
+              "Processing SITC rev.2 (", characters, " characters) files..."
             ))
             
             origin_dest_year <- fromJSON(
@@ -186,6 +177,7 @@ getdata <- function(origin, dest, year, classification, write) {
                 sep = "/"
               )
             )
+            
             world_world_year <- as_tibble(world_world_year[[1]])
             
             world_world_year <- world_world_year %>%
@@ -211,6 +203,7 @@ getdata <- function(origin, dest, year, classification, write) {
                 sep = "/"
               )
             )
+            
             origin_world_year <- as_tibble(origin_world_year[[1]])
             
             origin_world_year <- origin_world_year %>%
@@ -230,8 +223,7 @@ getdata <- function(origin, dest, year, classification, write) {
                   origin_total_export_val / sum(origin_total_export_val, na.rm = TRUE)
                 ) / (
                   world_total_export_val / sum(world_total_export_val, na.rm = TRUE)
-                ),
-                rca = round(rca, 3)
+                )
               ) %>%
               select(
                 year,
@@ -474,8 +466,7 @@ getdata <- function(origin, dest, year, classification, write) {
                     origin_total_export_val / sum(origin_total_export_val, na.rm = TRUE)
                   ) / (
                     world_total_export_val / sum(world_total_export_val, na.rm = TRUE)
-                  ),
-                  rca = round(rca, 3)
+                  )
                 ) %>%
                 select(
                   year,
@@ -493,16 +484,14 @@ getdata <- function(origin, dest, year, classification, write) {
               
               rm(world_world_year, origin_world_year)
               
-              names(countries_list) <-
-                c("top_importer", "top_importer_code")
+              names(countries_list) <- c("top_importer", "top_importer_code")
               
               origin_dest_year <- origin_dest_year %>%
                 mutate(top_importer_code = substr(top_importer, 3, 5)) %>%
                 select(-top_importer) %>%
                 left_join(countries_list, by = "top_importer_code")
               
-              names(countries_list) <-
-                c("top_exporter", "top_exporter_code")
+              names(countries_list) <- c("top_exporter", "top_exporter_code")
               
               origin_dest_year <- origin_dest_year %>%
                 mutate(top_exporter_code = substr(top_exporter, 3, 5)) %>%

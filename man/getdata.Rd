@@ -26,8 +26,5 @@ Downloads and processes the data from the API
 # What does Andorra export? (2015, HS92 4 characters)
 getdata("and", "all", 2015)
 
-# What does Andorra export? (2015, SITC rev2 4 characters)
-getdata("and", "all", 2015, 2)
-
 }
 \keyword{functions}

@@ -2,7 +2,7 @@
 [![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.5-green.svg)](https://cran.r-project.org/web/packages/oec/)
 [![d3plus](https://img.shields.io/badge/D3plus-1.9.8-green.svg)](https://github.com/alexandersimoes/d3plus)
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/observatory-economic-complexity/oec-r.svg?branch=master)](https://travis-ci.org/observatory-economic-complexity/oec-r)
+[![Build Status](https://travis-ci.org/pachamaltese/oec-r.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)

@@ -4,15 +4,13 @@ Title: Observatory of Economic Complexity API Wrapper and Utility Program
 Version: 2.5.3
 Date: 2018-01-14
 Authors@R: c(
-  person("Mauricio", "Vargas S.", role = c("aut", "cre"), email = "oec@media.mit.edu"),
-  person("Cesar", "Hidalgo", role = c("aut"), comment  = "original OEC idea"),
-  person("Alexander", "Simoes", role = c("aut"), comment  = "original OEC idea"),
+  person("Mauricio", "Vargas", role = c("aut", "cre", "cph"), email = "oec@media.mit.edu"),
   person("Manuel", "Aristaran", role = c("ctb")),
   person("Pablo", "Paladino", role = c("ctb")),
   person("Gabriela", "Perez", role = c("ctb")),
-  person("UN Comtrade", role = c("dtc")),
-  person("MIT Media Lab", role = c("dtc")),
-  person(family = "Datawheel", role = c("fnd","cph"))
+  person(family = "UN Comtrade", role = c("dtc")),
+  person(family = "MIT Media Lab", role = c("dtc")),
+  person(family = "Datawheel", role = c("fnd"))
   )
 Maintainer: Mauricio Vargas S. <oec@media.mit.edu>
 URL: http://atlas.media.mit.edu/en/
@@ -21,14 +19,13 @@ Description: Access The Observatory of Economic Complexity API from R to downloa
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
-    R (>= 2.10)
+  R (>= 3.2)
 Imports:
-    magrittr,
-    dplyr,
-    jsonlite,
-    readr,
-    servr
+  magrittr,
+  dplyr,
+  jsonlite,
+  readr
 Suggests:
-    knitr
+  knitr
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr

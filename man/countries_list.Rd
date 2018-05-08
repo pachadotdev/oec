@@ -3,7 +3,7 @@
 \title{Countries list}
 \docType{data}
 \description{
-A reference to know the country codes to be able to download and import data (e.g. "chl" stands for "Chile" in the OEC's API)
+A reference to know the country codes to be able to download and import data (e.g. \code{chl} stands for "Chile" in the OEC's API)
 }
 \usage{countries_list}
 \format{

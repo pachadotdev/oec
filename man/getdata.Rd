@@ -4,27 +4,30 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(origin, dest, year, classification, write)
+getdata(origin, destination, year, classification, write, wrapper)
 }
 \arguments{
-\item{origin}{Country code of origin (e.g. "chl" for Chile)}
+\item{origin}{ISO code for country of origin (e.g. "chl" for Chile). Run \code{countries_list} in case of doubt.}
 
-\item{dest}{Country code of destination (e.g. "chn" for China)}
+\item{destination}{ISO code for country of destination (e.g. "chn" for China). Run \code{countries_list} in case of doubt.}
 
 \item{year}{The OEC's API ranges from 1962 to 2016}
 
-\item{classification}{Trade classification that can be "1" (HS92 4 characters since year 1995), "2" (SITC rev.2 4 characters since year 1962) or "3" (HS92 6 characters since year 1995)}
+\item{classification}{Trade classification that can be \code{1} (HS92 4 characters since year 1995), 
+\code{2} (SITC rev.2 4 characters since year 1962) or 
+\code{3} (HS92 6 characters since year 1995). By default set to \code{1}.}
 
-\item{write}{Write to user's filespace (by default set to "F")}
+\item{write}{Write to user's filespace (by default set to \code{FALSE})}
+
+\item{wrapper}{Argument used by \code{getdata_interval} (by default set to \code{FALSE})}
 }
 \description{
 Downloads and processes the data from the API
 }
 \examples{
-# Run countries_list to display the full list of countries
-
-# What does Andorra export? (2015, HS92 4 characters)
-getdata("and", "all", 2015)
+# Run `countries_list` to display the full list of countries
+# What does Chile export to Peru?  year 1962 - classification SITC rev2 4 characters
+getdata("chl", "per", 1962, 2)
 
 }
 \keyword{functions}

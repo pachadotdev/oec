@@ -3,7 +3,7 @@
 \title{HS92 products}
 \docType{data}
 \description{
-This file is used to create the visualizations and match product codes to product names and groups.
+Provides a detail of HS92 codes meaning.
 }
 \usage{hs92}
 \format{

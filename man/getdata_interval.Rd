@@ -2,15 +2,15 @@
 % Please edit documentation in R/getdata_interval.R
 \name{getdata_interval}
 \alias{getdata_interval}
-\title{Convenient wrapper for \code{getdata}}
+\title{Convenient wrapper for getdata}
 \usage{
 getdata_interval(origin, destination, initial_year, final_year, classification,
   interval, write)
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. "chl" for Chile). Run \code{countries_list} in case of doubt.}
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Run \code{countries_list} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. "chn" for China). Run \code{countries_list} in case of doubt.}
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Run \code{countries_list} in case of doubt.}
 
 \item{initial_year}{The OEC's API ranges from 1962 to 2016. This needs to be lower than `final_year`.}
 
@@ -25,12 +25,14 @@ getdata_interval(origin, destination, initial_year, final_year, classification,
 \item{write}{Write to user's filespace (by default set to \code{FALSE})}
 }
 \description{
-Convenient wrapper for \code{getdata}
+Convenient wrapper for getdata
 }
 \examples{
+\dontrun{
 # Run `countries_list` to display the full list of countries
-# What does Chile export to Peru? years 1962 and 1963 - classification SITC rev2 4 characters
-getdata_interval("chl", "per", 1962, 1963, 2)
+# What does Chile export to Peru? years 2000 to 2015 - classification HS92 6 characters
+getdata_interval("chl", "chn", 2000, 2015, 3)
+}
 
 }
 \keyword{functions}

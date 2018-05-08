@@ -7,9 +7,9 @@
 getdata(origin, destination, year, classification, write, wrapper)
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. "chl" for Chile). Run \code{countries_list} in case of doubt.}
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Run \code{countries_list} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. "chn" for China). Run \code{countries_list} in case of doubt.}
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Run \code{countries_list} in case of doubt.}
 
 \item{year}{The OEC's API ranges from 1962 to 2016}
 
@@ -25,9 +25,11 @@ getdata(origin, destination, year, classification, write, wrapper)
 Downloads and processes the data from the API
 }
 \examples{
+\dontrun{
 # Run `countries_list` to display the full list of countries
-# What does Chile export to Peru?  year 1962 - classification SITC rev2 4 characters
-getdata("chl", "per", 1962, 2)
+# What does Chile export to China?  year 2015 - classification HS92 6 characters
+getdata("chl", "chn", 2015, 3)
+}
 
 }
 \keyword{functions}

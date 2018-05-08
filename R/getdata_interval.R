@@ -1,7 +1,7 @@
-#' Convenient wrapper for \code{getdata}
+#' Convenient wrapper for getdata
 #' @export
-#' @param origin ISO code for country of origin (e.g. "chl" for Chile). Run \code{countries_list} in case of doubt.
-#' @param destination ISO code for country of destination (e.g. "chn" for China). Run \code{countries_list} in case of doubt.
+#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Run \code{countries_list} in case of doubt.
+#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Run \code{countries_list} in case of doubt.
 #' @param initial_year The OEC's API ranges from 1962 to 2016. This needs to be lower than `final_year`.
 #' @param final_year The OEC's API ranges from 1962 to 2016. This needs to be greater than `initial_year`.
 #' @param classification Trade classification that can be \code{1} (HS92 4 characters since year 1995), 
@@ -10,10 +10,12 @@
 #' @param interval is an optional parameter to define the distance between years (by default set to 1)
 #' @param write Write to user's filespace (by default set to \code{FALSE})
 #' @examples
+#' \dontrun{
 #' # Run `countries_list` to display the full list of countries
-#' # What does Chile export to Peru? years 1962 and 1963 - classification SITC rev2 4 characters
-#' getdata_interval("chl", "per", 1962, 1963, 2)
-#'
+#' # What does Chile export to Peru? years 2000 to 2015 - classification HS92 6 characters
+#' getdata_interval("chl", "chn", 2000, 2015, 3)
+#' }
+#' 
 #' @keywords functions
 
 getdata_interval <- function(origin, destination, initial_year, final_year, classification, interval, write) {

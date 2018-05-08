@@ -1,7 +1,7 @@
 #' Downloads and processes the data from the API
 #' @export
-#' @param origin ISO code for country of origin (e.g. "chl" for Chile). Run \code{countries_list} in case of doubt.
-#' @param destination ISO code for country of destination (e.g. "chn" for China). Run \code{countries_list} in case of doubt.
+#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Run \code{countries_list} in case of doubt.
+#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Run \code{countries_list} in case of doubt.
 #' @param year The OEC's API ranges from 1962 to 2016
 #' @param classification Trade classification that can be \code{1} (HS92 4 characters since year 1995), 
 #'     \code{2} (SITC rev.2 4 characters since year 1962) or 
@@ -9,9 +9,11 @@
 #' @param write Write to user's filespace (by default set to \code{FALSE})
 #' @param wrapper Argument used by \code{getdata_interval} (by default set to \code{FALSE})
 #' @examples
+#' \dontrun{
 #' # Run `countries_list` to display the full list of countries
-#' # What does Chile export to Peru?  year 1962 - classification SITC rev2 4 characters
-#' getdata("chl", "per", 1962, 2)
+#' # What does Chile export to China?  year 2015 - classification HS92 6 characters
+#' getdata("chl", "chn", 2015, 3)
+#' }
 #' 
 #' @keywords functions
 

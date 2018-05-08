@@ -1,7 +1,7 @@
 Package: oec
 Type: Package
 Title: Observatory of Economic Complexity API Wrapper and Utility Program
-Version: 2.6.4
+Version: 2.6.6
 Date: 2018-06-08
 Authors@R: c(
   person("Mauricio", "Vargas", role = c("aut", "cre", "cph"), email = "oec@media.mit.edu"),
@@ -13,7 +13,7 @@ Authors@R: c(
   person(family = "Datawheel", role = c("fnd"))
   )
 Maintainer: Mauricio Vargas <oec@media.mit.edu>
-URL: http://atlas.media.mit.edu/en/
+URL: https://CRAN.R-project.org/package=oec
 BugReports: https://github.com/pachamaltese/oec-r/issues
 Description: Access The Observatory of Economic Complexity API from R to download international trade data.
 License: MIT + file LICENSE
@@ -28,7 +28,4 @@ Imports:
   curl,
   jsonlite,
   readr
-Suggests:
-  knitr
 RoxygenNote: 6.0.1
-VignetteBuilder: knitr

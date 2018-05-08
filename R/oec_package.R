@@ -6,6 +6,7 @@
 #'     everything left_join bind_rows rename
 #' @importFrom readr write_csv
 #' @importFrom purrr map_df
+#' @importFrom curl curl new_handle handle_setheaders
 #' @importFrom jsonlite fromJSON write_json
 #' @importFrom rlang sym syms quo
 #' @name oec-exports

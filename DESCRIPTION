@@ -25,6 +25,7 @@ Imports:
   magrittr,
   dplyr,
   purrr,
+  curl,
   jsonlite,
   readr
 Suggests:

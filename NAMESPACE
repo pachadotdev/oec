@@ -2,6 +2,9 @@
 
 export(getdata)
 export(getdata_interval)
+importFrom(curl,curl)
+importFrom(curl,handle_setheaders)
+importFrom(curl,new_handle)
 importFrom(dplyr,as_tibble)
 importFrom(dplyr,bind_rows)
 importFrom(dplyr,contains)

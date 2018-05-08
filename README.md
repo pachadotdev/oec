@@ -6,7 +6,7 @@
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 
-# OEC R Package
+# OEC API wrapper and utility program R Package
 
 `oec` is an [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) API wrapper and utility program. Since v1.0 its available on [CRAN](https://cran.r-project.org/web/packages/oec/index.html).
 
@@ -16,7 +16,7 @@ This package is released under MIT License.
 
 ## The MIT License
 
-Copyright (c) 2016, Datawheel
+Copyright (c) 2016, Mauricio "Pachá" Vargas
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

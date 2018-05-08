@@ -2,7 +2,7 @@ Package: oec
 Type: Package
 Title: Observatory of Economic Complexity API Wrapper and Utility Program
 Version: 2.5.4
-Date: 2018-06-07
+Date: 2018-06-08
 Authors@R: c(
   person("Mauricio", "Vargas", role = c("aut", "cre", "cph"), email = "oec@media.mit.edu"),
   person("Manuel", "Aristaran", role = c("ctb")),

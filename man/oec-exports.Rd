@@ -10,3 +10,4 @@ oec exported operators and S3 methods
 The following functions are imported and then re-exported
 from the oec package to avoid listing Depends of oec
 }
+\keyword{internal}

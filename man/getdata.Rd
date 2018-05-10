@@ -4,32 +4,48 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(origin, destination, year, classification, write, wrapper)
+getdata(origin, destination, year, classification, wrapper)
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Run \code{countries_list} in case of doubt.}
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). 
+Run \code{country_codes} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Run \code{countries_list} in case of doubt.}
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). 
+Run \code{country_codes} in case of doubt.}
 
 \item{year}{The OEC's API ranges from 1962 to 2016}
 
-\item{classification}{Trade classification that can be \code{1} (HS92 4 characters since year 1995), 
-\code{2} (SITC rev.2 4 characters since year 1962) or 
-\code{3} (HS92 6 characters since year 1995). By default set to \code{1}.}
+\item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92}, 
+\code{hs96}, \code{hs02} or \code{hs07}). By default set to \code{sitc}.}
 
-\item{write}{Write to user's filespace (by default set to \code{FALSE})}
-
-\item{wrapper}{Argument used by \code{getdata_interval} (by default set to \code{FALSE})}
+\item{wrapper}{Argument used by \code{getdata_batch}. By default set to \code{FALSE}.}
 }
 \description{
-Downloads and processes the data from the API
+Returns a tibble containing imports, exports and relevant metrics 
+    (e.g. exports growth w/r to last year) as the result of different API calls and  data transforming. 
+    The API returns data for different trade classifications: 
+    (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); 
+    (v) HS07 (2007-2016).
 }
 \examples{
 \dontrun{
-# Run `countries_list` to display the full list of countries
-# What does Chile export to China?  year 2015 - classification HS92 6 characters
-getdata("chl", "chn", 2015, 3)
-}
+# The next examples can take more than 5 seconds to compute, and specially for large economies so 
+# these are just shown without evaluation according to CRAN rules
 
+# Run `country_codes` to display the full table of countries
+
+# What does Chile export to China?  
+# year 2015 - SITC (4 characters)
+getdata("chl", "chn", 2015)
+# or with explicit parameter
+getdata("chl", "chn", 2015, "sitc")
+
+# What does Chile export to China?  
+# year 2015 - HS07 (4 and 6 characters)
+getdata("chl", "chn", 2015, "hs07")
+}
+}
+\seealso{
+\code{getdata_batch}
 }
 \keyword{functions}

@@ -12,7 +12,7 @@
 #' @examples
 #' \dontrun{
 #' # Run `countries_list` to display the full list of countries
-#' # What does Chile export to Peru? years 2000 to 2015 - classification HS92 6 characters
+#' # What does Chile export to China? years 2000 to 2015 - classification HS92 6 characters
 #' getdata_interval("chl", "chn", 2000, 2015, 3)
 #' }
 #' 
@@ -61,21 +61,18 @@ getdata_interval <- function(origin, destination, initial_year, final_year, clas
       getdata_interval_all <- list(1)
       for (t in 1:length(years)) {
         message(paste("Year", years[[t]], "..."))
-        if (classification == "hs92" &
-            characters == 4) {
-          classification <- 1
+        if (classification == "hs92" & characters == 4) {
+          getdata_interval_all[[t]] <- getdata(origin, destination, years[[t]], classification = 1, 
+                                               write = FALSE, wrapper = TRUE)
         }
-        if (classification == "sitc" &
-            characters == 4) {
-          classification <- 2
+        if (classification == "sitc" & characters == 4) {
+          getdata_interval_all[[t]] <- getdata(origin, destination, years[[t]], classification = 2, 
+                                               write = FALSE, wrapper = TRUE)
         }
-        if (classification == "hs92" &
-            characters == 6) {
-          classification <- 3
+        if (classification == "hs92" & characters == 6) {
+          getdata_interval_all[[t]] <- getdata(origin, destination, years[[t]], classification = 3, 
+                                               write = FALSE, wrapper = TRUE)
         }
-        
-        getdata_interval_all[[t]] <- getdata(origin, destination, years[[t]], classification, 
-                                 write = FALSE, wrapper = TRUE)
       }
       
       getdata_interval_all <- map_df(getdata_interval_all, .f = bind_rows)

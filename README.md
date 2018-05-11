@@ -1,7 +1,7 @@
 [![Github-version](https://img.shields.io/badge/Github%20version-2.5.2-green.svg)](https://github.com/observatory-economic-complexity/oec-r)
 [![CRAN-version](https://img.shields.io/badge/CRAN%20version-2.5-green.svg)](https://cran.r-project.org/web/packages/oec/)
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/pachamaltese/oec-r.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r)
+[![Build Status](https://travis-ci.org/pachamaltese/oec-r.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r-package)
 [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)

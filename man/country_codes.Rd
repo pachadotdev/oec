@@ -1,11 +1,11 @@
-\name{countries_list}
-\alias{countries_list}
-\title{Countries list}
+\name{country_codes}
+\alias{country_codes}
+\title{Country codes}
 \docType{data}
 \description{
-A reference to know the country codes to be able to download and import data (e.g. \code{chl} stands for "Chile" in the OEC's API)
+A reference to know the country codes to be able to download and import data (e.g. \code{chl} stands for "Chile" in the OEC's API). This follows the standard ISO-3 country codes.
 }
-\usage{countries_list}
+\usage{country_codes}
 \format{
   A data frame with 263 observations on the following 2 variables.
   \describe{
@@ -14,6 +14,6 @@ A reference to know the country codes to be able to download and import data (e.
   }
 }
 \examples{
-countries_list
+country_codes
 }
 \keyword{datasets}

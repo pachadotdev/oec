@@ -3,4 +3,3 @@
 .travis.yml
 appveyor.yml
 README.md
-getdata_batch.R

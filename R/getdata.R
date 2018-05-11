@@ -1,6 +1,7 @@
 #' Downloads and processes the data from the API
 #' @description Returns a tibble containing imports, exports and relevant metrics 
-#'     (e.g. exports growth w/r to last year) as the result of different API calls and  data transforming. 
+#'     (e.g. exports growth w/r to last year) for a  year as the result of different API calls 
+#'     and data transforming. 
 #'     The API returns data for different trade classifications: 
 #'     (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); 
 #'     (v) HS07 (2007-2016).
@@ -8,10 +9,10 @@
 #' Run \code{country_codes} in case of doubt.
 #' @param destination ISO code for country of destination (e.g. \code{chn} for China). 
 #' Run \code{country_codes} in case of doubt.
-#' @param year The OEC's API ranges from 1962 to 2016
+#' @param year Numeric value greater or equal to 1962 and lower of equal to 2016.
 #' @param classification Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92}, 
-#'     \code{hs96}, \code{hs02} or \code{hs07}). By default set to \code{sitc}.
-#' @param wrapper Argument used by \code{getdata_batch}. By default set to \code{FALSE}.
+#'     \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.
+#' @param wrapper Argument used by \code{getdata_batch}. Default set to \code{FALSE}.
 #' @seealso \code{getdata_batch}
 #' @export
 #' @examples

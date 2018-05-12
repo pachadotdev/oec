@@ -65,7 +65,7 @@ getdata_batch <- function(origin, destination, initial_year, final_year, classif
   data <- list(1)
   for (t in 1:length(years)) {
     data[[t]] <- 
-      getdata(origin, destination, years[t], classification, wrapper = TRUE)
+      getdata(origin, destination, year = years[t], classification, wrapper = TRUE)
   }
   
   data <- map_df(data, .f = bind_rows)

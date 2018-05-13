@@ -56,7 +56,9 @@ getdata <- function(origin, destination, year, classification, wrapper) {
   
   # Output and package data -------------------------------------------------
   output <- paste(origin, destination, year, classification, sep = "_")
-  stopifnot(is_true(!exists(output)))
+  if (wrapper == FALSE) {
+    stopifnot(is_true(!exists(output)))
+  }
   
   if (classification == "sitc") { product_codes <- oec::sitc }
   if (classification == "hs92") { product_codes <- oec::hs92 }

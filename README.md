@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-OEC R package - API wrapper and utility program
-===============================================
+OEC R package - API wrapper and utility program <img src="http://pacha.hk/oec-r-package/observatory.svg" width=150 align="right" alt="sticker"/>
+================================================================================================================================================
 
-[![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/pachamaltese/oec-r-package.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r-package) [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
+[![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/pachamaltese/oec-r-package.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r-package) [![Build status](https://ci.appveyor.com/api/projects/status/5xvlffxy8ro4wc34?svg=true)](https://ci.appveyor.com/project/pachamaltese/oec) [![cran checks](https://cranchecks.info/badges/summary/oec)](https://cran.r-project.org/web/checks/check_results_oec.html) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 
 `oec` provides an easy way to obtain data from the [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/) by accessing its API.
 
@@ -21,13 +21,10 @@ devtools::install_github("pachamaltese/oec-r-package")
 Usage
 -----
 
-Run pkgdown from the package directory each time you release your package:
+Please read the vignette for a detailed user guide.
 
 ``` r
 library(oec)
-
-# Inspect official country codes
-country_codes
 
 # What does Chile export to China?  
 # year 2015 - SITC (4 characters)

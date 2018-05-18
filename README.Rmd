@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# OEC R package - API wrapper and utility program <img src="http://pacha.hk/oec-r-package/observatory.svg" width=150 align="right" alt="sticker"/>
+# OEC R package <img src="http://pacha.hk/oec-r-package/observatory.png" width=150 align="right" alt="sticker"/>
 
 [![mitlicense](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/pachamaltese/oec-r-package.svg?branch=master)](https://travis-ci.org/pachamaltese/oec-r-package)

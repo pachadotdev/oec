@@ -6,7 +6,7 @@
 #'     everything left_join bind_rows rename matches
 #' @importFrom stringr str_sub str_length
 #' @importFrom purrr map_df
-#' @importFrom curl curl new_handle handle_setheaders
+#' @importFrom curl curl new_handle handle_setheaders has_internet
 #' @importFrom jsonlite fromJSON
 #' @importFrom rlang sym syms is_true
 #' @name oec-exports

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mauricio Vargas S." />
 
-<meta name="date" content="2018-05-18" />
+<meta name="date" content="2018-05-19" />
 
 <title>Introduction to oec</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to oec</h1>
 <h4 class="author"><em>Mauricio Vargas S.</em></h4>
-<h4 class="date"><em>2018-05-18</em></h4>
+<h4 class="date"><em>2018-05-19</em></h4>
 
 
 
@@ -194,24 +194,24 @@ sitc
 <div id="correct-input" class="section level3">
 <h3>Correct input</h3>
 <p>Chile-China bilateral trade data in 2015 (SITC):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2015 - SITC (4 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>)
 <span class="co">#&gt; Processing 2015 data. The classification is sitc.</span></code></pre></div>
 <p>For the other classifications is similar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="st">&quot;hs92&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2015 - HS96 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="st">&quot;hs96&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2015 - HS02 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="st">&quot;hs02&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2015</span>, <span class="st">&quot;hs07&quot;</span>)</code></pre></div>
 <p>The output is always an object named <code>origin_destination_year_classification</code> (<code>chl_chn_2015_sitc</code> for the first example):</p>
@@ -244,7 +244,7 @@ sitc
 <div id="incorrect-input" class="section level3">
 <h3>Incorrect input</h3>
 <p>Chile-China bilateral trade data in 2000 (HS02):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2000 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2000</span>, <span class="st">&quot;hs02&quot;</span>)</code></pre></div>
 <p>The problem here is that HS02 data is only available since 2002.</p>
@@ -252,12 +252,12 @@ sitc
 <div id="special-cases" class="section level3">
 <h3>Special cases</h3>
 <p>Andorra-France bilateral trade data in 2015 (SITC):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra export to France?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - SITC (4 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;and&quot;</span>, <span class="st">&quot;fra&quot;</span>, <span class="dv">2015</span>)</code></pre></div>
 <p>The problem here is that Andorra did not report SITC data in 2015 but they reported HS07 data.</p>
 <p>Andorra-France bilateral trade data in 2015 (HS07):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra export to France?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;and&quot;</span>, <span class="st">&quot;fra&quot;</span>, <span class="dv">2015</span>, <span class="st">&quot;hs07&quot;</span>)</code></pre></div>
 <p>The OEC has some situations as the example above. Not all countries report their trade numbers using all trade classifications.</p>
@@ -268,11 +268,11 @@ sitc
 <p>This function downloads data for a sequence of years and needs (at least) a pairs of countries and a valid initial and final year according to the trade classification.</p>
 <p>The API returns data for different trade classifications: (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); (v) HS07 (2007-2016).</p>
 <p>Chile-China bilateral trade data in 2010-2015 (SITC):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - SITC (4 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)</code></pre></div>
 <p>The above example is equivalent to:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - SITC (4 characters)</span>
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>)
 <span class="kw">getdata</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2011</span>)
@@ -284,23 +284,23 @@ sitc
 data &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(chl_chn_2010_sitc, chl_chn_2011_sitc, chl_chn_2012_sitc,
                   chl_chn_2013_sitc, chl_chn_2014_sitc, chl_chn_2015_sitc)</code></pre></div>
 <p>For the other classifications is similar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - HS92 (4 and 6 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="st">&quot;hs92&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - HS96 (4 and 6 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="st">&quot;hs96&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - HS02 (4 and 6 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="st">&quot;hs02&quot;</span>)
 
-<span class="co"># What does Chile export to China?  </span>
+<span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010 to 2015 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="st">&quot;hs07&quot;</span>)</code></pre></div>
 <p>Chile-China bilateral trade data in 2010, 2012 and 2014 (HS07):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile export to China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># years 2010, 2012 and 2014 - HS07 (4 and 6 characters)</span>
 <span class="kw">getdata_batch</span>(<span class="st">&quot;chl&quot;</span>, <span class="st">&quot;chn&quot;</span>, <span class="dv">2010</span>, <span class="dv">2014</span>, <span class="st">&quot;hs07&quot;</span>, <span class="dv">2</span>)</code></pre></div>
 </div>

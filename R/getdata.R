@@ -36,6 +36,8 @@
 
 getdata <- function(origin, destination, year, classification, wrapper) {
   # Checks ------------------------------------------------------------------
+  stopifnot(curl::has_internet())
+  
   stopifnot(all(c(origin, destination) %in% oec::country_codes$country_code))
   stopifnot(year %in% 1962:2016)
   

@@ -66,26 +66,26 @@ The API returns data for different trade classifications:
 
 Chile-China bilateral trade data in 2015 (SITC):
 ```{r getdata}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - SITC (4 characters)
 getdata("chl", "chn", 2015)
 ```
 
 For the other classifications is similar:
 ```{r getdata2, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - HS07 (4 and 6 characters)
 getdata("chl", "chn", 2015, "hs92")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - HS96 (4 and 6 characters)
 getdata("chl", "chn", 2015, "hs96")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - HS02 (4 and 6 characters)
 getdata("chl", "chn", 2015, "hs02")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - HS07 (4 and 6 characters)
 getdata("chl", "chn", 2015, "hs07")
 ```
@@ -99,7 +99,7 @@ chl_chn_2015_sitc
 
 Chile-China bilateral trade data in 2000 (HS02):
 ```{r getdata4, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2000 - HS07 (4 and 6 characters)
 getdata("chl", "chn", 2000, "hs02")
 ```
@@ -109,7 +109,7 @@ The problem here is that HS02 data is only available since 2002.
 
 Andorra-France bilateral trade data in 2015 (SITC):
 ```{r getdata5, eval = F}
-# What does Andorra export to France?  
+# What does Andorra exchange with France?  
 # year 2015 - SITC (4 characters)
 getdata("and", "fra", 2015)
 ```
@@ -117,7 +117,7 @@ The problem here is that Andorra did not report SITC data in 2015 but they repor
 
 Andorra-France bilateral trade data in 2015 (HS07):
 ```{r getdata6, eval = F}
-# What does Andorra export to France?  
+# What does Andorra exchange with France?  
 # year 2015 - HS07 (4 and 6 characters)
 getdata("and", "fra", 2015, "hs07")
 ```
@@ -134,14 +134,14 @@ The API returns data for different trade classifications:
     
 Chile-China bilateral trade data in 2010-2015 (SITC):
 ```{r getdata_batch, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - SITC (4 characters)
 getdata_batch("chl", "chn", 2010, 2015)
 ```
 
 The above example is equivalent to:
 ```{r getdata_batch2, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - SITC (4 characters)
 getdata("chl", "chn", 2010)
 getdata("chl", "chn", 2011)
@@ -156,26 +156,26 @@ data <- bind_rows(chl_chn_2010_sitc, chl_chn_2011_sitc, chl_chn_2012_sitc,
 
 For the other classifications is similar:
 ```{r getdata_batch3, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - HS92 (4 and 6 characters)
 getdata_batch("chl", "chn", 2010, 2015, "hs92")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - HS96 (4 and 6 characters)
 getdata_batch("chl", "chn", 2010, 2015, "hs96")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - HS02 (4 and 6 characters)
 getdata_batch("chl", "chn", 2010, 2015, "hs02")
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - HS07 (4 and 6 characters)
 getdata_batch("chl", "chn", 2010, 2015, "hs07")
 ```
 
 Chile-China bilateral trade data in 2010, 2012 and 2014 (HS07):
 ```{r getdata_batch4, eval = F}
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010, 2012 and 2014 - HS07 (4 and 6 characters)
 getdata_batch("chl", "chn", 2010, 2014, "hs07", 2)
 ```

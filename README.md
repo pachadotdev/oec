@@ -26,11 +26,11 @@ Please read the vignette for a detailed user guide.
 ``` r
 library(oec)
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # year 2015 - SITC (4 characters)
 getdata("chl", "chn", 2015)
 
-# What does Chile export to China?  
+# What does Chile exchange with China?  
 # years 2010 to 2015 - SITC (4 characters)
 getdata_batch("chl", "chn", 2010, 2015)
 ```

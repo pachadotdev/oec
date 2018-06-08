@@ -5,3 +5,4 @@ appveyor.yml
 README.md
 README.Rmd
 docs/
+^codecov\.yml$

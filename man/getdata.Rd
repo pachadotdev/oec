@@ -4,7 +4,7 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(origin, destination, year, classification, wrapper)
+getdata(origin, destination, years, classification)
 }
 \arguments{
 \item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). 
@@ -13,12 +13,10 @@ Run \code{country_codes} in case of doubt.}
 \item{destination}{ISO code for country of destination (e.g. \code{chn} for China). 
 Run \code{country_codes} in case of doubt.}
 
-\item{year}{Numeric value greater or equal to 1962 and lower of equal to 2016.}
+\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016.}
 
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92}, 
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}
-
-\item{wrapper}{Argument used by \code{getdata_batch}. Default set to \code{FALSE}.}
 }
 \description{
 Returns a tibble containing imports, exports and relevant metrics 
@@ -42,8 +40,8 @@ getdata("chl", "chn", 2015)
 getdata("chl", "chn", 2015, "sitc")
 
 # What does Chile export to China?  
-# year 2015 - HS07 (4 and 6 characters)
-getdata("chl", "chn", 2015, "hs07")
+# years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
+getdata("chl", "chn", c(2010, 2011, 2015), "hs07")
 }
 }
 \seealso{

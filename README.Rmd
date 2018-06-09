@@ -34,6 +34,10 @@ install.packages("oec")
 devtools::install_github("pachamaltese/oec-r-package")
 ```
 
+## What does the package do?
+
+![Data diagram](data-diagram.svg)
+
 ## Usage
 
 Please read the vignette for a detailed user guide.
@@ -77,24 +81,24 @@ origin_destination <-  mutate(origin_destination,
     trade_exchange_val = !!sym("export_val") + !!sym("import_val"))
 ```
 
-- [x] In case you might ignore it, and in case it could be useful, there's a countrycode package. *the OEC uses an ISO modification, so countrycode would complicate this*
+- [x] In case you might ignore it, and in case it could be useful, there's a countrycode package. *the OEC uses an ISO modification, so I'm not so sure about it*
 
 ### Data
 
 - [x] Where do the data files in data come from? Why are they pre-prepared, are you sure they won't be updated? *everything in data/ comes from atlas.media.mit.edu and corresponds to unaltered trade codes (i.e HS96 was created not to touch HS92 created in 1992, HS02 was an update to HS96, etc so
 these tables do not change*
-- [ ] You could keep their data processing in data-raw. *ok, I'll add a vignette to explain the changes*
+- [x] You could keep their data processing in data-raw. *ok, I'll add a vignette to explain the changes*
 
 ### Documentation
 
 - [x] Please add the URL to the data source.
 - [x] Are you allowed to use the logo in your README? *yes, I' m a part of the original team*
-- [ ] A flowchart of what processing your package does might be useful to explain the added value of using the package and to explain what has been preprocessed or not (what's being downloaded vs what's in data/).
+- [x] A flowchart of what processing your package does might be useful to explain the added value of using the package and to explain what has been preprocessed or not (what's being downloaded vs what's in data/).
 - [x] In the README when mentioning the vignette have a link to the pkgdown website.
-- [ ] Please add @return fields to the documentation of the functions.
-- [ ] A vignette with an actual use case, and visualizations, would be nice (or an extension of the existing vignette).
-- [ ] Please explain what the data is e.g. SITC or add an external link.
-- [ ] Because some chunks of the vignette are unevaluated without a pre-generated output, I can't understand what the "problem" is. You could pre-generate the output.
+- [x] Please add @return fields to the documentation of the functions.
+- [x] A vignette with an actual use case, and visualizations, would be nice (or an extension of the existing vignette).
+- [x] Please explain what the data is e.g. SITC or add an external link.
+- [x] Because some chunks of the vignette are unevaluated without a pre-generated output, I can't understand what the "problem" is. You could pre-generate the output.
 
 ### Misc
 

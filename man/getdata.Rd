@@ -18,13 +18,13 @@ Run \code{country_codes} in case of doubt.}
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92}, 
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}
 }
+\value{
+A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics 
+    such as exports growth w/r to last year) between an \code{origin} and \code{destination} country.
+}
 \description{
-Returns a tibble containing imports, exports and relevant metrics 
-    (e.g. exports growth w/r to last year) for a  year as the result of different API calls 
-    and data transforming. 
-    The API returns data for different trade classifications: 
-    (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); 
-    (v) HS07 (2007-2016).
+This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
+    and data transforming.
 }
 \examples{
 \dontrun{
@@ -43,8 +43,5 @@ getdata("chl", "chn", 2015, "sitc")
 # years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
 getdata("chl", "chn", c(2010, 2011, 2015), "hs07")
 }
-}
-\seealso{
-\code{getdata_batch}
 }
 \keyword{functions}

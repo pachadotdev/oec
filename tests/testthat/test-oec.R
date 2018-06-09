@@ -1,7 +1,7 @@
 context("test-oec.R")
 
 test_that("getdata connects to the API and returns a valid tibble after valid input", {
-  if (curl::has_internet()) {
+  if (has_internet()) {
     # Bilateral trade Chile-Argentina (SITC, 1980)
     test_data <- getdata("chl", "arg", 1980)
     expect_is(test_data, "tbl")
@@ -13,8 +13,9 @@ test_that("getdata connects to the API and returns a valid tibble after valid in
 })
 
 test_that("getdata connects to the API and returns an error after invalid input", {
-  if (curl::has_internet()) {
-    expect_error(getdata("chl", "arg", 1980, "hs92"), "all\\(years >= 1992\\) is not TRUE")
+  if (has_internet()) {
+    expect_error(getdata("chl", "arg", 1980, "hs92"), 
+                 "Provided that you requested HS92 data please verify that the data you are requesting is contained within the years 1992-2016.")
   } else {
     skip("No internet connection")
   }

@@ -43,7 +43,7 @@ devtools::install_github("pachamaltese/oec-r-package")
 
 ## Usage
 
-This package features a full pkgdown site [here](http.//pacha.hk/oec/docs/). Please read it.
+This package features a full pkgdown site [here](http://pacha.hk/oec/). Please read it.
 
 ## Code of conduct
 

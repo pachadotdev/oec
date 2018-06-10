@@ -22,7 +22,7 @@ Using the oec R package is all about efficiency, without this package you could 
 
 This is what the package does:
 
-![Data diagram](http://pacha.hk/oec/data-diagram.svg)
+![](http://pacha.hk/oec/data-diagram.svg)
 
 # Package data
 

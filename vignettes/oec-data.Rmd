@@ -1,5 +1,5 @@
 ---
-title: "Oec Data"
+title: "Oec data"
 author: "Mauricio Vargas S."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -16,9 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+This vignette shows the exact steps I performed to obtain and transform both the country and product codes this package provides.
+
 # Country codes
 
-```{r countries}
+```{r countries, message = FALSE}
 library(dplyr)
 library(purrr)
 library(jsonlite)

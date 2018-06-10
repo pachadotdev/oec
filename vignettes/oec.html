@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mauricio Vargas S." />
 
-<meta name="date" content="2018-06-08" />
+<meta name="date" content="2018-06-10" />
 
 <title>Introduction to oec</title>
 
@@ -70,12 +70,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to oec</h1>
 <h4 class="author"><em>Mauricio Vargas S.</em></h4>
-<h4 class="date"><em>2018-06-08</em></h4>
+<h4 class="date"><em>2018-06-10</em></h4>
 
 
 
-<p>The <a href="https://atlas.media.mit.edu/en/">OEC</a> is the world’s leading visualization engine for international trade data.</p>
+<p>The <a href="https://atlas.media.mit.edu/en/">Observatory of Economic Complexity</a> is the world’s leading visualization engine for international trade data. <code>oec</code> provides an easy way to obtain data from the OEC by accessing its API.</p>
 <p>Using the oec R package is all about efficiency, without this package you could obtain the same data from the API at the expense of using additional time and effort for the same results. As an API wrapper and utility program this package makes data obtaining faster and easier for you.</p>
+<p>This is what the package does:</p>
+<div class="figure">
+<img src="data:text/html; charset=utf-8,%3C%21DOCTYPE%20html%3E%0A%3Chtml%3E%0A%20%20%3Chead%3E%0A%20%20%20%20%3Cmeta%20http%2Dequiv%3D%22Content%2Dtype%22%20content%3D%22text%2Fhtml%3B%20charset%3Dutf%2D8%22%3E%0A%20%20%20%20%3Cmeta%20http%2Dequiv%3D%22Content%2DSecurity%2DPolicy%22%20content%3D%22default%2Dsrc%20%27none%27%3B%20style%2Dsrc%20%27unsafe%2Dinline%27%3B%20img%2Dsrc%20data%3A%3B%20connect%2Dsrc%20%27self%27%22%3E%0A%20%20%20%20%3Ctitle%3EPage%20not%20found%20%26middot%3B%20GitHub%20Pages%3C%2Ftitle%3E%0A%20%20%20%20%3Cstyle%20type%3D%22text%2Fcss%22%20media%3D%22screen%22%3E%0A%20%20%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20background%2Dcolor%3A%20%23f1f1f1%3B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20font%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%2Econtainer%20%7B%20margin%3A%2050px%20auto%2040px%20auto%3B%20width%3A%20600px%3B%20text%2Dalign%3A%20center%3B%20%7D%0A%0A%20%20%20%20%20%20a%20%7B%20color%3A%20%234183c4%3B%20text%2Ddecoration%3A%20none%3B%20%7D%0A%20%20%20%20%20%20a%3Ahover%20%7B%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%20%20%20%20%20%20h1%20%7B%20width%3A%20800px%3B%20position%3Arelative%3B%20left%3A%20%2D100px%3B%20letter%2Dspacing%3A%20%2D1px%3B%20line%2Dheight%3A%2060px%3B%20font%2Dsize%3A%2060px%3B%20font%2Dweight%3A%20100%3B%20margin%3A%200px%200%2050px%200%3B%20text%2Dshadow%3A%200%201px%200%20%23fff%3B%20%7D%0A%20%20%20%20%20%20p%20%7B%20color%3A%20rgba%280%2C%200%2C%200%2C%200%2E5%29%3B%20margin%3A%2020px%200%3B%20line%2Dheight%3A%201%2E6%3B%20%7D%0A%0A%20%20%20%20%20%20ul%20%7B%20list%2Dstyle%3A%20none%3B%20margin%3A%2025px%200%3B%20padding%3A%200%3B%20%7D%0A%20%20%20%20%20%20li%20%7B%20display%3A%20table%2Dcell%3B%20font%2Dweight%3A%20bold%3B%20width%3A%201%25%3B%20%7D%0A%0A%20%20%20%20%20%20%2Elogo%20%7B%20display%3A%20inline%2Dblock%3B%20margin%2Dtop%3A%2035px%3B%20%7D%0A%20%20%20%20%20%20%2Elogo%2Dimg%2D2x%20%7B%20display%3A%20none%3B%20%7D%0A%20%20%20%20%20%20%40media%0A%20%20%20%20%20%20only%20screen%20and%20%28%2Dwebkit%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20min%2D%2Dmoz%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%2Do%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%202%2F1%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20min%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min%2Dresolution%3A%20192dpi%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min%2Dresolution%3A%202dppx%29%20%7B%0A%20%20%20%20%20%20%20%20%2Elogo%2Dimg%2D1x%20%7B%20display%3A%20none%3B%20%7D%0A%20%20%20%20%20%20%20%20%2Elogo%2Dimg%2D2x%20%7B%20display%3A%20inline%2Dblock%3B%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%23suggestions%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%2035px%3B%0A%20%20%20%20%20%20%20%20color%3A%20%23ccc%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%23suggestions%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23666666%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20200%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2014px%3B%0A%20%20%20%20%20%20%20%20margin%3A%200%2010px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fhead%3E%0A%20%20%3Cbody%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22container%22%3E%0A%0A%20%20%20%20%20%20%3Ch1%3E404%3C%2Fh1%3E%0A%20%20%20%20%20%20%3Cp%3E%3Cstrong%3EFile%20not%20found%3C%2Fstrong%3E%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20The%20site%20configured%20at%20this%20address%20does%20not%0A%20%20%20%20%20%20%20%20contain%20the%20requested%20file%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20If%20this%20is%20your%20site%2C%20make%20sure%20that%20the%20filename%20case%20matches%20the%20URL%2E%3Cbr%3E%0A%20%20%20%20%20%20%20%20For%20root%20URLs%20%28like%20%3Ccode%3Ehttp%3A%2F%2Fexample%2Ecom%2F%3C%2Fcode%3E%29%20you%20must%20provide%20an%0A%20%20%20%20%20%20%20%20%3Ccode%3Eindex%2Ehtml%3C%2Fcode%3E%20file%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Fhelp%2Egithub%2Ecom%2Fpages%2F%22%3ERead%20the%20full%20documentation%3C%2Fa%3E%0A%20%20%20%20%20%20%20%20for%20more%20information%20about%20using%20%3Cstrong%3EGitHub%20Pages%3C%2Fstrong%3E%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22suggestions%22%3E%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Fstatus%2Egithub%2Ecom%22%3EGitHub%20Status%3C%2Fa%3E%20%26mdash%3B%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Ftwitter%2Ecom%2Fgithubstatus%22%3E%40githubstatus%3C%2Fa%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%0A%20%20%20%20%20%20%3Ca%20href%3D%22%2F%22%20class%3D%22logo%20logo%2Dimg%2D1x%22%3E%0A%20%20%20%20%20%20%20%20%3Cimg%20width%3D%2232%22%20height%3D%2232%22%20title%3D%22%22%20alt%3D%22%22%20src%3D%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMTZCRDY3REIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMTZCRDY3RUIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiI%2BIDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdCQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjdDQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8%2BIDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY%2BIDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8%2BSM9MCAAAA%2B5JREFUeNrEV11Ik1EY3s4%2BddOp29Q5b0opCgKFsoKoi5Kg6CIhuwi6zLJLoYLopq4qsKKgi4i6CYIoU%2Fq5iDAKs6syoS76IRWtyJ%2Bp7cdt7sf1PGOD%2Be0c3dygAx%2F67ZzzPM95%2F877GYdHRg3ZjMXFxepQKNS6sLCwJxqNNuFpiMfjVs4ZjUa%2FpmmjeD6VlJS8NpvNT4QQ7mxwjSsJiEQim%2F1%2B%2F9lgMHgIr5ohuxG1WCw9Vqv1clFR0dCqBODElV6v90ogEDjGdYbVjXhpaendioqK07CIR7ZAqE49PT09BPL2PMgTByQGsYiZlQD4uMXtdr%2BJxWINhgINYhGT2MsKgMrm2dnZXgRXhaHAg5jEJodUAHxux4LudHJE9RdEdA%2Bi3Juz7bGHe4mhE9FNrgwBCLirMFV9Okh5eflFh8PR5nK5nDabrR2BNJlKO0T35%2BLi4n4%2B%2FJ%2B%2FJQCxhmu5h3uJoXNHPbmWZAHMshWB8l5%2FipqammaAf0zPDDx1ONV3vurdidqwAQL%2BpEc8sLcAe1CCvQ3YHxIW8Pl85xSWNC1hADDIv0rIE%2Fo4J0k3kww4xSlwIhcq3EFFOm7KN%2FhUGOQkt0CFa5WpNJlMvxBEz%2FIVQAxg%2FZRZl9wiHA63yDYieM7DnLP5CiAGsC7I5sgtYKJGWe2A8seFqgFJrJjEPY1Cn3pJ8%2F9W1e5VWsFDTEmFrBcoDhZJEQkXuhICMyKpjhahqN21hRYATKfUOlDmkygrR4o4C0VOLGJKrOITKB4jijzdXygBKixyC5TDQdnk%2FPz8qRw6oOWGlsTKGOQW6OH6FBWsyePxdOXLTgxiyebILZCjz%2BGLgMIKnXNzc49YMlcRdHXcSwxFVgTInQhC9G33UhNoJLuqq6t345p9y3eUy8OTk5PjAHuI9uo4b07FBaOhsu0A4Unc%2BT1TU1Nj3KsSSE5yJ65jqF2DDd8QqWYmAZrIM2VlZTdnZmb6AbpdV9V6ec9znf5Q7HjYumdRE0JOp3MjitO4SFa%2BcZz8Umqe3TCbSLvdfkR%2FkWDdNQl5InuTcysOcpFT35ZrbBxx4p3JAHlZVVW1D%2F634VRt%2BFvLBgK%2Fv5LV9WS%2B10xMTEwtRw7XvqOL%2Be2Q8V3AYIOIAXQ26%2FheWVnZCVfcyKHg2CBgTpmPmjYM8l24GyaUHyaIh7XwfR9ErE8qHoDfn2LTNAVC0HX6MFcBIP8Bi%2B6F6cdW%2FDICkANRfx99fEYFQ7Nph5i%2FuQiA214gno7K%2BguhaiKg9gC62%2BM8eR7XsBsYJ4ilam60Fb7r7uAj8wFyuwM1oIOWgfmDy6RXEEQzJMPe23DXrVS7rtyD3Df8z%2FFPgAEAzWU5Ku59ZAUAAAAASUVORK5CYII%3D%22%3E%0A%20%20%20%20%20%20%3C%2Fa%3E%0A%0A%20%20%20%20%20%20%3Ca%20href%3D%22%2F%22%20class%3D%22logo%20logo%2Dimg%2D2x%22%3E%0A%20%20%20%20%20%20%20%20%3Cimg%20width%3D%2232%22%20height%3D%2232%22%20title%3D%22%22%20alt%3D%22%22%20src%3D%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEQUM1QkUxRUI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEQUM1QkUxRkI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiI%2BIDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdGQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjgwQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8%2BIDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY%2BIDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8%2BhfPRaQAAB6lJREFUeNrsW2mME2UYbodtt%2B2222u35QheoCCYGBQligIJgkZJNPzgigoaTEj8AdFEMfADfyABkgWiiWcieK4S%2BQOiHAYUj2hMNKgYlEujpNttu9vttbvdw%2BchU1K6M535pt3ubHCSyezR%2Bb73eb73%2Bt7vrfXsufOW4bz6%2Bvom9%2Fb23ovnNNw34b5xYGAgODg46Mbt4mesVmsWd1qSpHhdXd2fuP%2FAfcput5%2FA88xwymcdBgLqenp6FuRyuWV4zu%2Fv759QyWBjxoz5t76%2B%2Fgun09mK5xFyakoCAPSaTCazNpvNPoYVbh6O1YKGRF0u13sNDQ27QMzfpiAAKj0lnU6%2FgBVfAZW2WWpwwVzy0IgP3G73FpjI6REhAGA9qVRqA1b9mVoBVyIC2tDi8Xg24%2BdUzQiAbS%2Fs7Ox8G2o%2F3mKCC%2BZw0efzPQEfcVjYrARX3dbV1bUtHo8fMgt42f%2BMp0yUTVQbdWsAHVsikdiHkHaPxcQXQufXgUBgMRxme9U0AAxfH4vFvjM7eF6UkbJS5qoQwEQGA57Ac5JllFyUVZZ5ckUEgMVxsK2jlSYzI%2BQXJsiyjzNEAJyJAzb%2FKQa41jJKL8pODMQiTEAymXw5n8%2FP0IjD3bh7Rgog59aanxiIRTVvV%2Foj0tnHca%2FWMrVwODwB3raTGxzkBg%2FgnZVapFV62Wy2n5AO70HM%2F5wbJ0QnXyQSaVPDIuNZzY0V3ntHMwxiwHA0Gj2Np7ecIBDgaDAYXKCQJM1DhrgJ3nhulcPbl8j4NmHe46X%2Fg60fwbz3aewjkqFQaAqebWU1AOqyQwt8Id6qEHMc97zu7u7FGGsn7HAiVuosVw7P35C1nccdgSCxop1dHeZswmfHMnxBo6ZTk%2BjN8dl%2FvF7vWofDsa%2BMLN9oEUBMxOb3%2B1eoEsBVw6Zmua49r8YmhAKDiEPcMwBsxMiqQ%2BixzPFxZyqRpXARG%2FYOr1ObFJ0gUskXBbamcR1OKmMUvDxHRAu8%2FLmY3jFLMUpFqz9HxG65smYJdyKyECOxDiEAe%2Fp1gjF2oonivZAsxVgl2daa4EQWCW6J55qFAFFZiJWYLxNQy2qOSUzGRsyXCUDIeliwAHEO4WSlWQBRFoZakXcKmCXmyXAKs0Ve9vl8q42WoIYpJU4hV3hKcNs8m9gl7p%2FxQ73eF5kB4j5mNrWmTJRNwAzqiV1CxjVTZCIkEq%2BZ1bZFZSN2CenmVAFVy4Plz8xKAGWjjAKFk6lCBMDR%2FMJjLLMSQNm43xAiQKTaA%2B9%2FwewhDjL%2BJVI1kkTSSOTcKbMTwPqESAot6dn6Fr1gHwVJju6IRuyiByPuUUBAg5DGkAgBmxlvdgIEK9gDkohdY%2FBJo4CAG0R8miRSsGABkgVQs4KXu098IgUXSSRsFAoKZiVAVDY2WUiiPTjYRi41KwGisrGsLtlsth8Fiwnz2fBkQvWfRtlE3iF2yW63%2FyCacXZ1dW02GwGyTFaRd4idJnCKHRaCxYRHoG5LTKT6SyiToP1fJHbmAYPYRR0UnZQtMnA6s0zg%2BGZBlt0Gdo7EPHgpE3Q6nZ8YyLhc8Xj8MJh%2FaKTAY%2B5FPAKHLE7RdwuYJZmNwzyCMkBCYyKROJBMJl9B%2FPXXCjjmCmDOVzH3fiPpObEWGqoKe4EBl8v1hlqsdLvd23mkxHM9pc9kMpmno9HoeTii7ewbHEZPPx1ztLS1tV3AnGuMjiNjvbQFuHw6zDo5By7dTPAQNBgMLrRarTkSls1mnwT7uwp9virx9QzbW%2FHuV%2Fj5d%2Fb%2B6jniKlllP8lkeONJDk%2Bdq9GsQTnC4fB1heO0K47Hwe7WdDr9nAKgXwOBwHI%2BC45Htj1d6sd429TUNEcmUdc%2BPRaLHcvn87dXW4ugzdsaGxufL94NFv9zi1J7GVbhlvb2dnaJ3SVrxfc%2Bn2%2BNTsZ7%2FH7%2FMr3g5XdSIHyJSH1PZ%2B7fToyl2%2BErqilgZ4NaLYB9goVGaHjR93Hv1ZrU4XDsFT20kH3PObzbWk0CgG1jacVIUnAQb9F%2BVexyLMzkpcLv0IJV7AHQIOCAUYHx7v5qgScmYHtTqSAyZLEJTK22Bie4iq3xsqpm4SAf9Hq9a2DnJ4uLK3SEULcdRvp3i3zHySqpficxEdsQc1NrlYXXvR%2BO7qASSezXB%2Bh1SuUomgg9LL8BUoV4749EIolKh%2BEiqWmqVEZlDgHks2pxHw7xTqUQw9J5NcAXOK10AGIoZ6Zli6JY6Z1Q461KoZ4NiKLHarW%2BKDsxlDUPHZ5zPQZqUVDPJsTqb5n9malbpAh8C2XXDLl62%2BWZIDFRUlNVOiwencnNU3aQEkL%2BcDMSoLvZo2fQB7AJssNAuFuvorlDVVkkg2I87%2Bjo2K2QAVphDrfyViK5VqtO34OkaxXCp%2B7drdDBCAdubm6eidX%2B2WwqT5komwh4YQLk%2BH4aE93h8Xg2gvHekQZOGSgLZTLyDTLJ4Lx9%2FKZWKBSainT4Iy3FqQBfnUZR42PKQFksBr9QKVXCPusD3OiA%2FRkQ5kP8qV%2FJl1WywAp%2F6%2BdcmPM2zL1UrUahe4JqfnWWKXIul3uUbfP8njAFLW1OFr3gdFtZ72cNH%2BPtQT7%2FbrW%2BNXqJAHh0y9V8%2FU%2FA1U7AfwIMAD7mS3pCbuWJAAAAAElFTkSuQmCC%22%3E%0A%20%20%20%20%20%20%3C%2Fa%3E%0A%20%20%20%20%3C%2Fdiv%3E%0A%20%20%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A" alt="Data diagram" />
+<p class="caption">Data diagram</p>
+</div>
 <div id="package-data" class="section level1">
 <h1>Package data</h1>
 <div id="country-codes" class="section level2">
@@ -84,20 +89,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(oec)
 
 country_codes
-<span class="co">#&gt; # A tibble: 263 x 2</span>
-<span class="co">#&gt;    country_code country            </span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;              </span>
-<span class="co">#&gt;  1 afg          Afghanistan        </span>
-<span class="co">#&gt;  2 alb          Albania            </span>
-<span class="co">#&gt;  3 dza          Algeria            </span>
-<span class="co">#&gt;  4 asm          American Samoa     </span>
-<span class="co">#&gt;  5 and          Andorra            </span>
-<span class="co">#&gt;  6 ago          Angola             </span>
-<span class="co">#&gt;  7 aia          Anguilla           </span>
-<span class="co">#&gt;  8 ata          Antarctica         </span>
-<span class="co">#&gt;  9 atg          Antigua and Barbuda</span>
-<span class="co">#&gt; 10 xxa          Areas              </span>
-<span class="co">#&gt; # ... with 253 more rows</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 264 x 2</span>
+<span class="co">#&gt;    country             country_code</span>
+<span class="co">#&gt;    &lt;chr&gt;               &lt;chr&gt;       </span>
+<span class="co">#&gt;  1 Afghanistan         afg         </span>
+<span class="co">#&gt;  2 Albania             alb         </span>
+<span class="co">#&gt;  3 Algeria             dza         </span>
+<span class="co">#&gt;  4 American Samoa      asm         </span>
+<span class="co">#&gt;  5 Andorra             and         </span>
+<span class="co">#&gt;  6 Angola              ago         </span>
+<span class="co">#&gt;  7 Anguilla            aia         </span>
+<span class="co">#&gt;  8 Antarctica          ata         </span>
+<span class="co">#&gt;  9 Antigua and Barbuda atg         </span>
+<span class="co">#&gt; 10 Areas               xxa         </span>
+<span class="co">#&gt; # ... with 254 more rows</span></code></pre></div>
 </div>
 <div id="product-codes" class="section level2">
 <h2>Product codes</h2>
@@ -170,20 +175,20 @@ hs07
 <span class="co">#&gt; # ... with 6,266 more rows</span>
 
 sitc
-<span class="co">#&gt; # A tibble: 6,472 x 5</span>
-<span class="co">#&gt;    product_name                         id     group_name   group_id color</span>
-<span class="co">#&gt;    &lt;chr&gt;                                &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Live horses, asses, mules and hinni… 0101   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  2 Live horses/asses/mules/hinnies: pu… 010110 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  3 Live horses/asses/mules/hinnies oth… 010190 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  4 Live bovine animals.                 0102   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  5 Live bovine animals: pure-bred bree… 010210 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  6 Live bovine animals other than pure… 010290 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  7 Live swine.                          0103   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  8 Live swine: pure-bred breeding anim… 010310 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  9 Live swine other than pure-bred bre… 010391 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; 10 Live swine other than pure-bred bre… 010392 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; # ... with 6,462 more rows</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 988 x 5</span>
+<span class="co">#&gt;    product_name                            id    group_name group_id color</span>
+<span class="co">#&gt;    &lt;chr&gt;                                   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;</span>
+<span class="co">#&gt;  1 Initiating Devices                      5722  Machinery  10       #17B…</span>
+<span class="co">#&gt;  2 Polymerization Ion Exchangers           5838  Machinery  10       #17B…</span>
+<span class="co">#&gt;  3 Rubber tires, tire cases, inner and fl… 6250  Machinery  10       #17B…</span>
+<span class="co">#&gt;  4 Car Tires                               6251  Machinery  10       #17B…</span>
+<span class="co">#&gt;  5 Other articles of rubber                6280  Machinery  10       #17B…</span>
+<span class="co">#&gt;  6 Transmission Belts                      6282  Machinery  10       #17B…</span>
+<span class="co">#&gt;  7 Miscellaneous Rubber                    6289  Machinery  10       #17B…</span>
+<span class="co">#&gt;  8 Casks and Barrels                       6352  Machinery  10       #17B…</span>
+<span class="co">#&gt;  9 Coated Paper                            6418  Machinery  10       #17B…</span>
+<span class="co">#&gt; 10 Bonded Fiber Fabrics                    6572  Machinery  10       #17B…</span>
+<span class="co">#&gt; # ... with 978 more rows</span></code></pre></div>
 <p>Each product belongs to a group and the color column (given after groups) allows to use the same palettes at the official website.</p>
 </div>
 </div>

@@ -21,22 +21,21 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Downloads and processes the data from the API — getdata" />
 
-<meta property="og:description" content="Returns a tibble containing imports, exports and relevant metrics 
-    (e.g. exports growth w/r to last year) for a  year as the result of different API calls 
-    and data transforming. 
-    The API returns data for different trade classifications: 
-    (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); 
-    (v) HS07 (2007-2016)." />
+<meta property="og:description" content="This function accesses atlas.media.mit.eduand perfoms different API calls to return tidy data.
+    and data transforming." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -63,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.7.11</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.1</span>
       </span>
     </div>
 
@@ -80,6 +79,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/oec-data.html">Oec Data</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -104,16 +115,12 @@
 
     <div class="ref-description">
     
-    <p>Returns a tibble containing imports, exports and relevant metrics 
-    (e.g. exports growth w/r to last year) for a  year as the result of different API calls 
-    and data transforming. 
-    The API returns data for different trade classifications: 
-    (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); 
-    (v) HS07 (2007-2016).</p>
+    <p>This function accesses <code>atlas.media.mit.edu</code>and perfoms different API calls to return tidy data.
+    and data transforming.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getdata</span>(<span class='no'>origin</span>, <span class='no'>destination</span>, <span class='no'>year</span>, <span class='no'>classification</span>, <span class='no'>wrapper</span>)</pre>
+    <pre class="usage"><span class='fu'>getdata</span>(<span class='no'>origin</span>, <span class='no'>destination</span>, <span class='no'>years</span>, <span class='no'>classification</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,7 +136,7 @@ Run <code>country_codes</code> in case of doubt.</p></td>
 Run <code>country_codes</code> in case of doubt.</p></td>
     </tr>
     <tr>
-      <th>year</th>
+      <th>years</th>
       <td><p>Numeric value greater or equal to 1962 and lower of equal to 2016.</p></td>
     </tr>
     <tr>
@@ -137,15 +144,12 @@ Run <code>country_codes</code> in case of doubt.</p></td>
       <td><p>Any of the available trade classifications in the OEC (<code>sitc</code>, <code>hs92</code>, 
 <code>hs96</code>, <code>hs02</code> or <code>hs07</code>). Default set to <code>sitc</code>.</p></td>
     </tr>
-    <tr>
-      <th>wrapper</th>
-      <td><p>Argument used by <code>getdata_batch</code>. Default set to <code>FALSE</code>.</p></td>
-    </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <div class='dont-index'><p><code>getdata_batch</code></p></div>
+    <p>A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics 
+    such as exports growth w/r to last year) between an <code>origin</code> and <code>destination</code> country.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -162,8 +166,8 @@ Run <code>country_codes</code> in case of doubt.</p></td>
 <span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"sitc"</span>)
 
 <span class='co'># What does Chile export to China?  </span>
-<span class='co'># year 2015 - HS07 (4 and 6 characters)</span>
-<span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"hs07"</span>)
+<span class='co'># years 2010, 2011 and 2015 - HS07 (4 and 6 characters)</span>
+<span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fu'>c</span>(<span class='fl'>2010</span>, <span class='fl'>2011</span>, <span class='fl'>2015</span>), <span class='st'>"hs07"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -171,7 +175,7 @@ Run <code>country_codes</code> in case of doubt.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#value">Value</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

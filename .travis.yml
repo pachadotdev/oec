@@ -1,11 +1,20 @@
 language: r
-cache: packages
+env: _R_CHECK_CRAN_INCOMING_=FALSE
 sudo: required
+
 r:
   - release
+
 repos:
   CRAN: https://cloud.r-project.org
+
 r_packages:
   - covr
+  - devtools
+
+r_github_packages:
+  - pachamaltese/oec
+
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr);codecov()'
+  

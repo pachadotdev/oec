@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![cran checks](https://cranchecks.info/badges/summary/oec)](https://cran.r-project.org/web/checks/check_results_oec.html)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/oec)](http://cran.rstudio.com/web/packages/oec/index.html)
-[![Coverage status](https://codecov.io/gh/observatory-economic-complexity/oec-r-package/branch/master/graph/badge.svg)](https://codecov.io/github/observatory-economic-complexity/oec-r-package?branch=master)
+[![Coverage status](https://codecov.io/gh/pachamaltese/oec/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/oec?branch=master)
 [![](https://badges.ropensci.org/217_status.svg)](https://github.com/ropensci/onboarding/issues/217)
 
 The [Observatory of Economic Complexity](https://atlas.media.mit.edu/en/) is the world's leading visualization engine for international trade data. `oec` provides an easy way to obtain data from the OEC by accessing its API.
@@ -44,6 +44,11 @@ devtools::install_github("pachamaltese/oec-r-package")
 ## Usage
 
 This package features a full pkgdown site [here](http.//pacha.hk/oec/docs/). Please read it.
+
+## Code of conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
 
 ## The MIT License
 

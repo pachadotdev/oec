@@ -55,7 +55,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/oec-data.html">Oec Data</a>
+      <a href="../articles/oec-data.html">Oec data</a>
     </li>
   </ul>
 </li>
@@ -88,7 +88,7 @@
 <p>Using the oec R package is all about efficiency, without this package you could obtain the same data from the API at the expense of using additional time and effort for the same results. As an API wrapper and utility program this package makes data obtaining faster and easier for you.</p>
 <p>This is what the package does:</p>
 <div class="figure">
-<img src="http://pacha.hk/oec/data-diagram.svg" alt="Data diagram"><p class="caption">Data diagram</p>
+<img src="http://pacha.hk/oec/data-diagram.svg">
 </div>
 <div id="package-data" class="section level1">
 <h1 class="hasAnchor">
@@ -310,7 +310,9 @@ sitc
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
 <span class="co"># year 2000 - HS02 (4 and 6 characters)</span>
 <span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"chl"</span>, <span class="st">"chn"</span>, <span class="dv">2000</span>, <span class="st">"hs02"</span>)
-<span class="co">#&gt; Error in getdata("chl", "chn", 2000, "hs02"): Provided that you requested HS02 data please verify that the data you are requesting is contained within the years 2002-2016.</span></code></pre></div>
+<span class="co">#&gt; Error in getdata("chl", "chn", 2000, "hs02"): Provided that you requested HS02 data please</span>
+<span class="co">#&gt;            verify that the data you are requesting is</span>
+<span class="co">#&gt;            contained within the years 2002-2016.</span></code></pre></div>
 <p>The problem here is that HS02 data is only available since 2002.</p>
 </div>
 <div id="special-cases" class="section level3">

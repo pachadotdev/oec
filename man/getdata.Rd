@@ -20,11 +20,11 @@ Run \code{country_codes} in case of doubt.}
 }
 \value{
 A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics 
-    such as exports growth w/r to last year) between an \code{origin} and \code{destination} country.
+such as exports growth w/r to last year) between an \code{origin} and \code{destination} country.
 }
 \description{
 This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
-    and data transforming.
+and data transforming.
 }
 \examples{
 \dontrun{
@@ -33,13 +33,13 @@ This function accesses \code{atlas.media.mit.edu}and perfoms different API calls
 
 # Run `country_codes` to display the full table of countries
 
-# What does Chile export to China?  
+# What does Chile export to China?
 # year 2015 - SITC (4 characters)
 getdata("chl", "chn", 2015)
 # or with explicit parameter
 getdata("chl", "chn", 2015, "sitc")
 
-# What does Chile export to China?  
+# What does Chile export to China?
 # years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
 getdata("chl", "chn", c(2010, 2011, 2015), "hs07")
 }

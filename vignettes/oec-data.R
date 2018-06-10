@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----countries-----------------------------------------------------------
+## ----countries, message = FALSE------------------------------------------
 library(dplyr)
 library(purrr)
 library(jsonlite)

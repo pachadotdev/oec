@@ -33,7 +33,7 @@
 <meta property="og:title" content="Downloads and processes the data from the API — getdata" />
 
 <meta property="og:description" content="This function accesses atlas.media.mit.eduand perfoms different API calls to return tidy data.
-    and data transforming." />
+and data transforming." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -88,7 +88,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/oec-data.html">Oec Data</a>
+      <a href="../articles/oec-data.html">Oec data</a>
     </li>
   </ul>
 </li>
@@ -116,7 +116,7 @@
     <div class="ref-description">
     
     <p>This function accesses <code>atlas.media.mit.edu</code>and perfoms different API calls to return tidy data.
-    and data transforming.</p>
+and data transforming.</p>
     
     </div>
 
@@ -149,7 +149,7 @@ Run <code>country_codes</code> in case of doubt.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics 
-    such as exports growth w/r to last year) between an <code>origin</code> and <code>destination</code> country.</p>
+such as exports growth w/r to last year) between an <code>origin</code> and <code>destination</code> country.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -159,13 +159,13 @@ Run <code>country_codes</code> in case of doubt.</p></td>
 
 <span class='co'># Run `country_codes` to display the full table of countries</span>
 
-<span class='co'># What does Chile export to China?  </span>
+<span class='co'># What does Chile export to China?</span>
 <span class='co'># year 2015 - SITC (4 characters)</span>
 <span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>)
 <span class='co'># or with explicit parameter</span>
 <span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"sitc"</span>)
 
-<span class='co'># What does Chile export to China?  </span>
+<span class='co'># What does Chile export to China?</span>
 <span class='co'># years 2010, 2011 and 2015 - HS07 (4 and 6 characters)</span>
 <span class='fu'>getdata</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fu'>c</span>(<span class='fl'>2010</span>, <span class='fl'>2011</span>, <span class='fl'>2015</span>), <span class='st'>"hs07"</span>)
 <span class='co'># }</span></pre>

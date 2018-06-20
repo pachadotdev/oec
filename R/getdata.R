@@ -138,8 +138,14 @@ getdata <- function(origin, destination, years, classification) {
       origin,
       destination
     )
-
-    data <- flatten_df(fromJSON(url))
+    
+    data <- try(
+      flatten_df(fromJSON(url))
+    )
+    
+    if(!is.data.frame(data)) {
+      stop("It wasn't possible to obtain data. Either your computer or MIT server has a connection problem at the moment.")
+    }
 
     return(data)
   }
@@ -203,7 +209,13 @@ getdata <- function(origin, destination, years, classification) {
       "all"
     )
 
-    data <- flatten_df(fromJSON(url))
+    data <- try(
+      flatten_df(fromJSON(url))
+    )
+    
+    if(!is.data.frame(data)) {
+      stop("It wasn't possible to obtain data. Either your computer or MIT server has a connection problem at the moment.")
+    }
 
     return(data)
   }
@@ -229,7 +241,13 @@ getdata <- function(origin, destination, years, classification) {
       "all"
     )
 
-    data <- flatten_df(fromJSON(url))
+    data <- try(
+      flatten_df(fromJSON(url))
+    )
+    
+    if(!is.data.frame(data)) {
+      stop("It wasn't possible to obtain data. Either your computer or MIT server has a connection problem at the moment.")
+    }
 
     return(data)
   }

@@ -209,7 +209,7 @@ getdata <- function(origin, destination, years, classification) {
       origin,
       "all"
     )
-    
+
     data <- try(
       flatten_df(fromJSON(url))
     )
@@ -218,7 +218,7 @@ getdata <- function(origin, destination, years, classification) {
       stop("It wasn't possible to obtain data.
            Either your computer or MIT server has a connection problem at the moment.")
     }
-    
+
     return(data)
   }
   
@@ -242,7 +242,7 @@ getdata <- function(origin, destination, years, classification) {
       "all",
       "all"
     )
-    
+
     data <- try(
       flatten_df(fromJSON(url))
     )
@@ -251,7 +251,7 @@ getdata <- function(origin, destination, years, classification) {
       stop("It wasn't possible to obtain data.
            Either your computer or MIT server has a connection problem at the moment.")
     }
-    
+
     return(data)
   }
   

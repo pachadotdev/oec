@@ -38,7 +38,7 @@
 #' }
 #' @keywords functions
 
-getdata <- function(origin, destination, years, classification) {
+get_data <- function(origin, destination, years, classification) {
   # Checks ------------------------------------------------------------------
   if (has_internet() != TRUE) {
     stop("No internet connection.")
@@ -160,8 +160,8 @@ getdata <- function(origin, destination, years, classification) {
 
   # compute trade balance
   origin_destination <- mutate(origin_destination,
-    trade_exchange_val = !!sym("export_val") +
-      !!sym("import_val")
+    trade_exchange_val = export_val +
+      import_val
   )
 
   # convert ids to standard hs/sitc
@@ -186,15 +186,15 @@ getdata <- function(origin, destination, years, classification) {
 
   # include countries (official names)
   origin_destination <- origin_destination %>%
-    rename(destination_id = !!sym("dest_id")) %>%
+    rename(destination_id = dest_id) %>%
     mutate(
-      origin_id = str_sub(!!sym("origin_id"), 3),
-      destination_id = str_sub(!!sym("destination_id"), 3)
+      origin_id = str_sub(origin_id, 3),
+      destination_id = str_sub(destination_id, 3)
     ) %>%
     left_join(country_codes, by = c("origin_id" = "country_code")) %>%
-    rename(origin_name = !!sym("country")) %>%
+    rename(origin_name = country) %>%
     left_join(country_codes, by = c("destination_id" = "country_code")) %>%
-    rename(destination_name = !!sym("country"))
+    rename(destination_name = country)
 
   # remove RCAs (if applicable, or this will have duplicates,
   # not all queries return RCAs)
@@ -230,8 +230,8 @@ getdata <- function(origin, destination, years, classification) {
       id = !!sym(sprintf("%s_id", classification)),
       id_len = !!sym(sprintf("%s_id_len", classification))
     ) %>%
-    mutate(id = str_sub(!!sym("id"), 3)) %>%
-    select(!!sym("id"), contains("_rca"))
+    mutate(id = str_sub(id, 3)) %>%
+    select(id, contains("_rca"))
 
   # World-world flows -------------------------------------------------------
   read_from_api_ww <- function(t) {
@@ -258,8 +258,8 @@ getdata <- function(origin, destination, years, classification) {
   world_world <- map_df(seq_along(years), read_from_api_ww)
 
   world_world <- rename(world_world,
-    world_total_export_val = !!sym("export_val"),
-    world_total_import_val = !!sym("import_val")
+    world_total_export_val = export_val,
+    world_total_import_val = import_val
   )
 
   # extract ECI and ranks
@@ -270,7 +270,7 @@ getdata <- function(origin, destination, years, classification) {
     ) %>%
     mutate(id = str_sub(!!sym("id"), 3)) %>%
     select(
-      !!sym("id"),
+      id,
       contains("pci"),
       contains("top_")
     )
@@ -280,15 +280,13 @@ getdata <- function(origin, destination, years, classification) {
     left_join(origin_world, by = "id") %>%
     left_join(world_world, by = "id") %>%
     select(
-      !!!syms(c(
-        "year",
-        "origin_id",
-        "destination_id",
-        "origin_name",
-        "destination_name",
-        "id",
-        "id_len"
-      )),
+      year,
+      origin_id,
+      destination_id,
+      origin_name,
+      destination_name,
+      id,
+      id_len,
       contains("export_"),
       contains("import_"),
       everything()
@@ -297,32 +295,30 @@ getdata <- function(origin, destination, years, classification) {
   names(country_codes) <- c("top_importer_code", "top_importer")
 
   origin_destination <- origin_destination %>%
-    rename(top_importer_code = !!sym("top_importer")) %>%
-    mutate(top_importer_code = str_sub(!!sym("top_importer_code"), 3)) %>%
+    rename(top_importer_code = top_importer) %>%
+    mutate(top_importer_code = str_sub(top_importer_code, 3)) %>%
     left_join(country_codes, by = "top_importer_code")
 
   names(country_codes) <- c("top_exporter_code", "top_exporter")
 
   origin_destination <- origin_destination %>%
-    rename(top_exporter_code = !!sym("top_exporter")) %>%
-    mutate(top_exporter_code = str_sub(!!sym("top_exporter_code"), 3)) %>%
+    rename(top_exporter_code = top_exporter) %>%
+    mutate(top_exporter_code = str_sub(top_exporter_code, 3)) %>%
     left_join(country_codes, by = "top_exporter_code")
 
   origin_destination <- origin_destination %>%
     left_join(product_codes, by = "id") %>%
     select(
-      !!!syms(c(
-        "year",
-        "origin_id",
-        "destination_id",
-        "origin_name",
-        "destination_name",
-        "id",
-        "id_len",
-        "product_name",
-        "group_id",
-        "group_name"
-      )),
+      year,
+      origin_id,
+      destination_id,
+      origin_name,
+      destination_name,
+      id,
+      id_len,
+      product_name,
+      group_id,
+      group_name,
       contains("product_"),
       contains("export_"),
       contains("import_"),

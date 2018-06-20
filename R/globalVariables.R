@@ -1,0 +1,20 @@
+globalVariables(c(
+  "year",
+  "origin_id",
+  "destination_id",
+  "origin_name",
+  "destination_name",
+  "id",
+  "id_len",
+  "product_name",
+  "group_id",
+  "group_name",
+  "top_importer_code",
+  "top_exporter_code",
+  "top_importer",
+  "top_exporter",
+  "export_val",
+  "import_val",
+  "dest_id",
+  "country"
+))

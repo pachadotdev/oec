@@ -171,8 +171,8 @@ get_data <- function(origin, destination, years, classification) {
       id_len = !!sym(sprintf("%s_id_len", classification))
     ) %>%
     mutate(
-      id = str_sub(!!sym("id"), 3),
-      id_len = str_length(!!sym("id"))
+      id = str_sub(id, 3),
+      id_len = str_length(id)
     )
 
   # convert country codes to standard iso3

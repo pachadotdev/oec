@@ -4,7 +4,8 @@
 \alias{getdata}
 \title{Downloads and processes the data from the API}
 \usage{
-getdata(origin, destination, years, classification)
+getdata(origin = "all", destination = "all", years = 2000,
+  classification = "sitc")
 }
 \arguments{
 \item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile).
@@ -13,7 +14,7 @@ Run \code{country_codes} in case of doubt.}
 \item{destination}{ISO code for country of destination (e.g. \code{chn} for China).
 Run \code{country_codes} in case of doubt.}
 
-\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016.}
+\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.}
 
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}

@@ -1,11 +1,11 @@
 #' Downloads and processes the data from the API
 #' @description This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
 #' and data transforming.
-#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile).
+#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code(all).
 #' Run \code{country_codes} in case of doubt.
-#' @param destination ISO code for country of destination (e.g. \code{chn} for China).
+#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Default set to \code(all).
 #' Run \code{country_codes} in case of doubt.
-#' @param years Numeric value greater or equal to 1962 and lower of equal to 2016.
+#' @param years Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.
 #' @param classification Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 #' \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.
 #' @return A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics
@@ -38,7 +38,7 @@
 #' }
 #' @keywords functions
 
-getdata <- function(origin, destination, years, classification) {
+getdata <- function(origin = "all", destination = "all", years = 2000, classification = "sitc") {
   # Checks ------------------------------------------------------------------
   if (has_internet() != TRUE) {
     stop("No internet connection.")
@@ -53,10 +53,6 @@ getdata <- function(origin, destination, years, classification) {
   if (all(years %in% 1962:2016) != TRUE) {
     stop("Please verify that you are requesting data
          contained within the years 1962-2016.")
-  }
-
-  if (missing(classification)) {
-    classification <- "sitc"
   }
 
   if (classification %in% c("sitc", "hs92", "hs96", "hs02", "hs07") != TRUE) {
@@ -129,31 +125,46 @@ getdata <- function(origin, destination, years, classification) {
     product_codes <- oec::hs07
   }
 
-  # Origin-destination flows ------------------------------------------------
-  read_from_api_od <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      origin,
-      destination
+  # Function to read from API -----------------------------------------------
+  read_from_api <- function(t, f = "od") {
+    url <- switch (f,
+                   "od" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
+                     classification,
+                     years[t],
+                     origin,
+                     destination
+                   ),
+                   "ow" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/%s/all/show/",
+                     classification,
+                     years[t],
+                     origin
+                   ),
+                   "ww" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/all/all/show/",
+                     classification,
+                     years[t]
+                   )
     )
-
+    
     data <- try(
       flatten_df(fromJSON(url))
     )
-
-    if (!is.data.frame(data)) {
+    
+    if(!is.data.frame(data)) {
       stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
+           Provided this function tests your internet connection it's probably a server problem.
+           Try again later.")
     }
-
+    
     return(data)
   }
+  
+  # Origin-destination flows ------------------------------------------------
+  origin_destination <- map_df(seq_along(years), read_from_api)
 
-  origin_destination <- map_df(seq_along(years), read_from_api_od)
-
-  # No data in API message --------------------------------------------------
+  # no data in API message
   if (nrow(origin_destination) == 0) {
     stop("No data available. Try changing years or trade classification.")
   }
@@ -201,28 +212,7 @@ getdata <- function(origin, destination, years, classification) {
   origin_destination <- select(origin_destination, -matches("rca"))
 
   # Origin-world flows ------------------------------------------------------
-  read_from_api_ow <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      origin,
-      "all"
-    )
-
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
-
-    if (!is.data.frame(data)) {
-      stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
-    }
-
-    return(data)
-  }
-
-  origin_world <- map_df(seq_along(years), read_from_api_ow)
+  origin_world <- map_df(seq_along(years), read_from_api, f = "ow")
 
   # extract RCAs
   origin_world <- origin_world %>%
@@ -234,28 +224,7 @@ getdata <- function(origin, destination, years, classification) {
     select(!!sym("id"), contains("_rca"))
 
   # World-world flows -------------------------------------------------------
-  read_from_api_ww <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      "all",
-      "all"
-    )
-
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
-
-    if (!is.data.frame(data)) {
-      stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
-    }
-
-    return(data)
-  }
-
-  world_world <- map_df(seq_along(years), read_from_api_ww)
+  world_world <- map_df(seq_along(years), read_from_api, f = "ww")
 
   world_world <- rename(world_world,
     world_total_export_val = !!sym("export_val"),

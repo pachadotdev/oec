@@ -15,8 +15,9 @@
 #' everything left_join bind_rows rename matches
 #' @importFrom stringr str_sub str_length
 #' @importFrom curl curl new_handle handle_setheaders has_internet
+#' @importFrom httr GET status_code
 #' @importFrom jsonlite fromJSON
-#' @importFrom rlang sym syms is_true
+#' @importFrom rlang sym syms
 #' @importFrom purrr map_df flatten_df
 #' @export
 #' @examples
@@ -110,38 +111,57 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
                            "hs07" = oec::hs07,
                            "sitc" = oec::sitc
   )
-
+  
+  # Function to repeat API calls if necesary --------------------------------
+  get_resp <- function(url, attempts_left = 5) {
+    stopifnot(attempts_left > 0)
+    
+    resp <- GET(url)
+    
+    # on a successful GET, return the response
+    if (status_code(resp) == 200) {
+      try(
+        flatten_df(fromJSON(resp$url))
+      )
+    } else if (attempts_left == 1) { 
+      # when attempts run out, stop with an error
+      stop("Cannot connect to the MIT API")
+    } else { 
+      # otherwise, sleep a second and try again
+      Sys.sleep(1)
+      get_resp(url, attempts_left - 1)
+    }
+  }
+  
   # Function to read from API -----------------------------------------------
-  read_from_api <- function(t, f = "od") {
-    url <- switch (f,
-                   "od" = sprintf(
+  read_from_api <- function(t, flow = "origin-destination") {
+    url <- switch (flow,
+                   "origin-destination" = sprintf(
                      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
                      classification,
                      years[t],
                      origin,
                      destination
                    ),
-                   "ow" = sprintf(
+                   "origin-world" = sprintf(
                      "https://atlas.media.mit.edu/%s/export/%s/%s/all/show/",
                      classification,
                      years[t],
                      origin
                    ),
-                   "ww" = sprintf(
+                   "world-world" = sprintf(
                      "https://atlas.media.mit.edu/%s/export/%s/all/all/show/",
                      classification,
                      years[t]
                    )
     )
     
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
+    data <- get_resp(url)
     
     if(!is.data.frame(data)) {
       stop("It wasn't possible to obtain data.
            Provided this function tests your internet connection it's probably a server problem.
-           Try again later.")
+           Please try again later.")
     }
     
     return(data)
@@ -198,7 +218,7 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
   origin_destination <- select(origin_destination, -matches("rca"))
 
   # Origin-world flows ------------------------------------------------------
-  origin_world <- map_df(seq_along(years), read_from_api, f = "ow")
+  origin_world <- map_df(seq_along(years), read_from_api, flow = "origin-world")
 
   # extract RCAs
   origin_world <- origin_world %>%
@@ -210,7 +230,7 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
     select(!!sym("id"), contains("_rca"))
 
   # World-world flows -------------------------------------------------------
-  world_world <- map_df(seq_along(years), read_from_api, f = "ww")
+  world_world <- map_df(seq_along(years), read_from_api, flow = "world-world")
 
   world_world <- rename(world_world,
     world_total_export_val = !!sym("export_val"),

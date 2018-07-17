@@ -8,10 +8,10 @@ getdata(origin = "all", destination = "all", years = 2000,
   classification = "sitc")
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile).
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. \code{chn} for China).
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
 \item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.}

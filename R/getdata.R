@@ -1,9 +1,9 @@
 #' Downloads and processes the data from the API
 #' @description This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
 #' and data transforming.
-#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code(all).
+#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code{all}.
 #' Run \code{country_codes} in case of doubt.
-#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Default set to \code(all).
+#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Default set to \code{all}.
 #' Run \code{country_codes} in case of doubt.
 #' @param years Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.
 #' @param classification Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
@@ -105,25 +105,13 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
   )
 
   # Package data ------------------------------------------------------------
-  if (classification == "sitc") {
-    product_codes <- oec::sitc
-  }
-
-  if (classification == "hs92") {
-    product_codes <- oec::hs92
-  }
-
-  if (classification == "hs96") {
-    product_codes <- oec::hs96
-  }
-
-  if (classification == "hs02") {
-    product_codes <- oec::hs02
-  }
-
-  if (classification == "hs07") {
-    product_codes <- oec::hs07
-  }
+  product_codes <- switch (classification,
+    "hs92" = oec::hs92,
+    "hs96" = oec::hs96,
+    "hs02" = oec::hs02,
+    "hs07" = oec::hs07,
+    "sitc" = oec::sitc
+  )
 
   # Function to read from API -----------------------------------------------
   read_from_api <- function(t, f = "od") {

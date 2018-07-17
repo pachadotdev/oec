@@ -4,16 +4,17 @@
 \alias{get_data}
 \title{Downloads and processes the data from the API}
 \usage{
-get_data(origin, destination, years, classification)
+get_data(origin = "all", destination = "all", years = 2000,
+  classification = "sitc")
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile).
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. \code{chn} for China).
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
-\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016.}
+\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.}
 
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}
@@ -35,13 +36,13 @@ and data transforming.
 
 # What does Chile export to China?
 # year 2015 - SITC (4 characters)
-getdata("chl", "chn", 2015)
+get_data("chl", "chn", 2015)
 # or with explicit parameter
-getdata("chl", "chn", 2015, "sitc")
+get_data("chl", "chn", 2015, "sitc")
 
 # What does Chile export to China?
 # years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
-getdata("chl", "chn", c(2010, 2011, 2015), "hs07")
+get_data("chl", "chn", c(2010, 2011, 2015), "hs07")
 }
 }
 \keyword{functions}

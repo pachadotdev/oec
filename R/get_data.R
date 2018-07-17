@@ -1,11 +1,11 @@
 #' Downloads and processes the data from the API
 #' @description This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
 #' and data transforming.
-#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile).
+#' @param origin ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code{all}.
 #' Run \code{country_codes} in case of doubt.
-#' @param destination ISO code for country of destination (e.g. \code{chn} for China).
+#' @param destination ISO code for country of destination (e.g. \code{chn} for China). Default set to \code{all}.
 #' Run \code{country_codes} in case of doubt.
-#' @param years Numeric value greater or equal to 1962 and lower of equal to 2016.
+#' @param years Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.
 #' @param classification Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 #' \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.
 #' @return A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics
@@ -14,10 +14,10 @@
 #' @importFrom dplyr as_tibble select filter mutate contains
 #' everything left_join bind_rows rename matches
 #' @importFrom stringr str_sub str_length
-#' @importFrom curl curl new_handle handle_setheaders has_internet
-#' @importFrom jsonlite fromJSON
-#' @importFrom rlang sym syms is_true
-#' @importFrom purrr map_df flatten_df
+#' @importFrom curl curl has_internet handle_setheaders new_handle
+#' @importFrom httr http_error GET status_code
+#' @importFrom rlang sym syms
+#' @importFrom purrr map_df
 #' @export
 #' @examples
 #' \dontrun{
@@ -28,21 +28,25 @@
 #'
 #' # What does Chile export to China?
 #' # year 2015 - SITC (4 characters)
-#' getdata("chl", "chn", 2015)
+#' get_data("chl", "chn", 2015)
 #' # or with explicit parameter
-#' getdata("chl", "chn", 2015, "sitc")
+#' get_data("chl", "chn", 2015, "sitc")
 #'
 #' # What does Chile export to China?
 #' # years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
-#' getdata("chl", "chn", c(2010, 2011, 2015), "hs07")
+#' get_data("chl", "chn", c(2010, 2011, 2015), "hs07")
 #' }
 #' @keywords functions
 
-get_data <- function(origin, destination, years, classification) {
+get_data <- function(origin = "all", destination = "all", years = 2000, classification = "sitc") {
   # Checks ------------------------------------------------------------------
   if (has_internet() != TRUE) {
     stop("No internet connection.")
   }
+  
+  if (http_error("https://atlas.media.mit.edu/attr/country/") != FALSE) {
+    stop("Our test detects a server problem. Please retry again later.")
+  } 
 
   if (all(c(origin, destination) %in%
     oec::country_codes$country_code) != TRUE) {
@@ -55,14 +59,8 @@ get_data <- function(origin, destination, years, classification) {
          contained within the years 1962-2016.")
   }
 
-  if (missing(classification)) {
-    classification <- "sitc"
-  }
-
-  if (classification %in% c("sitc", "hs92", "hs96", "hs02", "hs07") != TRUE) {
-    stop("Please verify that you wrote a valid trade classification.")
-  }
-
+  match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
+  
   if (classification == "sitc") {
     if (all(years >= 1962) != TRUE) {
       stop("Provided that you requested SITC data please
@@ -105,63 +103,81 @@ get_data <- function(origin, destination, years, classification) {
 
   # Valid input message -----------------------------------------------------
   message(
-    sprintf("Valid input. Processing %s data...", years)
+    sprintf("\nProcessing %s data...", years)
   )
 
   # Package data ------------------------------------------------------------
-  if (classification == "sitc") {
-    product_codes <- oec::sitc
-  }
+  product_codes <- switch (classification,
+                           "hs92" = oec::hs92,
+                           "hs96" = oec::hs96,
+                           "hs02" = oec::hs02,
+                           "hs07" = oec::hs07,
+                           "sitc" = oec::sitc
+  )
+  
 
-  if (classification == "hs92") {
-    product_codes <- oec::hs92
-  }
-
-  if (classification == "hs96") {
-    product_codes <- oec::hs96
-  }
-
-  if (classification == "hs02") {
-    product_codes <- oec::hs02
-  }
-
-  if (classification == "hs07") {
-    product_codes <- oec::hs07
-  }
-
-  # Origin-destination flows ------------------------------------------------
-  read_from_api_od <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      origin,
-      destination
+  # Function to read from API -----------------------------------------------
+  read_from_api <- function(t, flow, attempts_left = 5) {
+    stopifnot(attempts_left > -1)
+    
+    url <- switch (flow,
+                   "origin-destination" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
+                     classification,
+                     years[t],
+                     origin,
+                     destination
+                   ),
+                   "origin-world" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/%s/all/show/",
+                     classification,
+                     years[t],
+                     origin
+                   ),
+                   "world-world" = sprintf(
+                     "https://atlas.media.mit.edu/%s/export/%s/all/all/show/",
+                     classification,
+                     years[t]
+                   )
     )
-
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
-
-    if (!is.data.frame(data)) {
-      stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
+    
+    resp <- GET(url)
+    
+    # on a successful GET, return the response
+    if (status_code(resp) == 200) {
+      data <- try(
+        flatten_df(fromJSON(resp$url))
+      )
+      
+      if(!is.data.frame(data)) {
+        stop("It wasn't possible to obtain data.
+           Provided this function tests your internet connection it's probably a server problem.
+           Please try again later.")
+      }
+      
+      return(data)
+    } else if (attempts_left == 0) { 
+      # when attempts run out, stop with an error
+      stop("Cannot connect to the MIT API")
+    } else { 
+      # otherwise, sleep a second and try again
+      Sys.sleep(1)
+      read_from_api(t, flow = "origin-destination", attempts_left = attempts_left - 1)
     }
-
-    return(data)
   }
+  
+  # Origin-destination flows ------------------------------------------------
+  origin_destination <- map_df(seq_along(years), read_from_api, flow = "origin-destination")
 
-  origin_destination <- map_df(seq_along(years), read_from_api_od)
-
-  # No data in API message --------------------------------------------------
+  # no data in API message
   if (nrow(origin_destination) == 0) {
     stop("No data available. Try changing years or trade classification.")
   }
 
   # compute trade balance
   origin_destination <- mutate(origin_destination,
-    trade_exchange_val = export_val +
-      import_val
+    trade_exchange_val = !!sym("export_val") +
+      !!sym("import_val")
   )
 
   # convert ids to standard hs/sitc
@@ -171,8 +187,8 @@ get_data <- function(origin, destination, years, classification) {
       id_len = !!sym(sprintf("%s_id_len", classification))
     ) %>%
     mutate(
-      id = str_sub(id, 3),
-      id_len = str_length(id)
+      id = str_sub(!!sym("id"), 3),
+      id_len = str_length(!!sym("id"))
     )
 
   # convert country codes to standard iso3
@@ -186,43 +202,22 @@ get_data <- function(origin, destination, years, classification) {
 
   # include countries (official names)
   origin_destination <- origin_destination %>%
-    rename(destination_id = dest_id) %>%
+    rename(destination_id = !!sym("dest_id")) %>%
     mutate(
-      origin_id = str_sub(origin_id, 3),
-      destination_id = str_sub(destination_id, 3)
+      origin_id = str_sub(!!sym("origin_id"), 3),
+      destination_id = str_sub(!!sym("destination_id"), 3)
     ) %>%
     left_join(country_codes, by = c("origin_id" = "country_code")) %>%
-    rename(origin_name = country) %>%
+    rename(origin_name = !!sym("country")) %>%
     left_join(country_codes, by = c("destination_id" = "country_code")) %>%
-    rename(destination_name = country)
+    rename(destination_name = !!sym("country"))
 
   # remove RCAs (if applicable, or this will have duplicates,
   # not all queries return RCAs)
   origin_destination <- select(origin_destination, -matches("rca"))
 
   # Origin-world flows ------------------------------------------------------
-  read_from_api_ow <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      origin,
-      "all"
-    )
-
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
-
-    if (!is.data.frame(data)) {
-      stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
-    }
-
-    return(data)
-  }
-
-  origin_world <- map_df(seq_along(years), read_from_api_ow)
+  origin_world <- map_df(seq_along(years), read_from_api, flow = "origin-world")
 
   # extract RCAs
   origin_world <- origin_world %>%
@@ -230,36 +225,15 @@ get_data <- function(origin, destination, years, classification) {
       id = !!sym(sprintf("%s_id", classification)),
       id_len = !!sym(sprintf("%s_id_len", classification))
     ) %>%
-    mutate(id = str_sub(id, 3)) %>%
-    select(id, contains("_rca"))
+    mutate(id = str_sub(!!sym("id"), 3)) %>%
+    select(!!sym("id"), contains("_rca"))
 
   # World-world flows -------------------------------------------------------
-  read_from_api_ww <- function(t) {
-    url <- sprintf(
-      "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
-      classification,
-      years[t],
-      "all",
-      "all"
-    )
-
-    data <- try(
-      flatten_df(fromJSON(url))
-    )
-
-    if (!is.data.frame(data)) {
-      stop("It wasn't possible to obtain data.
-           Either your computer or MIT server has a connection problem at the moment.")
-    }
-
-    return(data)
-  }
-
-  world_world <- map_df(seq_along(years), read_from_api_ww)
+  world_world <- map_df(seq_along(years), read_from_api, flow = "world-world")
 
   world_world <- rename(world_world,
-    world_total_export_val = export_val,
-    world_total_import_val = import_val
+    world_total_export_val = !!sym("export_val"),
+    world_total_import_val = !!sym("import_val")
   )
 
   # extract ECI and ranks
@@ -270,7 +244,7 @@ get_data <- function(origin, destination, years, classification) {
     ) %>%
     mutate(id = str_sub(!!sym("id"), 3)) %>%
     select(
-      id,
+      !!sym("id"),
       contains("pci"),
       contains("top_")
     )
@@ -280,13 +254,15 @@ get_data <- function(origin, destination, years, classification) {
     left_join(origin_world, by = "id") %>%
     left_join(world_world, by = "id") %>%
     select(
-      year,
-      origin_id,
-      destination_id,
-      origin_name,
-      destination_name,
-      id,
-      id_len,
+      !!!syms(c(
+        "year",
+        "origin_id",
+        "destination_id",
+        "origin_name",
+        "destination_name",
+        "id",
+        "id_len"
+      )),
       contains("export_"),
       contains("import_"),
       everything()
@@ -295,30 +271,32 @@ get_data <- function(origin, destination, years, classification) {
   names(country_codes) <- c("top_importer_code", "top_importer")
 
   origin_destination <- origin_destination %>%
-    rename(top_importer_code = top_importer) %>%
-    mutate(top_importer_code = str_sub(top_importer_code, 3)) %>%
+    rename(top_importer_code = !!sym("top_importer")) %>%
+    mutate(top_importer_code = str_sub(!!sym("top_importer_code"), 3)) %>%
     left_join(country_codes, by = "top_importer_code")
 
   names(country_codes) <- c("top_exporter_code", "top_exporter")
 
   origin_destination <- origin_destination %>%
-    rename(top_exporter_code = top_exporter) %>%
-    mutate(top_exporter_code = str_sub(top_exporter_code, 3)) %>%
+    rename(top_exporter_code = !!sym("top_exporter")) %>%
+    mutate(top_exporter_code = str_sub(!!sym("top_exporter_code"), 3)) %>%
     left_join(country_codes, by = "top_exporter_code")
 
   origin_destination <- origin_destination %>%
     left_join(product_codes, by = "id") %>%
     select(
-      year,
-      origin_id,
-      destination_id,
-      origin_name,
-      destination_name,
-      id,
-      id_len,
-      product_name,
-      group_id,
-      group_name,
+      !!!syms(c(
+        "year",
+        "origin_id",
+        "destination_id",
+        "origin_name",
+        "destination_name",
+        "id",
+        "id_len",
+        "product_name",
+        "group_id",
+        "group_name"
+      )),
       contains("product_"),
       contains("export_"),
       contains("import_"),

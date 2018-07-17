@@ -55,10 +55,8 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
          contained within the years 1962-2016.")
   }
 
-  if (classification %in% c("sitc", "hs92", "hs96", "hs02", "hs07") != TRUE) {
-    stop("Please verify that you wrote a valid trade classification.")
-  }
-
+  match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
+  
   if (classification == "sitc") {
     if (all(years >= 1962) != TRUE) {
       stop("Provided that you requested SITC data please
@@ -106,11 +104,11 @@ getdata <- function(origin = "all", destination = "all", years = 2000, classific
 
   # Package data ------------------------------------------------------------
   product_codes <- switch (classification,
-    "hs92" = oec::hs92,
-    "hs96" = oec::hs96,
-    "hs02" = oec::hs02,
-    "hs07" = oec::hs07,
-    "sitc" = oec::sitc
+                           "hs92" = oec::hs92,
+                           "hs96" = oec::hs96,
+                           "hs02" = oec::hs02,
+                           "hs07" = oec::hs07,
+                           "sitc" = oec::sitc
   )
 
   # Function to read from API -----------------------------------------------

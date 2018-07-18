@@ -14,10 +14,11 @@
 #' @importFrom dplyr as_tibble select filter mutate contains
 #' everything left_join bind_rows rename matches
 #' @importFrom stringr str_sub str_length
+#' @importFrom jsonlite fromJSON
 #' @importFrom curl curl has_internet handle_setheaders new_handle
 #' @importFrom httr http_error GET status_code
 #' @importFrom rlang sym syms
-#' @importFrom purrr map_df
+#' @importFrom purrr flatten_df map_df
 #' @export
 #' @examples
 #' \dontrun{
@@ -39,73 +40,53 @@
 #' @keywords functions
 
 get_data <- function(origin = "all", destination = "all", years = 2000, classification = "sitc") {
-  # Checks ------------------------------------------------------------------
+  # Check connections -------------------------------------------------------
   if (has_internet() != TRUE) {
-    stop("No internet connection.")
+    stop("No internet connection. Please retry again later.")
   }
   
   if (http_error("https://atlas.media.mit.edu/attr/country/") != FALSE) {
-    stop("Our test detects a server problem. Please retry again later.")
-  } 
-
-  if (all(c(origin, destination) %in%
-    oec::country_codes$country_code) != TRUE) {
-    stop("Please verify that you wrote the origin
-         and destination countries correctly.")
+    stop("There is a server problem. Please retry again later.")
   }
-
+  
+  # Check classification and years ------------------------------------------
+  match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
+  
   if (all(years %in% 1962:2016) != TRUE) {
     stop("Please verify that you are requesting data
          contained within the years 1962-2016.")
   }
-
-  match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
   
-  if (classification == "sitc") {
-    if (all(years >= 1962) != TRUE) {
-      stop("Provided that you requested SITC data please
-           verify that the data you are requesting is
-           contained within the years 1962-2016.")
-    }
+  if (classification == "sitc" & all(years >= 1962) != TRUE) {
+    stop("Provided that you requested SITC data please
+         verify that the data you are requesting is
+         contained within the years 1962-2016.")
   }
-
-  if (classification == "hs92") {
-    if (all(years >= 1992) != TRUE) {
-      stop("Provided that you requested HS92 data please
-           verify that the data you are requesting is
-           contained within the years 1992-2016.")
-    }
+  
+  if (classification == "hs92" & all(years >= 1992) != TRUE) {
+    stop("Provided that you requested HS92 data please
+         verify that the data you are requesting is
+         contained within the years 1992-2016.")
   }
-
-  if (classification == "hs96") {
-    if (all(years >= 1996) != TRUE) {
-      stop("Provided that you requested HS96 data please
-           verify that the data you are requesting is
-           contained within the years 1996-2016.")
-    }
+  
+  if (classification == "hs96" & all(years >= 1996) != TRUE) {
+    stop("Provided that you requested HS96 data please
+         verify that the data you are requesting is
+         contained within the years 1996-2016.")
   }
-
-  if (classification == "hs02") {
-    if (all(years >= 2002) != TRUE) {
-      stop("Provided that you requested HS02 data please
-           verify that the data you are requesting is
-           contained within the years 2002-2016.")
-    }
+  
+  if (classification == "hs02" & all(years >= 2002) != TRUE) {
+    stop("Provided that you requested HS02 data please
+         verify that the data you are requesting is
+         contained within the years 2002-2016.")
   }
-
-  if (classification == "hs07") {
-    if (all(years >= 2007) != TRUE) {
-      stop("Provided that you requested HS07 data please
-           verify that the data you are requesting is
-           contained within the years 2007-2016.")
-    }
+  
+  if (classification == "hs07" & all(years >= 2007) != TRUE) {
+    stop("Provided that you requested HS07 data please
+         verify that the data you are requesting is
+         contained within the years 2007-2016.")
   }
-
-  # Valid input message -----------------------------------------------------
-  message(
-    sprintf("\nProcessing %s data...", years)
-  )
-
+  
   # Package data ------------------------------------------------------------
   product_codes <- switch (classification,
                            "hs92" = oec::hs92,
@@ -115,7 +96,17 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
                            "sitc" = oec::sitc
   )
   
-
+  country_codes <- oec::country_codes
+  
+  # Check origin and destination --------------------------------------------
+  match.arg(origin, country_codes$country_code)
+  match.arg(destination, country_codes$country_code)
+  
+  # Valid input message -----------------------------------------------------
+  message(
+    sprintf("\nProcessing %s data...", years)
+  )
+  
   # Function to read from API -----------------------------------------------
   read_from_api <- function(t, flow, attempts_left = 5) {
     stopifnot(attempts_left > -1)
@@ -151,35 +142,35 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       
       if(!is.data.frame(data)) {
         stop("It wasn't possible to obtain data.
-           Provided this function tests your internet connection it's probably a server problem.
-           Please try again later.")
+             Provided this function tests your internet connection there was a server problem.
+             Please try again later.")
       }
       
       return(data)
-    } else if (attempts_left == 0) { 
-      # when attempts run out, stop with an error
-      stop("Cannot connect to the MIT API")
-    } else { 
-      # otherwise, sleep a second and try again
-      Sys.sleep(1)
-      read_from_api(t, flow = "origin-destination", attempts_left = attempts_left - 1)
+      } else if (attempts_left == 0) { 
+        # when attempts run out, stop with an error
+        stop("Cannot connect to the MIT API")
+      } else { 
+        # otherwise, sleep a second and try again
+        Sys.sleep(1)
+        read_from_api(t, flow = "origin-destination", attempts_left = attempts_left - 1)
+      }
     }
-  }
   
   # Origin-destination flows ------------------------------------------------
   origin_destination <- map_df(seq_along(years), read_from_api, flow = "origin-destination")
-
+  
   # no data in API message
   if (nrow(origin_destination) == 0) {
     stop("No data available. Try changing years or trade classification.")
   }
-
+  
   # compute trade balance
   origin_destination <- mutate(origin_destination,
-    trade_exchange_val = !!sym("export_val") +
-      !!sym("import_val")
+                               trade_exchange_val = !!sym("export_val") +
+                                 !!sym("import_val")
   )
-
+  
   # convert ids to standard hs/sitc
   origin_destination <- origin_destination %>%
     rename(
@@ -190,16 +181,16 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       id = str_sub(!!sym("id"), 3),
       id_len = str_length(!!sym("id"))
     )
-
+  
   # convert country codes to standard iso3
   if (destination == "all") {
     origin_destination <- mutate(origin_destination, dest_id = "xxall")
   }
-
+  
   if (origin == "all") {
     origin_destination <- mutate(origin_destination, origin_id = "xxall")
   }
-
+  
   # include countries (official names)
   origin_destination <- origin_destination %>%
     rename(destination_id = !!sym("dest_id")) %>%
@@ -211,48 +202,60 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
     rename(origin_name = !!sym("country")) %>%
     left_join(country_codes, by = c("destination_id" = "country_code")) %>%
     rename(destination_name = !!sym("country"))
-
+  
   # remove RCAs (if applicable, or this will have duplicates,
   # not all queries return RCAs)
   origin_destination <- select(origin_destination, -matches("rca"))
-
+  
   # Origin-world flows ------------------------------------------------------
-  origin_world <- map_df(seq_along(years), read_from_api, flow = "origin-world")
-
-  # extract RCAs
-  origin_world <- origin_world %>%
-    rename(
-      id = !!sym(sprintf("%s_id", classification)),
-      id_len = !!sym(sprintf("%s_id_len", classification))
-    ) %>%
-    mutate(id = str_sub(!!sym("id"), 3)) %>%
-    select(!!sym("id"), contains("_rca"))
-
+  if (origin != "all" | destination != "all") {
+    origin_world <- map_df(seq_along(years), read_from_api, flow = "origin-world")
+    
+    # extract RCAs
+    origin_world <- origin_world %>%
+      rename(
+        id = !!sym(sprintf("%s_id", classification)),
+        id_len = !!sym(sprintf("%s_id_len", classification))
+      ) %>%
+      mutate(id = str_sub(!!sym("id"), 3)) %>%
+      select(!!sym("id"), contains("_rca"))
+  }
+  
   # World-world flows -------------------------------------------------------
-  world_world <- map_df(seq_along(years), read_from_api, flow = "world-world")
-
-  world_world <- rename(world_world,
-    world_total_export_val = !!sym("export_val"),
-    world_total_import_val = !!sym("import_val")
-  )
-
-  # extract ECI and ranks
-  world_world <- world_world %>%
-    rename(
-      id = !!sym(sprintf("%s_id", classification)),
-      id_len = !!sym(sprintf("%s_id_len", classification))
-    ) %>%
-    mutate(id = str_sub(!!sym("id"), 3)) %>%
-    select(
-      !!sym("id"),
-      contains("pci"),
-      contains("top_")
+  if (all(c(origin, destination) %in% "all") != TRUE) {
+    world_world <- map_df(seq_along(years), read_from_api, flow = "world-world")
+    
+    world_world <- rename(world_world,
+                          world_total_export_val = !!sym("export_val"),
+                          world_total_import_val = !!sym("import_val")
     )
-
+    
+    # extract ECI and ranks
+    world_world <- world_world %>%
+      rename(
+        id = !!sym(sprintf("%s_id", classification)),
+        id_len = !!sym(sprintf("%s_id_len", classification))
+      ) %>%
+      mutate(id = str_sub(!!sym("id"), 3)) %>%
+      select(
+        !!sym("id"),
+        contains("pci"),
+        contains("top_")
+      )
+  }
+  
   # Join trade flows --------------------------------------------------------
-  origin_destination <- origin_destination %>%
-    left_join(origin_world, by = "id") %>%
-    left_join(world_world, by = "id") %>%
+  if (destination != "all") {
+    origin_destination <- origin_destination %>%
+      left_join(origin_world, by = "id")
+  }
+  
+  if (all(c(origin, destination) %in% "all") != TRUE) {
+    origin_destination <- origin_destination %>%
+      left_join(world_world, by = "id")
+  }
+  
+  origin_destination <- origin_destination %>% 
     select(
       !!!syms(c(
         "year",
@@ -267,21 +270,21 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       contains("import_"),
       everything()
     )
-
+  
   names(country_codes) <- c("top_importer_code", "top_importer")
-
+  
   origin_destination <- origin_destination %>%
     rename(top_importer_code = !!sym("top_importer")) %>%
     mutate(top_importer_code = str_sub(!!sym("top_importer_code"), 3)) %>%
     left_join(country_codes, by = "top_importer_code")
-
+  
   names(country_codes) <- c("top_exporter_code", "top_exporter")
-
+  
   origin_destination <- origin_destination %>%
     rename(top_exporter_code = !!sym("top_exporter")) %>%
     mutate(top_exporter_code = str_sub(!!sym("top_exporter_code"), 3)) %>%
     left_join(country_codes, by = "top_exporter_code")
-
+  
   origin_destination <- origin_destination %>%
     left_join(product_codes, by = "id") %>%
     select(
@@ -302,6 +305,6 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       contains("import_"),
       everything()
     )
-
+  
   return(origin_destination)
 }

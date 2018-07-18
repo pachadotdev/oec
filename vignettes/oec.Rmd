@@ -44,25 +44,17 @@ As [UN Comtrade](https://comtrade.un.org/db/mr/rfglossarylist.aspx) explains bot
 
 The only difference between the OEC and official HS/SITC product names is that the OEC provides shortened product names (e.g. under SITC 6821 stands for "Copper and copper alloys, refined or not, unwrought" which we can simplify to "Copper (unwrought)").
 
-Each of these classifications consists in numeric codes and a detailed product name associated to each code.
+Each of these classifications consists in numeric codes and a detailed product name associated to each code, for example HS92 (and all HS revisions) contain 4 and 6 digits long codes while SITC does only cointain 4 digits long codes:
 
 ```{r products, eval = TRUE}
 hs92
-
-hs96
-
-hs02
-
-hs07
-
-sitc
 ```
 
-Each product belongs to a group and the color column (given after groups) allows to use the same palettes at the official website.
+Each product belongs to a group and the color column (given after product groups) allows to use the same palettes as the official website.
 
 # Package functions
 
-## Getdata
+## get_data
 
 This function downloads data for a single year and needs (at least) a pairs of countries and a valid year according to the trade classification.
 
@@ -72,52 +64,52 @@ The API returns data for different trade classifications:
     
 ### Correct input
 
-Chile-China bilateral trade data in 2015 (SITC):
-```{r getdata, eval = TRUE}
-# What does Chile exchange with China?  
+Chile-Argentina bilateral trade data in 2015 (SITC):
+```{r get_data, eval = TRUE}
+# What does Chile exchange with Argentina?  
 # year 2015 - SITC (4 characters)
-getdata("chl", "chn", 2015)
+get_data("chl", "arg", 2015)
 ```
 
 For the other classifications is similar:
-```{r getdata2, eval = TRUE}
-# What does Chile exchange with China?  
+```{r get_data2, eval = TRUE}
+# What does Chile exchange with Argentina?  
 # year 2015 - HS07 (4 and 6 characters)
-getdata("chl", "chn", 2015, "hs07")
+get_data("chl", "arg", 2015, "hs07")
 ```
 
 If you need data for more than one year you can write the years as a vector:
-```{r getdata2_2, eval = TRUE}
-# What does Chile exchange with China?  
+```{r get_data2_2, eval = TRUE}
+# What does Chile exchange with Argentina?  
 # years 2010 and 2015 - HS07 (4 and 6 characters)
-getdata("chl", "chn", c(2010,2015), "hs07")
+get_data("chl", "arg", c(2010,2015), "hs07")
 ```
 
 ### Incorrect input
 
-Chile-China bilateral trade data in 2000 (HS02):
-```{r getdata3, eval = TRUE, error=TRUE}
-# What does Chile exchange with China?  
+Chile-Argentina bilateral trade data in 2000 (HS02):
+```{r get_data3, eval = TRUE, error=TRUE}
+# What does Chile exchange with Argentina?  
 # year 2000 - HS02 (4 and 6 characters)
-getdata("chl", "chn", 2000, "hs02")
+get_data("chl", "arg", 2000, "hs02")
 ```
 The problem here is that HS02 data is only available since 2002.
 
 ### Special cases
 
 Andorra-France bilateral trade data in 2015 (SITC):
-```{r getdata4, eval = TRUE, error = TRUE}
+```{r get_data4, eval = TRUE, error = TRUE}
 # What does Andorra exchange with France?  
 # year 2015 - SITC (4 characters)
-getdata("and", "fra", 2015)
+get_data("and", "fra", 2015)
 ```
 The problem here is that Andorra did not report SITC data in 2015 but they reported HS07 data.
 
 Andorra-France bilateral trade data in 2015 (HS07):
-```{r getdata5, eval = TRUE}
+```{r get_data5, eval = TRUE}
 # What does Andorra exchange with France?  
 # year 2015 - HS07 (4 and 6 characters)
-getdata("and", "fra", 2015, "hs07")
+get_data("and", "fra", 2015, "hs07")
 ```
 
 The OEC has some situations as the example above. Not all countries report their trade numbers using all trade classifications.

@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.3</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>Introduction to oec</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-07-14</h4>
+            <h4 class="date">2018-07-18</h4>
       
       
       <div class="hidden name"><code>oec.Rmd</code></div>
@@ -121,7 +121,7 @@ country_codes
 <p>The OEC provides data classified using either HS92, HS96, HS02 and HS07 (Harmonized System) or SITC rev. 2 (Standard International Trade Classification).</p>
 <p>As <a href="https://comtrade.un.org/db/mr/rfglossarylist.aspx">UN Comtrade</a> explains both HS and SITC are trade classifications that are updated by releasing new revisions, and when a classification is released then it remains unaltered. For example, HS92 was released in 1992 and its product codes remain unaltered until today, while newer classifications (e.g. HS07) were created to include newer products (e.g. it was important to provide more details about electronic products that did not exist when HS92 was created).</p>
 <p>The only difference between the OEC and official HS/SITC product names is that the OEC provides shortened product names (e.g. under SITC 6821 stands for “Copper and copper alloys, refined or not, unwrought” which we can simplify to “Copper (unwrought)”).</p>
-<p>Each of these classifications consists in numeric codes and a detailed product name associated to each code.</p>
+<p>Each of these classifications consists in numeric codes and a detailed product name associated to each code, for example HS92 (and all HS revisions) contain 4 and 6 digits long codes while SITC does only cointain 4 digits long codes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hs92
 <span class="co">#&gt; # A tibble: 6,282 x 5</span>
 <span class="co">#&gt;    product_name                       id     group_name    group_id color </span>
@@ -136,104 +136,41 @@ country_codes
 <span class="co">#&gt;  8 Pigs                               0103   Animal Produ… 01       #FFE9…</span>
 <span class="co">#&gt;  9 Swine, live pure-bred breeding     010310 Animal Produ… 01       #FFE9…</span>
 <span class="co">#&gt; 10 Swine, live except pure-bred bree… 010391 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt; # ... with 6,272 more rows</span>
-
-hs96
-<span class="co">#&gt; # A tibble: 6,350 x 5</span>
-<span class="co">#&gt;    product_name                        id     group_name   group_id color </span>
-<span class="co">#&gt;    &lt;chr&gt;                               &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt; </span>
-<span class="co">#&gt;  1 Live horses, asses, mules and hinn… 0101   Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  2 Horses, Live                        010111 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  3 Horses, Live                        010119 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  4 Asses, Mules And Hinnies, Live      010120 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  5 Live bovine animals                 0102   Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  6 Purebred Bovine Breeding Animals    010210 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  7 Bovine Animals, Other Than Purebre… 010290 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  8 Live swine                          0103   Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt;  9 Purebred Swine Breeding Animals     010310 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt; 10 Swine Other Than Purebred Breeding… 010391 Animal Prod… 01       #FFE9…</span>
-<span class="co">#&gt; # ... with 6,340 more rows</span>
-
-hs02
-<span class="co">#&gt; # A tibble: 6,472 x 5</span>
-<span class="co">#&gt;    product_name                         id     group_name   group_id color</span>
-<span class="co">#&gt;    &lt;chr&gt;                                &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Live horses, asses, mules and hinni… 0101   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  2 Live horses/asses/mules/hinnies: pu… 010110 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  3 Live horses/asses/mules/hinnies oth… 010190 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  4 Live bovine animals.                 0102   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  5 Live bovine animals: pure-bred bree… 010210 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  6 Live bovine animals other than pure… 010290 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  7 Live swine.                          0103   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  8 Live swine: pure-bred breeding anim… 010310 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  9 Live swine other than pure-bred bre… 010391 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; 10 Live swine other than pure-bred bre… 010392 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; # ... with 6,462 more rows</span>
-
-hs07
-<span class="co">#&gt; # A tibble: 6,276 x 5</span>
-<span class="co">#&gt;    product_name                         id     group_name   group_id color</span>
-<span class="co">#&gt;    &lt;chr&gt;                                &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Live horses, asses, mules and hinni… 0101   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  2 Live horses/asses/mules/hinnies: pu… 010110 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  3 Live horses/asses/mules/hinnies oth… 010190 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  4 Live bovine animals.                 0102   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  5 Live bovine animals: pure-bred bree… 010210 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  6 Live bovine animals other than pure… 010290 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  7 Live swine.                          0103   Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  8 Live swine: pure-bred breeding anim… 010310 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt;  9 Live swine other than pure-bred bre… 010391 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; 10 Live swine other than pure-bred bre… 010392 Animal Prod… 01       #FFE…</span>
-<span class="co">#&gt; # ... with 6,266 more rows</span>
-
-sitc
-<span class="co">#&gt; # A tibble: 988 x 5</span>
-<span class="co">#&gt;    product_name                            id    group_name group_id color</span>
-<span class="co">#&gt;    &lt;chr&gt;                                   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Initiating Devices                      5722  Machinery  10       #17B…</span>
-<span class="co">#&gt;  2 Polymerization Ion Exchangers           5838  Machinery  10       #17B…</span>
-<span class="co">#&gt;  3 Rubber tires, tire cases, inner and fl… 6250  Machinery  10       #17B…</span>
-<span class="co">#&gt;  4 Car Tires                               6251  Machinery  10       #17B…</span>
-<span class="co">#&gt;  5 Other articles of rubber                6280  Machinery  10       #17B…</span>
-<span class="co">#&gt;  6 Transmission Belts                      6282  Machinery  10       #17B…</span>
-<span class="co">#&gt;  7 Miscellaneous Rubber                    6289  Machinery  10       #17B…</span>
-<span class="co">#&gt;  8 Casks and Barrels                       6352  Machinery  10       #17B…</span>
-<span class="co">#&gt;  9 Coated Paper                            6418  Machinery  10       #17B…</span>
-<span class="co">#&gt; 10 Bonded Fiber Fabrics                    6572  Machinery  10       #17B…</span>
-<span class="co">#&gt; # ... with 978 more rows</span></code></pre></div>
-<p>Each product belongs to a group and the color column (given after groups) allows to use the same palettes at the official website.</p>
+<span class="co">#&gt; # ... with 6,272 more rows</span></code></pre></div>
+<p>Each product belongs to a group and the color column (given after product groups) allows to use the same palettes as the official website.</p>
 </div>
 </div>
 <div id="package-functions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#package-functions" class="anchor"></a>Package functions</h1>
-<div id="getdata" class="section level2">
+<div id="get_data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#getdata" class="anchor"></a>Getdata</h2>
+<a href="#get_data" class="anchor"></a>get_data</h2>
 <p>This function downloads data for a single year and needs (at least) a pairs of countries and a valid year according to the trade classification.</p>
 <p>The API returns data for different trade classifications: (i) SITC (1962-2016); (ii) HS92 (1992-2016); (iii) HS96 (1996-2016); (iv) HS02 (2002-2016); (v) HS07 (2007-2016).</p>
 <div id="correct-input" class="section level3">
 <h3 class="hasAnchor">
 <a href="#correct-input" class="anchor"></a>Correct input</h3>
-<p>Chile-China bilateral trade data in 2015 (SITC):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
+<p>Chile-Argentina bilateral trade data in 2015 (SITC):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># year 2015 - SITC (4 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"chl"</span>, <span class="st">"chn"</span>, <span class="dv">2015</span>)
-<span class="co">#&gt; Valid input. Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 670 x 31</span>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2015</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; # A tibble: 604 x 31</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id   </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;</span>
-<span class="co">#&gt;  1  2015 chl       chn            Chile       China            5722 </span>
-<span class="co">#&gt;  2  2015 chl       chn            Chile       China            5838 </span>
-<span class="co">#&gt;  3  2015 chl       chn            Chile       China            6251 </span>
-<span class="co">#&gt;  4  2015 chl       chn            Chile       China            6282 </span>
-<span class="co">#&gt;  5  2015 chl       chn            Chile       China            6289 </span>
-<span class="co">#&gt;  6  2015 chl       chn            Chile       China            6352 </span>
-<span class="co">#&gt;  7  2015 chl       chn            Chile       China            6418 </span>
-<span class="co">#&gt;  8  2015 chl       chn            Chile       China            6572 </span>
-<span class="co">#&gt;  9  2015 chl       chn            Chile       China            6577 </span>
-<span class="co">#&gt; 10  2015 chl       chn            Chile       China            6631 </span>
-<span class="co">#&gt; # ... with 660 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
+<span class="co">#&gt;  1  2015 chl       arg            Chile       Argentina        5722 </span>
+<span class="co">#&gt;  2  2015 chl       arg            Chile       Argentina        6251 </span>
+<span class="co">#&gt;  3  2015 chl       arg            Chile       Argentina        6282 </span>
+<span class="co">#&gt;  4  2015 chl       arg            Chile       Argentina        6289 </span>
+<span class="co">#&gt;  5  2015 chl       arg            Chile       Argentina        6352 </span>
+<span class="co">#&gt;  6  2015 chl       arg            Chile       Argentina        6418 </span>
+<span class="co">#&gt;  7  2015 chl       arg            Chile       Argentina        6572 </span>
+<span class="co">#&gt;  8  2015 chl       arg            Chile       Argentina        6577 </span>
+<span class="co">#&gt;  9  2015 chl       arg            Chile       Argentina        6631 </span>
+<span class="co">#&gt; 10  2015 chl       arg            Chile       Argentina        6632 </span>
+<span class="co">#&gt; # ... with 594 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
 <span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
@@ -245,53 +182,56 @@ sitc
 <span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
 <span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
 <p>For the other classifications is similar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"chl"</span>, <span class="st">"chn"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
-<span class="co">#&gt; Valid input. Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 4,730 x 31</span>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; # A tibble: 3,315 x 31</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt;  1  2015 chl       chn            Chile       China            0102  </span>
-<span class="co">#&gt;  2  2015 chl       chn            Chile       China            010210</span>
-<span class="co">#&gt;  3  2015 chl       chn            Chile       China            010290</span>
-<span class="co">#&gt;  4  2015 chl       chn            Chile       China            0106  </span>
-<span class="co">#&gt;  5  2015 chl       chn            Chile       China            010619</span>
-<span class="co">#&gt;  6  2015 chl       chn            Chile       China            0201  </span>
-<span class="co">#&gt;  7  2015 chl       chn            Chile       China            020120</span>
-<span class="co">#&gt;  8  2015 chl       chn            Chile       China            020130</span>
-<span class="co">#&gt;  9  2015 chl       chn            Chile       China            0202  </span>
-<span class="co">#&gt; 10  2015 chl       chn            Chile       China            020220</span>
-<span class="co">#&gt; # ... with 4,720 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
+<span class="co">#&gt;  1  2015 chl       arg            Chile       Argentina        0101  </span>
+<span class="co">#&gt;  2  2015 chl       arg            Chile       Argentina        010110</span>
+<span class="co">#&gt;  3  2015 chl       arg            Chile       Argentina        010190</span>
+<span class="co">#&gt;  4  2015 chl       arg            Chile       Argentina        0106  </span>
+<span class="co">#&gt;  5  2015 chl       arg            Chile       Argentina        010619</span>
+<span class="co">#&gt;  6  2015 chl       arg            Chile       Argentina        0201  </span>
+<span class="co">#&gt;  7  2015 chl       arg            Chile       Argentina        020130</span>
+<span class="co">#&gt;  8  2015 chl       arg            Chile       Argentina        0202  </span>
+<span class="co">#&gt;  9  2015 chl       arg            Chile       Argentina        020230</span>
+<span class="co">#&gt; 10  2015 chl       arg            Chile       Argentina        0206  </span>
+<span class="co">#&gt; # ... with 3,305 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
 <span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct_5 &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_pct_5 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_val &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   import_rca &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
 <span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
 <span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
 <p>If you need data for more than one year you can write the years as a vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># years 2010 and 2015 - HS07 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"chl"</span>, <span class="st">"chn"</span>, <span class="kw">c</span>(<span class="dv">2010</span>,<span class="dv">2015</span>), <span class="st">"hs07"</span>)
-<span class="co">#&gt; Valid input. Processing 2010 data...Valid input. Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 36,786 x 31</span>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="kw">c</span>(<span class="dv">2010</span>,<span class="dv">2015</span>), <span class="st">"hs07"</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Processing 2010 data...</span>
+<span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; # A tibble: 28,464 x 31</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt;  1  2010 chl       chn            Chile       China            0106  </span>
-<span class="co">#&gt;  2  2010 chl       chn            Chile       China            0106  </span>
-<span class="co">#&gt;  3  2010 chl       chn            Chile       China            0106  </span>
-<span class="co">#&gt;  4  2010 chl       chn            Chile       China            0106  </span>
-<span class="co">#&gt;  5  2010 chl       chn            Chile       China            010612</span>
-<span class="co">#&gt;  6  2010 chl       chn            Chile       China            010612</span>
-<span class="co">#&gt;  7  2010 chl       chn            Chile       China            010612</span>
-<span class="co">#&gt;  8  2010 chl       chn            Chile       China            010612</span>
-<span class="co">#&gt;  9  2010 chl       chn            Chile       China            010619</span>
-<span class="co">#&gt; 10  2010 chl       chn            Chile       China            010619</span>
-<span class="co">#&gt; # ... with 36,776 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
+<span class="co">#&gt;  1  2010 chl       arg            Chile       Argentina        0101  </span>
+<span class="co">#&gt;  2  2010 chl       arg            Chile       Argentina        0101  </span>
+<span class="co">#&gt;  3  2010 chl       arg            Chile       Argentina        0101  </span>
+<span class="co">#&gt;  4  2010 chl       arg            Chile       Argentina        0101  </span>
+<span class="co">#&gt;  5  2010 chl       arg            Chile       Argentina        010110</span>
+<span class="co">#&gt;  6  2010 chl       arg            Chile       Argentina        010110</span>
+<span class="co">#&gt;  7  2010 chl       arg            Chile       Argentina        010110</span>
+<span class="co">#&gt;  8  2010 chl       arg            Chile       Argentina        010110</span>
+<span class="co">#&gt;  9  2010 chl       arg            Chile       Argentina        010190</span>
+<span class="co">#&gt; 10  2010 chl       arg            Chile       Argentina        010190</span>
+<span class="co">#&gt; # ... with 28,454 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
 <span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_val &lt;dbl&gt;, export_val_growth_pct_5 &lt;dbl&gt;,</span>
@@ -306,13 +246,13 @@ sitc
 <div id="incorrect-input" class="section level3">
 <h3 class="hasAnchor">
 <a href="#incorrect-input" class="anchor"></a>Incorrect input</h3>
-<p>Chile-China bilateral trade data in 2000 (HS02):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with China?  </span>
+<p>Chile-Argentina bilateral trade data in 2000 (HS02):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># year 2000 - HS02 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"chl"</span>, <span class="st">"chn"</span>, <span class="dv">2000</span>, <span class="st">"hs02"</span>)
-<span class="co">#&gt; Error in getdata("chl", "chn", 2000, "hs02"): Provided that you requested HS02 data please</span>
-<span class="co">#&gt;            verify that the data you are requesting is</span>
-<span class="co">#&gt;            contained within the years 2002-2016.</span></code></pre></div>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2000</span>, <span class="st">"hs02"</span>)
+<span class="co">#&gt; Error in get_data("chl", "arg", 2000, "hs02"): Provided that you requested HS02 data please</span>
+<span class="co">#&gt;          verify that the data you are requesting is</span>
+<span class="co">#&gt;          contained within the years 2002-2016.</span></code></pre></div>
 <p>The problem here is that HS02 data is only available since 2002.</p>
 </div>
 <div id="special-cases" class="section level3">
@@ -321,15 +261,17 @@ sitc
 <p>Andorra-France bilateral trade data in 2015 (SITC):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - SITC (4 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>)
-<span class="co">#&gt; Valid input. Processing 2015 data...</span>
-<span class="co">#&gt; Error in getdata("and", "fra", 2015): No data available. Try changing years or trade classification.</span></code></pre></div>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; Error in get_data("and", "fra", 2015): No data available. Try changing years or trade classification.</span></code></pre></div>
 <p>The problem here is that Andorra did not report SITC data in 2015 but they reported HS07 data.</p>
 <p>Andorra-France bilateral trade data in 2015 (HS07):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/getdata.html">getdata</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
-<span class="co">#&gt; Valid input. Processing 2015 data...</span>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Processing 2015 data...</span>
 <span class="co">#&gt; # A tibble: 1,883 x 31</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
@@ -373,7 +315,7 @@ sitc
 </li>
       <li>
 <a href="#package-functions">Package functions</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#getdata">Getdata</a></li>
+<li><a href="#get_data">get_data</a></li>
       </ul>
 </li>
       </ul>

@@ -62,7 +62,7 @@ and data transforming." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.3</span>
       </span>
     </div>
 
@@ -120,24 +120,25 @@ and data transforming.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_data</span>(<span class='no'>origin</span>, <span class='no'>destination</span>, <span class='no'>years</span>, <span class='no'>classification</span>)</pre>
+    <pre class="usage"><span class='fu'>get_data</span>(<span class='kw'>origin</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>destination</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>years</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
+  <span class='kw'>classification</span> <span class='kw'>=</span> <span class='st'>"sitc"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>origin</th>
-      <td><p>ISO code for country of origin (e.g. <code>chl</code> for Chile).
+      <td><p>ISO code for country of origin (e.g. <code>chl</code> for Chile). Default set to <code>all</code>.
 Run <code>country_codes</code> in case of doubt.</p></td>
     </tr>
     <tr>
       <th>destination</th>
-      <td><p>ISO code for country of destination (e.g. <code>chn</code> for China).
+      <td><p>ISO code for country of destination (e.g. <code>chn</code> for China). Default set to <code>all</code>.
 Run <code>country_codes</code> in case of doubt.</p></td>
     </tr>
     <tr>
       <th>years</th>
-      <td><p>Numeric value greater or equal to 1962 and lower of equal to 2016.</p></td>
+      <td><p>Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.</p></td>
     </tr>
     <tr>
       <th>classification</th>
@@ -161,13 +162,13 @@ such as exports growth w/r to last year) between an <code>origin</code> and <cod
 
 <span class='co'># What does Chile export to China?</span>
 <span class='co'># year 2015 - SITC (4 characters)</span>
-<span class='fu'><a href='getdata.html'>getdata</a></span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>)
+<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>)
 <span class='co'># or with explicit parameter</span>
-<span class='fu'><a href='getdata.html'>getdata</a></span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"sitc"</span>)
+<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"sitc"</span>)
 
 <span class='co'># What does Chile export to China?</span>
 <span class='co'># years 2010, 2011 and 2015 - HS07 (4 and 6 characters)</span>
-<span class='fu'><a href='getdata.html'>getdata</a></span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fu'>c</span>(<span class='fl'>2010</span>, <span class='fl'>2011</span>, <span class='fl'>2015</span>), <span class='st'>"hs07"</span>)
+<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fu'>c</span>(<span class='fl'>2010</span>, <span class='fl'>2011</span>, <span class='fl'>2015</span>), <span class='st'>"hs07"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -99,6 +99,14 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
   country_codes <- oec::country_codes
   
   # Check origin and destination --------------------------------------------
+  if (!origin %in% country_codes$country_code) {
+    origin <- get_countrycode(origin)
+  }
+  
+  if (!destination %in% country_codes$country_code) {
+    destination <- get_countrycode(destination)
+  }
+  
   match.arg(origin, country_codes$country_code)
   match.arg(destination, country_codes$country_code)
   

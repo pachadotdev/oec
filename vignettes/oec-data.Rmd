@@ -44,7 +44,16 @@ if (!file.exists(country_codes_tidy_file)) {
     mutate(country = iconv(country, from = "", to = "ASCII", sub = "byte")) %>%
     arrange(country) %>% 
     
-    rbind(c("the World", "all"))
+    # the code "wld" returns an empty JSON so I remove that
+    filter(country_code != "wld") %>% 
+    
+    # the world code is "all"
+    rbind(c("the World", "all")) %>% 
+    
+    # also Taiwan is not correctly written
+    mutate(
+      country = ifelse(country == "Taiwan", "Taiwan, province of China", country)
+    )
   
   save(country_codes, file = country_codes_tidy_file, compress = "xz")
 }
@@ -87,9 +96,6 @@ if (!file.exists(hs92_tidy_file)) {
 }
 ```
 
-
-
-
 ## HS96
 
 ```{r hs96}
@@ -125,8 +131,6 @@ if (!file.exists(hs96_tidy_file)) {
 }
 ```
 
-
-
 ## HS02
 
 ```{r hs02}
@@ -161,7 +165,6 @@ if (!file.exists(hs02_tidy_file)) {
   save(hs02, file = hs02_tidy_file, compress = "xz")
 }
 ```
-
 
 ## HS07
 

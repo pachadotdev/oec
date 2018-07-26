@@ -1,28 +1,25 @@
 #' aaa
 #' @description aaa
-#' @param country_name aaa
+#' @param countryname aaa
 #' @return aaa
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select filter
 #' @importFrom rlang sym syms
 #' @importFrom purrr as_vector
+#' @importFrom stringr str_detect str_to_lower
 #' @export
 #' @examples
 #' get_countrycode("world")
 #' @keywords functions
 
-get_countrycode <- function(country_name = "world") {
+get_countrycode <- function(countryname = "world") {
   countrycode <- oec::country_codes %>% 
-    
-    mutate(
-      country2 = tolower(!!sym("country"))
-    ) %>% 
-    
     filter(
-      grepl(tolower(country_name), !!sym("country2"))
+      str_detect(
+        str_to_lower(!!sym("country")), str_to_lower(countryname)
+      )
     ) %>% 
-    
-    select(!!sym("country_code"), -!!sym("country")) %>% 
+    select(!!sym("country_code")) %>% 
     as_vector
   
   stopifnot(length(countrycode) != 0)
@@ -32,16 +29,11 @@ get_countrycode <- function(country_name = "world") {
     
     print(
       oec::country_codes %>% 
-        
-        mutate(
-          country2 = iconv(tolower(!!sym("country")))
-        ) %>% 
-        
         filter(
-          grepl(tolower(country_name), !!sym("country2"))
-        ) %>% 
-        
-        select(-!!sym("country2"))
+          str_detect(
+            str_to_lower(!!sym("country")), str_to_lower(countryname)
+          )
+        )
     )
   } else {
     return(countrycode)

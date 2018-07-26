@@ -4,10 +4,10 @@
 \alias{get_countrycode}
 \title{aaa}
 \usage{
-get_countrycode(country_name = "world")
+get_countrycode(countryname = "world")
 }
 \arguments{
-\item{country_name}{aaa}
+\item{countryname}{aaa}
 }
 \value{
 aaa

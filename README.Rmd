@@ -45,6 +45,12 @@ devtools::install_github("pachamaltese/oec-r-package")
 
 This package features a full pkgdown site [here](http://pacha.hk/oec/). Please read it.
 
+Here's a basic example to obtain bilateral trade between Chile and Argentina in the year 2000 under different trade classifications:
+```{r basic-example, eval=FALSE}
+sitc_data <- get_data("chl", "arg", 2000, "sitc")
+hs92_data <- get_data("chl", "arg", 2000, "hs92")
+```
+
 ## Code of conduct
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).

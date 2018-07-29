@@ -12,18 +12,6 @@ test_that("get_data connects to the API and returns a valid tibble after valid i
   }
 })
 
-test_that("get_data connects to the API and returns a valid tibble after valid input", {
-  if (curl::has_internet()) {
-    # Multilateral trade Chile-World (SITC, 1980)
-    test_data <- get_data("chl", "all", 1980)
-    expect_is(test_data, "tbl")
-    expect_is(test_data, "data.frame")
-    expect_output(str(test_data), "29 variables")
-  } else {
-    skip("No internet connection")
-  }
-})
-
 test_that("get_data connects to the API and returns an error after invalid input", {
   if (curl::has_internet()) {
     # Bilateral trade Chile-Argentina (HS92, 1980) - Error message

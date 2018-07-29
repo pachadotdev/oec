@@ -67,19 +67,19 @@ The API returns data for different trade classifications:
 Chile-Argentina bilateral trade data in 2015 (SITC):
 ```{r get_data, eval = TRUE}
 # What does Chile exchange with Argentina?  
-# year 2015 - SITC (4 characters)
-get_data("chl", "arg", 2015)
+# year 1980 - SITC (4 characters)
+get_data("chl", "arg", 1980)
 ```
 
 For the other classifications is similar:
-```{r get_data2, eval = TRUE}
+```{r get_data2, eval = FALSE}
 # What does Chile exchange with Argentina?  
 # year 2015 - HS07 (4 and 6 characters)
 get_data("chl", "arg", 2015, "hs07")
 ```
 
 If you need data for more than one year you can write the years as a vector:
-```{r get_data2_2, eval = TRUE}
+```{r get_data2_2, eval = FALSE}
 # What does Chile exchange with Argentina?  
 # years 2010 and 2015 - HS07 (4 and 6 characters)
 get_data("chl", "arg", c(2010,2015), "hs07")

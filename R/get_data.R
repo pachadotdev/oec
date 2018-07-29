@@ -115,9 +115,9 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
     sprintf("\nProcessing %s data...", years)
   )
   
-  # Function to read from API -----------------------------------------------
+  # Read from API -----------------------------------------------------------
   read_from_api <- function(t, flow, attempts_left = 5) {
-    stopifnot(attempts_left > -1)
+    stopifnot(attempts_left > 0)
     
     url <- switch (flow,
                    "origin-destination" = sprintf(
@@ -157,7 +157,7 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       return(data)
       } else if (attempts_left == 0) { 
         # when attempts run out, stop with an error
-        stop("Cannot connect to the MIT API")
+        stop("Cannot connect to the API")
       } else { 
         # otherwise, sleep a second and try again
         Sys.sleep(1)

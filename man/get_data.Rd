@@ -8,29 +8,34 @@ get_data(origin = "all", destination = "all", years = 2000,
   classification = "sitc")
 }
 \arguments{
-\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). Default set to \code{all}.
+\item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). 
+Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
-\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). Default set to \code{all}.
+\item{destination}{ISO code for country of destination (e.g. \code{chn} for China). 
+Default set to \code{all}.
 Run \code{country_codes} in case of doubt.}
 
-\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.}
+\item{years}{Numeric value greater or equal to 1962 and lower of equal to 2016. 
+Default set to 2000.}
 
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}
 }
 \value{
-A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics
-such as exports growth w/r to last year) between an \code{origin} and \code{destination} country.
+A tibble that describes bilateral trade metrics (imports, exports, trade balance
+and relevant metrics
+such as exports growth w/r to last year) between an \code{origin} and \code{destination}
+country.
 }
 \description{
-This function accesses \code{atlas.media.mit.edu}and perfoms different API calls to return tidy data.
-and data transforming.
+This function accesses \code{atlas.media.mit.edu}and perfoms different API 
+calls to return tidy data. and data transforming.
 }
 \examples{
 \dontrun{
-# The next examples can take more than 5 seconds to compute, and specially for large economies so
-# these are just shown without evaluation according to CRAN rules
+# The next examples can take more than 5 seconds to compute, and specially for large 
+economies so these are just shown without evaluation according to CRAN rules
 
 # Run `country_codes` to display the full table of countries
 

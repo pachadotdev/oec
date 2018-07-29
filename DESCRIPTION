@@ -33,5 +33,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    covr
+    covr,
+    styler,
+    pkgdown
 VignetteBuilder: knitr

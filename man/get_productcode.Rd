@@ -2,18 +2,20 @@
 % Please edit documentation in R/get_productcode.R
 \name{get_productcode}
 \alias{get_productcode}
-\title{aaa}
+\title{Obtain a valid product codes}
 \usage{
 get_productcode(productname = "animals")
 }
 \arguments{
-\item{productname}{aaa}
+\item{productname}{A text string such as "Animals", "COPPER" or "fruits".}
 }
 \value{
-aaa
+A tibble with all possible matches (no uppercase distinction) showing the product
+name, product code and corresponding trade classification (e.g. HS92 or SITC)
 }
 \description{
-aaa
+This function takes a text string and searches within the package data for
+all matching product codes in the context of valid API product codes.
 }
 \examples{
 get_productcode("animals")

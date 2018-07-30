@@ -285,14 +285,14 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       everything()
     )
 
-  names(country_codes) <- c("top_importer_code", "top_importer")
+  names(country_codes) <- c("top_importer", "top_importer_code")
 
   origin_destination <- origin_destination %>%
     rename(top_importer_code = !!sym("top_importer")) %>%
     mutate(top_importer_code = str_sub(!!sym("top_importer_code"), 3)) %>%
     left_join(country_codes, by = "top_importer_code")
 
-  names(country_codes) <- c("top_exporter_code", "top_exporter")
+  names(country_codes) <- c("top_exporter", "top_exporter_code")
 
   origin_destination <- origin_destination %>%
     rename(top_exporter_code = !!sym("top_exporter")) %>%

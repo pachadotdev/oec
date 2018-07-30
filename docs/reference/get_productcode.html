@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • oec</title>
+<title>Obtain a valid product codes — get_productcode • oec</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,11 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Obtain a valid product codes — get_productcode" />
+
+<meta property="og:description" content="This function takes a text string and searches within the package data for
+all matching product codes in the context of valid API product codes." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,18 +108,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Obtain a valid product codes</h1>
+    
+    <div class="hidden name"><code>get_productcode.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="oec-data.html">Oec data</a></li>
-        <li><a href="oec.html">Introduction to oec</a></li>
-      </ul>
+    <div class="ref-description">
+    
+    <p>This function takes a text string and searches within the package data for
+all matching product codes in the context of valid API product codes.</p>
+    
     </div>
+
+    <pre class="usage"><span class='fu'>get_productcode</span>(<span class='kw'>productname</span> <span class='kw'>=</span> <span class='st'>"animals"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>productname</th>
+      <td><p>A text string such as "Animals", "COPPER" or "fruits".</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble with all possible matches (no uppercase distinction) showing the product
+name, product code and corresponding trade classification (e.g. HS92 or SITC)</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>get_productcode</span>(<span class='st'>"animals"</span>)</div><div class='output co'>#&gt; # A tibble: 139 x 6
+#&gt;    product_name                  id     group_name  group_id color type_product
+#&gt;    &lt;chr&gt;                         &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       
+#&gt;  1 Live horses/asses/mules/hinn… 010110 Animal Pro… 01       #FFE… hs02        
+#&gt;  2 Live horses/asses/mules/hinn… 010190 Animal Pro… 01       #FFE… hs02        
+#&gt;  3 Live bovine animals.          0102   Animal Pro… 01       #FFE… hs02        
+#&gt;  4 Live bovine animals: pure-br… 010210 Animal Pro… 01       #FFE… hs02        
+#&gt;  5 Live bovine animals other th… 010290 Animal Pro… 01       #FFE… hs02        
+#&gt;  6 Live swine: pure-bred breedi… 010310 Animal Pro… 01       #FFE… hs02        
+#&gt;  7 Live swine other than pure-b… 010391 Animal Pro… 01       #FFE… hs02        
+#&gt;  8 Live swine other than pure-b… 010392 Animal Pro… 01       #FFE… hs02        
+#&gt;  9 Other live animals.           0106   Animal Pro… 01       #FFE… hs02        
+#&gt; 10 Live animals, n.e.s.          010690 Animal Pro… 01       #FFE… hs02        
+#&gt; # ... with 129 more rows</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 

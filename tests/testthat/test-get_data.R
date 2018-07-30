@@ -1,5 +1,18 @@
 context("test-oec.R")
 
+test_that("API requests happen", {
+  if (curl::has_internet()) {
+    expect_is(GET("http://atlas.media.mit.edu/attr/country"), "response")
+    expect_is(
+      GET("http://atlas.media.mit.edu/attr/country",
+          query=list(`Content-Type` = "application/json")),
+      "response"
+    )
+  } else {
+    skip("No internet connection")
+  }
+})
+
 test_that("get_data connects to the API and returns a valid tibble after valid input", {
   if (curl::has_internet()) {
     # Bilateral trade Chile-Argentina (SITC, 1980)

@@ -35,5 +35,6 @@ Suggests:
     testthat,
     covr,
     styler,
-    pkgdown
+    pkgdown,
+    httptest
 VignetteBuilder: knitr

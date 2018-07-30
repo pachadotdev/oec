@@ -20,7 +20,7 @@ This vignette shows the exact steps I performed to obtain and transform both the
 
 # Country codes
 
-```{r countries, message = FALSE}
+```{r countries, message = FALSE, eval = FALSE}
 library(dplyr)
 library(purrr)
 library(jsonlite)
@@ -63,7 +63,7 @@ if (!file.exists(country_codes_tidy_file)) {
 
 ## HS92
 
-```{r hs92}
+```{r hs92, eval = FALSE}
 hs92_url <- "https://atlas.media.mit.edu/attr/hs92/"
 hs92_raw_file <- "../data-raw/hs92.json"
 hs92_tidy_file <- "../data/hs92.RData"
@@ -98,7 +98,7 @@ if (!file.exists(hs92_tidy_file)) {
 
 ## HS96
 
-```{r hs96}
+```{r hs96, eval = FALSE}
 hs96_url <- "https://atlas.media.mit.edu/attr/hs96/"
 hs96_raw_file <- "../data-raw/hs96.json"
 hs96_tidy_file <- "../data/hs96.RData"
@@ -133,7 +133,7 @@ if (!file.exists(hs96_tidy_file)) {
 
 ## HS02
 
-```{r hs02}
+```{r hs02, eval = FALSE}
 hs02_url <- "https://atlas.media.mit.edu/attr/hs02/"
 hs02_raw_file <- "../data-raw/hs02.json"
 hs02_tidy_file <- "../data/hs02.RData"
@@ -168,7 +168,7 @@ if (!file.exists(hs02_tidy_file)) {
 
 ## HS07
 
-```{r hs07}
+```{r hs07, eval = FALSE}
 hs07_url <- "https://atlas.media.mit.edu/attr/hs07/"
 hs07_raw_file <- "../data-raw/hs07.json"
 hs07_tidy_file <- "../data/hs07.RData"
@@ -203,7 +203,7 @@ if (!file.exists(hs07_tidy_file)) {
 
 ## SITC rev 2
 
-```{r sitc, eval = T}
+```{r sitc, eval = FALSE}
 sitc_url <- "https://atlas.media.mit.edu/attr/sitc/"
 sitc_raw_file <- "../data-raw/sitc.json"
 sitc_tidy_file <- "../data-raw/sitc.json"

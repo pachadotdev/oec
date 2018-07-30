@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>Oec data</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-07-26</h4>
+            <h4 class="date">2018-07-30</h4>
       
       
       <div class="hidden name"><code>oec-data.Rmd</code></div>
@@ -111,7 +111,16 @@ country_codes_tidy_file &lt;-<span class="st"> "../data/country_codes.RData"</sp
 <span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">country =</span> <span class="kw">iconv</span>(country, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(country) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span>
-<span class="st">    </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">"the World"</span>, <span class="st">"all"</span>))
+<span class="st">    </span><span class="co"># the code "wld" returns an empty JSON so I remove that</span>
+<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(country_code <span class="op">!=</span><span class="st"> "wld"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span>
+<span class="st">    </span><span class="co"># the world code is "all"</span>
+<span class="st">    </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">"the World"</span>, <span class="st">"all"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span>
+<span class="st">    </span><span class="co"># also Taiwan is not correctly written</span>
+<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+      <span class="dt">country =</span> <span class="kw">ifelse</span>(country <span class="op">==</span><span class="st"> "Taiwan"</span>, <span class="st">"Taiwan, province of China"</span>, country)
+    )
   
   <span class="kw">save</span>(country_codes, <span class="dt">file =</span> country_codes_tidy_file, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>

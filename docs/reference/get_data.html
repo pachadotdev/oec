@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Downloads and processes the data from the API — get_data" />
 
-<meta property="og:description" content="This function accesses atlas.media.mit.eduand perfoms different API calls to return tidy data.
-and data transforming." />
+<meta property="og:description" content="This function accesses atlas.media.mit.eduand perfoms different API 
+calls to return tidy data. and data transforming." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -62,7 +62,7 @@ and data transforming." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
       </span>
     </div>
 
@@ -115,8 +115,8 @@ and data transforming." />
 
     <div class="ref-description">
     
-    <p>This function accesses <code>atlas.media.mit.edu</code>and perfoms different API calls to return tidy data.
-and data transforming.</p>
+    <p>This function accesses <code>atlas.media.mit.edu</code>and perfoms different API 
+calls to return tidy data. and data transforming.</p>
     
     </div>
 
@@ -128,17 +128,20 @@ and data transforming.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>origin</th>
-      <td><p>ISO code for country of origin (e.g. <code>chl</code> for Chile). Default set to <code>all</code>.
+      <td><p>ISO code for country of origin (e.g. <code>chl</code> for Chile). 
+Default set to <code>all</code>.
 Run <code>country_codes</code> in case of doubt.</p></td>
     </tr>
     <tr>
       <th>destination</th>
-      <td><p>ISO code for country of destination (e.g. <code>chn</code> for China). Default set to <code>all</code>.
+      <td><p>ISO code for country of destination (e.g. <code>chn</code> for China). 
+Default set to <code>all</code>.
 Run <code>country_codes</code> in case of doubt.</p></td>
     </tr>
     <tr>
       <th>years</th>
-      <td><p>Numeric value greater or equal to 1962 and lower of equal to 2016. Default set to 2000.</p></td>
+      <td><p>Numeric value greater or equal to 1962 and lower of equal to 2016. 
+Default set to 2000.</p></td>
     </tr>
     <tr>
       <th>classification</th>
@@ -149,27 +152,30 @@ Run <code>country_codes</code> in case of doubt.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble that describes bilateral trade metrics (imports, exports, trade balance and relevant metrics
-such as exports growth w/r to last year) between an <code>origin</code> and <code>destination</code> country.</p>
+    <p>A tibble that describes bilateral trade metrics (imports, exports, trade balance
+and relevant metrics
+such as exports growth w/r to last year) between an <code>origin</code> and <code>destination</code>
+country.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># The next examples can take more than 5 seconds to compute, and specially for large economies so</span>
-<span class='co'># these are just shown without evaluation according to CRAN rules</span>
+    <pre class="examples"># NOT RUN {
+# The next examples can take more than 5 seconds to compute, and specially for large 
+economies so these are just shown without evaluation according to CRAN rules
 
-<span class='co'># Run `country_codes` to display the full table of countries</span>
+# Run `country_codes` to display the full table of countries
 
-<span class='co'># What does Chile export to China?</span>
-<span class='co'># year 2015 - SITC (4 characters)</span>
-<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>)
-<span class='co'># or with explicit parameter</span>
-<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fl'>2015</span>, <span class='st'>"sitc"</span>)
+# What does Chile export to China?
+# year 2015 - SITC (4 characters)
+get_data("chl", "chn", 2015)
+# or with explicit parameter
+get_data("chl", "chn", 2015, "sitc")
 
-<span class='co'># What does Chile export to China?</span>
-<span class='co'># years 2010, 2011 and 2015 - HS07 (4 and 6 characters)</span>
-<span class='fu'>get_data</span>(<span class='st'>"chl"</span>, <span class='st'>"chn"</span>, <span class='fu'>c</span>(<span class='fl'>2010</span>, <span class='fl'>2011</span>, <span class='fl'>2015</span>), <span class='st'>"hs07"</span>)
-<span class='co'># }</span></pre>
+# What does Chile export to China?
+# years 2010, 2011 and 2015 - HS07 (4 and 6 characters)
+get_data("chl", "chn", c(2010, 2011, 2015), "hs07")
+# }
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

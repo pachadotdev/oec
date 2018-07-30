@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>Introduction to oec</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-07-26</h4>
+            <h4 class="date">2018-07-30</h4>
       
       
       <div class="hidden name"><code>oec.Rmd</code></div>
@@ -100,7 +100,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(oec)
 
 country_codes
-<span class="co">#&gt; # A tibble: 264 x 2</span>
+<span class="co">#&gt; # A tibble: 263 x 2</span>
 <span class="co">#&gt;    country             country_code</span>
 <span class="co">#&gt;    &lt;chr&gt;               &lt;chr&gt;       </span>
 <span class="co">#&gt;  1 Afghanistan         afg         </span>
@@ -113,7 +113,7 @@ country_codes
 <span class="co">#&gt;  8 Antarctica          ata         </span>
 <span class="co">#&gt;  9 Antigua and Barbuda atg         </span>
 <span class="co">#&gt; 10 Areas               xxa         </span>
-<span class="co">#&gt; # ... with 254 more rows</span></code></pre></div>
+<span class="co">#&gt; # ... with 253 more rows</span></code></pre></div>
 </div>
 <div id="product-codes" class="section level2">
 <h2 class="hasAnchor">
@@ -153,95 +153,96 @@ country_codes
 <a href="#correct-input" class="anchor"></a>Correct input</h3>
 <p>Chile-Argentina bilateral trade data in 2015 (SITC):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
-<span class="co"># year 2015 - SITC (4 characters)</span>
-<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2015</span>)
+<span class="co"># year 1980 - SITC (4 characters)</span>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">1980</span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 604 x 31</span>
+<span class="co">#&gt; Processing 1980 data...</span>
+<span class="co">#&gt; # A tibble: 370 x 30</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id   </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;</span>
-<span class="co">#&gt;  1  2015 chl       arg            Chile       Argentina        5722 </span>
-<span class="co">#&gt;  2  2015 chl       arg            Chile       Argentina        6251 </span>
-<span class="co">#&gt;  3  2015 chl       arg            Chile       Argentina        6282 </span>
-<span class="co">#&gt;  4  2015 chl       arg            Chile       Argentina        6289 </span>
-<span class="co">#&gt;  5  2015 chl       arg            Chile       Argentina        6352 </span>
-<span class="co">#&gt;  6  2015 chl       arg            Chile       Argentina        6418 </span>
-<span class="co">#&gt;  7  2015 chl       arg            Chile       Argentina        6572 </span>
-<span class="co">#&gt;  8  2015 chl       arg            Chile       Argentina        6577 </span>
-<span class="co">#&gt;  9  2015 chl       arg            Chile       Argentina        6631 </span>
-<span class="co">#&gt; 10  2015 chl       arg            Chile       Argentina        6632 </span>
-<span class="co">#&gt; # ... with 594 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
+<span class="co">#&gt;  1  1980 chl       arg            Chile       Argentina        5722 </span>
+<span class="co">#&gt;  2  1980 chl       arg            Chile       Argentina        6250 </span>
+<span class="co">#&gt;  3  1980 chl       arg            Chile       Argentina        6282 </span>
+<span class="co">#&gt;  4  1980 chl       arg            Chile       Argentina        6289 </span>
+<span class="co">#&gt;  5  1980 chl       arg            Chile       Argentina        6577 </span>
+<span class="co">#&gt;  6  1980 chl       arg            Chile       Argentina        6631 </span>
+<span class="co">#&gt;  7  1980 chl       arg            Chile       Argentina        6632 </span>
+<span class="co">#&gt;  8  1980 chl       arg            Chile       Argentina        6645 </span>
+<span class="co">#&gt;  9  1980 chl       arg            Chile       Argentina        6647 </span>
+<span class="co">#&gt; 10  1980 chl       arg            Chile       Argentina        6760 </span>
+<span class="co">#&gt; # ... with 360 more rows, and 24 more variables: id_len &lt;int&gt;,</span>
 <span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_pct_5 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   import_val_growth_val &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_rca &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
 <span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
 <span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
+<p>Here some columns deserve an explanation:</p>
+<ul>
+<li>
+<code>id</code>: SITC or HS product code (e.g. 5722 stands for “Initiating Devices” in SITC)</li>
+<li>
+<code>id_len</code>: How many digits does <code>id</code> contain, this can be useful to filter by depth when using HS codes (HS 6 digits is a more detailed version of HS 4 digits, and therefore you don’t have to sum both or you’ll be counting exports/imports twice)</li>
+<li>
+<code>group_id</code>: An international categorization of group products defined after product ID</li>
+<li>
+<code>group_name</code>: The english name corresponding to <code>group_id</code>
+</li>
+<li>
+<code>export_val</code>: Exports measured in United States Dollars (USD)</li>
+<li>
+<code>import_val</code>: Imports mesured in United States Dollars (USD)</li>
+<li>
+<code>export_val_growth_pct</code>: Nominal increase/decrease in exports measured as percentage with respect to last year</li>
+<li>
+<code>export_val_growth_pct_5</code>: Nominal increase/decrease in exports measured as percentage with respect to five years ago</li>
+<li>
+<code>export_val_growth_val</code>: Nominal increase/decrease in exports measured in USD with respect to last year</li>
+<li>
+<code>export_val_growth_val_5</code>: Nominal increase/decrease in exports measured in USD with respect to five years ago</li>
+<li>
+<code>export_rca</code>: Revealed Comparative Advantage (RCA) according to the equations exposed in The Atlas of Economic Complexity</li>
+<li>
+<code>import_val_growth_pct</code>: Nominal increase/decrease in imports measured as percentage with respect to last year</li>
+<li>
+<code>import_val_growth_pct_5</code>: Nominal increase/decrease in imports measured as percentage with respect to five years ago</li>
+<li>
+<code>import_val_growth_val</code>: Nominal increase/decrease in imports measured in USD with respect to last year</li>
+<li>
+<code>import_val_growth_val_5</code>: Nominal increase/decrease in imports measured in USD with respect to five years ago</li>
+<li>
+<code>trade_exchange_val</code>: Corresponds to the sum of imports and exports</li>
+<li>
+<code>pci</code>: Product Complexity Index (PCI) according to the equations exposed in The Atlas of Economic Complexity</li>
+<li>
+<code>pci_rank</code>: Rank of a product given its PCI (e.g. the highest PCI obtains the #1)</li>
+<li>
+<code>pci_rank_delta</code>: How many places a product increased or decreased with respect to last year</li>
+<li>
+<code>top_exporter</code>: Which country exports the most of a product</li>
+<li>
+<code>top_importer</code>: Which country exports the most of a product</li>
+<li>
+<code>top_exporter_code</code>: ISO-3 code of <code>top_exporter</code>
+</li>
+<li>
+<code>top_importer_code</code>: ISO-3 code of <code>top_importer</code>
+</li>
+<li>
+<code>color</code>: Hex colors by product group, this can be useful to create visualizations</li>
+</ul>
 <p>For the other classifications is similar:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 3,315 x 31</span>
-<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt;  1  2015 chl       arg            Chile       Argentina        0101  </span>
-<span class="co">#&gt;  2  2015 chl       arg            Chile       Argentina        010110</span>
-<span class="co">#&gt;  3  2015 chl       arg            Chile       Argentina        010190</span>
-<span class="co">#&gt;  4  2015 chl       arg            Chile       Argentina        0106  </span>
-<span class="co">#&gt;  5  2015 chl       arg            Chile       Argentina        010619</span>
-<span class="co">#&gt;  6  2015 chl       arg            Chile       Argentina        0201  </span>
-<span class="co">#&gt;  7  2015 chl       arg            Chile       Argentina        020130</span>
-<span class="co">#&gt;  8  2015 chl       arg            Chile       Argentina        0202  </span>
-<span class="co">#&gt;  9  2015 chl       arg            Chile       Argentina        020230</span>
-<span class="co">#&gt; 10  2015 chl       arg            Chile       Argentina        0206  </span>
-<span class="co">#&gt; # ... with 3,305 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
-<span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_pct_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_val &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_rca &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
-<span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
-<span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)</code></pre></div>
 <p>If you need data for more than one year you can write the years as a vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># years 2010 and 2015 - HS07 (4 and 6 characters)</span>
-<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="kw">c</span>(<span class="dv">2010</span>,<span class="dv">2015</span>), <span class="st">"hs07"</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 2010 data...</span>
-<span class="co">#&gt; Processing 2015 data...</span>
-<span class="co">#&gt; # A tibble: 28,464 x 31</span>
-<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt;  1  2010 chl       arg            Chile       Argentina        0101  </span>
-<span class="co">#&gt;  2  2010 chl       arg            Chile       Argentina        0101  </span>
-<span class="co">#&gt;  3  2010 chl       arg            Chile       Argentina        0101  </span>
-<span class="co">#&gt;  4  2010 chl       arg            Chile       Argentina        0101  </span>
-<span class="co">#&gt;  5  2010 chl       arg            Chile       Argentina        010110</span>
-<span class="co">#&gt;  6  2010 chl       arg            Chile       Argentina        010110</span>
-<span class="co">#&gt;  7  2010 chl       arg            Chile       Argentina        010110</span>
-<span class="co">#&gt;  8  2010 chl       arg            Chile       Argentina        010110</span>
-<span class="co">#&gt;  9  2010 chl       arg            Chile       Argentina        010190</span>
-<span class="co">#&gt; 10  2010 chl       arg            Chile       Argentina        010190</span>
-<span class="co">#&gt; # ... with 28,454 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
-<span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val &lt;dbl&gt;, export_val_growth_pct_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct_5 &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_rca &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
-<span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
-<span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
+<span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="kw">c</span>(<span class="dv">2010</span>,<span class="dv">2015</span>), <span class="st">"hs07"</span>)</code></pre></div>
 </div>
 <div id="incorrect-input" class="section level3">
 <h3 class="hasAnchor">

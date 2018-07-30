@@ -71,6 +71,33 @@ Chile-Argentina bilateral trade data in 2015 (SITC):
 get_data("chl", "arg", 1980)
 ```
 
+Here some columns deserve an explanation:
+
+* `id`: SITC or HS product code (e.g. 5722 stands for "Initiating Devices" in SITC)
+* `id_len`: How many digits does `id` contain, this can be useful to filter by depth when using HS codes (HS 6 digits is a more detailed version of HS 4 digits, and therefore you don't have to sum both or you'll be counting exports/imports twice)
+* `group_id`: An international categorization of group products defined after product ID
+* `group_name`: The english name corresponding to `group_id`
+* `export_val`: Exports measured in United States Dollars (USD)
+* `import_val`: Imports mesured in United States Dollars (USD)
+* `export_val_growth_pct`: Nominal increase/decrease in exports measured as percentage with respect to last year
+* `export_val_growth_pct_5`: Nominal increase/decrease in exports measured as percentage with respect to five years ago
+* `export_val_growth_val`: Nominal increase/decrease in exports measured in USD with respect to last year
+* `export_val_growth_val_5`: Nominal increase/decrease in exports measured in USD with respect to five years ago
+* `export_rca`: Revealed Comparative Advantage (RCA) according to the equations exposed in The Atlas of Economic Complexity
+* `import_val_growth_pct`: Nominal increase/decrease in imports measured as percentage with respect to last year
+* `import_val_growth_pct_5`: Nominal increase/decrease in imports measured as percentage with respect to five years ago
+* `import_val_growth_val`: Nominal increase/decrease in imports measured in USD with respect to last year
+* `import_val_growth_val_5`: Nominal increase/decrease in imports measured in USD with respect to five years ago
+* `trade_exchange_val`: Corresponds to the sum of imports and exports
+* `pci`: Product Complexity Index (PCI) according to the equations exposed in The Atlas of Economic Complexity
+* `pci_rank`: Rank of a product given its PCI (e.g. the highest PCI obtains the #1)
+* `pci_rank_delta`: How many places a product increased or decreased with respect to last year
+* `top_exporter`: Which country exports the most of a product
+* `top_importer`: Which country exports the most of a product
+* `top_exporter_code`: ISO-3 code of `top_exporter`
+* `top_importer_code`: ISO-3 code of `top_importer`
+* `color`: Hex colors by product group, this can be useful to create visualizations
+
 For the other classifications is similar:
 ```{r get_data2, eval = FALSE}
 # What does Chile exchange with Argentina?  

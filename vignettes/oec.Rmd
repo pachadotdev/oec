@@ -68,7 +68,6 @@ Chile-Argentina bilateral trade data in 2015 (SITC):
 ```{r get_data, eval = TRUE}
 # What does Chile exchange with Argentina?  
 # year 1980 - SITC (4 characters)
-
 get_data("chl", "arg", 1980)
 ```
 

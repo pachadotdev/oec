@@ -8,8 +8,8 @@
 <title>Introduction to oec • oec</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to oec">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to oec">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.6</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>Introduction to oec</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-07-30</h4>
+            <h4 class="date">2018-08-19</h4>
       
       
       <div class="hidden name"><code>oec.Rmd</code></div>
@@ -126,16 +126,16 @@ country_codes
 <span class="co">#&gt; # A tibble: 6,282 x 5</span>
 <span class="co">#&gt;    product_name                       id     group_name    group_id color </span>
 <span class="co">#&gt;    &lt;chr&gt;                              &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt; </span>
-<span class="co">#&gt;  1 Horses                             0101   Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  2 Horses, live pure-bred breeding    010111 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  3 Horses, live except pure-bred bre… 010119 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  4 Asses, mules and hinnies, live     010120 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  5 Bovine                             0102   Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  6 Bovine animals, live pure-bred br… 010210 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  7 Bovine animals, live, except pure… 010290 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  8 Pigs                               0103   Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt;  9 Swine, live pure-bred breeding     010310 Animal Produ… 01       #FFE9…</span>
-<span class="co">#&gt; 10 Swine, live except pure-bred bree… 010391 Animal Produ… 01       #FFE9…</span>
+<span class="co">#&gt;  1 Horses                             0101   Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  2 Horses, live pure-bred breeding    010111 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  3 Horses, live except pure-bred bre~ 010119 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  4 Asses, mules and hinnies, live     010120 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  5 Bovine                             0102   Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  6 Bovine animals, live pure-bred br~ 010210 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  7 Bovine animals, live, except pure~ 010290 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  8 Pigs                               0103   Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt;  9 Swine, live pure-bred breeding     010310 Animal Produ~ 01       #FFE9~</span>
+<span class="co">#&gt; 10 Swine, live except pure-bred bree~ 010391 Animal Produ~ 01       #FFE9~</span>
 <span class="co">#&gt; # ... with 6,272 more rows</span></code></pre></div>
 <p>Each product belongs to a group and the color column (given after product groups) allows to use the same palettes as the official website.</p>
 </div>
@@ -157,28 +157,30 @@ country_codes
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">1980</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Processing 1980 data...</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; # A tibble: 370 x 30</span>
-<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id   </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;</span>
-<span class="co">#&gt;  1  1980 chl       arg            Chile       Argentina        5722 </span>
-<span class="co">#&gt;  2  1980 chl       arg            Chile       Argentina        6250 </span>
-<span class="co">#&gt;  3  1980 chl       arg            Chile       Argentina        6282 </span>
-<span class="co">#&gt;  4  1980 chl       arg            Chile       Argentina        6289 </span>
-<span class="co">#&gt;  5  1980 chl       arg            Chile       Argentina        6577 </span>
-<span class="co">#&gt;  6  1980 chl       arg            Chile       Argentina        6631 </span>
-<span class="co">#&gt;  7  1980 chl       arg            Chile       Argentina        6632 </span>
-<span class="co">#&gt;  8  1980 chl       arg            Chile       Argentina        6645 </span>
-<span class="co">#&gt;  9  1980 chl       arg            Chile       Argentina        6647 </span>
-<span class="co">#&gt; 10  1980 chl       arg            Chile       Argentina        6760 </span>
-<span class="co">#&gt; # ... with 360 more rows, and 24 more variables: id_len &lt;int&gt;,</span>
-<span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_pct_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_val &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
+<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    id_len</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;  &lt;int&gt;</span>
+<span class="co">#&gt;  1  1980 chl       arg            Chile       Argentina        5722       4</span>
+<span class="co">#&gt;  2  1980 chl       arg            Chile       Argentina        6250       4</span>
+<span class="co">#&gt;  3  1980 chl       arg            Chile       Argentina        6282       4</span>
+<span class="co">#&gt;  4  1980 chl       arg            Chile       Argentina        6289       4</span>
+<span class="co">#&gt;  5  1980 chl       arg            Chile       Argentina        6577       4</span>
+<span class="co">#&gt;  6  1980 chl       arg            Chile       Argentina        6631       4</span>
+<span class="co">#&gt;  7  1980 chl       arg            Chile       Argentina        6632       4</span>
+<span class="co">#&gt;  8  1980 chl       arg            Chile       Argentina        6645       4</span>
+<span class="co">#&gt;  9  1980 chl       arg            Chile       Argentina        6647       4</span>
+<span class="co">#&gt; 10  1980 chl       arg            Chile       Argentina        6760       4</span>
+<span class="co">#&gt; # ... with 360 more rows, and 23 more variables: product_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   group_id &lt;chr&gt;, group_name &lt;chr&gt;, export_val &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_val_growth_pct &lt;dbl&gt;, export_val_growth_pct_5 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_val_growth_val &lt;dbl&gt;, export_val_growth_val_5 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;, import_val_growth_pct &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_pct_5 &lt;dbl&gt;, import_val_growth_val &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_val_5 &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   pci_rank &lt;dbl&gt;, pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
 <span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
 <span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>
 <p>Here some columns deserve an explanation:</p>
@@ -265,6 +267,7 @@ country_codes
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; Error in get_data("and", "fra", 2015): No data available. Try changing years or trade classification.</span></code></pre></div>
 <p>The problem here is that Andorra did not report SITC data in 2015 but they reported HS07 data.</p>
 <p>Andorra-France bilateral trade data in 2015 (HS07):</p>
@@ -273,27 +276,30 @@ country_codes
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Processing 2015 data...</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
+<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; # A tibble: 1,883 x 31</span>
-<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt;  1  2015 and       fra            Andorra     France           0101  </span>
-<span class="co">#&gt;  2  2015 and       fra            Andorra     France           010190</span>
-<span class="co">#&gt;  3  2015 and       fra            Andorra     France           0102  </span>
-<span class="co">#&gt;  4  2015 and       fra            Andorra     France           010210</span>
-<span class="co">#&gt;  5  2015 and       fra            Andorra     France           0106  </span>
-<span class="co">#&gt;  6  2015 and       fra            Andorra     France           010690</span>
-<span class="co">#&gt;  7  2015 and       fra            Andorra     France           0201  </span>
-<span class="co">#&gt;  8  2015 and       fra            Andorra     France           020110</span>
-<span class="co">#&gt;  9  2015 and       fra            Andorra     France           020120</span>
-<span class="co">#&gt; 10  2015 and       fra            Andorra     France           020130</span>
-<span class="co">#&gt; # ... with 1,873 more rows, and 25 more variables: id_len &lt;int&gt;,</span>
-<span class="co">#&gt; #   product_name &lt;chr&gt;, group_id &lt;chr&gt;, group_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   export_val &lt;dbl&gt;, export_val_growth_pct &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val &lt;dbl&gt;, export_val_growth_pct_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   export_val_growth_val_5 &lt;dbl&gt;, export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_pct &lt;dbl&gt;, import_val_growth_pct_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_val_growth_val &lt;dbl&gt;, import_val_growth_val_5 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   import_rca &lt;dbl&gt;, trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
+<span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    id_len</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;  &lt;int&gt;</span>
+<span class="co">#&gt;  1  2015 and       fra            Andorra     France           0101       4</span>
+<span class="co">#&gt;  2  2015 and       fra            Andorra     France           0101~      6</span>
+<span class="co">#&gt;  3  2015 and       fra            Andorra     France           0102       4</span>
+<span class="co">#&gt;  4  2015 and       fra            Andorra     France           0102~      6</span>
+<span class="co">#&gt;  5  2015 and       fra            Andorra     France           0106       4</span>
+<span class="co">#&gt;  6  2015 and       fra            Andorra     France           0106~      6</span>
+<span class="co">#&gt;  7  2015 and       fra            Andorra     France           0201       4</span>
+<span class="co">#&gt;  8  2015 and       fra            Andorra     France           0201~      6</span>
+<span class="co">#&gt;  9  2015 and       fra            Andorra     France           0201~      6</span>
+<span class="co">#&gt; 10  2015 and       fra            Andorra     France           0201~      6</span>
+<span class="co">#&gt; # ... with 1,873 more rows, and 24 more variables: product_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   group_id &lt;chr&gt;, group_name &lt;chr&gt;, export_val &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_val_growth_pct &lt;dbl&gt;, export_val_growth_val &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_val_growth_pct_5 &lt;dbl&gt;, export_val_growth_val_5 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   export_rca &lt;dbl&gt;, import_val &lt;dbl&gt;, import_val_growth_pct &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_pct_5 &lt;dbl&gt;, import_val_growth_val &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   import_val_growth_val_5 &lt;dbl&gt;, import_rca &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   trade_exchange_val &lt;dbl&gt;, pci &lt;dbl&gt;, pci_rank &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   pci_rank_delta &lt;dbl&gt;, top_exporter_code &lt;chr&gt;,</span>
 <span class="co">#&gt; #   top_importer_code &lt;chr&gt;, top_importer &lt;chr&gt;, top_exporter &lt;chr&gt;,</span>
 <span class="co">#&gt; #   color &lt;chr&gt;</span></code></pre></div>

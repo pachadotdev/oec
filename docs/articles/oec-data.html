@@ -8,8 +8,8 @@
 <title>Oec data • oec</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Oec data">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Oec data">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.6</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>Oec data</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-07-30</h4>
+            <h4 class="date">2018-08-19</h4>
       
       
       <div class="hidden name"><code>oec-data.Rmd</code></div>
@@ -99,26 +99,26 @@ country_codes_tidy_file &lt;-<span class="st"> "../data/country_codes.RData"</sp
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(country_codes_raw_file)) { <span class="kw">download.file</span>(country_codes_url, country_codes_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(country_codes_tidy_file)) {
-  country_codes &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(country_codes_raw_file)) <span class="op">%&gt;%</span>
+  country_codes &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(country_codes_raw_file)) <span class="op">%&gt;%</span>
 <span class="st">    </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">display_length =</span> <span class="kw">nchar</span>(id)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(display_length <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">display_length =</span> <span class="kw">nchar</span>(id)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(display_length <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
 <span class="st">    </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">country =</span> name, <span class="dt">country_code =</span> display_id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(country, country_code) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="op">!</span><span class="kw">is.na</span>(country_code)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">country =</span> name, <span class="dt">country_code =</span> display_id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(country, country_code) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(country_code)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">country =</span> <span class="kw">iconv</span>(country, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(country) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">country =</span> <span class="kw">iconv</span>(country, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">arrange</span>(country) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span>
 <span class="st">    </span><span class="co"># the code "wld" returns an empty JSON so I remove that</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(country_code <span class="op">!=</span><span class="st"> "wld"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(country_code <span class="op">!=</span><span class="st"> "wld"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span>
 <span class="st">    </span><span class="co"># the world code is "all"</span>
 <span class="st">    </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">"the World"</span>, <span class="st">"all"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span>
 <span class="st">    </span><span class="co"># also Taiwan is not correctly written</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">country =</span> <span class="kw">ifelse</span>(country <span class="op">==</span><span class="st"> "Taiwan"</span>, <span class="st">"Taiwan, province of China"</span>, country)
     )
   
@@ -138,26 +138,26 @@ hs92_tidy_file &lt;-<span class="st"> "../data/hs92.RData"</span>
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs92_raw_file)) { <span class="kw">download.file</span>(hs92_url, hs92_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs92_tidy_file)) {
-  hs92_raw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(hs92_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id, color)
+  hs92_raw &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(hs92_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(name, id, color)
   
   hs92_groups &lt;-<span class="st"> </span>hs92_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
+<span class="st">    </span><span class="kw">select</span>(name, id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
   
   hs92 &lt;-<span class="st"> </span>hs92_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(hs92_groups) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(hs92_groups) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">product_name =</span> <span class="kw">iconv</span>(product_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>),
       <span class="dt">group_name =</span> <span class="kw">iconv</span>(group_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)
     ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(product_name, id, group_name, group_id, color)
+<span class="st">    </span><span class="kw">select</span>(product_name, id, group_name, group_id, color)
   
   <span class="kw">save</span>(hs92, <span class="dt">file =</span> hs92_tidy_file, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>
@@ -172,26 +172,26 @@ hs96_tidy_file &lt;-<span class="st"> "../data/hs96.RData"</span>
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs96_raw_file)) { <span class="kw">download.file</span>(hs96_url, hs96_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs96_tidy_file)) {
-  hs96_raw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(hs96_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id, color)
+  hs96_raw &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(hs96_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(name, id, color)
   
   hs96_groups &lt;-<span class="st"> </span>hs96_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
+<span class="st">    </span><span class="kw">select</span>(name, id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
   
   hs96 &lt;-<span class="st"> </span>hs96_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(hs96_groups) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(hs96_groups) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">product_name =</span> <span class="kw">iconv</span>(product_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>),
       <span class="dt">group_name =</span> <span class="kw">iconv</span>(group_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)
     ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(product_name, id, group_name, group_id, color)
+<span class="st">    </span><span class="kw">select</span>(product_name, id, group_name, group_id, color)
   
   <span class="kw">save</span>(hs96, <span class="dt">file =</span> hs96_tidy_file, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>
@@ -206,26 +206,26 @@ hs02_tidy_file &lt;-<span class="st"> "../data/hs02.RData"</span>
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs02_raw_file)) { <span class="kw">download.file</span>(hs02_url, hs02_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs02_tidy_file)) {
-  hs02_raw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(hs02_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id, color)
+  hs02_raw &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(hs02_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(name, id, color)
   
   hs02_groups &lt;-<span class="st"> </span>hs02_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
+<span class="st">    </span><span class="kw">select</span>(name, id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
   
   hs02 &lt;-<span class="st"> </span>hs02_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(hs02_groups) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(hs02_groups) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">product_name =</span> <span class="kw">iconv</span>(product_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>),
       <span class="dt">group_name =</span> <span class="kw">iconv</span>(group_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)
     ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(product_name, id, group_name, group_id, color)
+<span class="st">    </span><span class="kw">select</span>(product_name, id, group_name, group_id, color)
   
   <span class="kw">save</span>(hs02, <span class="dt">file =</span> hs02_tidy_file, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>
@@ -240,26 +240,26 @@ hs07_tidy_file &lt;-<span class="st"> "../data/hs07.RData"</span>
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs07_raw_file)) { <span class="kw">download.file</span>(hs07_url, hs07_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(hs07_tidy_file)) {
-  hs07_raw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(hs07_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id, color)
+  hs07_raw &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(hs07_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(name, id, color)
   
   hs07_groups &lt;-<span class="st"> </span>hs07_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
+<span class="st">    </span><span class="kw">select</span>(name, id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
   
   hs07 &lt;-<span class="st"> </span>hs07_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(hs07_groups) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(hs07_groups) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">product_name =</span> <span class="kw">iconv</span>(product_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>),
       <span class="dt">group_name =</span> <span class="kw">iconv</span>(group_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)
     ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(product_name, id, group_name, group_id, color)
+<span class="st">    </span><span class="kw">select</span>(product_name, id, group_name, group_id, color)
   
   <span class="kw">save</span>(hs07, <span class="dt">file =</span> hs07_tidy_file, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>
@@ -274,26 +274,26 @@ sitc_tidy_file &lt;-<span class="st"> "../data-raw/sitc.json"</span>
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(sitc_raw_file)) { <span class="kw">download.file</span>(sitc_url, sitc_raw_file) }
 
 <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(sitc_tidy_file)) {
-  sitc_raw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/flatten">flatten_df</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(sitc_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id, color)
+  sitc_raw &lt;-<span class="st"> </span><span class="kw">flatten_df</span>(<span class="kw">fromJSON</span>(sitc_raw_file)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(name, id, color)
   
   sitc_groups &lt;-<span class="st"> </span>sitc_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(name, id) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
+<span class="st">    </span><span class="kw">select</span>(name, id) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">group_name =</span> name, <span class="dt">group_id =</span> id)
   
   sitc &lt;-<span class="st"> </span>sitc_raw <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(sitc_groups) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">nchar</span>(id) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group_id =</span> <span class="kw">substr</span>(id, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">substr</span>(id, <span class="dv">3</span>, <span class="kw">nchar</span>(id))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">product_name =</span> name) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(sitc_groups) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(
       <span class="dt">product_name =</span> <span class="kw">iconv</span>(product_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>),
       <span class="dt">group_name =</span> <span class="kw">iconv</span>(group_name, <span class="dt">from =</span> <span class="st">""</span>, <span class="dt">to =</span> <span class="st">"ASCII"</span>, <span class="dt">sub =</span> <span class="st">"byte"</span>)
     ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(product_name, id, group_name, group_id, color)
+<span class="st">    </span><span class="kw">select</span>(product_name, id, group_name, group_id, color)
   
   <span class="kw">save</span>(sitc, <span class="dt">file =</span> <span class="st">"../data/sitc.RData"</span>, <span class="dt">compress =</span> <span class="st">"xz"</span>)
 }</code></pre></div>

@@ -21,11 +21,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -34,7 +32,6 @@
 
 <meta property="og:description" content="Provides a detail of HS07 codes." />
 <meta name="twitter:card" content="summary" />
-
 
 
 <!-- mathjax -->
@@ -61,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8.6</span>
       </span>
     </div>
 
@@ -135,16 +132,16 @@
     <pre class="examples"><div class='input'><span class='no'>hs07</span></div><div class='output co'>#&gt; # A tibble: 6,276 x 5
 #&gt;    product_name                              id     group_name   group_id color
 #&gt;    &lt;chr&gt;                                     &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;
-#&gt;  1 Live horses, asses, mules and hinnies.    0101   Animal Prod… 01       #FFE…
-#&gt;  2 Live horses/asses/mules/hinnies: pure-br… 010110 Animal Prod… 01       #FFE…
-#&gt;  3 Live horses/asses/mules/hinnies other th… 010190 Animal Prod… 01       #FFE…
-#&gt;  4 Live bovine animals.                      0102   Animal Prod… 01       #FFE…
-#&gt;  5 Live bovine animals: pure-bred breeding … 010210 Animal Prod… 01       #FFE…
-#&gt;  6 Live bovine animals other than pure-bred… 010290 Animal Prod… 01       #FFE…
-#&gt;  7 Live swine.                               0103   Animal Prod… 01       #FFE…
-#&gt;  8 Live swine: pure-bred breeding animals    010310 Animal Prod… 01       #FFE…
-#&gt;  9 Live swine other than pure-bred breeding… 010391 Animal Prod… 01       #FFE…
-#&gt; 10 Live swine other than pure-bred breeding… 010392 Animal Prod… 01       #FFE…
+#&gt;  1 Live horses, asses, mules and hinnies.    0101   Animal Prod~ 01       #FFE~
+#&gt;  2 Live horses/asses/mules/hinnies: pure-br~ 010110 Animal Prod~ 01       #FFE~
+#&gt;  3 Live horses/asses/mules/hinnies other th~ 010190 Animal Prod~ 01       #FFE~
+#&gt;  4 Live bovine animals.                      0102   Animal Prod~ 01       #FFE~
+#&gt;  5 Live bovine animals: pure-bred breeding ~ 010210 Animal Prod~ 01       #FFE~
+#&gt;  6 Live bovine animals other than pure-bred~ 010290 Animal Prod~ 01       #FFE~
+#&gt;  7 Live swine.                               0103   Animal Prod~ 01       #FFE~
+#&gt;  8 Live swine: pure-bred breeding animals    010310 Animal Prod~ 01       #FFE~
+#&gt;  9 Live swine other than pure-bred breeding~ 010391 Animal Prod~ 01       #FFE~
+#&gt; 10 Live swine other than pure-bred breeding~ 010392 Animal Prod~ 01       #FFE~
 #&gt; # ... with 6,266 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

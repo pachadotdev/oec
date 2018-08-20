@@ -20,8 +20,7 @@
 #' everything left_join bind_rows rename matches
 #' @importFrom stringr str_sub str_length
 #' @importFrom jsonlite fromJSON
-#' @importFrom curl curl has_internet handle_setheaders new_handle
-#' @importFrom httr http_error GET status_code
+#' @importFrom crul HttpClient
 #' @importFrom rlang sym syms
 #' @importFrom purrr flatten_df map_df
 #' @export
@@ -45,15 +44,6 @@
 #' @keywords functions
 
 get_data <- function(origin = "all", destination = "all", years = 2000, classification = "sitc") {
-  # Check connections -------------------------------------------------------
-  if (has_internet() != TRUE) {
-    stop("No internet connection. Please retry again later.")
-  }
-
-  if (http_error("https://atlas.media.mit.edu/attr/country/") != FALSE) {
-    stop("There is a server problem. Please retry again later.")
-  }
-
   # Check classification and years ------------------------------------------
   match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
 
@@ -126,31 +116,32 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
 
     url <- switch(flow,
       "origin-destination" = sprintf(
-        "https://atlas.media.mit.edu/%s/export/%s/%s/%s/show/",
+        "%s/export/%s/%s/%s/show/",
         classification,
         years[t],
         origin,
         destination
       ),
       "origin-world" = sprintf(
-        "https://atlas.media.mit.edu/%s/export/%s/%s/all/show/",
+        "%s/export/%s/%s/all/show/",
         classification,
         years[t],
         origin
       ),
       "world-world" = sprintf(
-        "https://atlas.media.mit.edu/%s/export/%s/all/all/show/",
+        "%s/export/%s/all/all/show/",
         classification,
         years[t]
       )
     )
 
-    resp <- GET(url)
-
+    resp <- crul::HttpClient$new(url = "https://atlas.media.mit.edu/")
+    resp <- resp$get(url)
+    
     # on a successful GET, return the response
-    if (status_code(resp) == 200) {
+    if (resp$status_code == 200) {
       data <- try(
-        flatten_df(fromJSON(resp$url))
+        flatten_df(fromJSON(resp$parse()))
       )
 
       if (!is.data.frame(data)) {
@@ -163,7 +154,7 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
       return(data)
     } else if (attempts_left == 0) {
       # when attempts run out, stop with an error
-      stop("Cannot connect to the API")
+      stop("Cannot connect to the API. Either the server is down or there is a connection problem.")
     } else {
       # otherwise, sleep a second and try again
       Sys.sleep(1)

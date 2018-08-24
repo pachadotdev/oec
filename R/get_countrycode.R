@@ -23,11 +23,38 @@ get_countrycode <- function(countryname = "world") {
     ) %>%
     select(!!sym("country_code")) %>%
     as_vector()
+  
+  countryname <- switch(countryname,
+    "us" = "united states",
+    "usa" = "united states",
+    "america" = "united states",
+    "united states of america" = "united states",
+    "uk" = "united kingdom",
+    "england" = "united kingdom",
+    "scotland" = "united kingdom",
+    "holland" = "netherlands",
+    "ussr" = "russia",
+    "myanmar" = "burma",
+    "persia" = "iran",
+    "siam" = "thailand",
+    "indochina" = "vietnam",
+    "rhodesia" = "zimbabwe",
+    "british honduras" = "belice",
+    "bengal" = "bangladesh",
+    "east pakistan" = "bangladesh",
+    "zaire" = "democratic republic of the congo",
+    countryname
+  )
 
-  stopifnot(length(countrycode) != 0)
+
+  if (length(countrycode) == 0) {
+    message("There is no match for your search. Please check the spelling or 
+            explore country_codes package provided within this package.")
+  }
 
   if (length(countrycode) > 1) {
-    message("There is more than one match for your search. Here's the output")
+    message("There is more than one match for your search. Please try again using
+            one of these codes:")
 
     print(
       oec::country_codes %>%

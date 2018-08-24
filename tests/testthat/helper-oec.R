@@ -1,2 +1,2 @@
 library(vcr)
-invisible(vcr::vcr_configure(dir = "fixtures/vcr_cassettes"))
+invisible(vcr::vcr_configure(dir = "tests/fixtures/vcr_cassettes"))

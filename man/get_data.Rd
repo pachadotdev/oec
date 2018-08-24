@@ -5,7 +5,7 @@
 \title{Downloads and processes the data from the API}
 \usage{
 get_data(origin = "all", destination = "all", years = 2000,
-  classification = "sitc")
+  classification = "sitc", max_attempts = 5)
 }
 \arguments{
 \item{origin}{ISO code for country of origin (e.g. \code{chl} for Chile). 
@@ -21,6 +21,9 @@ Default set to 2000.}
 
 \item{classification}{Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.}
+
+\item{max_attempts}{How many times to try to download data in case the API or the internet 
+connection fails when obtaining data. Default set to \code{5}.}
 }
 \value{
 A tibble that describes bilateral trade metrics (imports, exports, trade balance

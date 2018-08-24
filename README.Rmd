@@ -38,7 +38,7 @@ Using the oec R package is all about efficiency, without this package you could 
 install.packages("oec")
 
 # Install development version from GitHub
-devtools::install_github("pachamaltese/oec-r-package")
+devtools::install_github("pachamaltese/oec")
 ```
 
 ## Usage

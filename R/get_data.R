@@ -11,6 +11,8 @@
 #' Default set to 2000.
 #' @param classification Any of the available trade classifications in the OEC (\code{sitc}, \code{hs92},
 #' \code{hs96}, \code{hs02} or \code{hs07}). Default set to \code{sitc}.
+#' @param max_attempts How many times to try to download data in case the API or the internet 
+#' connection fails when obtaining data. Default set to \code{5}.
 #' @return A tibble that describes bilateral trade metrics (imports, exports, trade balance
 #' and relevant metrics
 #' such as exports growth w/r to last year) between an \code{origin} and \code{destination}
@@ -43,7 +45,8 @@
 #' }
 #' @keywords functions
 
-get_data <- function(origin = "all", destination = "all", years = 2000, classification = "sitc") {
+get_data <- function(origin = "all", destination = "all", years = 2000, 
+                     classification = "sitc", max_attempts = 5) {
   # Check classification and years ------------------------------------------
   match.arg(classification, c("sitc", "hs92", "hs96", "hs02", "hs07"))
 
@@ -105,13 +108,8 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
   match.arg(origin, country_codes$country_code)
   match.arg(destination, country_codes$country_code)
 
-  # Valid input message -----------------------------------------------------
-  message(
-    sprintf("\nProcessing %s data...", years)
-  )
-
   # Read from API -----------------------------------------------------------
-  read_from_api <- function(t, flow, attempts_left = 5) {
+  read_from_api <- function(t, flow, attempts_left = max_attempts) {
     stopifnot(attempts_left > 0)
 
     url <- switch(flow,
@@ -141,7 +139,7 @@ get_data <- function(origin = "all", destination = "all", years = 2000, classifi
     # on a successful GET, return the response
     if (resp$status_code == 200) {
       data <- try(
-        flatten_df(fromJSON(resp$parse()))
+        flatten_df(fromJSON(resp$parse(encoding = "UTF-8")))
       )
 
       if (!is.data.frame(data)) {

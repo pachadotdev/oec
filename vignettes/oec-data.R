@@ -1,0 +1,204 @@
+## ----setup, include = FALSE----------------------------------------------
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+## ----countries, message = FALSE, eval = FALSE----------------------------
+#  library(dplyr)
+#  library(purrr)
+#  library(jsonlite)
+#  
+#  country_codes_url <- "http://atlas.media.mit.edu/attr/country/"
+#  country_codes_raw_file <- "../data-raw/country_codes.json"
+#  country_codes_tidy_file <- "../data/country_codes.RData"
+#  
+#  if (!file.exists(country_codes_raw_file)) { download.file(country_codes_url, country_codes_raw_file) }
+#  
+#  if (!file.exists(country_codes_tidy_file)) {
+#    country_codes <- flatten_df(fromJSON(country_codes_raw_file)) %>%
+#  
+#      mutate(display_length = nchar(id)) %>%
+#      filter(display_length == 5) %>%
+#  
+#      rename(country = name, country_code = display_id) %>%
+#      select(country, country_code) %>%
+#      filter(!is.na(country_code)) %>%
+#  
+#      mutate(country = iconv(country, from = "", to = "ASCII", sub = "byte")) %>%
+#      arrange(country) %>%
+#  
+#      # the code "wld" returns an empty JSON so I remove that
+#      filter(country_code != "wld") %>%
+#  
+#      # the world code is "all"
+#      rbind(c("the World", "all")) %>%
+#  
+#      # also Taiwan is not correctly written
+#      mutate(
+#        country = ifelse(country == "Taiwan", "Taiwan, province of China", country)
+#      )
+#  
+#    save(country_codes, file = country_codes_tidy_file, compress = "xz")
+#  }
+
+## ----hs92, eval = FALSE--------------------------------------------------
+#  hs92_url <- "https://atlas.media.mit.edu/attr/hs92/"
+#  hs92_raw_file <- "../data-raw/hs92.json"
+#  hs92_tidy_file <- "../data/hs92.RData"
+#  
+#  if (!file.exists(hs92_raw_file)) { download.file(hs92_url, hs92_raw_file) }
+#  
+#  if (!file.exists(hs92_tidy_file)) {
+#    hs92_raw <- flatten_df(fromJSON(hs92_raw_file)) %>%
+#      select(name, id, color)
+#  
+#    hs92_groups <- hs92_raw %>%
+#      select(name, id) %>%
+#      filter(nchar(id) == 2) %>%
+#      distinct() %>%
+#      rename(group_name = name, group_id = id)
+#  
+#    hs92 <- hs92_raw %>%
+#      filter(nchar(id) >= 6) %>%
+#      mutate(group_id = substr(id, 1, 2)) %>%
+#      mutate(id = substr(id, 3, nchar(id))) %>%
+#      rename(product_name = name) %>%
+#      left_join(hs92_groups) %>%
+#      mutate(
+#        product_name = iconv(product_name, from = "", to = "ASCII", sub = "byte"),
+#        group_name = iconv(group_name, from = "", to = "ASCII", sub = "byte")
+#      ) %>%
+#      select(product_name, id, group_name, group_id, color)
+#  
+#    save(hs92, file = hs92_tidy_file, compress = "xz")
+#  }
+
+## ----hs96, eval = FALSE--------------------------------------------------
+#  hs96_url <- "https://atlas.media.mit.edu/attr/hs96/"
+#  hs96_raw_file <- "../data-raw/hs96.json"
+#  hs96_tidy_file <- "../data/hs96.RData"
+#  
+#  if (!file.exists(hs96_raw_file)) { download.file(hs96_url, hs96_raw_file) }
+#  
+#  if (!file.exists(hs96_tidy_file)) {
+#    hs96_raw <- flatten_df(fromJSON(hs96_raw_file)) %>%
+#      select(name, id, color)
+#  
+#    hs96_groups <- hs96_raw %>%
+#      select(name, id) %>%
+#      filter(nchar(id) == 2) %>%
+#      distinct() %>%
+#      rename(group_name = name, group_id = id)
+#  
+#    hs96 <- hs96_raw %>%
+#      filter(nchar(id) >= 6) %>%
+#      mutate(group_id = substr(id, 1, 2)) %>%
+#      mutate(id = substr(id, 3, nchar(id))) %>%
+#      rename(product_name = name) %>%
+#      left_join(hs96_groups) %>%
+#      mutate(
+#        product_name = iconv(product_name, from = "", to = "ASCII", sub = "byte"),
+#        group_name = iconv(group_name, from = "", to = "ASCII", sub = "byte")
+#      ) %>%
+#      select(product_name, id, group_name, group_id, color)
+#  
+#    save(hs96, file = hs96_tidy_file, compress = "xz")
+#  }
+
+## ----hs02, eval = FALSE--------------------------------------------------
+#  hs02_url <- "https://atlas.media.mit.edu/attr/hs02/"
+#  hs02_raw_file <- "../data-raw/hs02.json"
+#  hs02_tidy_file <- "../data/hs02.RData"
+#  
+#  if (!file.exists(hs02_raw_file)) { download.file(hs02_url, hs02_raw_file) }
+#  
+#  if (!file.exists(hs02_tidy_file)) {
+#    hs02_raw <- flatten_df(fromJSON(hs02_raw_file)) %>%
+#      select(name, id, color)
+#  
+#    hs02_groups <- hs02_raw %>%
+#      select(name, id) %>%
+#      filter(nchar(id) == 2) %>%
+#      distinct() %>%
+#      rename(group_name = name, group_id = id)
+#  
+#    hs02 <- hs02_raw %>%
+#      filter(nchar(id) >= 6) %>%
+#      mutate(group_id = substr(id, 1, 2)) %>%
+#      mutate(id = substr(id, 3, nchar(id))) %>%
+#      rename(product_name = name) %>%
+#      left_join(hs02_groups) %>%
+#      mutate(
+#        product_name = iconv(product_name, from = "", to = "ASCII", sub = "byte"),
+#        group_name = iconv(group_name, from = "", to = "ASCII", sub = "byte")
+#      ) %>%
+#      select(product_name, id, group_name, group_id, color)
+#  
+#    save(hs02, file = hs02_tidy_file, compress = "xz")
+#  }
+
+## ----hs07, eval = FALSE--------------------------------------------------
+#  hs07_url <- "https://atlas.media.mit.edu/attr/hs07/"
+#  hs07_raw_file <- "../data-raw/hs07.json"
+#  hs07_tidy_file <- "../data/hs07.RData"
+#  
+#  if (!file.exists(hs07_raw_file)) { download.file(hs07_url, hs07_raw_file) }
+#  
+#  if (!file.exists(hs07_tidy_file)) {
+#    hs07_raw <- flatten_df(fromJSON(hs07_raw_file)) %>%
+#      select(name, id, color)
+#  
+#    hs07_groups <- hs07_raw %>%
+#      select(name, id) %>%
+#      filter(nchar(id) == 2) %>%
+#      distinct() %>%
+#      rename(group_name = name, group_id = id)
+#  
+#    hs07 <- hs07_raw %>%
+#      filter(nchar(id) >= 6) %>%
+#      mutate(group_id = substr(id, 1, 2)) %>%
+#      mutate(id = substr(id, 3, nchar(id))) %>%
+#      rename(product_name = name) %>%
+#      left_join(hs07_groups) %>%
+#      mutate(
+#        product_name = iconv(product_name, from = "", to = "ASCII", sub = "byte"),
+#        group_name = iconv(group_name, from = "", to = "ASCII", sub = "byte")
+#      ) %>%
+#      select(product_name, id, group_name, group_id, color)
+#  
+#    save(hs07, file = hs07_tidy_file, compress = "xz")
+#  }
+
+## ----sitc, eval = FALSE--------------------------------------------------
+#  sitc_url <- "https://atlas.media.mit.edu/attr/sitc/"
+#  sitc_raw_file <- "../data-raw/sitc.json"
+#  sitc_tidy_file <- "../data-raw/sitc.json"
+#  
+#  if (!file.exists(sitc_raw_file)) { download.file(sitc_url, sitc_raw_file) }
+#  
+#  if (!file.exists(sitc_tidy_file)) {
+#    sitc_raw <- flatten_df(fromJSON(sitc_raw_file)) %>%
+#      select(name, id, color)
+#  
+#    sitc_groups <- sitc_raw %>%
+#      select(name, id) %>%
+#      filter(nchar(id) == 2) %>%
+#      distinct() %>%
+#      rename(group_name = name, group_id = id)
+#  
+#    sitc <- sitc_raw %>%
+#      filter(nchar(id) >= 6) %>%
+#      mutate(group_id = substr(id, 1, 2)) %>%
+#      mutate(id = substr(id, 3, nchar(id))) %>%
+#      rename(product_name = name) %>%
+#      left_join(sitc_groups) %>%
+#      mutate(
+#        product_name = iconv(product_name, from = "", to = "ASCII", sub = "byte"),
+#        group_name = iconv(group_name, from = "", to = "ASCII", sub = "byte")
+#      ) %>%
+#      select(product_name, id, group_name, group_id, color)
+#  
+#    save(sitc, file = "../data/sitc.RData", compress = "xz")
+#  }
+

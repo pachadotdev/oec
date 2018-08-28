@@ -138,6 +138,8 @@ get_data <- function(origin = "all", destination = "all", years = 2000,
     
     # on a successful GET, return the response
     if (resp$status_code == 200) {
+      sprintf("\nNow trying to download %s data for the year %s...", flow, years[t])
+      
       data <- try(
         flatten_df(fromJSON(resp$parse(encoding = "UTF-8")))
       )
@@ -148,7 +150,10 @@ get_data <- function(origin = "all", destination = "all", years = 2000,
              a server problem.
              Please try again later.")
       }
-
+      
+      sprintf("\n%s data for the year %s was downloaded without problems. 
+              Now proceeding to tidy data...", flow, years[t])
+      
       return(data)
     } else if (attempts_left == 0) {
       # when attempts run out, stop with an error

@@ -75,7 +75,7 @@
       <h1>Introduction to oec</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2018-08-19</h4>
+            <h4 class="date">2018-08-26</h4>
       
       
       <div class="hidden name"><code>oec.Rmd</code></div>
@@ -155,11 +155,6 @@ country_codes
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Chile exchange with Argentina?  </span>
 <span class="co"># year 1980 - SITC (4 characters)</span>
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"chl"</span>, <span class="st">"arg"</span>, <span class="dv">1980</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 1980 data...</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; # A tibble: 370 x 30</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    id_len</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;  &lt;int&gt;</span>
@@ -265,20 +260,12 @@ country_codes
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - SITC (4 characters)</span>
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 2015 data...</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; Error in get_data("and", "fra", 2015): No data available. Try changing years or trade classification.</span></code></pre></div>
 <p>The problem here is that Andorra did not report SITC data in 2015 but they reported HS07 data.</p>
 <p>Andorra-France bilateral trade data in 2015 (HS07):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does Andorra exchange with France?  </span>
 <span class="co"># year 2015 - HS07 (4 and 6 characters)</span>
 <span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="st">"and"</span>, <span class="st">"fra"</span>, <span class="dv">2015</span>, <span class="st">"hs07"</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Processing 2015 data...</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; # A tibble: 1,883 x 31</span>
 <span class="co">#&gt;     year origin_id destination_id origin_name destination_name id    id_len</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;  &lt;int&gt;</span>

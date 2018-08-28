@@ -118,7 +118,7 @@ calls to return tidy data. and data transforming.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_data</span>(<span class='kw'>origin</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>destination</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>years</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-  <span class='kw'>classification</span> <span class='kw'>=</span> <span class='st'>"sitc"</span>)</pre>
+  <span class='kw'>classification</span> <span class='kw'>=</span> <span class='st'>"sitc"</span>, <span class='kw'>max_attempts</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,6 +144,11 @@ Default set to 2000.</p></td>
       <th>classification</th>
       <td><p>Any of the available trade classifications in the OEC (<code>sitc</code>, <code>hs92</code>,
 <code>hs96</code>, <code>hs02</code> or <code>hs07</code>). Default set to <code>sitc</code>.</p></td>
+    </tr>
+    <tr>
+      <th>max_attempts</th>
+      <td><p>How many times to try to download data in case the API or the internet 
+connection fails when obtaining data. Default set to <code>5</code>.</p></td>
     </tr>
     </table>
     
